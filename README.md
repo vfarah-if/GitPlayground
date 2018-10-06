@@ -1,2 +1,2 @@
-# GitPlayground
-Playground for testing git connections and types
+# Sample Client Connections
+Playground for testing rest connections, Flurl, Bddfy and other concepts
