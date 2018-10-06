@@ -44,13 +44,13 @@ namespace Git.Domain.Acceptance.Tests
         }
 
         [Fact]
-        public void ThrowAFlurlHttpExceptionFor2018Statistics()
+        public void ThrowAFlurlHttpExceptionForCurrentYearStatistics()
         {
-            Func<Task> action = async () => await transportForLondonClient.GetAccidentStatistics(2018);
+            Func<Task> action = async () => await transportForLondonClient.GetAccidentStatistics(DateTime.Today.Year);
 
             action.Should()
             .Throw<FlurlHttpException>()
-            .WithMessage("Call failed with status code 400 (Bad Request): GET https://api.tfl.gov.uk/AccidentStats/2018");
+            .WithMessage($"Call failed with status code 400 (Bad Request): GET https://api.tfl.gov.uk/AccidentStats/{DateTime.Today.Year}");
         }
 
 
