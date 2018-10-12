@@ -7,15 +7,45 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            var transportForLondonClient = new TransportForLondonClient();
-            var accidentStatistics = transportForLondonClient.GetAccidentStatistics(2017).Result;
-            Console.WriteLine($"{accidentStatistics.Count} accidents occured");
-            foreach (var accidentStatistic in accidentStatistics)
+            try
             {
-                Console.WriteLine($"Accident occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
-            }
+                var transportForLondonClient = new TransportForLondonClient();
+                int currentPage = 1;
+                const int PageSize = 10;
 
-            Console.Read();
+                var pagedAccidentStatistics = transportForLondonClient.GetPagedAccidentStatistics(2017, currentPage, PageSize).Result;
+                Console.WriteLine($"{pagedAccidentStatistics.Total} accidents occured");            
+
+                while ((currentPage * PageSize) <= pagedAccidentStatistics.Total)
+                {
+                    Console.WriteLine($"Page '{pagedAccidentStatistics.Page}' of {pagedAccidentStatistics.PageSize} records");
+                    foreach (var accidentStatistic in pagedAccidentStatistics.Data)
+                    {
+                        Console.WriteLine($"Accident occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
+                    }
+                    Console.WriteLine($"Next '{PageSize}' records ...");
+                    Console.Read();
+                    currentPage += 1;
+                    pagedAccidentStatistics = transportForLondonClient.GetPagedAccidentStatistics(2017, currentPage, PageSize).Result;
+                }
+            }
+            catch (Exception e)
+            {
+                LogError(e, "Failed to get paged transport messages ...");
+                Console.Read();
+            }
+        }
+
+        private static void LogError(Exception e, string message = null)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            if (!string.IsNullOrEmpty(message))
+            {
+                Console.WriteLine(message);
+            }
+            Console.WriteLine(e.Message);
+            if (e.InnerException == null) return;
+            LogError(e.InnerException);
         }
     }
 }

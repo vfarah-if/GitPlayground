@@ -80,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransportForLondonClientShould.cs" />
   </ItemGroup>

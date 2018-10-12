@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Flurl.Http;
@@ -33,6 +34,54 @@ namespace Git.Domain.Acceptance.Tests
             var actual = await transportForLondonClient.GetAccidentStatistics(2017);
 
             actual.Should().NotBeNullOrEmpty();
+        }
+
+        [Fact]
+        public async void GetFirstPagedAccidentStatisticsFor2017()
+        {
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 1, 100);
+
+            actual.Should().NotBeNull();
+            actual.Page.Should().Be(1);
+            actual.PageSize.Should().Be(100);
+            actual.Data.Count().Should().Be(100);
+            actual.Total.Should().Be(54178);
+        }
+
+        [Fact]
+        public async void GetFirstPagedAccidentStatisticsFor2017_WhenPageLessThanOrEqualToZero()
+        {
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 0, 100);
+
+            actual.Should().NotBeNull();
+            actual.Page.Should().Be(1);
+            actual.PageSize.Should().Be(100);
+            actual.Data.Count().Should().Be(100);
+            actual.Total.Should().Be(54178);
+        }
+
+        [Fact]
+        public async void GetLastPagedAccidentStatisticsFor2017()
+        {
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 542, 100);
+
+            actual.Should().NotBeNull();
+            actual.Page.Should().Be(542);
+            actual.PageSize.Should().Be(100);
+            actual.Data.Count().Should().Be(78);
+            actual.Total.Should().Be(54178);
+        }
+
+        [Fact]
+        public async void GetPagedHigherThanMaxAccidentStatisticsFor2017ShouldGoToTheMax()
+        {
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 543, 100);
+
+            actual.Should().NotBeNull();
+            actual.Page.Should().Be(542);
+            actual.PageSize.Should().Be(100);
+            actual.Data.Count().Should().Be(78);
+            actual.Total.Should().Be(54178);
         }
 
         [Fact]
