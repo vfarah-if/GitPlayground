@@ -31,17 +31,26 @@ namespace Git.Domain
             return result;
         }
 
-        public async Task<IReadOnlyList<AccidentStatistic>> GetAccidentStatistics(int year)
+        public async Task<IReadOnlyList<AccidentStatistic>> GetAccidentStatistics(int year,
+            Func<AccidentStatistic, bool> filter = null)
         {
             var result = await baseUrl
                 .AppendPathSegment(AccidentStatsPathSegment)
                 .AppendPathSegment(year.ToString())
-                .GetJsonAsync<IReadOnlyList<AccidentStatistic>>()
+                .GetJsonAsync<IEnumerable<AccidentStatistic>>()
                 .ConfigureAwait(false);
-            return result;
+
+//#if DEBUG
+//            var resultFor2017 = result.ToJson();
+//            System.IO.File.WriteAllText("c:\\temp\\test2017.json", resultFor2017);
+//#endif
+            
+            var output = filter != null ? result.Where(filter).ToList() : result.ToList();
+            return output.AsReadOnly();
         }
 
-        public async Task<Paged<AccidentStatistic>> GetPagedAccidentStatistics(int year, int page = 1, int pageSize = 100)
+        public async Task<Paged<AccidentStatistic>> GetPagedAccidentStatistics(int year, int page = 1, int pageSize = 100, 
+            Func<AccidentStatistic, bool> filter = null)
         {
             var zeroIndexedCurrentPage = page - 1;
             if (zeroIndexedCurrentPage < 0)
@@ -49,7 +58,7 @@ namespace Git.Domain
                 zeroIndexedCurrentPage = 0;
             }
 
-            var result = await GetOrStoreAccidentStatisticsFromCache(year);
+            var result = await GetOrStoreAccidentStatisticsFromCache(year, filter);
 
             long total = result.LongCount();
             double pageCount = total / pageSize;
@@ -65,13 +74,22 @@ namespace Git.Domain
             return Paged<AccidentStatistic>.Create(total, data, zeroIndexedCurrentPage + 1, pageSize);
         }
 
-        private async Task<IReadOnlyList<AccidentStatistic>> GetOrStoreAccidentStatisticsFromCache(int year)
+        private async Task<IReadOnlyList<AccidentStatistic>> GetOrStoreAccidentStatisticsFromCache(int year, 
+            Func<AccidentStatistic, bool> filter)
         {
-            var result = accidentStatisticsCache.Get(year);
-            if (result != null) return result;
+            int cacheKey = year;
 
-            result = await GetAccidentStatistics(year);
-            accidentStatisticsCache.Store(year, result, CacheExpirationTimeInMinutes);
+            if (filter != null)
+            {
+                cacheKey += filter.GetHashCode();
+            }
+
+            var result = accidentStatisticsCache.Get(cacheKey);
+            if (result != null) return result;
+            
+            result = await GetAccidentStatistics(year, filter);
+
+            accidentStatisticsCache.Store(cacheKey, result, CacheExpirationTimeInMinutes);
             return result;
         }
     }

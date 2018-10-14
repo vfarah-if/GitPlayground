@@ -20,7 +20,7 @@ namespace Git.Domain.Models.TFL
         public string Class { get; set; }
 
         [JsonProperty(PropertyName = "severity")]
-        public string Severity { get; set; }
+        public Severity Severity { get; set; }
 
         [JsonProperty(PropertyName = "mode")]
         public string Mode { get; set; }

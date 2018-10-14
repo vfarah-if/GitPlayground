@@ -55,9 +55,11 @@
     <Compile Include="GitApiClient.cs" />
     <Compile Include="Models\TFL\AccidentStatistic.cs" />
     <Compile Include="Models\TFL\Casualty.cs" />
+    <Compile Include="Models\TFL\Severity.cs" />
     <Compile Include="Models\TFL\Vehicle.cs" />
     <Compile Include="Paged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializationExtension.cs" />
     <Compile Include="TransportForLondonClient.cs" />
   </ItemGroup>
   <ItemGroup>

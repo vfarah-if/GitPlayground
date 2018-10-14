@@ -51,7 +51,7 @@ namespace Git.Domain.Models.TFL
         public DateTime Date => DateTime.ParseExact(DateAsString, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
 
         [JsonProperty(PropertyName = "severity")]
-        public string Severity { get; set; }
+        public Severity Severity { get; set; }
 
         [JsonProperty(PropertyName = "borough")]
         public string Borough { get; set; }

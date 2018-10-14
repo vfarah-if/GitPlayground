@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using AutoFixture;
 using FluentAssertions;
 using Flurl.Http.Testing;
 using Git.Domain.Models.TFL;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Git.Domain.UnitTests
@@ -76,6 +80,28 @@ namespace Git.Domain.UnitTests
             actual.Page.Should().Be(1);
             actual.PageSize.Should().Be(5);
         }
+
+        [Fact]
+        public async void ShouldFilterAllDataWithFatalSeverity()
+        {
+            var json = LoadAll2017AccidentTestDataJson();
+            var accidentStatistics = JsonConvert.DeserializeObject(json);
+            httpTest.RespondWithJson(accidentStatistics, 200);
+
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(year: 2016, filter: filter => filter.Severity == Severity.Fatal);
+
+            actual.Should().NotBeNull();
+            actual.Data.Should().NotBeNull();
+            actual.Total.Should().Be(262);
+            actual.Page.Should().Be(1);
+            actual.PageSize.Should().Be(100);
+        }      
+
+        private static string LoadAll2017AccidentTestDataJson()
+        {
+            return File.ReadAllText("TestData\\2017AccidentData.json");
+        }
+
 
         public void Dispose()
         {

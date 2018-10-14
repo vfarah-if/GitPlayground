@@ -37,6 +37,14 @@ namespace Git.Domain.Acceptance.Tests
         }
 
         [Fact]
+        public async void GetAccidentStatisticsFor2017WithFilter()
+        {
+            var actual = await transportForLondonClient.GetAccidentStatistics(2017, each => each.Severity == Severity.Fatal);
+
+            actual.Should().NotBeNullOrEmpty();
+        }
+
+        [Fact]
         public async void GetFirstPagedAccidentStatisticsFor2017()
         {
             var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 1, 100);
