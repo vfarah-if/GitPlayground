@@ -1,5 +1,6 @@
 ﻿using System;
 using Git.Domain;
+using Git.Domain.Models.TFL;
 
 namespace TestConsole
 {
@@ -13,8 +14,8 @@ namespace TestConsole
                 int currentPage = 1;
                 const int PageSize = 10;
 
-                var pagedAccidentStatistics = transportForLondonClient.GetPagedAccidentStatistics(2017, currentPage, PageSize).Result;
-                Console.WriteLine($"{pagedAccidentStatistics.Total} accidents occured");            
+                var pagedAccidentStatistics = transportForLondonClient.GetPagedAccidentStatistics(2017, currentPage, PageSize, statistic => statistic.Severity == Severity.Fatal).Result;
+                Console.WriteLine($"{pagedAccidentStatistics.Total} fatal accidents occured");            
 
                 while ((currentPage * PageSize) <= pagedAccidentStatistics.Total)
                 {
@@ -26,7 +27,7 @@ namespace TestConsole
                     Console.WriteLine($"Next '{PageSize}' records ...");
                     Console.Read();
                     currentPage += 1;
-                    pagedAccidentStatistics = transportForLondonClient.GetPagedAccidentStatistics(2017, currentPage, PageSize).Result;
+                    pagedAccidentStatistics = transportForLondonClient.GetPagedAccidentStatistics(2017, currentPage, PageSize, statistic => statistic.Severity == Severity.Fatal).Result;
                 }
             }
             catch (Exception e)

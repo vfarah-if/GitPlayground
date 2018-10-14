@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AutoFixture;
@@ -84,22 +83,23 @@ namespace Git.Domain.UnitTests
         [Fact]
         public async void ShouldFilterAllDataWithFatalSeverity()
         {
-            var json = LoadAll2017AccidentTestDataJson();
-            var accidentStatistics = JsonConvert.DeserializeObject(json);
+            var accidentStatistics = LoadAll2017AccidentTestData();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(year: 2016, filter: filter => filter.Severity == Severity.Fatal);
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(year: 2017, pageSize: 300, filter: filter => filter.Severity == Severity.Fatal);
 
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
-            actual.Total.Should().Be(262);
+            actual.Total.Should().Be(262); //And not 54178
             actual.Page.Should().Be(1);
-            actual.PageSize.Should().Be(100);
+            actual.PageSize.Should().Be(300);
+            actual.Data.Count().Should().Be(262);
         }      
 
-        private static string LoadAll2017AccidentTestDataJson()
+        private static object LoadAll2017AccidentTestData()
         {
-            return File.ReadAllText("TestData\\2017AccidentData.json");
+            var json = File.ReadAllText("TestData\\2017AccidentData.json");
+            return JsonConvert.DeserializeObject(json);
         }
 
 
