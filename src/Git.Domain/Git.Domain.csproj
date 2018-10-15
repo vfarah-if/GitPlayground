@@ -60,6 +60,7 @@
     <Compile Include="Paged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializationExtension.cs" />
+    <Compile Include="SortIt.cs" />
     <Compile Include="TransportForLondonClient.cs" />
   </ItemGroup>
   <ItemGroup>
