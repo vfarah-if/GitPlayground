@@ -37,7 +37,7 @@ namespace Git.Domain.UnitTests
         {
             var items = CreateTestAllSortsList();
 
-            SortIt<TestAllSorts, int> intSort = SortIt<TestAllSorts>.With(sortField => sortField.IntegerField);
+            IComparer<TestAllSorts> intSort = SortIt<TestAllSorts>.With(sortField => sortField.IntegerField);
 
             items.Sort(intSort);
 

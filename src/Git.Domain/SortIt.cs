@@ -10,6 +10,13 @@ namespace Git.Domain
         {
             return new SortIt<TSource, TKey>(projection);
         }
+
+        //TODO: Tests for adding a comparer
+        public static SortIt<TSource, TKey> With<TKey>
+            (Func<TSource, TKey> projection, IComparer<TKey> comparer)
+        {
+            return new SortIt<TSource, TKey>(projection, comparer);
+        }
     }
 
     public class SortIt<TSource, TKey> : IComparer<TSource>
