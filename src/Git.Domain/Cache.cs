@@ -18,10 +18,15 @@ namespace Git.Domain
             var cached = _cache[key];
             if (DateTimeOffset.Now - cached.Created >= cached.ExpiresAfter)
             {
-                _cache.Remove(key);
+                InvalidateCacheFor(key);
                 return default(TValue);
             }
             return cached.Value;
+        }
+
+        public bool InvalidateCacheFor(TKey key)
+        {
+            return _cache.ContainsKey(key) && _cache.Remove(key);
         }
     }
 }

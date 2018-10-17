@@ -31,5 +31,19 @@ namespace Git.Domain.UnitTests
             var second = sut.Get(2);
             object.ReferenceEquals(first, second).Should().BeFalse();
         }
+
+        [Fact]
+        public void ShouldInvalidateCacheForKey()
+        {
+            var sut = new Cache<string, string>();
+            sut.Store("Samuel","Sucks", TimeSpan.MaxValue);
+            var status = sut.Get("Samuel");
+            status.Should().Be("Sucks");
+
+            sut.InvalidateCacheFor("Samuel");
+
+            status = sut.Get("Samuel");
+            status.Should().BeNullOrEmpty();
+        }
     }
 }
