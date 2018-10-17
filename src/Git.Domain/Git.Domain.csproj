@@ -61,6 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializationExtension.cs" />
     <Compile Include="SortIt.cs" />
+    <Compile Include="SortOptions.cs" />
     <Compile Include="TransportForLondonClient.cs" />
   </ItemGroup>
   <ItemGroup>

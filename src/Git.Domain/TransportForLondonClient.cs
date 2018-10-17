@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Flurl;
@@ -32,7 +33,8 @@ namespace Git.Domain
         }
 
         public async Task<IReadOnlyList<AccidentStatistic>> GetAccidentStatistics(int year,
-            Func<AccidentStatistic, bool> filter = null)
+            Func<AccidentStatistic, bool> filter = null, 
+            SortOptions<AccidentStatistic> sortOptions = null)
         {
             var result = await baseUrl
                 .AppendPathSegment(AccidentStatsPathSegment)
@@ -46,11 +48,25 @@ namespace Git.Domain
 //#endif
             
             var output = filter != null ? result.Where(filter).ToList() : result.ToList();
+            if (sortOptions == null) return output.AsReadOnly();
+            if (sortOptions.InReverse)
+            {
+                SortDataInReverse(sortOptions, output);
+            }
+            else
+            {
+                SortData(sortOptions, output);
+            }
             return output.AsReadOnly();
         }
-
-        public async Task<Paged<AccidentStatistic>> GetPagedAccidentStatistics(int year, int page = 1, int pageSize = 100, 
-            Func<AccidentStatistic, bool> filter = null)
+      
+        public async Task<Paged<AccidentStatistic>> GetPagedAccidentStatistics(
+            int year, 
+            int page = 1, 
+            int pageSize = 100, 
+            Func<AccidentStatistic, bool> filter = null,
+            SortOptions<AccidentStatistic> sortOptions = null
+            )
         {
             var zeroIndexedCurrentPage = page - 1;
             if (zeroIndexedCurrentPage < 0)
@@ -58,7 +74,7 @@ namespace Git.Domain
                 zeroIndexedCurrentPage = 0;
             }
 
-            var result = await GetOrStoreAccidentStatisticsFromCache(year, filter);
+            var result = await GetOrStoreAccidentStatisticsFromCache(year, filter, sortOptions);
 
             long total = result.LongCount();
             double pageCount = total / pageSize;
@@ -74,8 +90,10 @@ namespace Git.Domain
             return Paged<AccidentStatistic>.Create(total, data, zeroIndexedCurrentPage + 1, pageSize);
         }
 
-        private async Task<IReadOnlyList<AccidentStatistic>> GetOrStoreAccidentStatisticsFromCache(int year, 
-            Func<AccidentStatistic, bool> filter)
+        private async Task<IReadOnlyList<AccidentStatistic>> GetOrStoreAccidentStatisticsFromCache(
+            int year,
+            Func<AccidentStatistic, bool> filter, 
+            SortOptions<AccidentStatistic> sortOptions)
         {
             int cacheKey = year;
 
@@ -84,13 +102,49 @@ namespace Git.Domain
                 cacheKey += filter.GetHashCode();
             }
 
-            var result = accidentStatisticsCache.Get(cacheKey);
-            if (result != null) return result;
-            
-            result = await GetAccidentStatistics(year, filter);
+            if (sortOptions != null)
+            {
+                cacheKey += sortOptions.GetHashCode();
+            }
 
+            var result = accidentStatisticsCache.Get(cacheKey);
+            if (result != null)
+            {
+                Trace.TraceInformation("Retrieved accident data from cache ...");
+                return result;
+            }
+
+            Trace.TraceWarning("Retrieving accident data from the server ...");
+            result = await GetAccidentStatistics(year, filter, sortOptions);
+
+            Trace.TraceInformation($"Storing cache with key '{cacheKey}' ...");
             accidentStatisticsCache.Store(cacheKey, result, CacheExpirationTimeInMinutes);
             return result;
+        }
+
+        private static void SortData(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
+        {
+            Guard(sortOptions);
+            output.Sort(sortOptions.Comparer);
+        }
+
+        private static void SortDataInReverse(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
+        {
+            Guard(sortOptions);
+            output.Sort((x, y) => sortOptions.Comparer.Compare(y, x));
+        }
+
+        private static void Guard(SortOptions<AccidentStatistic> sortOptions)
+        {
+            if (sortOptions == null)
+            {
+                throw new ArgumentNullException(nameof(sortOptions));
+            }
+
+            if (sortOptions.Comparer == null)
+            {
+                throw new ArgumentNullException(nameof(sortOptions.Comparer));
+            }
         }
     }
 }

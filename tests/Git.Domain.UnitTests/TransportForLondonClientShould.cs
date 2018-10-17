@@ -94,14 +94,73 @@ namespace Git.Domain.UnitTests
             actual.Page.Should().Be(1);
             actual.PageSize.Should().Be(300);
             actual.Data.Count().Should().Be(262);
-        }      
+        }
+
+        [Fact]
+        public async void ShouldFilterWithFatalSeverityAndSortAllDataByDateAscending()
+        {
+            var accidentStatistics = LoadAll2017AccidentTestData();
+            httpTest.RespondWithJson(accidentStatistics, 200);
+
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(
+                year: 2017, 
+                pageSize: 300, 
+                filter: filter => filter.Severity == Severity.Fatal, 
+                sortOptions: new SortOptions<AccidentStatistic>(
+                    comparer: SortIt<AccidentStatistic>.With(x => x.Date), 
+                    inReverse: false));
+
+            actual.Data.Count().Should().Be(262);
+            actual.Data.First().DateAsString.Should().Be("2017-01-05T09:11:00Z");
+            actual.Data.Last().DateAsString.Should().Be("2017-12-29T10:58:00Z");
+        }
+
+        [Fact]
+        public async void ShouldFilterWithFatalSeverityAndSortAllDataByDateDescending()
+        {
+            var accidentStatistics = LoadAll2017AccidentTestData();
+            httpTest.RespondWithJson(accidentStatistics, 200);
+
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(
+                year: 2017,
+                pageSize: 300,
+                filter: filter => filter.Severity == Severity.Fatal,
+                sortOptions: new SortOptions<AccidentStatistic>(
+                    comparer: SortIt<AccidentStatistic>.With(x => x.Date), 
+                    inReverse:true));
+
+            actual.Data.Count().Should().Be(262);
+            actual.Data.First().DateAsString.Should().Be("2017-12-29T10:58:00Z");
+            actual.Data.Last().DateAsString.Should().Be("2017-01-05T09:11:00Z");
+        }
+
+        [Fact]
+        public async void ShouldFilterWithFatalSeverityAndDateRangeAndSortDataAscending()
+        {
+            var accidentStatistics = LoadAll2017AccidentTestData();
+            httpTest.RespondWithJson(accidentStatistics, 200);
+
+            var actual = await transportForLondonClient.GetPagedAccidentStatistics(
+                year: 2017,
+                pageSize: 300,
+                filter: filter => filter.Severity == Severity.Fatal && 
+                                  filter.Date >= DateTime.Parse("05 January 2017 09:11:00") && 
+                                  filter.Date <= DateTime.Parse("10 January 2017 16:13:00"),
+                sortOptions: new SortOptions<AccidentStatistic>(
+                    comparer: SortIt<AccidentStatistic>.With(x => x.Date),
+                    inReverse: false));
+
+            actual.Total.Should().Be(10);
+            actual.Data.Count().Should().Be(10);
+            actual.Data.First().DateAsString.Should().Be("2017-01-05T09:11:00Z");
+            actual.Data.Last().DateAsString.Should().Be("2017-01-10T16:13:00Z");
+        }
 
         private static object LoadAll2017AccidentTestData()
         {
             var json = File.ReadAllText("TestData\\2017AccidentData.json");
             return JsonConvert.DeserializeObject(json);
         }
-
 
         public void Dispose()
         {
