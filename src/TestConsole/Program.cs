@@ -14,26 +14,26 @@ namespace TestConsole
             try
             {
                 var transportForLondonClient = new TransportForLondonClient();
-                var sortOptions = new SortOptions<AccidentStatistic>(SortIt<AccidentStatistic>.With(x => x.Date));
+                var sortOptions = new SortOptions<AccidentStatistic>(comparer: SortIt<AccidentStatistic>.With(x => x.Date), inReverse: false);
                 int currentPage = 1;
-                const int PageSize = 10;
+                const int PageSize = 20;
                 int CurrentAmountOfRecordsRetrieved = PageSize;
 
-                var pagedAccidentStatistics = GetPagedAccidentStatistics(transportForLondonClient, currentPage, PageSize, sortOptions);
+                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsForJanuary2017(transportForLondonClient, currentPage, PageSize, sortOptions);
                 LogInfo($"{pagedAccidentStatistics.Total} fatal accidents occured");            
 
                 do
                 {
                     if (currentPage > 1)
                     {                                                
-                        pagedAccidentStatistics = GetPagedAccidentStatistics(transportForLondonClient, currentPage, PageSize, sortOptions);
+                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsForJanuary2017(transportForLondonClient, currentPage, PageSize, sortOptions);
                         CurrentAmountOfRecordsRetrieved += pagedAccidentStatistics.Data.Count();
                     }
 
                     LogInfo($"Page '{pagedAccidentStatistics.Page}' of {CurrentAmountOfRecordsRetrieved} records");
                     foreach (var accidentStatistic in pagedAccidentStatistics.Data)
                     {
-                        LogData($"Accident occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
+                        LogData($"Accident '{accidentStatistic.Id}' occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
                     }
                     LogInfo($"Next '{PageSize}' records ...");
                     Console.Read();
@@ -48,18 +48,20 @@ namespace TestConsole
             }
         }
 
-        private static Paged<AccidentStatistic> GetPagedAccidentStatistics(
+        private static Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsForJanuary2017(
             TransportForLondonClient transportForLondonClient, 
             int currentPage, 
             int PageSize,
             SortOptions<AccidentStatistic> sortOptions)
         {            
             return transportForLondonClient.GetPagedAccidentStatistics(
-                2017, 
-                currentPage, 
-                PageSize, 
-                statistic => statistic.Severity == Severity.Fatal,
-                sortOptions).Result;
+                year: 2017, 
+                page: currentPage, 
+                pageSize: PageSize,
+                filter: statistic => statistic.Severity == Severity.Fatal && 
+                                     statistic.Date > DateTime.Parse("01 January 2017 00:00:00") && 
+                                     statistic.Date < DateTime.Parse("31 January 2017 09:11:00"),
+                sortOptions: sortOptions).Result;
         }
 
         private static void LogInfo(string message)
