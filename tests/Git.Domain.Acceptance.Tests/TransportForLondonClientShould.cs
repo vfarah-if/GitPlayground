@@ -23,7 +23,7 @@ namespace Git.Domain.Acceptance.Tests
         [Fact]
         public async void GetAccidentStatisticsDynamicFor2017()
         {
-            var actual = await transportForLondonClient.GetAccidentStatisticsAsDynamic(2017);
+            var actual = await transportForLondonClient.GetAllAccidentStatisticsAsDynamic(2017);
 
             actual.Should().NotBeNullOrEmpty();
         }
@@ -31,7 +31,7 @@ namespace Git.Domain.Acceptance.Tests
         [Fact]
         public async void GetAccidentStatisticsFor2017()
         {
-            var actual = await transportForLondonClient.GetAccidentStatistics(2017);
+            var actual = await transportForLondonClient.GetAllAccidentStatistics(2017);
 
             actual.Should().NotBeNullOrEmpty();
         }
@@ -39,7 +39,7 @@ namespace Git.Domain.Acceptance.Tests
         [Fact]
         public async void GetAccidentStatisticsFor2017WithFilter()
         {
-            var actual = await transportForLondonClient.GetAccidentStatistics(2017, each => each.Severity == Severity.Fatal);
+            var actual = await transportForLondonClient.GetAllAccidentStatistics(2017, each => each.Severity == Severity.Fatal);
 
             actual.Should().NotBeNullOrEmpty();
         }
@@ -47,7 +47,7 @@ namespace Git.Domain.Acceptance.Tests
         [Fact]
         public async void GetFirstPagedAccidentStatisticsFor2017()
         {
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 1, 100);
+            var actual = await transportForLondonClient.GetAccidentStatistics(2017, 1, 100);
 
             actual.Should().NotBeNull();
             actual.Page.Should().Be(1);
@@ -59,7 +59,7 @@ namespace Git.Domain.Acceptance.Tests
         [Fact]
         public async void GetFirstPagedAccidentStatisticsFor2017_WhenPageLessThanOrEqualToZero()
         {
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 0, 100);
+            var actual = await transportForLondonClient.GetAccidentStatistics(2017, 0, 100);
 
             actual.Should().NotBeNull();
             actual.Page.Should().Be(1);
@@ -71,7 +71,7 @@ namespace Git.Domain.Acceptance.Tests
         [Fact]
         public async void GetLastPagedAccidentStatisticsFor2017()
         {
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 542, 100);
+            var actual = await transportForLondonClient.GetAccidentStatistics(2017, 542, 100);
 
             actual.Should().NotBeNull();
             actual.Page.Should().Be(542);
@@ -83,7 +83,7 @@ namespace Git.Domain.Acceptance.Tests
         [Fact]
         public async void GetPagedHigherThanMaxAccidentStatisticsFor2017ShouldGoToTheMax()
         {
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2017, 543, 100);
+            var actual = await transportForLondonClient.GetAccidentStatistics(2017, 543, 100);
 
             actual.Should().NotBeNull();
             actual.Page.Should().Be(542);
@@ -103,7 +103,7 @@ namespace Git.Domain.Acceptance.Tests
         [Fact]
         public void ThrowAFlurlHttpExceptionForCurrentYearStatistics()
         {
-            Func<Task> action = async () => await transportForLondonClient.GetAccidentStatistics(DateTime.Today.Year);
+            Func<Task> action = async () => await transportForLondonClient.GetAllAccidentStatistics(DateTime.Today.Year);
 
             action.Should()
             .Throw<FlurlHttpException>()
@@ -113,7 +113,7 @@ namespace Git.Domain.Acceptance.Tests
 
         private async void GivenIGetAccidentStatisticsFor2017()
         {
-            accidentStatistics = await transportForLondonClient.GetAccidentStatistics(2017)
+            accidentStatistics = await transportForLondonClient.GetAllAccidentStatistics(2017)
                 .ConfigureAwait(false);
         }
 

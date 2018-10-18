@@ -10,7 +10,7 @@ using Git.Domain.Models.TFL;
 
 namespace Git.Domain
 {
-    public class TransportForLondonClient
+    public class TransportForLondonClient : ITransportForLondonClient
     {
         private const string AccidentStatsPathSegment = "AccidentStats";
         private readonly string baseUrl = ConfigurationManager.AppSettings["TFLApiBaseUrl"];
@@ -22,7 +22,7 @@ namespace Git.Domain
             accidentStatisticsCache = new Cache<int, IReadOnlyList<AccidentStatistic>>();
         }
 
-        public async Task<IList<dynamic>> GetAccidentStatisticsAsDynamic(int year)
+        public async Task<IList<dynamic>> GetAllAccidentStatisticsAsDynamic(int year)
         {
             var result = await baseUrl
                 .AppendPathSegment(AccidentStatsPathSegment)
@@ -32,7 +32,7 @@ namespace Git.Domain
             return result;
         }
 
-        public async Task<IReadOnlyList<AccidentStatistic>> GetAccidentStatistics(int year,
+        public async Task<IReadOnlyList<AccidentStatistic>> GetAllAccidentStatistics(int year,
             Func<AccidentStatistic, bool> filter = null, 
             SortOptions<AccidentStatistic> sortOptions = null)
         {
@@ -60,7 +60,7 @@ namespace Git.Domain
             return output.AsReadOnly();
         }
       
-        public async Task<Paged<AccidentStatistic>> GetPagedAccidentStatistics(
+        public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(
             int year, 
             int page = 1, 
             int pageSize = 100, 
@@ -115,7 +115,7 @@ namespace Git.Domain
             }
 
             Trace.TraceWarning("Retrieving accident data from the server ...");
-            result = await GetAccidentStatistics(year, filter, sortOptions);
+            result = await GetAllAccidentStatistics(year, filter, sortOptions);
 
             Trace.TraceInformation($"Storing cache with key '{cacheKey}' ...");
             accidentStatisticsCache.Store(cacheKey, result, CacheExpirationTimeInMinutes);

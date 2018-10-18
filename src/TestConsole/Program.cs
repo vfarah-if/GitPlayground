@@ -54,7 +54,7 @@ namespace TestConsole
             int PageSize,
             SortOptions<AccidentStatistic> sortOptions)
         {            
-            return transportForLondonClient.GetPagedAccidentStatistics(
+            return transportForLondonClient.GetAccidentStatistics(
                 year: 2017, 
                 page: currentPage, 
                 pageSize: PageSize,

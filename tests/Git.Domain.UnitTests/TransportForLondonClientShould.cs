@@ -29,7 +29,7 @@ namespace Git.Domain.UnitTests
             var accidentStatistics = autoFixture.CreateMany<AccidentStatistic>();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            await transportForLondonClient.GetAccidentStatistics(2016);
+            await transportForLondonClient.GetAllAccidentStatistics(2016);
 
             httpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
         }
@@ -40,7 +40,7 @@ namespace Git.Domain.UnitTests
             var accidentStatistics = autoFixture.CreateMany<AccidentStatistic>();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(2016, 1, 5);
+            var actual = await transportForLondonClient.GetAccidentStatistics(2016, 1, 5);
 
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
@@ -56,7 +56,7 @@ namespace Git.Domain.UnitTests
             var accidentStatistics = autoFixture.CreateMany<AccidentStatistic>();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(year: 2016, page:2, pageSize:5);
+            var actual = await transportForLondonClient.GetAccidentStatistics(year: 2016, page:2, pageSize:5);
 
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
@@ -71,7 +71,7 @@ namespace Git.Domain.UnitTests
             var accidentStatistics = autoFixture.CreateMany<AccidentStatistic>();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(year:2016, page:-1, pageSize:5);
+            var actual = await transportForLondonClient.GetAccidentStatistics(year:2016, page:-1, pageSize:5);
 
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
@@ -86,7 +86,7 @@ namespace Git.Domain.UnitTests
             var accidentStatistics = LoadAll2017AccidentTestData();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(year: 2017, pageSize: 300, filter: filter => filter.Severity == Severity.Fatal);
+            var actual = await transportForLondonClient.GetAccidentStatistics(year: 2017, pageSize: 300, filter: filter => filter.Severity == Severity.Fatal);
 
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
@@ -102,7 +102,7 @@ namespace Git.Domain.UnitTests
             var accidentStatistics = LoadAll2017AccidentTestData();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(
+            var actual = await transportForLondonClient.GetAccidentStatistics(
                 year: 2017, 
                 pageSize: 300, 
                 filter: filter => filter.Severity == Severity.Fatal, 
@@ -121,7 +121,7 @@ namespace Git.Domain.UnitTests
             var accidentStatistics = LoadAll2017AccidentTestData();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(
+            var actual = await transportForLondonClient.GetAccidentStatistics(
                 year: 2017,
                 pageSize: 300,
                 filter: filter => filter.Severity == Severity.Fatal,
@@ -140,7 +140,7 @@ namespace Git.Domain.UnitTests
             var accidentStatistics = LoadAll2017AccidentTestData();
             httpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await transportForLondonClient.GetPagedAccidentStatistics(
+            var actual = await transportForLondonClient.GetAccidentStatistics(
                 year: 2017,
                 pageSize: 300,
                 filter: filter => filter.Severity == Severity.Fatal && 
