@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="CacheItem.cs" />
-    <Compile Include="GitApiClient.cs" />
     <Compile Include="ITransportForLondonClient.cs" />
     <Compile Include="Models\TFL\AccidentStatistic.cs" />
     <Compile Include="Models\TFL\Casualty.cs" />
