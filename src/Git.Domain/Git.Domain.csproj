@@ -53,6 +53,7 @@
     <Compile Include="Cache.cs" />
     <Compile Include="CacheItem.cs" />
     <Compile Include="ConfigurationExtension.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

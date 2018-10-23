@@ -3,9 +3,10 @@ using System.Diagnostics;
 using System.Linq;
 using Git.Domain;
 using Git.Domain.Models.TFL;
+using static Git.Domain.Constants;
 
 namespace TestConsole
-{
+{ 
     class Program
     {
         static void Main(string[] args)
@@ -14,19 +15,18 @@ namespace TestConsole
             try
             {
                 var transportForLondonClient = new TransportForLondonClient();
-                var sortOptions = new SortOptions<AccidentStatistic>(comparer: SortIt<AccidentStatistic>.With(x => x.Date), inReverse: false);
                 int currentPage = 1;
                 const int PageSize = 20;
                 int CurrentAmountOfRecordsRetrieved = PageSize;
 
-                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, sortOptions);
+                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, AccidentStatisticSorting.ByDateAscendingOptions);
                 LogInfo($"{pagedAccidentStatistics.Total} fatal accidents occured");            
 
                 do
                 {
                     if (currentPage > 1)
                     {                                                
-                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, sortOptions);
+                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, AccidentStatisticSorting.ByDateAscendingOptions);
                         CurrentAmountOfRecordsRetrieved += pagedAccidentStatistics.Data.Count();
                     }
 

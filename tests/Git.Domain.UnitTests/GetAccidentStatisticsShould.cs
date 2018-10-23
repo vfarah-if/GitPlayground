@@ -3,12 +3,12 @@ using FluentAssertions;
 using Git.Domain.Models.TFL;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
+using static Git.Domain.Constants;
 
 namespace Git.Domain.UnitTests
 {
-    using System.Threading.Tasks;
-
     public partial class TransportForLondonClientShould
     {
         public class GetAccidentStatisticsShould : TransportForLondonClientShould
@@ -90,9 +90,7 @@ namespace Git.Domain.UnitTests
                                  year: 2017,
                                  pageSize: 300,
                                  filter: filter => filter.Severity == Severity.Fatal,
-                                 sortOptions: new SortOptions<AccidentStatistic>(
-                                     comparer: SortIt<AccidentStatistic>.With(x => x.Date),
-                                     inReverse: false));
+                                 sortOptions: AccidentStatisticSorting.ByDateAscendingOptions);
 
                 actual.Data.Count().Should().Be(262);
                 actual.Data.First().DateAsString.Should().Be("2017-01-05T09:11:00Z");
@@ -109,9 +107,7 @@ namespace Git.Domain.UnitTests
                                  year: 2017,
                                  pageSize: 300,
                                  filter: filter => filter.Severity == Severity.Fatal,
-                                 sortOptions: new SortOptions<AccidentStatistic>(
-                                     comparer: SortIt<AccidentStatistic>.With(x => x.Date),
-                                     inReverse: true));
+                                 sortOptions: AccidentStatisticSorting.ByDateDescendingOptions);
 
                 actual.Data.Count().Should().Be(262);
                 actual.Data.First().DateAsString.Should().Be("2017-12-29T10:58:00Z");
@@ -131,9 +127,7 @@ namespace Git.Domain.UnitTests
                                      filter.Severity == Severity.Fatal
                                      && filter.Date >= DateTime.Parse("05 January 2017 09:11:00")
                                      && filter.Date <= DateTime.Parse("10 January 2017 16:13:00"),
-                                 sortOptions: new SortOptions<AccidentStatistic>(
-                                     comparer: SortIt<AccidentStatistic>.With(x => x.Date),
-                                     inReverse: false));
+                                 sortOptions: AccidentStatisticSorting.ByDateAscendingOptions);
 
                 actual.Total.Should().Be(10);
                 actual.Data.Count().Should().Be(10);
@@ -154,7 +148,7 @@ namespace Git.Domain.UnitTests
                     to: DateTime.Parse("01 December 2017 16:13:00"),
                     pageSize: 300,
                     severity: Severity.Fatal,
-                    sortOptions: new SortOptions<AccidentStatistic>(SortIt<AccidentStatistic>.With(x => x.Date)));
+                    sortOptions: AccidentStatisticSorting.ByDateAscendingOptions);
 
                 this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
                 this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2017");
@@ -173,7 +167,7 @@ namespace Git.Domain.UnitTests
                     to: DateTime.Parse("01 January 2016 09:11:00"),
                     pageSize: 300,
                     severity: Severity.Fatal,
-                    sortOptions: new SortOptions<AccidentStatistic>(SortIt<AccidentStatistic>.With(x => x.Date)));
+                    sortOptions: AccidentStatisticSorting.ByDateAscendingOptions);
 
                 this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
                 this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2017");
@@ -187,7 +181,7 @@ namespace Git.Domain.UnitTests
                         from: DateTime.Parse("01 December 2004 16:13:00"),
                         to: DateTime.Parse("01 January 2016 09:11:00"),
                         severity: Severity.Fatal,
-                        sortOptions: new SortOptions<AccidentStatistic>(SortIt<AccidentStatistic>.With(x => x.Date)));
+                        sortOptions: AccidentStatisticSorting.ByDateAscendingOptions);
 
                 action.Should()
                     .Throw<NotSupportedException>()
@@ -204,7 +198,7 @@ namespace Git.Domain.UnitTests
                                    from: yesterday,
                                    to: DateTime.UtcNow, 
                                    severity: Severity.Fatal,
-                                   sortOptions: new SortOptions<AccidentStatistic>(SortIt<AccidentStatistic>.With(x => x.Date)));
+                                   sortOptions: AccidentStatisticSorting.ByDateAscendingOptions);
                 };
 
                 action.Should()
