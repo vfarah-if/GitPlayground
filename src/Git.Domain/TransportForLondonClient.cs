@@ -1,20 +1,22 @@
-﻿using System;
+﻿using Flurl;
+using Flurl.Http;
+using Git.Domain.Models.TFL;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Flurl;
-using Flurl.Http;
-using Git.Domain.Models.TFL;
 
 namespace Git.Domain
 {
+    using static ErrorMessages;
+
     public class TransportForLondonClient : ITransportForLondonClient
     {
         private const string AccidentStatsPathSegment = "AccidentStats";
         private readonly string baseUrl = ConfigurationManager.AppSettings["TFLApiBaseUrl"];
-        private readonly TimeSpan CacheExpirationTimeInMinutes = TimeSpan.FromMinutes(10);
+        private readonly TimeSpan CacheExpirationTimeInMinutes = TimeSpan.FromMinutes(ConfigurationManager.AppSettings["CacheTimeInMinutes"].ToMinutes());
         private readonly Cache<int, IReadOnlyList<AccidentStatistic>> accidentStatisticsCache;
 
         public TransportForLondonClient()
@@ -33,7 +35,7 @@ namespace Git.Domain
         }
 
         public async Task<IReadOnlyList<AccidentStatistic>> GetAllAccidentStatistics(int year,
-            Func<AccidentStatistic, bool> filter = null, 
+            Func<AccidentStatistic, bool> filter = null,
             SortOptions<AccidentStatistic> sortOptions = null)
         {
             var result = await baseUrl
@@ -42,11 +44,11 @@ namespace Git.Domain
                 .GetJsonAsync<IEnumerable<AccidentStatistic>>()
                 .ConfigureAwait(false);
 
-//#if DEBUG
-//            var resultFor2017 = result.ToJson();
-//            System.IO.File.WriteAllText("c:\\temp\\test2017.json", resultFor2017);
-//#endif
-            
+            //#if DEBUG
+            //            var resultFor2017 = result.ToJson();
+            //            System.IO.File.WriteAllText("c:\\temp\\test2017.json", resultFor2017);
+            //#endif
+
             var output = filter != null ? result.Where(filter).ToList() : result.ToList();
             if (sortOptions == null) return output.AsReadOnly();
             if (sortOptions.InReverse)
@@ -59,40 +61,78 @@ namespace Git.Domain
             }
             return output.AsReadOnly();
         }
-      
-        public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(
-            int year, 
-            int page = 1, 
-            int pageSize = 100, 
-            Func<AccidentStatistic, bool> filter = null,
-            SortOptions<AccidentStatistic> sortOptions = null
-            )
-        {
-            var zeroIndexedCurrentPage = page - 1;
-            if (zeroIndexedCurrentPage < 0)
-            {
-                zeroIndexedCurrentPage = 0;
-            }
 
+        public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(
+            int year,
+            int page = 1,
+            int pageSize = 100,
+            Func<AccidentStatistic, bool> filter = null,
+            SortOptions<AccidentStatistic> sortOptions = null)
+        {
             var result = await GetOrStoreAccidentStatisticsFromCache(year, filter, sortOptions);
 
-            long total = result.LongCount();
-            double pageCount = total / pageSize;
-            var maxPageCount = Convert.ToInt32(Math.Round(pageCount, MidpointRounding.AwayFromZero));
-            if (zeroIndexedCurrentPage > maxPageCount)
+            return Paged<AccidentStatistic>.Generate(result, pageSize, page); 
+        }
+
+        public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(
+            DateTime from,
+            DateTime to,
+            Severity severity,
+            SortOptions<AccidentStatistic> sortOptions,
+            int page = 1,
+            int pageSize = 100
+           )
+        {
+            if (from > to)
             {
-                zeroIndexedCurrentPage = maxPageCount;
+                Swap(ref from, ref to);
             }
 
-            var skip = zeroIndexedCurrentPage * pageSize;
-            var data = result.Skip(skip).Take(pageSize);
+            if (from.Year < 2005)
+            {
+                throw new NotSupportedException(DatesBelow2005NotSupported);
+            }
 
-            return Paged<AccidentStatistic>.Create(total, data, zeroIndexedCurrentPage + 1, pageSize);
+            if (from.Year >= DateTime.UtcNow.Year || to.Year >= DateTime.UtcNow.Year)
+            {
+                throw new NotSupportedException(DatesFromCurrentYearNotSupported);
+            }
+
+            var years = this.GetYears(from, to).ToList();
+            var results = new List<AccidentStatistic>();
+            bool FilterSeverityAndDateRange(AccidentStatistic x) => x.Severity == severity && x.Date >= from && x.Date <= to;
+            foreach (var year in years)
+            {
+                var result = await GetOrStoreAccidentStatisticsFromCache(
+                    year: year,
+                    filter: FilterSeverityAndDateRange,
+                    sortOptions: sortOptions);
+                results.AddRange(result);
+            }
+
+            return Paged<AccidentStatistic>.Generate(results, pageSize, page);
+        }
+
+        private void Swap(ref DateTime from, ref DateTime to)
+        {
+            var tempFrom = from;
+            from = to;
+            to = tempFrom;
+            Trace.TraceWarning($"Swapped the dates as {from} is less than or equal to {to}");
+        }
+
+        private IEnumerable<int> GetYears(DateTime from, DateTime to)
+        {
+            var yearDifference = to.Year - from.Year;
+            for (int i = 0; i <= yearDifference; i++)
+            {
+                yield return from.Year + i;
+            }
         }
 
         private async Task<IReadOnlyList<AccidentStatistic>> GetOrStoreAccidentStatisticsFromCache(
             int year,
-            Func<AccidentStatistic, bool> filter, 
+            Func<AccidentStatistic, bool> filter,
             SortOptions<AccidentStatistic> sortOptions)
         {
             int cacheKey = year;
@@ -110,7 +150,7 @@ namespace Git.Domain
             var result = accidentStatisticsCache.Get(cacheKey);
             if (result != null)
             {
-                Trace.TraceInformation("Retrieved accident data from cache ...");
+                Trace.TraceInformation($"Retrieved accident data from cache by key '{cacheKey}'...");
                 return result;
             }
 

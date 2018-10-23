@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace Git.Domain
 {
+    using System.Collections.Concurrent;
+
     public class Cache<TKey, TValue>
     {
-        private readonly Dictionary<TKey, CacheItem<TValue>> _cache = new Dictionary<TKey, CacheItem<TValue>>();
+        private readonly ConcurrentDictionary<TKey, CacheItem<TValue>> _cache = new ConcurrentDictionary<TKey, CacheItem<TValue>>();
 
         public void Store(TKey key, TValue value, TimeSpan expiresAfter)
         {
@@ -26,7 +28,7 @@ namespace Git.Domain
 
         public bool InvalidateCacheFor(TKey key)
         {
-            return _cache.ContainsKey(key) && _cache.Remove(key);
+            return _cache.ContainsKey(key) && _cache.TryRemove(key, out CacheItem<TValue> removed);
         }
     }
 }

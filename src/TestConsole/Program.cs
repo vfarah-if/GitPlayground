@@ -19,14 +19,14 @@ namespace TestConsole
                 const int PageSize = 20;
                 int CurrentAmountOfRecordsRetrieved = PageSize;
 
-                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsForJanuary2017(transportForLondonClient, currentPage, PageSize, sortOptions);
+                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, sortOptions);
                 LogInfo($"{pagedAccidentStatistics.Total} fatal accidents occured");            
 
                 do
                 {
                     if (currentPage > 1)
                     {                                                
-                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsForJanuary2017(transportForLondonClient, currentPage, PageSize, sortOptions);
+                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, sortOptions);
                         CurrentAmountOfRecordsRetrieved += pagedAccidentStatistics.Data.Count();
                     }
 
@@ -48,20 +48,22 @@ namespace TestConsole
             }
         }
 
-        private static Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsForJanuary2017(
+        private static Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsFor2015And2017(
             TransportForLondonClient transportForLondonClient, 
             int currentPage, 
             int PageSize,
             SortOptions<AccidentStatistic> sortOptions)
         {            
             return transportForLondonClient.GetAccidentStatistics(
-                year: 2017, 
+                from: DateTime.Parse("01 January 2015 00:00:00"), 
+                to: DateTime.Parse("31 December 2017 00:00:00"),
+                severity: Severity.Fatal,
+                sortOptions: sortOptions,
                 page: currentPage, 
-                pageSize: PageSize,
-                filter: statistic => statistic.Severity == Severity.Fatal && 
-                                     statistic.Date > DateTime.Parse("01 January 2017 00:00:00") && 
-                                     statistic.Date < DateTime.Parse("31 January 2017 09:11:00"),
-                sortOptions: sortOptions).Result;
+                pageSize: PageSize
+                )
+                .GetAwaiter()
+                .GetResult();
         }
 
         private static void LogInfo(string message)

@@ -81,6 +81,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheShould.cs" />
+    <Compile Include="GetAccidentStatisticsShould.cs" />
+    <Compile Include="GetAllAccidentStatisticsShould.cs" />
+    <Compile Include="PageGeneratorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortItShould.cs" />
     <Compile Include="TransportForLondonClientShould.cs" />

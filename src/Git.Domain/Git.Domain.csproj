@@ -52,6 +52,12 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="CacheItem.cs" />
+    <Compile Include="ConfigurationExtension.cs" />
+    <Compile Include="ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="ITransportForLondonClient.cs" />
     <Compile Include="Models\TFL\AccidentStatistic.cs" />
     <Compile Include="Models\TFL\Casualty.cs" />
@@ -68,6 +74,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ErrorMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
