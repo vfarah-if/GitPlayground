@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace Git.Domain
 {
-    using System.Collections.Concurrent;
-
     public class Cache<TKey, TValue>
     {
         private readonly ConcurrentDictionary<TKey, CacheItem<TValue>> _cache = new ConcurrentDictionary<TKey, CacheItem<TValue>>();

@@ -19,14 +19,14 @@ namespace TestConsole
                 const int PageSize = 20;
                 int CurrentAmountOfRecordsRetrieved = PageSize;
 
-                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, AccidentStatisticSorting.ByDateAscendingOptions);
+                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, AccidentStatisticSorting.ByDateAscending);
                 LogInfo($"{pagedAccidentStatistics.Total} fatal accidents occured");            
 
                 do
                 {
                     if (currentPage > 1)
                     {                                                
-                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, AccidentStatisticSorting.ByDateAscendingOptions);
+                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, AccidentStatisticSorting.ByDateAscending);
                         CurrentAmountOfRecordsRetrieved += pagedAccidentStatistics.Data.Count();
                     }
 
@@ -60,8 +60,7 @@ namespace TestConsole
                 severity: Severity.Fatal,
                 sortOptions: sortOptions,
                 page: currentPage, 
-                pageSize: PageSize
-                )
+                pageSize: PageSize)
                 .GetAwaiter()
                 .GetResult();
         }
@@ -88,7 +87,10 @@ namespace TestConsole
                 Console.WriteLine(message);
             }
             Console.WriteLine(e.Message);
-            if (e.InnerException == null) return;
+            if (e.InnerException == null)
+            {
+                return;
+            }
             LogError(e.InnerException);
         }
     }

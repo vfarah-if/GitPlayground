@@ -6,10 +6,10 @@ namespace Git.Domain
     {
         public static class AccidentStatisticSorting
         {
-            public static readonly SortOptions<AccidentStatistic> ByDateAscendingOptions
+            public static readonly SortOptions<AccidentStatistic> ByDateAscending
                 = new SortOptions<AccidentStatistic>(SortIt<AccidentStatistic>.With(x => x.Date));
 
-            public static readonly SortOptions<AccidentStatistic> ByDateDescendingOptions
+            public static readonly SortOptions<AccidentStatistic> ByDateDescending
                 = new SortOptions<AccidentStatistic>(SortIt<AccidentStatistic>.With(x => x.Date), true);
         }
     }

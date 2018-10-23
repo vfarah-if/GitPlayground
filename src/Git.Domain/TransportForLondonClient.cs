@@ -22,6 +22,8 @@ namespace Git.Domain
         public TransportForLondonClient()
         {
             accidentStatisticsCache = new Cache<int, IReadOnlyList<AccidentStatistic>>();
+            Trace.TraceInformation($"Base Url is {baseUrl}");
+            Trace.TraceInformation($"Cache expiration is {CacheExpirationTimeInMinutes} minutes");
         }
 
         public async Task<IList<dynamic>> GetAllAccidentStatisticsAsDynamic(int year)
