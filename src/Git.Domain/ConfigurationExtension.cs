@@ -4,11 +4,11 @@ namespace Git.Domain
 {
     public static class ConfigurationExtension
     {
-        public static double ToMinutes(this string source)
+        public static double ToMinutes(this string minutesAsString)
         {
-            if (!string.IsNullOrEmpty(source))
+            if (!string.IsNullOrEmpty(minutesAsString))
             {
-                return Convert.ToDouble(source);
+                return Convert.ToDouble(minutesAsString);
             }
 
             return default(int);

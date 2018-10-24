@@ -3,10 +3,11 @@ using System.Diagnostics;
 using System.Linq;
 using Git.Domain;
 using Git.Domain.Models.TFL;
-using static Git.Domain.Constants;
+using static Git.Domain.Constants.AccidentStatisticSorting;
+
 
 namespace TestConsole
-{ 
+{
     class Program
     {
         static void Main(string[] args)
@@ -14,19 +15,19 @@ namespace TestConsole
             Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
             try
             {
-                var transportForLondonClient = new TransportForLondonClient();
+                var transportForLondonClient = new TransportForLondonClient(Configuration.Create());
                 int currentPage = 1;
                 const int PageSize = 20;
                 int CurrentAmountOfRecordsRetrieved = PageSize;
 
-                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, AccidentStatisticSorting.ByDateAscending);
+                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015To2017(transportForLondonClient, currentPage, PageSize, ByDateAscending);
                 LogInfo($"{pagedAccidentStatistics.Total} fatal accidents occured");            
 
                 do
                 {
                     if (currentPage > 1)
                     {                                                
-                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015And2017(transportForLondonClient, currentPage, PageSize, AccidentStatisticSorting.ByDateAscending);
+                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015To2017(transportForLondonClient, currentPage, PageSize, ByDateAscending);
                         CurrentAmountOfRecordsRetrieved += pagedAccidentStatistics.Data.Count();
                     }
 
@@ -48,7 +49,7 @@ namespace TestConsole
             }
         }
 
-        private static Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsFor2015And2017(
+        private static Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsFor2015To2017(
             TransportForLondonClient transportForLondonClient, 
             int currentPage, 
             int PageSize,

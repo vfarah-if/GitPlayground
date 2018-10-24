@@ -20,7 +20,7 @@ namespace Git.Domain.UnitTests
         }
 
         [Fact]
-        public void ShouldExpireCache()
+        public void ExpireCache()
         {
             var sut = new Cache<int, string>();
             sut.Store(2, "Gabriel", TimeSpan.FromSeconds(1));
@@ -33,7 +33,7 @@ namespace Git.Domain.UnitTests
         }
 
         [Fact]
-        public void ShouldInvalidateCacheForKey()
+        public void InvalidateCacheForKey()
         {
             var sut = new Cache<string, string>();
             sut.Store("Samuel","Sucks", TimeSpan.MaxValue);

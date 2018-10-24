@@ -19,7 +19,7 @@ namespace Git.Domain.UnitTests
         public TransportForLondonClientShould()
         {
             this.HttpTest = new HttpTest();
-            this.TransportForLondonClient = new TransportForLondonClient();
+            this.TransportForLondonClient = new TransportForLondonClient(Configuration.Create());
             this.AutoFixture = new Fixture();
         }
 

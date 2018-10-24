@@ -23,7 +23,7 @@ namespace Git.Domain
             return new Paged<T>(total, data, page, pageSize);
         }
 
-        public static Paged<T> Generate(IReadOnlyList<T> allData, int pageSize, int page)
+        public static Paged<T> Generate(IEnumerable<T> allData, int pageSize, int page)
         {
             long total = allData.LongCount();
             // ReSharper disable once PossibleLossOfFraction because fraction loss with paging will be fine

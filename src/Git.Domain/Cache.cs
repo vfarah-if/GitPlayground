@@ -14,13 +14,18 @@ namespace Git.Domain
 
         public TValue Get(TKey key)
         {
-            if (!_cache.ContainsKey(key)) return default(TValue);
+            if (!_cache.ContainsKey(key))
+            {
+                return default(TValue);
+            }
+
             var cached = _cache[key];
             if (DateTimeOffset.Now - cached.Created >= cached.ExpiresAfter)
             {
                 InvalidateCacheFor(key);
                 return default(TValue);
             }
+
             return cached.Value;
         }
 

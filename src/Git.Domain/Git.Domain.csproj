@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="CacheItem.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="ConfigurationExtension.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="ErrorMessages.Designer.cs">
@@ -59,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
+    <Compile Include="IConfiguration.cs" />
     <Compile Include="ITransportForLondonClient.cs" />
     <Compile Include="Models\TFL\AccidentStatistic.cs" />
     <Compile Include="Models\TFL\Casualty.cs" />

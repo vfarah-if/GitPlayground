@@ -8,20 +8,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+using static Git.Domain.ErrorMessages;
+
 namespace Git.Domain
 {
-    using static ErrorMessages;
-
     public class TransportForLondonClient : ITransportForLondonClient
     {
         private const string AccidentStatsPathSegment = "AccidentStats";
-        private readonly string baseUrl = ConfigurationManager.AppSettings["TFLApiBaseUrl"];
-        private readonly TimeSpan CacheExpirationTimeInMinutes = TimeSpan.FromMinutes(ConfigurationManager.AppSettings["CacheTimeInMinutes"].ToMinutes());
+
+        private readonly string baseUrl;
+        private readonly TimeSpan CacheExpirationTimeInMinutes;
         private readonly Cache<int, IReadOnlyList<AccidentStatistic>> accidentStatisticsCache;
 
-        public TransportForLondonClient()
+        public TransportForLondonClient(IConfiguration configuration)
         {
             accidentStatisticsCache = new Cache<int, IReadOnlyList<AccidentStatistic>>();
+            baseUrl = configuration.TransportForLondonBaseUrl;
+            CacheExpirationTimeInMinutes = configuration.CacheExpirationTimeInMinutes;
             Trace.TraceInformation($"Base Url is {baseUrl}");
             Trace.TraceInformation($"Cache expiration is {CacheExpirationTimeInMinutes} minutes");
         }
