@@ -11,8 +11,6 @@ using static System.Environment;
 
 namespace Git.Domain.UnitTests
 {
-    
-
     public class GetAccidentStatisticsShould : TransportForLondonClientShould
     {
 

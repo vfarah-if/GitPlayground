@@ -62,7 +62,7 @@ namespace Git.Domain.UnitTests
         }
 
         [Fact]
-        public void SortDAteTimesByDefaultComparer()
+        public void SortDateTimesByDefaultComparer()
         {
             var items = CreateTestAllSortsList();
 
