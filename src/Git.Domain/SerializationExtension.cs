@@ -8,16 +8,17 @@ namespace Git.Domain
             Formatting formatting = Formatting.Indented,
             JsonSerializerSettings serializerSettings = null)
         {
-            if (source != null)
+            if (source == null)
             {
-                if (serializerSettings == null)
-                {
-                    serializerSettings = new JsonSerializerSettings(){ NullValueHandling = NullValueHandling.Ignore };
-                }
-                return JsonConvert.SerializeObject(source, formatting, serializerSettings);
+                return null;
             }
 
-            return null;
+            if (serializerSettings == null)
+            {
+                serializerSettings = new JsonSerializerSettings(){ NullValueHandling = NullValueHandling.Ignore };
+            }
+            return JsonConvert.SerializeObject(source, formatting, serializerSettings);
+
         }
     }
 }
