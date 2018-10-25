@@ -8,13 +8,7 @@ namespace Git.Domain.UnitTests
 {
     public class SortItShould
     {
-        private Fixture autoFixture;
         private readonly DateTime ExactDateTime = new DateTime(2018, 01, 01, 01, 01, 01);
-
-        public SortItShould()
-        {
-            autoFixture = new Fixture();
-        }
 
         [Fact]
         public void SortStringsByDefaultComparer()

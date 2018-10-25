@@ -23,7 +23,7 @@ namespace Git.Domain.UnitTests
             var pageSize = 3;
             var page = 1;
 
-            var sut = Paged<int>.Generate(this.data.ToList().AsReadOnly(), pageSize, page);
+            var sut = Paged<int>.Generate(this.data, pageSize, page);
 
             sut.Data.LongCount().Should().Be(pageSize);
             sut.Page.Should().Be(page);
@@ -38,7 +38,7 @@ namespace Git.Domain.UnitTests
             var page = -1;
             var expectedPage = 1;
 
-            var sut = Paged<int>.Generate(this.data.ToList().AsReadOnly(), pageSize, page);
+            var sut = Paged<int>.Generate(this.data, pageSize, page);
 
             sut.Data.LongCount().Should().Be(pageSize);
             sut.Page.Should().Be(expectedPage);
@@ -53,7 +53,7 @@ namespace Git.Domain.UnitTests
             var page = 3;
             var expectDataCount = 2;
 
-            var sut = Paged<int>.Generate(this.data.ToList().AsReadOnly(), pageSize, page);
+            var sut = Paged<int>.Generate(this.data, pageSize, page);
 
             sut.Data.LongCount().Should().Be(expectDataCount);
             sut.Page.Should().Be(page);
@@ -69,7 +69,7 @@ namespace Git.Domain.UnitTests
             var expectDataCount = 2;
             var expctedPage = 3;
 
-            var sut = Paged<int>.Generate(this.data.ToList().AsReadOnly(), pageSize, page);
+            var sut = Paged<int>.Generate(this.data, pageSize, page);
 
             sut.Data.LongCount().Should().Be(expectDataCount);
             sut.Page.Should().Be(expctedPage);
