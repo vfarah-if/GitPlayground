@@ -51,6 +51,7 @@ namespace Git.Domain.Acceptance.Tests
 
             actual.Should().NotBeNull();
             actual.Page.Should().Be(1);
+
             actual.PageSize.Should().Be(100);
             actual.Data.Count().Should().Be(100);
             actual.Total.Should().Be(54178);

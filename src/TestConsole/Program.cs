@@ -5,7 +5,6 @@ using Git.Domain;
 using Git.Domain.Models.TFL;
 using static Git.Domain.Constants.AccidentStatisticSorting;
 
-
 namespace TestConsole
 {
     class Program
@@ -20,14 +19,14 @@ namespace TestConsole
                 const int PageSize = 20;
                 int CurrentAmountOfRecordsRetrieved = PageSize;
 
-                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015To2017(transportForLondonClient, currentPage, PageSize, ByDateAscending);
+                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015To2017(transportForLondonClient, currentPage, PageSize, ByDateDescending);
                 LogInfo($"{pagedAccidentStatistics.Total} fatal accidents occured");            
 
                 do
                 {
                     if (currentPage > 1)
                     {                                                
-                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015To2017(transportForLondonClient, currentPage, PageSize, ByDateAscending);
+                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015To2017(transportForLondonClient, currentPage, PageSize, ByDateDescending);
                         CurrentAmountOfRecordsRetrieved += pagedAccidentStatistics.Data.Count();
                     }
 
@@ -50,7 +49,7 @@ namespace TestConsole
         }
 
         private static Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsFor2015To2017(
-            TransportForLondonClient transportForLondonClient, 
+            ITransportForLondonClient transportForLondonClient, 
             int currentPage, 
             int PageSize,
             SortOptions<AccidentStatistic> sortOptions)

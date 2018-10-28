@@ -3,7 +3,6 @@ using Flurl.Http;
 using Git.Domain.Models.TFL;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -56,14 +55,7 @@ namespace Git.Domain
 
             var output = filter != null ? result.Where(filter).ToList() : result.ToList();
             if (sortOptions == null) return output.AsReadOnly();
-            if (sortOptions.InReverse)
-            {
-                SortDataInReverse(sortOptions, output);
-            }
-            else
-            {
-                SortData(sortOptions, output);
-            }
+            Sort(sortOptions, output);
             return output.AsReadOnly();
         }
 
@@ -115,7 +107,26 @@ namespace Git.Domain
                 results.AddRange(result);
             }
 
+            Sort(sortOptions, results);
+
             return Paged<AccidentStatistic>.Generate(results, pageSize, page);
+        }
+
+        private static void Sort(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> results)
+        {
+            if (sortOptions == null || results == null)
+            {
+                return;                
+            }
+
+            if (sortOptions.InReverse)
+            {
+                SortDataInReverse(sortOptions, results);
+            }
+            else
+            {
+                SortData(sortOptions, results);
+            }
         }
 
         private void Swap(ref DateTime from, ref DateTime to)
