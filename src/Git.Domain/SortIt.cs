@@ -14,8 +14,8 @@ namespace Git.Domain
 
     public class SortIt<TSource, TKey> : IComparer<TSource>
     {
-        readonly Func<TSource, TKey> projection;
-        readonly IComparer<TKey> comparer;
+        private readonly Func<TSource, TKey> projection;
+        private readonly IComparer<TKey> comparer;
 
         public SortIt(Func<TSource, TKey> projection)
             : this(projection, null)

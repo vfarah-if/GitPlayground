@@ -15,7 +15,7 @@ namespace Git.Domain
 
             if (serializerSettings == null)
             {
-                serializerSettings = new JsonSerializerSettings(){ NullValueHandling = NullValueHandling.Ignore };
+                serializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
             }
             return JsonConvert.SerializeObject(source, formatting, serializerSettings);
 
