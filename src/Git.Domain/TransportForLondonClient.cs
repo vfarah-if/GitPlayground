@@ -182,12 +182,14 @@ namespace Git.Domain
         {
             Guard(sortOptions);
             output.Sort(sortOptions.Comparer);
+            Trace.TraceInformation($"Sorting data '{sortOptions.Comparer.ToString()}'");
         }
 
         private static void SortDataInReverse(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
         {
             Guard(sortOptions);
             output.Sort((x, y) => sortOptions.Comparer.Compare(y, x));
+            Trace.TraceInformation($"Sorting data '{sortOptions.Comparer.ToString()}' in reverse");
         }
 
         private static void Guard(SortOptions<AccidentStatistic> sortOptions)

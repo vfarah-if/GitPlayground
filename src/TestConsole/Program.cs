@@ -19,14 +19,15 @@ namespace TestConsole
                 const int PageSize = 20;
                 int CurrentAmountOfRecordsRetrieved = PageSize;
 
-                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015To2017(transportForLondonClient, currentPage, PageSize, ByDateDescending);
+                var pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2014To2017(transportForLondonClient, currentPage, PageSize, ByDateDescending);
                 LogInfo($"{pagedAccidentStatistics.Total} fatal accidents occured");            
 
                 do
                 {
                     if (currentPage > 1)
                     {                                                
-                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2015To2017(transportForLondonClient, currentPage, PageSize, ByDateDescending);
+                        pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2014To2017
+                            (transportForLondonClient, currentPage, PageSize, ByDateDescending);
                         CurrentAmountOfRecordsRetrieved += pagedAccidentStatistics.Data.Count();
                     }
 
@@ -48,14 +49,14 @@ namespace TestConsole
             }
         }
 
-        private static Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsFor2015To2017(
+        private static Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsFor2014To2017(
             ITransportForLondonClient transportForLondonClient, 
             int currentPage, 
             int PageSize,
             SortOptions<AccidentStatistic> sortOptions)
         {            
             return transportForLondonClient.GetAccidentStatistics(
-                from: DateTime.Parse("01 January 2015 00:00:00"), 
+                from: DateTime.Parse("01 January 2014 00:00:00"), 
                 to: DateTime.Parse("31 December 2017 00:00:00"),
                 severity: Severity.Fatal,
                 sortOptions: sortOptions,
