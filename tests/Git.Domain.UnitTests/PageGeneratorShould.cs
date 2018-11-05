@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using FluentAssertions;
+﻿using FluentAssertions;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -8,8 +7,6 @@ namespace Git.Domain.UnitTests
 {
     public class PageGeneratorShould
     {
-        private readonly Fixture autoFixture;
-
         private IEnumerable<int> data;
 
         public PageGeneratorShould()
