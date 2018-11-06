@@ -42,7 +42,7 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, result);
                 response.Headers.CacheControl = new CacheControlHeaderValue()
                 {
-                    MaxAge = TimeSpan.FromMinutes(configuration.CacheExpirationTimeInMinutes.Minutes)
+                    MaxAge = configuration.CacheExpirationTimeInMinutes
                 };
                 return response;
             }

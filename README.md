@@ -19,6 +19,9 @@ For me this is a Playground for testing rest connections, Flurl, Bddfy and other
 TODO: Owin web Api to call cached and paged client for London transport and create as simple as possible an own console application that can utilise good simple patterns to test and develop each area
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 https://autofaccn.readthedocs.io/en/latest/integration/owin.html
+	Finish unit tests
+	Extend tests to test header values and other controller information
+	Extends with swagger, pact or typemock tests
 
 TODO: Create an angular 6 client to look at severity data within google map 
 TODO: Create a react client doing the same thing to compare and do it in typescript
