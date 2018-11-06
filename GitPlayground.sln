@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Autofac", "src\Git.Domain.Autofac\Git.Domain.Autofac.csproj", "{E0884E8A-3493-4AA7-B515-EEF7B378984F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api", "src\Git.Domain.Owin.Api\Git.Domain.Owin.Api.csproj", "{AF1BD7A4-DA05-49FE-A003-093BC73D4F3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Acceptance.Tests", "tests\Git.Domain.Owin.Api.Acceptance.Tests\Git.Domain.Owin.Api.Acceptance.Tests.csproj", "{946D542B-BF0B-48B3-868A-F52FB456CBA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +48,14 @@ Global
 		{E0884E8A-3493-4AA7-B515-EEF7B378984F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0884E8A-3493-4AA7-B515-EEF7B378984F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0884E8A-3493-4AA7-B515-EEF7B378984F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1BD7A4-DA05-49FE-A003-093BC73D4F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1BD7A4-DA05-49FE-A003-093BC73D4F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1BD7A4-DA05-49FE-A003-093BC73D4F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1BD7A4-DA05-49FE-A003-093BC73D4F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946D542B-BF0B-48B3-868A-F52FB456CBA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946D542B-BF0B-48B3-868A-F52FB456CBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946D542B-BF0B-48B3-868A-F52FB456CBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946D542B-BF0B-48B3-868A-F52FB456CBA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
