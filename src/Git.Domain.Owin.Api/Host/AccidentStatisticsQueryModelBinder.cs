@@ -8,12 +8,12 @@ using IModelBinder = System.Web.Http.ModelBinding.IModelBinder;
 namespace Git.Domain.Owin.Api.Host
 {
     //TODO: Test if a simpler mechanism can not be put in place
-    [ModelBinder(typeof(AccidentStatisticsCriteriaModelBinder))]
-    public class AccidentStatisticsCriteriaModelBinder : IModelBinder
+    [ModelBinder(typeof(AccidentStatisticsQueryModelBinder))]
+    public class AccidentStatisticsQueryModelBinder : IModelBinder
     {
         public bool BindModel(HttpActionContext actionContext, System.Web.Http.ModelBinding.ModelBindingContext bindingContext)
         {
-            if (bindingContext.ModelType != typeof(AccidentStatisticsCriteria))
+            if (bindingContext.ModelType != typeof(AccidentStatisticsQuery))
             {
                 return false;
             }
@@ -42,7 +42,7 @@ namespace Git.Domain.Owin.Api.Host
                 return false;
             }
 
-            AccidentStatisticsCriteria result = new AccidentStatisticsCriteria
+            AccidentStatisticsQuery result = new AccidentStatisticsQuery
             {
                 From = DateTime.Parse(queryDictionary["from"]),
                 To = DateTime.Parse(queryDictionary["to"]),

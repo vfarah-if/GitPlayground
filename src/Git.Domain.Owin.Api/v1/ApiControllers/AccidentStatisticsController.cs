@@ -26,7 +26,7 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
         }
 
         //TODO: Simplify the binding of values
-        public async Task<HttpResponseMessage> Get([ModelBinder] AccidentStatisticsCriteria accidentStatisticsCriteria)
+        public async Task<HttpResponseMessage> Get([ModelBinder] AccidentStatisticsQuery accidentStatisticsCriteria)
         {
             Trace.TraceInformation($"Retrieving Accident Statistics for {accidentStatisticsCriteria.ToString()}");
             try

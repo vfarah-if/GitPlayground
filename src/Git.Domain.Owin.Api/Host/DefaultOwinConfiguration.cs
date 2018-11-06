@@ -27,7 +27,7 @@ namespace Git.Domain.Owin.Api.Host
             appBuilder.UseAutofac(config);
 
             var provider = new SimpleModelBinderProvider(
-                typeof(AccidentStatisticsCriteria), new AccidentStatisticsCriteriaModelBinder());
+                typeof(AccidentStatisticsQuery), new AccidentStatisticsQueryModelBinder());
             config.Services.Insert(typeof(ModelBinderProvider), 0, provider);
         }
     }

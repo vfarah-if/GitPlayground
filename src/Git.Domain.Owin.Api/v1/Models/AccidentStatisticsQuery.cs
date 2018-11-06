@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 
 namespace Git.Domain.Owin.Api.v1.Models
 {
-    public class AccidentStatisticsCriteria
+    public class AccidentStatisticsQuery
     {
-        public AccidentStatisticsCriteria()
+        public AccidentStatisticsQuery()
         {
             Page = 1;
             PageSize = 100;
