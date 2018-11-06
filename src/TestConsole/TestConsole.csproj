@@ -53,7 +53,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Git.Domain.Autofac\Git.Domain.Autofac.csproj">
+    <ProjectReference Include="..\Git.Domain.Autofac\Git.Domain.Autofac.csproj">
       <Project>{e0884e8a-3493-4aa7-b515-eef7b378984f}</Project>
       <Name>Git.Domain.Autofac</Name>
     </ProjectReference>

@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Autofac", "Git.Domain.Autofac\Git.Domain.Autofac.csproj", "{E0884E8A-3493-4AA7-B515-EEF7B378984F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Autofac", "src\Git.Domain.Autofac\Git.Domain.Autofac.csproj", "{E0884E8A-3493-4AA7-B515-EEF7B378984F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

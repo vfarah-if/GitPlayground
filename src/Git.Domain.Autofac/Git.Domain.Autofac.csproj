@@ -50,7 +50,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Git.Domain\Git.Domain.csproj">
+    <ProjectReference Include="..\Git.Domain\Git.Domain.csproj">
       <Project>{aabc3ad0-37c7-4e2f-b420-419ac1dea321}</Project>
       <Name>Git.Domain</Name>
     </ProjectReference>
