@@ -2,12 +2,12 @@
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.ModelBinding.Binders;
+using Git.Domain.Owin.Api.Host.ModelBinders;
 using Git.Domain.Owin.Api.v1.Models;
 using Owin;
 
 namespace Git.Domain.Owin.Api.Host
 {
-    
     [ExcludeFromCodeCoverage]
     public class DefaultOwinConfiguration
     {

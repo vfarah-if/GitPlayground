@@ -4,6 +4,7 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Git.Domain.Autofac;
+using Git.Domain.Owin.Api.Host.Modules;
 using Owin;
 
 namespace Git.Domain.Owin.Api.Host
@@ -32,7 +33,7 @@ namespace Git.Domain.Owin.Api.Host
         private static IContainer BuildAndCreateContainer(HttpConfiguration httpConfiguration)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterAssemblyModules<DomainModule>(typeof(DomainModule).Assembly);
+            builder.RegisterAssemblyModules(typeof(DomainModule).Assembly, typeof(ApiModule).Assembly);
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             // OPTIONAL - Register the filter provider if you have custom filters that need DI.
@@ -41,9 +42,7 @@ namespace Git.Domain.Owin.Api.Host
             // builder.RegisterType<CustomActionFilter>()
             //    .AsWebApiActionFilterFor<TestController>()
             //    .InstancePerRequest();
-            
-            // Add any local modules here
-
+           
             var container = builder.Build();
             httpConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = httpConfiguration.DependencyResolver;

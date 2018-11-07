@@ -18,7 +18,11 @@ namespace Git.Domain
                 serializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
             }
             return JsonConvert.SerializeObject(source, formatting, serializerSettings);
+        }
 
+        public static T To<T>(this string source)
+        {
+            return JsonConvert.DeserializeObject<T>(source);
         }
     }
 }

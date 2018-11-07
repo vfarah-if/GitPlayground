@@ -85,6 +85,10 @@
       <Project>{af1bd7a4-da05-49fe-a003-093bc73d4f3a}</Project>
       <Name>Git.Domain.Owin.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Git.Domain\Git.Domain.csproj">
+      <Project>{AABC3AD0-37C7-4E2F-B420-419AC1DEA321}</Project>
+      <Name>Git.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

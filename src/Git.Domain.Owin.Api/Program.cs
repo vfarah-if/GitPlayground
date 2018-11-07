@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Configuration;
 using Git.Domain.Owin.Api.Host;
 using Microsoft.Owin.Hosting;
 
 namespace Git.Domain.Owin.Api
 {
+    [ExcludeFromCodeCoverage]
     class Program
     {
         static void Main(string[] args)

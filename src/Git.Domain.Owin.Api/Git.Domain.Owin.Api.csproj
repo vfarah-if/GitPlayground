@@ -90,13 +90,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Host\AccidentStatisticsQueryModelBinder.cs" />
+    <Compile Include="Host\ModelBinders\AccidentStatisticsQueryModelBinder.cs" />
     <Compile Include="Host\AutofacConfigurationExtension.cs" />
     <Compile Include="Host\DefaultOwinConfiguration.cs" />
+    <Compile Include="Host\Modules\ApiModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="v1\ApiControllers\AccidentStatisticsController.cs" />
     <Compile Include="v1\Models\AccidentStatisticsQuery.cs" />
+    <Compile Include="v1\Services\AccidentStatisticsService.cs" />
+    <Compile Include="v1\Services\IAccidentStatisticsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -112,5 +115,6 @@
       <Name>Git.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

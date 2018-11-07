@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Acceptance.Tests", "tests\Git.Domain.Owin.Api.Acceptance.Tests\Git.Domain.Owin.Api.Acceptance.Tests.csproj", "{946D542B-BF0B-48B3-868A-F52FB456CBA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Unit.Tests", "tests\Git.Domain.Owin.Api.Unit.Tests\Git.Domain.Owin.Api.Unit.Tests.csproj", "{34A29E45-8B62-45E0-899A-C9B1404BBB80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{946D542B-BF0B-48B3-868A-F52FB456CBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{946D542B-BF0B-48B3-868A-F52FB456CBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{946D542B-BF0B-48B3-868A-F52FB456CBA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
