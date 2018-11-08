@@ -12,7 +12,7 @@ using Swashbuckle.Swagger.Annotations;
 
 namespace Git.Domain.Owin.Api.v1.ApiControllers
 {
-    [RoutePrefix("v2/accidentstatistics")]
+    [RoutePrefix("v1/accidentstatistics")]
     public class AccidentStatisticsController : ApiController
     {
         private readonly IAccidentStatisticsService _accidentStatisticsService;
