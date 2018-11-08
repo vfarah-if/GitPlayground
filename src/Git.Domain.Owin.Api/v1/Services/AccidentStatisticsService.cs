@@ -19,10 +19,8 @@ namespace Git.Domain.Owin.Api.v1.Services
             {
                 { "ByDateAscending", ByDateAscending },
                 { "ByLocationAscending", ByLocationAscending },
-                { "BySeverityAscending", BySeverityAscending },
                 { "ByDateDescending", ByDateDescending },
                 { "ByLocationDescending", ByLocationDescending },
-                { "BySeverityDescending", BySeverityDescending },
             };
         }
         public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(AccidentStatisticsQuery accidentStatisticsQuery)

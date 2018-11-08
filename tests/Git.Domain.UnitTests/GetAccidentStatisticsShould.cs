@@ -26,7 +26,7 @@ namespace Git.Domain.UnitTests
             actual.Data.Should().NotBeNull();
             actual.Total.Should().Be(3);
             actual.Page.Should().Be(1);
-            actual.PageSize.Should().Be(5);
+            actual.PageSize.Should().Be(3);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Git.Domain.UnitTests
             actual.Data.Should().NotBeNull();
             actual.Total.Should().Be(3);
             actual.Page.Should().Be(1);
-            actual.PageSize.Should().Be(5);
+            actual.PageSize.Should().Be(3);
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace Git.Domain.UnitTests
             actual.Data.Should().NotBeNull();
             actual.Total.Should().Be(3);
             actual.Page.Should().Be(1);
-            actual.PageSize.Should().Be(5);
+            actual.PageSize.Should().Be(3);
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace Git.Domain.UnitTests
             actual.Data.Should().NotBeNull();
             actual.Total.Should().Be(262); // And not 54178
             actual.Page.Should().Be(1);
-            actual.PageSize.Should().Be(300);
+            actual.PageSize.Should().Be(262);
             actual.Data.Count().Should().Be(262);
         }
 

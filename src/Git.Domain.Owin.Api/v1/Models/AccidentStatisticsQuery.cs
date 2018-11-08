@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Newtonsoft.Json;
+using Swashbuckle.Swagger;
 
 namespace Git.Domain.Owin.Api.v1.Models
 {

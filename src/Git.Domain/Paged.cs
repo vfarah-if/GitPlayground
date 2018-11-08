@@ -41,7 +41,7 @@ namespace Git.Domain
 
             var skip = zeroIndexedCurrentPage * pageSize;
             var data = allData.Skip(skip).Take(pageSize);
-            return Paged<T>.Create(total, data, zeroIndexedCurrentPage + 1, pageSize);
+            return Paged<T>.Create(total, data, zeroIndexedCurrentPage + 1, data.Count());
         }
     }
 }
