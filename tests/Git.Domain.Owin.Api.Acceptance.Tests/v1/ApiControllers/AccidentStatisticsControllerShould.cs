@@ -16,7 +16,7 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v1.ApiControllers
 
         public AccidentStatisticsControllerShould()
         {
-            testServer = TestServer.Create<DefaultOwinConfiguration>();
+            testServer = TestServer.Create<ApiStartup>();
         }
 
         [Fact]

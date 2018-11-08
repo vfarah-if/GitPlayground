@@ -14,9 +14,11 @@ namespace Git.Domain.Owin.Api
         {
             string baseAddress = WebConfigurationManager.AppSettings["BaseUrl"];
             // Start OWIN host 
-            using (WebApp.Start<DefaultOwinConfiguration>(url: baseAddress))
+            using (WebApp.Start<ApiStartup>(url: baseAddress))
             {
                 Trace.TraceInformation($"Started hosting on {baseAddress}");
+                Trace.TraceInformation($"Swagger information can be found at {baseAddress}swagger");
+                Trace.TraceInformation($"Swagger documentation can be found at {baseAddress}swagger/docs/v1");
                 Console.ReadLine();
             }
         }

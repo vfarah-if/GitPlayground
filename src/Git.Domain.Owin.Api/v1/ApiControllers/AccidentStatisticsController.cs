@@ -12,6 +12,7 @@ using Swashbuckle.Swagger.Annotations;
 
 namespace Git.Domain.Owin.Api.v1.ApiControllers
 {
+    [RoutePrefix("v2/accidentstatistics")]
     public class AccidentStatisticsController : ApiController
     {
         private readonly IAccidentStatisticsService _accidentStatisticsService;
@@ -31,6 +32,7 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
         /// <param name="accidentStatisticsQuery.page">Current page</param>
         /// <param name="accidentStatisticsQuery.pageSize">Current page size</param>
         /// <returns>Paged List of Accident Statistics</returns>
+        [Route("")]
         [SwaggerResponseRemoveDefaults]
         [SwaggerResponse(HttpStatusCode.OK, "Paged list of accident statistics", typeof(Paged<AccidentStatistic>))]
         [SwaggerResponse(HttpStatusCode.BadRequest, "Bad Request")]

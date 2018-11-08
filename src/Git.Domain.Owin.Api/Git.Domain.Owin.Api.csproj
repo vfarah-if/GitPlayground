@@ -91,6 +91,10 @@
       <HintPath>..\..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -121,7 +125,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="Host\ModelBinders\AccidentStatisticsQueryModelBinder.cs" />
     <Compile Include="Host\AutofacConfigurationExtension.cs" />
-    <Compile Include="Host\DefaultOwinConfiguration.cs" />
+    <Compile Include="Host\ApiStartup.cs" />
     <Compile Include="Host\Modules\ApiModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

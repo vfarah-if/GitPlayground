@@ -1,7 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Newtonsoft.Json;
-using Swashbuckle.Swagger;
 
 namespace Git.Domain.Owin.Api.v1.Models
 {
@@ -13,8 +14,11 @@ namespace Git.Domain.Owin.Api.v1.Models
             PageSize = 100;
         }
 
+        // If you want to make it required
+        // [Required]         
         [JsonProperty(PropertyName = "from")]
         public DateTime From { get; set; }
+        [Required]
         [JsonProperty(PropertyName = "to")]
         public DateTime To { get; set; }
         [JsonProperty(PropertyName = "severity")]

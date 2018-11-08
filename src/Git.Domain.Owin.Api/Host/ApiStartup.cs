@@ -5,27 +5,28 @@ using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.ModelBinding.Binders;
+using Git.Domain.Owin.Api.Host;
 using Git.Domain.Owin.Api.Host.ModelBinders;
 using Git.Domain.Owin.Api.v1.Models;
+using Microsoft.Owin;
 using Owin;
 using Swashbuckle.Application;
+
+[assembly: OwinStartup(typeof(ApiStartup))]
 
 namespace Git.Domain.Owin.Api.Host
 {
     [ExcludeFromCodeCoverage]
-    public class DefaultOwinConfiguration
+    public class ApiStartup
     {
         public void Configuration(IAppBuilder appBuilder)
         {
             HttpConfiguration config = new HttpConfiguration();
 
-            config.MapHttpAttributeRoutes();
+            ConfigureAttributeRouting(config);
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "v1/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            // TODO : Remove if you want the name of the controller to be used instead of attributes
+            // ConfigureConventionBasedRouting(config);
 
             appBuilder.UseWebApi(config);
             appBuilder.UseAutofac(config);
@@ -35,6 +36,20 @@ namespace Git.Domain.Owin.Api.Host
             config.Services.Insert(typeof(ModelBinderProvider), 0, provider);
 
             ConfigureSwagger(config);
+        }
+
+        private static void ConfigureConventionBasedRouting(HttpConfiguration config)
+        {
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "v1/{controller}/{id}",
+                defaults: new {id = RouteParameter.Optional}
+            );
+        }
+
+        private static void ConfigureAttributeRouting(HttpConfiguration config)
+        {
+            config.MapHttpAttributeRoutes();
         }
 
         private static void ConfigureSwagger(HttpConfiguration config)
