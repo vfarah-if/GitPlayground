@@ -24,6 +24,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Accepta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Unit.Tests", "tests\Git.Domain.Owin.Api.Unit.Tests\Git.Domain.Owin.Api.Unit.Tests.csproj", "{34A29E45-8B62-45E0-899A-C9B1404BBB80}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{E170E609-BE87-4FCD-8A73-6A1B0D7D3E8A}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ngAccidentStatistics", "src\ngAccidentStatistics\", "{A88D2629-20E2-4216-B791-2B3FD9E69090}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51283"
+		Debug.AspNetCompiler.PhysicalPath = "src\ngAccidentStatistics\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51283\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51283"
+		Release.AspNetCompiler.PhysicalPath = "src\ngAccidentStatistics\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51283\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51283"
+		SlnRelativePath = "src\ngAccidentStatistics\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,9 +85,16 @@ Global
 		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A88D2629-20E2-4216-B791-2B3FD9E69090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A88D2629-20E2-4216-B791-2B3FD9E69090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A88D2629-20E2-4216-B791-2B3FD9E69090}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{A88D2629-20E2-4216-B791-2B3FD9E69090}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A88D2629-20E2-4216-B791-2B3FD9E69090} = {E170E609-BE87-4FCD-8A73-6A1B0D7D3E8A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68AB40AB-6E9B-4FFF-B0E9-DB73C662E40C}
