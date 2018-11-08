@@ -13,10 +13,11 @@ namespace Git.Domain
             Page = page;
             PageSize = pageSize;
         }
-        public long Total { get; }
         public IEnumerable<T> Data { get; }
         public int Page { get; }
         public int PageSize { get; }
+
+        public long Total { get; }        
 
         public static Paged<T> Create(long total, IEnumerable<T> data, int page, int pageSize)
         {
