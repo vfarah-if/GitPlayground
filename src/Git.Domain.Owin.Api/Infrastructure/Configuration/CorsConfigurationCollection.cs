@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Git.Domain.Owin.Api.Infrastructure.Configuration
 {
+    [ExcludeFromCodeCoverage]
     [ConfigurationCollection(typeof(CorsConfigurationElement))]
     public class CorsConfigurationCollection : ConfigurationElementCollection, IEnumerable<CorsConfigurationElement>
     {

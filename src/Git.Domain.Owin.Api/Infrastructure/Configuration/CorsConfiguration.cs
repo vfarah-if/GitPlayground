@@ -1,7 +1,9 @@
 ﻿using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Git.Domain.Owin.Api.Infrastructure.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public class CorsConfiguration : ConfigurationSection
     {
         public const string SectionName = "corsConfiguration";

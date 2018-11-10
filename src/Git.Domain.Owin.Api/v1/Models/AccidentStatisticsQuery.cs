@@ -18,7 +18,7 @@ namespace Git.Domain.Owin.Api.v1.Models
         // [Required]         
         [JsonProperty(PropertyName = "from")]
         public DateTime From { get; set; }
-        [Required]
+        //[Required]
         [JsonProperty(PropertyName = "to")]
         public DateTime To { get; set; }
         [JsonProperty(PropertyName = "severity")]
