@@ -39,14 +39,6 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v1.Controllers
         }
 
         [Fact]
-        public void ThrowNullArgumentExceptionWhenGetAccidentStatisticsIsAssignedANullQuery()
-        {
-            Func<Task> getAction = async () => await _subject.Get(null);
-
-            getAction.Should().Throw<ArgumentNullException>();
-        }
-
-        [Fact]
         public async Task GetAccidentStatisticsViaTheAccidentStatisticsService()
         {
             await _subject.Get(_accidentStatisticsQuery);

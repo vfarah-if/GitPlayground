@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.ModelBinding.Binders;
 using Git.Domain.Owin.Api.Host;
-using Git.Domain.Owin.Api.Host.ModelBinders;
+using Git.Domain.Owin.Api.Infrastructure.ModelBinders;
+using Git.Domain.Owin.Api.Infrastructure.Configuration;
 using Git.Domain.Owin.Api.v1.Models;
 using Microsoft.Owin;
 using Owin;
@@ -36,14 +39,22 @@ namespace Git.Domain.Owin.Api.Host
             config.Services.Insert(typeof(ModelBinderProvider), 0, provider);
 
             ConfigureSwagger(config);
+            UseCorsMiddleware(config);                        
         }
+
+        private void UseCorsMiddleware(HttpConfiguration configuration)
+        {
+            var corsOrigins = CorsConfiguration.GetSection().CorsConfigs.Select(x => x.AllowedOrigin).ToList();
+            configuration.EnableCors(new EnableCorsAttribute(string.Join(",", corsOrigins), "*", "*"));
+        }
+
 
         private static void ConfigureConventionBasedRouting(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "v1/{controller}/{id}",
-                defaults: new {id = RouteParameter.Optional}
+                defaults: new { id = RouteParameter.Optional }
             );
         }
 
@@ -65,7 +76,7 @@ namespace Git.Domain.Owin.Api.Host
                         if (File.Exists(commentsFile))
                         {
                             c.IncludeXmlComments(commentsFile);
-                        }                        
+                        }
                     })
                 .EnableSwaggerUi();
 

@@ -41,7 +41,7 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
         {
             if (accidentStatisticsQuery == null)
             {
-                throw new ArgumentNullException(nameof(accidentStatisticsQuery));
+                accidentStatisticsQuery = AccidentStatisticsQuery.CreateDefault();
             }
 
             if (ModelState.IsValid)

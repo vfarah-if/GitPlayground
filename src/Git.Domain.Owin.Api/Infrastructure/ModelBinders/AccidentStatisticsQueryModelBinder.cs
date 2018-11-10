@@ -5,7 +5,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.ModelBinding;
 using IModelBinder = System.Web.Http.ModelBinding.IModelBinder;
 
-namespace Git.Domain.Owin.Api.Host.ModelBinders
+namespace Git.Domain.Owin.Api.Infrastructure.ModelBinders
 {
     [ModelBinder(typeof(AccidentStatisticsQueryModelBinder))]
     public class AccidentStatisticsQueryModelBinder : IModelBinder

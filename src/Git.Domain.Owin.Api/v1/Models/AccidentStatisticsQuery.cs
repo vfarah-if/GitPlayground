@@ -41,5 +41,16 @@ namespace Git.Domain.Owin.Api.v1.Models
             stringBuilder.AppendLine($"PageSize : {this.PageSize}");
             return stringBuilder.ToString();
         }
+
+        internal static AccidentStatisticsQuery CreateDefault()
+        {
+            return new AccidentStatisticsQuery
+            {
+                From = new DateTime(DateTime.Now.Year - 1, 01, 01),
+                To = new DateTime(DateTime.Now.Year - 1, 12, 31),
+                Severity = "Fatal",
+                SortBy = "ByDateDescending"
+            };
+        }
     }
 }

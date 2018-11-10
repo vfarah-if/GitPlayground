@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using Git.Domain.Owin.Api.Host.ModelBinders;
+using Git.Domain.Owin.Api.Infrastructure.ModelBinders;
 using System;
 using System.Net.Http;
 using System.Web.Http;

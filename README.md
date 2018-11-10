@@ -35,6 +35,10 @@ TODO: Create an angular 7 client to look at severity data within google map
 
 https://github.com/angular/angular-cli/wiki
 
+https://alligator.io/angular/testing-httpclient/
+
+
+
 Start coming up with ideas for lightning talks
 
 TODO: Create a react client doing the same thing to compare and do it in typescript
