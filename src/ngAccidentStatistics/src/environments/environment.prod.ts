@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  accidentStatisticsBaseUrl: 'http://localhost:9000'
 };

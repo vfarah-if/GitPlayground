@@ -26,6 +26,8 @@ https://github.com/domaindrivendev/Swashbuckle
 https://docs.microsoft.com/en-us/aspnet/visual-studio/overview/2013/release-notes#TOC11
 
 https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/configuring-aspnet-web-api#webhost
+
+https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
 	Finish unit tests
 	Extend tests to test header values and other controller information
 	Extends with swagger, pact or typemock tests

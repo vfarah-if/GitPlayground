@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Git.Domain
 {
@@ -13,10 +14,14 @@ namespace Git.Domain
             Page = page;
             PageSize = pageSize;
         }
-        public IEnumerable<T> Data { get; }
-        public int Page { get; }
-        public int PageSize { get; }
 
+        [JsonProperty(PropertyName = "data")]
+        public IEnumerable<T> Data { get; }
+        [JsonProperty(PropertyName = "page")]
+        public int Page { get; }
+        [JsonProperty(PropertyName = "pageSize")]
+        public int PageSize { get; }
+        [JsonProperty(PropertyName = "total")]
         public long Total { get; }        
 
         public static Paged<T> Create(long total, IEnumerable<T> data, int page, int pageSize)
