@@ -17,9 +17,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // TODO: Remove, hard test to get project up and running
-    this.accidentStatisticService.get().subscribe(data => {
-      debugger;
+    this.accidentStatisticService.get({ pageSize: 2000, from: new Date(2015, 1, 1) }).subscribe(data => {
       this.accidentStatics = data.data;
-    });
+      });
   }
 }

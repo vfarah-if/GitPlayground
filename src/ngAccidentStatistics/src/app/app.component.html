@@ -18,11 +18,12 @@
   </li>
   <li>
     <h2>
-        Loaded {{accidentStatics?.length}} Accidents
+        Simply Loaded {{accidentStatics?.length}} Fatal Accidents since 2015
     </h2>
+    <span> Your next task will be to create a component with this data</span>
     <ul>
         <li *ngFor="let item of accidentStatics; let i = index">
-          {{i}} {{item}}
+          <span>Accident <strong>{{i+1}}</strong> on the <b>{{item.date|date}}</b> at location <em>{{item.location}}</em></span>
         </li>
       </ul>
   </li>
