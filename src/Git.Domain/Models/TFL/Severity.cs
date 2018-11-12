@@ -2,8 +2,8 @@
 {
     public enum Severity
     {
-        Serious,
-        Slight,
-        Fatal
+        Serious = 0,
+        Slight = 1,
+        Fatal = 2
     }
 }

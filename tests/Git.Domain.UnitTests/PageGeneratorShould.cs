@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -7,7 +8,7 @@ namespace Git.Domain.UnitTests
 {
     public class PageGeneratorShould
     {
-        private IEnumerable<int> data;
+        private readonly IEnumerable<int> data;
 
         public PageGeneratorShould()
         {
@@ -26,6 +27,9 @@ namespace Git.Domain.UnitTests
             sut.Page.Should().Be(page);
             sut.Total.Should().Be(this.data.LongCount());
             sut.Data.Should().Contain(new[] { 1, 2, 3 });
+            sut.NextPage.HasValue.Should().BeTrue();
+            sut.NextPage.Should().Be(2);
+            sut.PreviousPage.HasValue.Should().BeFalse();
         }
 
         [Fact]
@@ -41,6 +45,9 @@ namespace Git.Domain.UnitTests
             sut.Page.Should().Be(expectedPage);
             sut.Total.Should().Be(this.data.LongCount());
             sut.Data.Should().Contain(new[] { 1, 2, 3 });
+            sut.NextPage.HasValue.Should().BeTrue();
+            sut.NextPage.Should().Be(2);
+            sut.PreviousPage.HasValue.Should().BeFalse();
         }
 
         [Fact]
@@ -56,6 +63,9 @@ namespace Git.Domain.UnitTests
             sut.Page.Should().Be(page);
             sut.Total.Should().Be(this.data.LongCount());
             sut.Data.Should().Contain(new[] { 9, 10 });
+            sut.PreviousPage.HasValue.Should().BeTrue();
+            sut.PreviousPage.Should().Be(2);
+            sut.NextPage.HasValue.Should().BeFalse();
         }
 
         [Fact]
@@ -72,6 +82,36 @@ namespace Git.Domain.UnitTests
             sut.Page.Should().Be(expctedPage);
             sut.Total.Should().Be(this.data.LongCount());
             sut.Data.Should().Contain(new[] { 9, 10 });
+            sut.PreviousPage.HasValue.Should().BeTrue();
+            sut.PreviousPage.Should().Be(2);
+            sut.NextPage.HasValue.Should().BeFalse();
+        }
+
+        [Fact]
+        public void GetPagedDataForEmptyList()
+        {
+            var pageSize = 4;
+            var page = 1;
+            var expectDataCount = 0;
+            var expectedPage = 1;
+            var emptyList = new List<int>();
+
+            var sut = Paged<int>.Generate(emptyList, pageSize, page);
+
+            sut.Data.LongCount().Should().Be(expectDataCount);
+            sut.Page.Should().Be(expectedPage);
+            sut.Total.Should().Be(0);
+            sut.Data.Should().BeEmpty();
+            sut.PreviousPage.HasValue.Should().BeFalse();
+            sut.NextPage.HasValue.Should().BeFalse();
+        }
+
+        [Fact]
+        public void ThrowArgumentNullExceptionForNullData()
+        {
+            Action testAction = () => Paged<int>.Generate(null, 10, 1);
+
+            testAction.Should().Throw<ArgumentNullException>();
         }
     }
 }
