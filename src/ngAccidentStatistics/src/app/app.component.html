@@ -18,11 +18,11 @@
   </li>
   <li>
     <h2>
-        Simply Loaded {{accidentStatics?.length}} Fatal Accidents since 2015
+        Simply Loaded {{(accidentStatics$|async)?.length}} Fatal Accidents since 2014
     </h2>
     <span> Your next task will be to create a component with this data</span>
     <ul>
-        <li *ngFor="let item of accidentStatics; let i = index">
+        <li *ngFor="let item of (accidentStatics$|async); let i = index">
           <span>Accident <strong>{{i+1}}</strong> on the <b>{{item.date|date}}</b> at location <em>{{item.location}}</em></span>
         </li>
       </ul>

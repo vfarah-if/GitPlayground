@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs/internal/Observable'
+import { map } from 'rxjs/internal/operators';
 import { AccidentStatistic } from './model';
-
 import { AccidentStatiticsService } from './api/accident-statistics.service';
 
 @Component({
@@ -11,14 +12,12 @@ import { AccidentStatiticsService } from './api/accident-statistics.service';
 })
 export class AppComponent implements OnInit {
   title = 'ngAccidentStatistics';
-  accidentStatics: Array<AccidentStatistic>;
+  accidentStatics$: Observable<Array<AccidentStatistic>>;
   constructor(private accidentStatisticService: AccidentStatiticsService) {
   }
 
   ngOnInit(): void {
-    // TODO: Remove, hard test to get project up and running
-    this.accidentStatisticService.get({ pageSize: 2000, from: new Date(2015, 1, 1) }).subscribe(data => {
-      this.accidentStatics = data.data;
-      });
+    //TODO: Remove, hard test to get project up and running
+    this.accidentStatics$ = this.accidentStatisticService.get({ pageSize: 2000, from: new Date(2014, 1, 1) }).pipe(map(data => data.data));
   }
 }
