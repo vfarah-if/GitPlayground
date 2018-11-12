@@ -63,16 +63,21 @@ namespace Git.Domain
             {
                 throw new ArgumentNullException(nameof(allData));
             }
-            long total = allData.LongCount();
-            var maxPageCount = (int) Math.Ceiling((double) total / pageSize);
+
+            int total = allData.Count();
+            var maxPageCount = total % pageSize != 0
+                ? total / pageSize + 1
+                : total / pageSize;
+
             var zeroIndexedCurrentPage = page - 1;
             if (zeroIndexedCurrentPage < 0)
             {
                 zeroIndexedCurrentPage = 0;
             }
-            if (zeroIndexedCurrentPage > maxPageCount)
+
+            if (maxPageCount > 0 && page >= maxPageCount)
             {
-                zeroIndexedCurrentPage = maxPageCount;
+                zeroIndexedCurrentPage = maxPageCount - 1;
             }
 
             var skip = zeroIndexedCurrentPage * pageSize;

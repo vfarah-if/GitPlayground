@@ -76,7 +76,7 @@ namespace Git.Domain.Acceptance.Tests
 
             actual.Should().NotBeNull();
             actual.Page.Should().Be(542);
-            actual.PageSize.Should().Be(100);
+            actual.PageSize.Should().Be(78);
             actual.Data.Count().Should().Be(78);
             actual.Total.Should().Be(54178);
         }
@@ -88,7 +88,7 @@ namespace Git.Domain.Acceptance.Tests
 
             actual.Should().NotBeNull();
             actual.Page.Should().Be(542);
-            actual.PageSize.Should().Be(100);
+            actual.PageSize.Should().Be(78);
             actual.Data.Count().Should().Be(78);
             actual.Total.Should().Be(54178);
         }

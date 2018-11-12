@@ -40,7 +40,7 @@ namespace Git.Domain.UnitTests
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
             actual.Total.Should().Be(3);
-            actual.Page.Should().Be(2);
+            actual.Page.Should().Be(1);
             actual.PageSize.Should().Be(3);
         }
 
