@@ -70,12 +70,12 @@ namespace Git.Domain
                 : total / pageSize;
 
             var zeroIndexedCurrentPage = page - 1;
-            if (zeroIndexedCurrentPage < 0)
+            if (IsCurrentPageLessThanZero(zeroIndexedCurrentPage))
             {
                 zeroIndexedCurrentPage = 0;
             }
 
-            if (maxPageCount > 0 && page >= maxPageCount)
+            if (IsPageGreaterThanZeroOrLastPage(page, maxPageCount))
             {
                 zeroIndexedCurrentPage = maxPageCount - 1;
             }
@@ -83,6 +83,16 @@ namespace Git.Domain
             var skip = zeroIndexedCurrentPage * pageSize;
             var data = allData.Skip(skip).Take(pageSize);
             return Paged<T>.Create(total, data, zeroIndexedCurrentPage + 1, data.Count(), maxPageCount);
+        }
+
+        private static bool IsCurrentPageLessThanZero(int zeroIndexedCurrentPage)
+        {
+            return zeroIndexedCurrentPage < 0;
+        }
+
+        private static bool IsPageGreaterThanZeroOrLastPage(int page, int maxPageCount)
+        {
+            return maxPageCount > 0 && page >= maxPageCount;
         }
     }
 }
