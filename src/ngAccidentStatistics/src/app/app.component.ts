@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     //TODO: Remove, hard test to get project up and running
-    this.accidentStatics$ = this.accidentStatisticService.get({ pageSize: 2000, from: new Date(2014, 1, 1) }).pipe(map(data => data.data));
+    this.accidentStatics$ = this.accidentStatisticService
+      .get({ pageSize: 5000, from: new Date(2005, 1, 1) })
+      .pipe(map(data => data.data));
   }
 }
