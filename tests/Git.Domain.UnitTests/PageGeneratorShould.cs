@@ -16,8 +16,11 @@ namespace Git.Domain.UnitTests
         }
 
         [Theory]
-        [InlineData(3, 1, 1, null, 2, 4, new[] { 1, 2, 3 })]
         [InlineData(3, -1, 1, null, 2, 4, new[] { 1, 2, 3 })]
+        [InlineData(3, 1, 1, null, 2, 4, new[] { 1, 2, 3 })]
+        [InlineData(3, 2, 2, 1, 3, 4, new[] { 4, 5, 6 })]
+        [InlineData(3, 3, 3, 2, 4, 4, new[] { 7, 8, 9 })]
+        [InlineData(3, 4, 4, 3, null, 4, new[] { 10 })]
         [InlineData(4, 3, 3, 2, null, 3, new[] { 9, 10 })]
         [InlineData(4, 6, 3, 2, null, 3, new[] { 9, 10 })]
         public void GenerateExpectedPagedData(
@@ -30,11 +33,11 @@ namespace Git.Domain.UnitTests
             int[] expectedData)
         {
 
-            var sut = Paged<int>.Generate(this.data, pageSize, page);
+            var sut = Paged<int>.Generate(data, pageSize, page);
 
             sut.Data.Count().Should().Be(expectedData.Length);
             sut.Page.Should().Be(expectedPage);
-            sut.Total.Should().Be(this.data.LongCount());
+            sut.Total.Should().Be(data.LongCount());
             sut.Data.Should().Contain(expectedData);
             sut.PreviousPage.Should().Be(expectedPreviousPage);
             sut.NextPage.Should().Be(expectedNextPage);
