@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using Newtonsoft.Json;
 
@@ -48,7 +49,21 @@ namespace Git.Domain.Models.TFL
         public string DateAsString { get; set; }
 
         [JsonIgnore]
-        public DateTime Date => DateTime.ParseExact(DateAsString, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
+        public DateTime Date
+        {
+            get
+            {
+                try
+                {
+                    return DateTime.ParseExact(DateAsString, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
+                }
+                catch (Exception e)
+                {
+                    Trace.TraceError($"Unable to convert {this.DateAsString} because of '{e.Message}'");
+                }               
+                return DateTime.MinValue;
+            }
+        }
 
         [JsonProperty(PropertyName = "severity")]
         public Severity Severity { get; set; }
@@ -61,6 +76,5 @@ namespace Git.Domain.Models.TFL
 
         [JsonProperty(PropertyName = "vehicles")]
         public List<Vehicle> Vehicles { get; set; }
-
     }
 }

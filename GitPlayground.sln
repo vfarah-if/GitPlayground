@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Accepta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Unit.Tests", "tests\Git.Domain.Owin.Api.Unit.Tests\Git.Domain.Owin.Api.Unit.Tests.csproj", "{34A29E45-8B62-45E0-899A-C9B1404BBB80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole.UnitTests", "tests\TestConsole.UnitTests\TestConsole.UnitTests.csproj", "{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A29E45-8B62-45E0-899A-C9B1404BBB80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

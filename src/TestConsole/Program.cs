@@ -10,19 +10,21 @@ namespace TestConsole
         static void Main(string[] args)
         {
             ConfigureTraceListener();
-            try
-            {
-                CreateLifetimeScope(scope =>
+            CreateLifetimeScope(scope =>
                 {
-                    var applicationCommand = scope.Resolve<IApplicationCommand>();
-                    applicationCommand.Execute();
+
+                    try
+                    {
+                        var applicationCommand = scope.Resolve<IApplicationCommand>();
+                        applicationCommand.Execute();                        
+                    }
+                    catch (Exception e)
+                    {
+                        var logger = scope.Resolve<ILogger>();
+                        logger.AsError(e, "Failed to get paged transport messages ...");
+                        Console.Read();
+                    }
                 });
-            }
-            catch (Exception e)
-            {
-                LogError(e, "Failed to get paged transport messages ...");
-                Console.Read();
-            }
         }
 
         private static void ConfigureTraceListener()
@@ -44,21 +46,6 @@ namespace TestConsole
             builder.RegisterAssemblyModules(typeof(DomainModule).Assembly, typeof(ApplicationModule).Assembly);
             var container = builder.Build();
             return container;
-        }                    
-
-        private static void LogError(Exception e, string message = null)
-        {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            if (!string.IsNullOrEmpty(message))
-            {
-                Console.WriteLine(message);
-            }
-            Console.WriteLine(e.Message);
-            if (e.InnerException == null)
-            {
-                return;
-            }
-            LogError(e.InnerException);
         }
     }
 }

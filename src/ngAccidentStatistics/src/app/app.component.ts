@@ -19,12 +19,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({ pageSize: 100, from: new Date(2017, 1, 1) });
+    this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({ pageSize: 100, from: new Date(2005, 1, 1) });
 
     this.accidentStatics$ = this.accidentStatisticsFirstPage$
       .pipe(
         expand(({ nextPage }) => {
-          return nextPage ? this.accidentStatisticService.get({ pageSize: 100, from: new Date(2005, 1, 1), page: nextPage }) : empty();
+          return nextPage ? this.accidentStatisticService.get({ pageSize: 2000, from: new Date(2005, 1, 1), page: nextPage }) : empty();
         }),
         map(({ data }) => data),
         reduce((acc, data) => acc.concat(data), [])

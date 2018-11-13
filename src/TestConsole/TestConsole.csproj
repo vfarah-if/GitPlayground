@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="ApplicationCommand.cs" />
     <Compile Include="ApplicationModule.cs" />
+    <Compile Include="ConsoleLogger.cs" />
     <Compile Include="IApplicationCommand.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

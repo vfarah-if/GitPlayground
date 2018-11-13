@@ -9,10 +9,12 @@ namespace TestConsole
     {
         private const int PageSize = 20;
         private readonly ITransportForLondonClient transportForLondonClient;
+        private readonly ILogger logger;
 
-        public ApplicationCommand(ITransportForLondonClient transportForLondonClient)
+        public ApplicationCommand(ITransportForLondonClient transportForLondonClient, ILogger logger)
         {
             this.transportForLondonClient = transportForLondonClient;
+            this.logger = logger;
         }
 
         public void Execute()
@@ -23,13 +25,13 @@ namespace TestConsole
             do
             {
                 pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2014To2017(currentPage, ByDateDescending);
-                LogInfo($"{pagedAccidentStatistics.Total} fatal accidents occured");
-                LogInfo($"Page '{pagedAccidentStatistics.Page}' of '{pagedAccidentStatistics.LastPage}' pages with {CurrentAmountOfRecordsRetrieved} records");
+                logger.AsInformation($"{pagedAccidentStatistics.Total} fatal accidents occured");
+                logger.AsInformation($"Page '{pagedAccidentStatistics.Page}' of '{pagedAccidentStatistics.LastPage}' pages with {CurrentAmountOfRecordsRetrieved} records");
                 foreach (var accidentStatistic in pagedAccidentStatistics.Data)
                 {
-                    LogData($"{Enum.GetName(typeof(Severity), accidentStatistic.Severity)} Accident occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
+                    logger.AsData($"{Enum.GetName(typeof(Severity), accidentStatistic.Severity)} Accident occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
                 }
-                LogInfo($"Next '{PageSize}' records ...");
+                logger.AsInformation($"Next '{PageSize}' records ...");
                 currentPage += 1;
                 CurrentAmountOfRecordsRetrieved += pagedAccidentStatistics.PageSize;
                 Console.Read();
@@ -42,7 +44,7 @@ namespace TestConsole
             SortOptions<AccidentStatistic> sortOptions)
         {
             return transportForLondonClient.GetAccidentStatistics(
-                    from: DateTime.Parse("01 January 2017 00:00:00"),
+                    from: DateTime.Parse("01 January 2014 00:00:00"),
                     to: DateTime.Parse("31 December 2017 00:00:00"),
                     severity: Severity.Fatal,
                     sortOptions: sortOptions,
@@ -50,20 +52,6 @@ namespace TestConsole
                     pageSize: PageSize)
                 .GetAwaiter()
                 .GetResult();
-        }
-
-        private static void LogData(string message)
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(message);
-            Console.ResetColor();
-        }
-
-        private static void LogInfo(string message)
-        {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(message);
-            Console.ResetColor();
         }
     }
 }

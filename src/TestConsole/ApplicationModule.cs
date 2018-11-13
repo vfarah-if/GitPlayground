@@ -7,6 +7,7 @@ namespace TestConsole
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ApplicationCommand>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ConsoleLogger>().AsImplementedInterfaces().SingleInstance();            
         }
     }
 }
