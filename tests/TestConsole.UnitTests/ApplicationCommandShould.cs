@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoFixture;
 using Git.Domain;
 using Git.Domain.Models.TFL;
@@ -27,8 +25,10 @@ namespace TestConsole.UnitTests
             autoMocker = new AutoMocker();
             autoFixture = new Fixture();
             subject = autoMocker.CreateInstance<ApplicationCommand>();
-            var data = autoFixture.CreateMany<AccidentStatistic>();
-            pagedAccidentResponse = CreatePagedAccidentStatistic(data, 1, 20);
+            var data = new[] { autoFixture.Build<AccidentStatistic>()
+                        .With(x => x.DateAsString, new DateTime(2017,03,03).ToString("yyyy-MM-ddTHH:mm:ssZ"))
+                        .Create()};
+            pagedAccidentResponse = CreatePagedAccidentStatistic(data, 1, 1);
             transportForLondonClientMock = autoMocker.GetMock<ITransportForLondonClient>();
             transportForLondonClientMock.Setup(x => x.GetAccidentStatistics(
                 It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<Severity>(),
@@ -37,14 +37,14 @@ namespace TestConsole.UnitTests
             loggerMock = autoMocker.GetMock<ILogger>();
             loggerMock.Setup(x => x.AsInformation(It.IsAny<string>()));
         }
-        
+
         [Fact]
         public void CallTransportForLondonClientToGetFatalAccidentStatisticsForJan2014()
         {
             subject.Execute();
 
             transportForLondonClientMock.Verify(x => x.GetAccidentStatistics(
-                DateTime.Parse("01 January 2014 00:00:00"), 
+                DateTime.Parse("01 January 2014 00:00:00"),
                 DateTime.Parse("31 December 2017 00:00:00"),
                 Severity.Fatal,
                 ByDateDescending,
@@ -65,7 +65,7 @@ namespace TestConsole.UnitTests
         {
             subject.Execute();
 
-            loggerMock.Verify(x => x.AsInformation($"Page '{pagedAccidentResponse.Page}' of '{pagedAccidentResponse.LastPage}' pages with {pagedAccidentResponse.PageSize} records"));
+            loggerMock.Verify(x => x.AsInformation($"Page '{pagedAccidentResponse.Page}' of '{pagedAccidentResponse.LastPage}' pages with 20 records"));
         }
 
         private static Paged<AccidentStatistic> CreatePagedAccidentStatistic(IEnumerable<AccidentStatistic> data, int page = 1, int lastPage = 1)

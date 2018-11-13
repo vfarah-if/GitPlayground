@@ -53,15 +53,7 @@ namespace Git.Domain.Models.TFL
         {
             get
             {
-                try
-                {
-                    return DateTime.ParseExact(DateAsString, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
-                }
-                catch (Exception e)
-                {
-                    Trace.TraceError($"Unable to convert {this.DateAsString} because of '{e.Message}'");
-                }               
-                return DateTime.MinValue;
+                return DateTime.ParseExact(DateAsString, "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
             }
         }
 
