@@ -17,11 +17,11 @@ namespace Git.Domain
 
         private readonly string baseUrl;
         private readonly TimeSpan CacheExpirationTimeInMinutes;
-        private readonly Cache<int, IReadOnlyList<AccidentStatistic>> accidentStatisticsCache;
+        private readonly Cache<int, IEnumerable<AccidentStatistic>> accidentStatisticsCache;
 
         public TransportForLondonClient(IConfiguration configuration)
         {
-            accidentStatisticsCache = new Cache<int, IReadOnlyList<AccidentStatistic>>();
+            accidentStatisticsCache = new Cache<int, IEnumerable<AccidentStatistic>>();
             baseUrl = configuration.TransportForLondonBaseUrl;
             CacheExpirationTimeInMinutes = configuration.CacheExpirationTimeInMinutes;
             Trace.TraceInformation($"Base Url is {baseUrl}");
@@ -42,21 +42,14 @@ namespace Git.Domain
             Func<AccidentStatistic, bool> filter = null,
             SortOptions<AccidentStatistic> sortOptions = null)
         {
-            var result = await baseUrl
-                .AppendPathSegment(AccidentStatsPathSegment)
-                .AppendPathSegment(year.ToString())
-                .GetJsonAsync<IEnumerable<AccidentStatistic>>()
-                .ConfigureAwait(false);
+            var result = await GetAccidentStatisticsByYear(year);
 
             //#if DEBUG
             //            var resultFor2017 = result.ToJson();
             //            System.IO.File.WriteAllText("c:\\temp\\test2017.json", resultFor2017);
             //#endif
 
-            var output = filter != null ? result.Where(filter).ToList() : result.ToList();
-            if (sortOptions == null) return output.AsReadOnly();
-            Sort(sortOptions, output);
-            return output.AsReadOnly();
+            return SortAndFilterAccidentStatistics(filter, sortOptions, result);
         }
 
         public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(
@@ -103,13 +96,41 @@ namespace Git.Domain
                 var result = await GetOrStoreAccidentStatisticsFromCache(
                     year: year,
                     filter: FilterSeverityAndDateRange,
-                    sortOptions: sortOptions);
+                    sortOptions: sortOptions,
+                    ignoreSorting:true);
                 results.AddRange(result);
             }
 
             Sort(sortOptions, results);
 
             return Paged<AccidentStatistic>.Generate(results, pageSize, page);
+        }
+
+        private async Task<IEnumerable<AccidentStatistic>> GetAccidentStatisticsByYear(int year)
+        {
+            var result = await baseUrl
+                .AppendPathSegment(AccidentStatsPathSegment)
+                .AppendPathSegment(year.ToString())
+                .GetJsonAsync<IEnumerable<AccidentStatistic>>()
+                .ConfigureAwait(false);
+            return result;
+        }
+
+        private static IReadOnlyList<AccidentStatistic> SortAndFilterAccidentStatistics(
+            Func<AccidentStatistic, bool> filter, 
+            SortOptions<AccidentStatistic> sortOptions, 
+            IEnumerable<AccidentStatistic> data,
+            bool ignoreSorting = false)
+        {
+            Trace.TraceInformation(ignoreSorting ? "Filtering data only ..." : "Filtering and sorting data ...");
+
+            var output = filter != null ? data.Where(filter).ToList() : data.ToList();
+            if (sortOptions == null) return output.AsReadOnly();
+            if (!ignoreSorting)
+            {
+                Sort(sortOptions, output);
+            }            
+            return output.AsReadOnly();
         }
 
         private static void Sort(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> results)
@@ -149,47 +170,38 @@ namespace Git.Domain
         private async Task<IReadOnlyList<AccidentStatistic>> GetOrStoreAccidentStatisticsFromCache(
             int year,
             Func<AccidentStatistic, bool> filter,
-            SortOptions<AccidentStatistic> sortOptions)
+            SortOptions<AccidentStatistic> sortOptions,
+            bool ignoreSorting = false)
         {
             int cacheKey = year;
-
-            if (filter != null)
-            {
-                cacheKey += filter.GetHashCode();
-            }
-
-            if (sortOptions != null)
-            {
-                cacheKey += sortOptions.GetHashCode();
-            }
 
             var result = accidentStatisticsCache.Get(cacheKey);
             if (result != null)
             {
                 Trace.TraceInformation($"Retrieved accident data from cache by key '{cacheKey}'...");
-                return result;
+                return SortAndFilterAccidentStatistics(filter, sortOptions, result, ignoreSorting);
             }
 
-            Trace.TraceWarning("Retrieving accident data from the server ...");
-            result = await GetAllAccidentStatistics(year, filter, sortOptions);
-
-            Trace.TraceInformation($"Storing cache with key '{cacheKey}' ...");
-            accidentStatisticsCache.Store(cacheKey, result, CacheExpirationTimeInMinutes);
-            return result;
+            Trace.TraceWarning($"Retrieving accident data from the server for year {year}...");
+            var dataByYear = await GetAccidentStatisticsByYear(year);
+            Trace.TraceInformation($"Storing cache with key '{cacheKey}'...");
+            accidentStatisticsCache.Store(cacheKey, dataByYear, CacheExpirationTimeInMinutes);
+            result = SortAndFilterAccidentStatistics(filter, sortOptions, dataByYear, ignoreSorting);
+            return result.ToList().AsReadOnly();
         }
 
         private static void SortData(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
         {
             Guard(sortOptions);
             output.Sort(sortOptions.Comparer);
-            Trace.TraceInformation($"Sorting data '{sortOptions.Comparer.ToString()}'");
+            Trace.TraceInformation("Sorting data");
         }
 
         private static void SortDataInReverse(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
         {
             Guard(sortOptions);
             output.Sort((x, y) => sortOptions.Comparer.Compare(y, x));
-            Trace.TraceInformation($"Sorting data '{sortOptions.Comparer.ToString()}' in reverse");
+            Trace.TraceInformation("Sorting data in reverse");
         }
 
         private static void Guard(SortOptions<AccidentStatistic> sortOptions)

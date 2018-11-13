@@ -197,23 +197,5 @@ namespace Git.Domain.UnitTests
 
             action.Should().Throw<NotSupportedException>().WithMessage(ErrorMessages.DatesFromCurrentYearNotSupported);
         }
-
-        [Fact]
-        public void ThrowArgumentNullExceptionWhenSortComparerNotAssigned()
-        {
-            var accidentStatistics = Get2007AccidentData();
-            this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
-
-            Func<Task<Paged<AccidentStatistic>>> action = async () => 
-                await this.TransportForLondonClient.GetAccidentStatistics(
-                      from: DateTime.Parse("01 January 2016 09:11:00"),
-                      to: DateTime.Parse("01 December 2017 16:13:00"),
-                      severity: Severity.Fatal,
-                      sortOptions: new SortOptions<AccidentStatistic>(comparer: null));
-
-            action.Should()
-                .Throw<ArgumentNullException>()
-                .WithMessage("Value cannot be null." + NewLine + "Parameter name: Comparer");
-        }
     }
 }
