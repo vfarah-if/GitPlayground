@@ -136,7 +136,7 @@ namespace Git.Domain.UnitTests
         [Fact]
         public async void FilterWithFatalSeverityOverSeveralYearsAscending()
         {
-            var accidentStatistics = Get2007AccidentData();
+            var accidentStatistics = Get2017AccidentData();
             this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
             this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
 
@@ -154,7 +154,7 @@ namespace Git.Domain.UnitTests
         [Fact]
         public async void SwapValuesIfFromDateGreaterThanToDate()
         {
-            var accidentStatistics = Get2007AccidentData();
+            var accidentStatistics = Get2017AccidentData();
             this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
             this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
 

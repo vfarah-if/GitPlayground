@@ -30,13 +30,13 @@ namespace Git.Domain.UnitTests
 
         protected static object LoadAll2017AccidentTestData()
         {
-            var json = Get2007AccidentData();
+            var json = Get2017AccidentData();
             return JsonConvert.DeserializeObject(json);
         }
 
-        protected static string Get2007AccidentData()
+        protected static string Get2017AccidentData()
         {
-            return File.ReadAllText("TestData\\2017AccidentData.json");
+            return File.ReadAllText("TestData\\test2017.json");
         }
 
         public void Dispose()

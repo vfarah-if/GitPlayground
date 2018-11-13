@@ -43,12 +43,6 @@ namespace Git.Domain
             SortOptions<AccidentStatistic> sortOptions = null)
         {
             var result = await GetAccidentStatisticsByYear(year);
-
-            //#if DEBUG
-            //            var resultFor2017 = result.ToJson();
-            //            System.IO.File.WriteAllText("c:\\temp\\test2017.json", resultFor2017);
-            //#endif
-
             return SortAndFilterAccidentStatistics(filter, sortOptions, result);
         }
 
@@ -61,7 +55,7 @@ namespace Git.Domain
         {
             var result = await GetOrStoreAccidentStatisticsFromCache(year, filter, sortOptions);
 
-            return Paged<AccidentStatistic>.Generate(result, pageSize, page); 
+            return Paged<AccidentStatistic>.Generate(result, pageSize, page);
         }
 
         public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(
@@ -97,7 +91,7 @@ namespace Git.Domain
                     year: year,
                     filter: FilterSeverityAndDateRange,
                     sortOptions: sortOptions,
-                    ignoreSorting:true);
+                    ignoreSorting: true);
                 results.AddRange(result);
             }
 
@@ -117,8 +111,8 @@ namespace Git.Domain
         }
 
         private static IReadOnlyList<AccidentStatistic> SortAndFilterAccidentStatistics(
-            Func<AccidentStatistic, bool> filter, 
-            SortOptions<AccidentStatistic> sortOptions, 
+            Func<AccidentStatistic, bool> filter,
+            SortOptions<AccidentStatistic> sortOptions,
             IEnumerable<AccidentStatistic> data,
             bool ignoreSorting = false)
         {
@@ -129,7 +123,7 @@ namespace Git.Domain
             if (!ignoreSorting)
             {
                 Sort(sortOptions, output);
-            }            
+            }
             return output.AsReadOnly();
         }
 
@@ -137,7 +131,7 @@ namespace Git.Domain
         {
             if (sortOptions == null || results == null)
             {
-                return;                
+                return;
             }
 
             if (sortOptions.InReverse)
@@ -186,6 +180,11 @@ namespace Git.Domain
             var dataByYear = await GetAccidentStatisticsByYear(year);
             Trace.TraceInformation($"Storing cache with key '{cacheKey}'...");
             accidentStatisticsCache.Store(cacheKey, dataByYear, CacheExpirationTimeInMinutes);
+            //#if DEBUG
+            //            var resultForCurrentYear = dataByYear.ToJson();
+            //            System.IO.File.WriteAllText($"c:\\temp\\test{year}.json", resultForCurrentYear);
+            //#endif
+
             result = SortAndFilterAccidentStatistics(filter, sortOptions, dataByYear, ignoreSorting);
             return result.ToList().AsReadOnly();
         }
