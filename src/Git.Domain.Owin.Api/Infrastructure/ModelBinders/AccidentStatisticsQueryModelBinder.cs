@@ -46,7 +46,7 @@ namespace Git.Domain.Owin.Api.Infrastructure.ModelBinders
             var page = queryDictionary["page"] != null ? int.Parse(queryDictionary["page"]) : 1;
             var pageSize = queryDictionary["pageSize"] != null ? int.Parse(queryDictionary["pageSize"]) : 100;
             var severity = queryDictionary["severity"] ?? "Fatal";
-            var sortBy = queryDictionary["sortBy"] ?? "ByDateDescending";
+            var sortBy = queryDictionary["sortBy"] ?? "DateDescending";
             sortBy = queryDictionary["orderBy"] ?? sortBy;
 
             var result = new AccidentStatisticsQuery

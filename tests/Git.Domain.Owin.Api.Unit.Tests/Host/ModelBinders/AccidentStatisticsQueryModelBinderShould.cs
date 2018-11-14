@@ -59,7 +59,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.Host.ModelBinders
             var expectedFromDate = new DateTime(2017, 01, 01);
             var expectedToDate = new DateTime(2017, 12, 31);
             var expectedSeverity = "Fatal";
-            var expectedSortBy = "ByDateDescending";
+            var expectedSortBy = "DateDescending";
             int expectedPage = 1;
             int expectedPageSize = 100;
             var url = $"http://localhost:9000/v1/accidentstatistics";

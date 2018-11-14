@@ -49,7 +49,7 @@ namespace Git.Domain.Owin.Api.v1.Models
                 From = new DateTime(DateTime.Now.Year - 1, 01, 01),
                 To = new DateTime(DateTime.Now.Year - 1, 12, 31),
                 Severity = "Fatal",
-                SortBy = "ByDateDescending"
+                SortBy = "DateDescending"
             };
         }
     }
