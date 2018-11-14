@@ -30,7 +30,7 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v1.ApiControllers
             responsePaged.Data.Count().Should().Be(10);
             responsePaged.PageSize.Should().Be(10);
             responsePaged.Page.Should().Be(1);
-            responsePaged.Total.Should().Be(1008);
+            responsePaged.Total.Should().Be(504);
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v1.ApiControllers
             responsePaged.Data.Count().Should().Be(100);
             responsePaged.PageSize.Should().Be(100);
             responsePaged.Page.Should().Be(1);
-            responsePaged.Total.Should().Be(262);
+            responsePaged.Total.Should().Be(131);
         }
 
         [Fact]

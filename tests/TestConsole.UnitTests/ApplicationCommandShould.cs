@@ -13,37 +13,37 @@ namespace TestConsole.UnitTests
 {
     public class ApplicationCommandShould
     {
-        private readonly AutoMocker autoMocker;
-        private readonly ApplicationCommand subject;
-        private readonly Paged<AccidentStatistic> pagedAccidentResponse;
-        private readonly Mock<ITransportForLondonClient> transportForLondonClientMock;
-        private readonly Fixture autoFixture;
-        private readonly Mock<ILogger> loggerMock;
+        private readonly AutoMocker _autoMocker;
+        private readonly ApplicationCommand _subject;
+        private readonly Paged<AccidentStatistic> _pagedAccidentResponse;
+        private readonly Mock<ITransportForLondonClient> _transportForLondonClientMock;
+        private readonly Fixture _autoFixture;
+        private readonly Mock<ILogger> _loggerMock;
 
         public ApplicationCommandShould()
         {
-            autoMocker = new AutoMocker();
-            autoFixture = new Fixture();
-            subject = autoMocker.CreateInstance<ApplicationCommand>();
-            var data = new[] { autoFixture.Build<AccidentStatistic>()
+            _autoMocker = new AutoMocker();
+            _autoFixture = new Fixture();
+            _subject = _autoMocker.CreateInstance<ApplicationCommand>();
+            var data = new[] { _autoFixture.Build<AccidentStatistic>()
                         .With(x => x.DateAsString, new DateTime(2017,03,03).ToString("yyyy-MM-ddTHH:mm:ssZ"))
                         .Create()};
-            pagedAccidentResponse = CreatePagedAccidentStatistic(data, 1, 1);
-            transportForLondonClientMock = autoMocker.GetMock<ITransportForLondonClient>();
-            transportForLondonClientMock.Setup(x => x.GetAccidentStatistics(
+            _pagedAccidentResponse = CreatePagedAccidentStatistic(data, 1, 1);
+            _transportForLondonClientMock = _autoMocker.GetMock<ITransportForLondonClient>();
+            _transportForLondonClientMock.Setup(x => x.GetAccidentStatistics(
                 It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<Severity>(),
                 It.IsAny<SortOptions<AccidentStatistic>>(), It.IsAny<int>(), It.IsAny<int>()))
-            .ReturnsAsync(() => pagedAccidentResponse);
-            loggerMock = autoMocker.GetMock<ILogger>();
-            loggerMock.Setup(x => x.AsInformation(It.IsAny<string>()));
+            .ReturnsAsync(() => _pagedAccidentResponse);
+            _loggerMock = _autoMocker.GetMock<ILogger>();
+            _loggerMock.Setup(x => x.AsInformation(It.IsAny<string>()));
         }
 
         [Fact]
         public void CallTransportForLondonClientToGetFatalAccidentStatisticsForJan2014()
         {
-            subject.Execute();
+            _subject.Execute();
 
-            transportForLondonClientMock.Verify(x => x.GetAccidentStatistics(
+            _transportForLondonClientMock.Verify(x => x.GetAccidentStatistics(
                 DateTime.Parse("01 January 2014 00:00:00"),
                 DateTime.Parse("31 December 2017 00:00:00"),
                 Severity.Fatal,
@@ -55,17 +55,17 @@ namespace TestConsole.UnitTests
         [Fact]
         public void LogInformationAboutHowManyFatalAccidentsOccured()
         {
-            subject.Execute();
+            _subject.Execute();
 
-            loggerMock.Verify(x => x.AsInformation($"{pagedAccidentResponse.Total} fatal accidents occured"));
+            _loggerMock.Verify(x => x.AsInformation($"{_pagedAccidentResponse.Total} fatal accidents occured"));
         }
 
         [Fact]
         public void LogInformationPageInformation()
         {
-            subject.Execute();
+            _subject.Execute();
 
-            loggerMock.Verify(x => x.AsInformation($"Page '{pagedAccidentResponse.Page}' of '{pagedAccidentResponse.LastPage}' pages with 20 records"));
+            _loggerMock.Verify(x => x.AsInformation($"Page '{_pagedAccidentResponse.Page}' of '{_pagedAccidentResponse.LastPage}' pages with 20 records"));
         }
 
         private static Paged<AccidentStatistic> CreatePagedAccidentStatistic(IEnumerable<AccidentStatistic> data, int page = 1, int lastPage = 1)
