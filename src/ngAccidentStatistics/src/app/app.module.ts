@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiModule } from './api';
+import { AccidentStatisticModule } from './accident-statistic';
+import { AccidentStatisticSummaryComponent } from './accident-statistic';
+
 
 @NgModule({
   declarations: [
@@ -12,7 +15,8 @@ import { ApiModule } from './api';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ApiModule
+    ApiModule,
+    AccidentStatisticModule
   ],
   providers: [],
   bootstrap: [AppComponent]

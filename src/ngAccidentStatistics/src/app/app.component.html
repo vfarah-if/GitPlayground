@@ -21,6 +21,7 @@
       Loading {{(accidentStatisticsFirstPage$|async)?.total}} fatal Accidents since 2005
     </h2>
     <span>Your next task will be to create a component with this data</span>
+    <app-accident-statistic-summary></app-accident-statistic-summary>
     <ul>
       <li *ngFor="let item of (accidentStatics$|async); let i = index">
         <span>Accident <strong>{{i+1}}</strong><mark> Id: {{item.id}}</mark> on <b><time [attr.datetime]="item.date">{{item.date|date:'medium'}}</time></b> at location
