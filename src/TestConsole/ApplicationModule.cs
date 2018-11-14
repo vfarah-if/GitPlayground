@@ -1,7 +1,9 @@
-﻿using Autofac;
+﻿using System.Diagnostics.CodeAnalysis;
+using Autofac;
 
 namespace TestConsole
 {
+    [ExcludeFromCodeCoverage]
     public class ApplicationModule: Module
     {
         protected override void Load(ContainerBuilder builder)

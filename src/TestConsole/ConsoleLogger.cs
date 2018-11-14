@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TestConsole
 {
+    [ExcludeFromCodeCoverage]
     public class ConsoleLogger : ILogger
     {
         public void AsData(string message)

@@ -7,6 +7,8 @@ namespace Git.Domain
 {
     public class Paged<T>
     {
+        private const int MinimumPageSize = 1;
+
         public Paged(long total, IEnumerable<T> data, int page, int pageSize, int lastPage)
         {
             Total = total;
@@ -62,6 +64,11 @@ namespace Git.Domain
             if (allData == null)
             {
                 throw new ArgumentNullException(nameof(allData));
+            }
+
+            if (pageSize <= 0)
+            {
+                pageSize = MinimumPageSize;
             }
 
             int total = allData.Count();
