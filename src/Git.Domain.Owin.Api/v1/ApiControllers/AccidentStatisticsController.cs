@@ -29,7 +29,7 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
         /// <param name="accidentStatisticsQuery.from">Start Date and if left null will default to the start of last year</param>
         /// <param name="accidentStatisticsQuery.to">End Date and if left null will default to the end of last year</param>
         /// <param name="accidentStatisticsQuery.severity">Serious, Slight or Fatal, and if left null will default to Fatal</param>
-        /// <param name="accidentStatisticsQuery.sortBy">Sort by options are : ByDateAscending, ByLocationAscending, ByDateDescending (default if left null) or ByLocationDescending</param>
+        /// <param name="accidentStatisticsQuery.sortBy">Sort by options are : DateAscending, LocationAscending, DateDescending (default if left null) or LocationDescending</param>
         /// <param name="accidentStatisticsQuery.page">Current page</param>
         /// <param name="accidentStatisticsQuery.pageSize">Current page size</param>
         /// <returns>Paged List of Accident Statistics</returns>

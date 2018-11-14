@@ -17,10 +17,10 @@ namespace Git.Domain.Owin.Api.v1.Services
             this._transportForLondonClient = transportForLondonClient;
             _sortOptions = new Dictionary<string, SortOptions<AccidentStatistic>>(StringComparer.InvariantCultureIgnoreCase)
             {
-                { "ByDateAscending", ByDateAscending },
-                { "ByLocationAscending", ByLocationAscending },
-                { "ByDateDescending", ByDateDescending },
-                { "ByLocationDescending", ByLocationDescending },
+                { "DateAscending", ByDateAscending },
+                { "LocationAscending", ByLocationAscending },
+                { "DateDescending", ByDateDescending },
+                { "LocationDescending", ByLocationDescending },
             };
         }
         public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(AccidentStatisticsQuery accidentStatisticsQuery)

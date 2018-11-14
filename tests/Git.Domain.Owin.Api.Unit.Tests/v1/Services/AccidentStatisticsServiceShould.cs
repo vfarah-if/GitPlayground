@@ -43,7 +43,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v1.Services
                 @from: _autoFixture.Create<DateTime>(), 
                 to: _autoFixture.Create<DateTime>(), 
                 severity: "serious", 
-                sortBy: "byDATEAscending", 
+                sortBy: "DATEAscending", 
                 page: _autoFixture.Create<int>(), 
                 pageSize: _autoFixture.Create<int>());
 
