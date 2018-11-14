@@ -23,7 +23,7 @@
     <span>Your next task will be to create a component with this data</span>
     <ul>
       <li *ngFor="let item of (accidentStatics$|async); let i = index">
-        <span>Accident <strong>{{i+1}}</strong><mark> Id: {{item.id}}</mark> on <b><time>{{item.date|date:'medium'}}</time></b> at location
+        <span>Accident <strong>{{i+1}}</strong><mark> Id: {{item.id}}</mark> on <b><time [attr.datetime]="item.date">{{item.date|date:'medium'}}</time></b> at location
           <em>{{item.location}}</em>
           <pre>{{item|json}}</pre>
         </span>
