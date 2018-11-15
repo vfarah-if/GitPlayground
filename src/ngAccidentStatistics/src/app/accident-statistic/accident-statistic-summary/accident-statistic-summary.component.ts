@@ -21,14 +21,13 @@ export class AccidentStatisticSummaryComponent implements OnInit {
     this.errorMessage = undefined;
 
     if (!this.fromDate) {
-      this.fromDate = new Date(2005, 1, 1);
+      this.fromDate = new Date('2005-1-1');
     }
     if (!this.toDate) {
-      this.toDate = new Date(2016, 12, 31);
+      this.toDate = new Date('2017-12-31');
     }
     if (!this.severity) {
       this.severity = 'Fatal';
     }
   }
-
 }
