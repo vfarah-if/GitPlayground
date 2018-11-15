@@ -31,3 +31,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 This is a fairly complex area, but for more information check out the [Learn RXJS](https://www.learnrxjs.io/)
 [Learn about the new pipe operator](https://github.com/ReactiveX/rxjs/blob/master/doc/pipeable-operators.md)
 [Creating streams in angular](https://blog.angularindepth.com/the-extensive-guide-to-creating-streams-in-rxjs-aaa02baaff9a)
+
+Take a look at utilising this with [openlayers map](https://openlayers.org/en/latest/apidoc/) and code is [here](https://github.com/openlayers/openlayers)

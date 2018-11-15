@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
@@ -12,6 +12,7 @@ import { AccidentStatisticMapComponent } from './accident-statistic-map/accident
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     DateValueAccessorModule
   ],
   exports: [AccidentStatisticSummaryComponent, AccidentStatisticMapComponent]
