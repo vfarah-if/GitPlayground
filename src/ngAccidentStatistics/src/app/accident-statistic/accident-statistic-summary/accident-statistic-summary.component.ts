@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { Observable } from 'rxjs/internal/Observable';
-import { map, expand, switchMap } from 'rxjs/internal/operators';
+import { switchMap, catchError, startWith, mergeMap } from 'rxjs/internal/operators';
 
 import { SeverityOptions, PagedAccidentStatistic } from './../../model';
 import { AccidentStatiticsService } from './../../api';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-accident-statistic-summary',
@@ -18,36 +19,44 @@ export class AccidentStatisticSummaryComponent implements OnInit {
   @Input() toDate: Date;
   @Input() severityOption: SeverityOptions;
 
-  errorMessage: string;
+  error: any;
   accidentStatisticsForm: FormGroup;
   pagedAccidentStatistics$: Observable<PagedAccidentStatistic>;
 
   constructor(
     private formBuilder: FormBuilder,
     private accidentStatisticService: AccidentStatiticsService) {
-    this.fromDate = new Date('2017-1-1');
-    this.toDate = new Date('2017-12-31');
+    this.severityOption = 'Fatal';
   }
 
   ngOnInit() {
-    this.errorMessage = undefined;
-
     this.accidentStatisticsForm = this.formBuilder.group({
       from: [this.fromDate],
       to: [this.toDate],
-      severity: [this.severityOption, Validators.required]
+      severity: [this.severityOption],
+      pageSize: [2],
     });
 
     this.pagedAccidentStatistics$ = this.accidentStatisticsForm.valueChanges.pipe(
-      switchMap(data => {
+      // startWith(this.accidentStatisticsForm.value), // Note errors dont get raised now because of this
+      mergeMap(data => {
         // debugger;
+        this.clearErrors();
         return this.accidentStatisticService.get({
           pageSize: 1,
           from: data.from,
           to: data.to,
           severity: data.severity
         });
+      }),
+      catchError(fail => {
+        this.error = fail;
+        return this.pagedAccidentStatistics$;
       })
     );
+  }
+
+  private clearErrors(): any {
+    this.error = undefined;
   }
 }
