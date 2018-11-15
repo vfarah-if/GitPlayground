@@ -9,8 +9,8 @@ import { SeverityOptions } from './../../model';
 })
 export class AccidentStatisticSummaryComponent implements OnInit {
 
-  @Input() from: Date;
-  @Input() to: Date;
+  @Input() fromDate: Date;
+  @Input() toDate: Date;
   @Input() severity: SeverityOptions;
 
   errorMessage: string;
@@ -20,13 +20,11 @@ export class AccidentStatisticSummaryComponent implements OnInit {
   ngOnInit() {
     this.errorMessage = undefined;
 
-    if (!this.from) {
-      this.from = new Date(2005, 1, 1);
+    if (!this.fromDate) {
+      this.fromDate = new Date(2005, 1, 1);
     }
-    if (!this.to) {
-      const now = new Date();
-      const previousYear = (now.getFullYear() - 1);
-      this.to = new Date(previousYear, 12, 31, 0, 0, 0, 0);
+    if (!this.toDate) {
+      this.toDate = new Date(2016, 12, 31);
     }
     if (!this.severity) {
       this.severity = 'Fatal';

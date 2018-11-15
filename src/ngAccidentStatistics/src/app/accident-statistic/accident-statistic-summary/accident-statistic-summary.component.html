@@ -1,16 +1,16 @@
 <section>
   <fieldset>
     <label for="from">From:
-      <input type="datetime" name="from" formControlName="from" placeholder="From date" [value]="this.to"/>
+      <input type="date" name="from" placeholder="From date" [(ngModel)]="fromDate" required useValueAsDate/>
     </label>
     <label for="to">To:
-      <input type="datetime" name="to" formControlName="to" placeholder="To date" [value]="this.to"/>
+      <input type="date" name="to" placeholder="To date" [(ngModel)]="toDate" required useValueAsDate/>
     </label>
     <label for="severity">Severity:
-      <select name="severity">
+      <select name="severity" [(ngModel)]="this.severity">
         <option value="Serious">Serious</option>
         <option value="Slight">Slight</option>
-        <option selected value="Fatal">Fatal</option>
+        <option value="Fatal">Fatal</option>
       </select>
     </label>
   </fieldset>
