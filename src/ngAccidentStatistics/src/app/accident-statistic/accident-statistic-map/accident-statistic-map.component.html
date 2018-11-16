@@ -1,6 +1,6 @@
 <section>
   <header>
-    <h1>Map of fatalities since {{this.fromDate|date:'medium'}}</h1>
+    <h1>Map of fatalities since {{from|date:'medium'}} ({{(accidentStatisticsFirstPage$|async)?.total}} Total)</h1>
   </header>
   <div class="map"
     leaflet
