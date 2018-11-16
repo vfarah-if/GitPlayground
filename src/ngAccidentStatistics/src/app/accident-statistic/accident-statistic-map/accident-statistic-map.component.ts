@@ -6,7 +6,7 @@ import { expand, map, reduce } from 'rxjs/internal/operators';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { EMPTY } from 'rxjs/internal/observable/EMPTY';
 
-import { tileLayer, latLng, circle, polygon, marker, Map, MapOptions, Control, icon } from 'leaflet';
+import { Map, MapOptions, Control, tileLayer, latLng, marker, icon } from 'leaflet';
 
 import { AccidentStatiticsService } from './../../api';
 import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './../../model';
@@ -48,7 +48,9 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   public accidentStatisticsFirstPage$: Observable<PagedAccidentStatistic>;
   private accidentStatics$: Observable<Array<AccidentStatistic>>;
   private subscription: Subscription;
-  private mapIcon: icon;
+  // TODO: Figure out why typescript can not understand this function
+  // private mapIcon: icon;
+  private mapIcon: any;
 
   constructor(private accidentStatisticService: AccidentStatiticsService) { }
 
@@ -69,7 +71,11 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
 
     this.setMapIcon();
 
-    this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({ pageSize: 500, from: this.from, severity: this.severityOption });
+    this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({
+      pageSize: 500,
+      from: this.from,
+      severity: this.severityOption
+    });
 
     this.accidentStatics$ = this.accidentStatisticsFirstPage$.pipe(
         expand(({ nextPage }) => {
@@ -113,11 +119,10 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   onMapReady(leafMap: Map) {
     this.subscription = this.accidentStatics$.subscribe(data => {
       data.forEach(item => {
-          if (this.mapIcon) {
-            marker([Number(item.lat), Number(item.lon)], { icon: this.mapIcon }).addTo(leafMap);
-          } else {
-            marker([Number(item.lat), Number(item.lon)]).addTo(leafMap);
-          }
+        if (this.mapIcon) {
+          marker([Number(item.lat), Number(item.lon)], { icon: this.mapIcon }).addTo(leafMap);
+        } else {
+          marker([Number(item.lat), Number(item.lon)]).addTo(leafMap);
         }
       });
     });

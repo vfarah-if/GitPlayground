@@ -73,7 +73,6 @@ describe('AppComponent', () => {
       pageSize: 2
     };
 
-
     apiService.spy_get.and.returnValue(new BehaviorSubject<PagedAccidentStatistic>(response));
   }));
 

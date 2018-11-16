@@ -1,0 +1,12 @@
+<section>
+  <header>
+    <h1>
+      Loading {{(accidentStatisticsFirstPage$|async)?.total}} {{severityOption|lowercase}} accidents list from {{from|date:'medium'}} until the end of last year
+    </h1>
+  </header>
+    <li *ngFor="let item of (accidentStatics$|async); let i = index">
+        <span>Accident <strong>{{i+1}}</strong><mark> Id: {{item.id}}</mark> on <b><time [attr.datetime]="item.date">{{item.date|date:'medium'}}</time></b> at location <em>{{item.location}}</em>
+          <pre>{{item|json}}</pre>
+        </span>
+      </li>
+</section>
