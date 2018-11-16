@@ -1,7 +1,11 @@
-<div class="map"
-     leaflet
-     [leafletLayersControl]="layersControl"
-     [leafletOptions]="leafletOptions"
-     (leafletMapReady)="onMapReady($event)"
-     >
-</div>
+<section>
+  <header>
+    <h1>Map of fatalities since {{this.fromDate|date:'medium'}}</h1>
+  </header>
+  <div class="map"
+    leaflet
+    [leafletLayersControl]="layersControl"
+    [leafletOptions]="leafletOptions"
+    (leafletMapReady)="onMapReady($event)">
+  </div>
+</section>
