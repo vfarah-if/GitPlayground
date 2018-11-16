@@ -37,7 +37,9 @@ This is a fairly complex area, but for more information check out the
 
 [Creating streams in angular](https://blog.angularindepth.com/the-extensive-guide-to-creating-streams-in-rxjs-aaa02baaff9a)
 
-Map stuff
+## Map libraries and better understa
 
-Take a look at utilising this with [openlayers map](https://openlayers.org/en/latest/apidoc/) and code is [here](https://github.com/openlayers/openlayers)
+Take a look at utilising this with [openlayers map documentation](https://openlayers.org/en/latest/apidoc/) and code is [here](https://github.com/openlayers/openlayers)
 
+Take a look at [https://leafletjs.com/](https://leafletjs.com/) for information about the map utility
+Angular version and typings, look at [https://openlayers.org/en/latest/apidoc/](https://openlayers.org/en/latest/apidoc/) for extending what is here
