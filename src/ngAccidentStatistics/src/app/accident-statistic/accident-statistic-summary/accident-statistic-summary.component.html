@@ -1,8 +1,8 @@
-<section>
+<section class="accident-summary">
   <form [formGroup]="accidentStatisticsForm">
-      <header>
-          <h1>Accident Statistics Count Compontent</h1>
-      </header>
+    <header>
+      <h1>Accident Statistics Count Component</h1>
+    </header>
     <fieldset>
       <label for="from">From:
         <input name="from" type="date" formControlName="from" useValueAsDate />
@@ -17,8 +17,12 @@
           <option value="Fatal">Fatal</option>
         </select>
       </label>
-      <pre *ngIf="error" style="background-color: orange; font-style: italic;">{{error|json}}</pre>
-      <pre>{{(pagedAccidentStatistics$|async)|json}}</pre>
+    </fieldset>
+    <fieldset *ngIf="((pagedAccidentStatistics$|async))">
+      <label for="out-json">Summary JSON ({{pagedAccidentStatistics?.total}}) :
+        <pre *ngIf="error" class="error">{{error|json}}</pre>
+        <pre name="out-json" class="result">{{pagedAccidentStatistics|json}}</pre>
+      </label>
     </fieldset>
   </form>
 </section>
