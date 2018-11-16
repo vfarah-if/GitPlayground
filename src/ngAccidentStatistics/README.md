@@ -43,3 +43,5 @@ Take a look at utilising this with [openlayers map documentation](https://openla
 
 Take a look at [https://leafletjs.com/](https://leafletjs.com/) for information about the map utility
 Angular version and typings, look at [https://openlayers.org/en/latest/apidoc/](https://openlayers.org/en/latest/apidoc/) for extending what is here
+
+[Setting markers](https://journocode.com/2016/07/07/set-marker-map-leaflet-js/)

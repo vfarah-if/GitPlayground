@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs/internal/Observable'
+import { Observable } from 'rxjs/internal/observable';
+import { EMPTY } from 'rxjs/internal/observable/EMPTY';
 import { map, expand, reduce } from 'rxjs/internal/operators';
 import { AccidentStatistic, PagedAccidentStatistic } from './model';
 import { AccidentStatiticsService } from './api/accident-statistics.service';
-import { empty } from 'rxjs/internal/observable/empty';
+
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
       .pipe(
         expand(({ nextPage }) => {
           // debugger;
-          return nextPage ? this.accidentStatisticService.get({ pageSize: 500, from: new Date(2014, 1, 1), page: nextPage }) : empty();
+          return nextPage ? this.accidentStatisticService.get({ pageSize: 500, from: new Date(2014, 1, 1), page: nextPage }) : EMPTY;
         }),
         map(({ data }) => data),
         reduce((acc, data) => acc.concat(data), [])
