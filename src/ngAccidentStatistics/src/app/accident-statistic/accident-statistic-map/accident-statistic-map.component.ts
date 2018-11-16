@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs/internal/Observable';
@@ -8,7 +9,7 @@ import { EMPTY } from 'rxjs/internal/observable/EMPTY';
 import { tileLayer, latLng, circle, polygon, marker, Map, MapOptions, Control, icon } from 'leaflet';
 
 import { AccidentStatiticsService } from './../../api';
-import { AccidentStatistic, PagedAccidentStatistic } from './../../model';
+import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './../../model';
 
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
@@ -20,7 +21,9 @@ import 'leaflet/dist/images/marker-icon.png';
 })
 export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   @Input() fromDate: string;
+  @Input() severityOption: SeverityOptions;
   @Input() imageType: 'heatmap' | 'macarbe' | 'friendly';
+
   from: Date;
   leafletOptions: MapOptions = {
     layers: [
@@ -60,14 +63,18 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
       this.imageType = 'macarbe';
     }
 
+    if (!this.severityOption) {
+      this.severityOption = 'Fatal';
+    }
+
     this.setMapIcon();
 
-    this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({ pageSize: 500, from: this.from });
+    this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({ pageSize: 500, from: this.from, severity: this.severityOption });
 
     this.accidentStatics$ = this.accidentStatisticsFirstPage$.pipe(
         expand(({ nextPage }) => {
           return nextPage
-            ? this.accidentStatisticService.get({ pageSize: 500, from: this.from, page: nextPage })
+            ? this.accidentStatisticService.get({ pageSize: 500, from: this.from, severity: this.severityOption, page: nextPage })
             : EMPTY;
         }),
         map(({ data }) => data),
