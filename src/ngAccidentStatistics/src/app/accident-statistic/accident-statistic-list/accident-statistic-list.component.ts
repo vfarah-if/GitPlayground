@@ -5,7 +5,7 @@ import { EMPTY } from 'rxjs/internal/observable/EMPTY';
 import { map, expand, reduce } from 'rxjs/internal/operators';
 
 import { AccidentStatiticsService } from './../../api';
-import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './../../model';
+import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions, SortByOptions } from './../../model';
 
 @Component({
   selector: 'app-accident-statistic-list',
@@ -15,7 +15,9 @@ import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './..
 export class AccidentStatisticListComponent implements OnInit {
   @Input() fromDate: string;
   @Input() severityOption: SeverityOptions = 'Fatal';
+  @Input() orderByOption: SortByOptions = 'DateDescending';
   @Input() pageSize = 500;
+  @Input() showJson = false;
 
   public accidentStatics$: Observable<Array<AccidentStatistic>>;
   public accidentStatisticsFirstPage$: Observable<PagedAccidentStatistic>;
@@ -30,14 +32,12 @@ export class AccidentStatisticListComponent implements OnInit {
       this.from = new Date(2010, 1, 1);
     }
 
-    if (!this.severityOption) {
-      this.severityOption = 'Fatal';
-    }
-
     this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({
       pageSize: this.pageSize,
       from: this.from,
-      severity: this.severityOption });
+      severity: this.severityOption,
+      sortBy: this.orderByOption,
+    });
 
     this.accidentStatics$ = this.accidentStatisticsFirstPage$
       .pipe(
@@ -46,10 +46,22 @@ export class AccidentStatisticListComponent implements OnInit {
               pageSize: this.pageSize,
               from: this.from,
               page: nextPage,
-              severity: this.severityOption })
+              severity: this.severityOption,
+              sortBy: this.orderByOption,
+            })
           : EMPTY),
         map(({ data }) => data),
         reduce((acc, data) => acc.concat(data), [])
       );
+  }
+
+  severityDescription(severity: number): string {
+    if (severity === 0) {
+      return 'serious';
+    } else if (severity === 1) {
+      return 'slight';
+    } else {
+      return 'fatal';
+    }
   }
 }

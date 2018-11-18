@@ -1,12 +1,29 @@
 <section>
   <header>
     <h1>
-      Loading {{(accidentStatisticsFirstPage$|async)?.total}} {{severityOption|lowercase}} accidents list from {{from|date:'medium'}} until the end of last year
+      Loading <em>{{(accidentStatisticsFirstPage$|async)?.total}}</em><em> {{severityOption|lowercase}}</em> accidents list from <em>{{from|date:'medium'}}</em> until the end of last year ordered by
+      <em>{{orderByOption|lowercase}}</em>
     </h1>
   </header>
-    <li *ngFor="let item of (accidentStatics$|async); let i = index">
-        <span>Accident <strong>{{i+1}}</strong><mark> Id: {{item.id}}</mark> on <b><time [attr.datetime]="item.date">{{item.date|date:'medium'}}</time></b> at location <em>{{item.location}}</em>
-          <pre>{{item|json}}</pre>
+    <ol>
+      <li *ngFor="let item of (accidentStatics$|async)">
+        <span>Accident <mark> Id: {{item.id}}</mark> on <b><time [attr.datetime]="item.date">{{item.date|date:'medium'}} </time></b>
+          at location <em>{{item.location}}</em> in the borough of <em>{{item.borough}}</em>
+          with <em>{{item.casualties?.length}}</em><em *ngIf="item.casualties?.length>1"> casualties:</em><em *ngIf="item.casualties?.length<=1"> casualty</em>
+          involving {{item.vehicles?.length}} <em *ngIf="item.vehicles?.length>1"> vehicles</em><em *ngIf="item.vehicles?.length<=1"> vehicle</em> of vehicle type
+          <span *ngFor="let vehicle of item.vehicles; let isLast=last">
+              {{vehicle.type}}{{isLast ? '.' : ' on '}}
+           </span>
+          <ul *ngFor="let casualty of item.casualties;let i = index">
+            <li>
+              <!-- TODO: humanise variables -->
+              <span>
+                Casualty {{i+1}} with {{severityDescription(casualty.severity)}} severity, is a {{casualty.age}} year old {{casualty.ageBand|lowercase}} {{casualty.class|lowercase}} ({{casualty.mode}})
+              </span>
+            </li>
+          </ul>
+          <pre *ngIf="showJson">{{item|json}}</pre>
         </span>
       </li>
+    </ol>
 </section>
