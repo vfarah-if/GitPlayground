@@ -21,11 +21,14 @@ import 'leaflet/dist/images/marker-icon.png';
 })
 export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   @Input() fromDate: string;
+  @Input() toDate: string;
   @Input() severityOption: SeverityOptions;
   @Input() imageType: 'heatmap' | 'macarbe' | 'friendly';
+  @Input() pageSize = 500;
 
-  from: Date;
-  leafletOptions: MapOptions = {
+  public from: Date;
+  public to: Date;
+  public leafletOptions: MapOptions = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
     ],
@@ -33,7 +36,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     center: latLng(51.5074, 0.1278)
   };
 
-  layersControl = {
+  public layersControl = {
     // baseLayers: {
     //   'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
     //    , 'Open Cycle Map': tileLayer('http://{s}.tile.opencyclemap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
@@ -61,6 +64,14 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
       this.from = new Date(2010, 1, 1);
     }
 
+    if (this.toDate) {
+      this.to = new Date(this.toDate);
+    } else {
+      const now = new Date();
+      const previousYear = now.getUTCFullYear() - 1;
+      this.to = new Date(`${previousYear}-12-31T12:00:00`);
+    }
+
     if (!this.imageType) {
       this.imageType = 'macarbe';
     }
@@ -72,15 +83,21 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     this.setMapIcon();
 
     this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({
-      pageSize: 500,
+      pageSize: this.pageSize,
       from: this.from,
+      to: this.to,
       severity: this.severityOption
     });
 
     this.accidentStatics$ = this.accidentStatisticsFirstPage$.pipe(
         expand(({ nextPage }) => {
           return nextPage
-            ? this.accidentStatisticService.get({ pageSize: 500, from: this.from, severity: this.severityOption, page: nextPage })
+            ? this.accidentStatisticService.get({
+              pageSize: this.pageSize,
+              from: this.from,
+              to: this.to,
+              severity: this.severityOption,
+              page: nextPage })
             : EMPTY;
         }),
         map(({ data }) => data),
