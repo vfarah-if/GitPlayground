@@ -14,6 +14,7 @@ import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions, SortByOptio
 })
 export class AccidentStatisticListComponent implements OnInit {
   @Input() fromDate: string;
+  @Input() toDate: string;
   @Input() severityOption: SeverityOptions = 'Fatal';
   @Input() orderByOption: SortByOptions = 'DateDescending';
   @Input() pageSize = 500;
@@ -22,6 +23,7 @@ export class AccidentStatisticListComponent implements OnInit {
   public accidentStatics$: Observable<Array<AccidentStatistic>>;
   public accidentStatisticsFirstPage$: Observable<PagedAccidentStatistic>;
   public from: Date;
+  public to: Date;
 
   constructor(private accidentStatisticService: AccidentStatiticsService) { }
 
@@ -32,9 +34,18 @@ export class AccidentStatisticListComponent implements OnInit {
       this.from = new Date(2010, 1, 1);
     }
 
+    if (this.toDate) {
+      this.to = new Date(this.toDate);
+    } else {
+      const now = new Date();
+      const previousYear = now.getUTCFullYear() - 1;
+      this.to = new Date(`${previousYear}-12-31T12:00:00`);
+    }
+
     this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({
       pageSize: this.pageSize,
       from: this.from,
+      to: this.to,
       severity: this.severityOption,
       sortBy: this.orderByOption,
     });
@@ -45,6 +56,7 @@ export class AccidentStatisticListComponent implements OnInit {
           ? this.accidentStatisticService.get({
               pageSize: this.pageSize,
               from: this.from,
+              to: this.to,
               page: nextPage,
               severity: this.severityOption,
               sortBy: this.orderByOption,

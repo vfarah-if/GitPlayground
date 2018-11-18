@@ -1,13 +1,13 @@
 <section>
   <header>
     <h1>
-      Loading <em>{{(accidentStatisticsFirstPage$|async)?.total}}</em><em> {{severityOption|lowercase}}</em> accidents list from <em>{{from|date:'medium'}}</em> until the end of last year ordered by
+      Loading <em>{{(accidentStatisticsFirstPage$|async)?.total}}</em><em> {{severityOption|lowercase}}</em> accidents list from <em>{{from|date:'medium'}}</em> to <em>{{to|date:'medium'}}</em> ordered by
       <em>{{orderByOption|lowercase}}</em>
     </h1>
   </header>
     <ol>
       <li *ngFor="let item of (accidentStatics$|async)">
-        <span>Accident <mark> Id: {{item.id}}</mark> on <b><time [attr.datetime]="item.date">{{item.date|date:'medium'}} </time></b>
+        <span><mark>Accident Id: {{item.id}}</mark> on <b><time [attr.datetime]="item.date">{{item.date|date:'medium'}} </time></b>
           at location <em>{{item.location}}</em> in the borough of <em>{{item.borough}}</em>
           with <em>{{item.casualties?.length}}</em><em *ngIf="item.casualties?.length>1"> casualties:</em><em *ngIf="item.casualties?.length<=1"> casualty</em>
           with {{item.vehicles?.length}} <em *ngIf="item.vehicles?.length>1"> vehicles of types: </em><em *ngIf="item.vehicles?.length<=1"> vehicle of type </em>

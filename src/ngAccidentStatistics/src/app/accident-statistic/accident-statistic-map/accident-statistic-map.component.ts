@@ -119,12 +119,23 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   onMapReady(leafMap: Map) {
     this.subscription = this.accidentStatics$.subscribe(data => {
       data.forEach(item => {
+        const popupContent: string = this.createPopupContent(item);
         if (this.mapIcon) {
-          marker([Number(item.lat), Number(item.lon)], { icon: this.mapIcon }).addTo(leafMap);
+          marker([Number(item.lat), Number(item.lon)], { icon: this.mapIcon })
+          .bindPopup(popupContent)
+          .addTo(leafMap);
         } else {
-          marker([Number(item.lat), Number(item.lon)]).addTo(leafMap);
+          marker([Number(item.lat), Number(item.lon)])
+          .bindPopup(popupContent)
+          .addTo(leafMap);
         }
       });
     });
+  }
+
+  createPopupContent(accidentStatistic: AccidentStatistic): string {
+    const dateOfAccident = new Date(accidentStatistic.date);
+    // tslint:disable-next-line:max-line-length
+    return `<mark>${this.severityOption} Incident ${accidentStatistic.id}</mark>, occured on <em>${dateOfAccident.toDateString()} ${dateOfAccident.toTimeString()}</em>, involving ${accidentStatistic.casualties.length} person(s) and ${accidentStatistic.vehicles.length} vehicle(s) in the borough of ${accidentStatistic.borough}.`;
   }
 }
