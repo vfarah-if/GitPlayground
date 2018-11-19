@@ -33,6 +33,9 @@ https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross
 	Extends with swagger, pact or typemock tests
 	Fix RFC3986-compliant issues
 
+Add caching in teh web api 2 layer (Take a look)
+	https://github.com/filipw/Strathweb.CacheOutput
+
 TODO: Create an angular 7 client to look at severity data within google map 
 
 https://github.com/angular/angular-cli/wiki
