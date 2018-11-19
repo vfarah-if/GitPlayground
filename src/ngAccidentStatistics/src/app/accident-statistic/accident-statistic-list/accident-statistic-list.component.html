@@ -8,9 +8,9 @@
     <ol>
       <li *ngFor="let item of (accidentStatics$|async)">
         <span><mark>Accident Id: {{item.id}}</mark> on <b><time [attr.datetime]="item.date">{{item.date|date:'medium'}} </time></b>
-          at location <em>{{item.location}}</em> in the borough of <em>{{item.borough}}</em>
-          with <em>{{item.casualties?.length}}</em><em *ngIf="item.casualties?.length>1"> casualties:</em><em *ngIf="item.casualties?.length<=1"> casualty</em>
-          with {{item.vehicles?.length}} <em *ngIf="item.vehicles?.length>1"> vehicles of types: </em><em *ngIf="item.vehicles?.length<=1"> vehicle of type </em>
+          at location <em>{{item.location}}</em> in the borough of <em>{{item.borough}}</em>,
+          with <em>{{item.casualties?.length}}</em><em *ngIf="item.casualties?.length>1"> casualties</em><em *ngIf="item.casualties?.length<=1"> casualty</em>
+          and {{item.vehicles?.length}} <em *ngIf="item.vehicles?.length>1"> vehicles of types </em><em *ngIf="item.vehicles?.length<=1"> vehicle of type </em>
           <span *ngFor="let vehicle of item.vehicles; let isLast=last">
               <em>{{vehicle.type}}{{isLast ? '.' : ', '}}</em>
            </span>
