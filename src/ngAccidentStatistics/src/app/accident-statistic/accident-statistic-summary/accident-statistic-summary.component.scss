@@ -1,5 +1,10 @@
+section{
+  margin: 10px;
+  padding: 10px;
+}
+
 .accident-summary {
-  border: 1px grey dashed;
+  border: 1px yellow dashed;
   padding: 5px;
 }
 
@@ -10,11 +15,28 @@
  }
 
  fieldset {
-  border: 1px grey dotted;
+  border: 1px orange solid;
   margin: 5px;
  }
 
- .result
- {
+input {
+  font-weight: 400;
+}
+label{
+  font-weight:400;
+}
+label:not(:first-of-type),
+label:only-child{
+  font-weight: 100;
+}
+
+fieldset > label{
+  margin-right: 10px;
+}
+
+pre {
   background-color: honeydew;
- }
+  min-height: 100px;
+  word-wrap: break-word;
+  padding: 20px;
+}

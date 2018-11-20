@@ -1,5 +1,6 @@
+import { EMPTY } from 'rxjs/internal/observable/EMPTY';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Observable } from 'rxjs/internal/Observable';
 import { switchMap, catchError, startWith, tap } from 'rxjs/internal/operators';
@@ -31,7 +32,7 @@ export class AccidentStatisticSummaryComponent implements OnInit {
 
   ngOnInit() {
     this.accidentStatisticsForm = this.formBuilder.group({
-      from: [this.fromDate],
+      from: [this.fromDate, Validators.required],
       to: [this.toDate],
       severity: [this.severityOption],
       pageSize: [2],
@@ -42,12 +43,16 @@ export class AccidentStatisticSummaryComponent implements OnInit {
       switchMap(data => {
         // debugger;
         this.clearErrors();
-        return this.accidentStatisticService.get({
-          pageSize: 1,
-          from: data.from,
-          to: data.to,
-          severity: data.severity
-        });
+        if (!this.accidentStatisticsForm.invalid) {
+          return this.accidentStatisticService.get({
+            pageSize: 1,
+            from: data.from,
+            to: data.to,
+            severity: data.severity
+          });
+        } else {
+          return EMPTY;
+        }
       }),
       catchError(fail => {
         this.error = fail;
