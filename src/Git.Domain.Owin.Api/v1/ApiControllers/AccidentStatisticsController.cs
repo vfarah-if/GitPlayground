@@ -9,12 +9,15 @@ using System.Web.Http.ModelBinding;
 using Git.Domain.Models.TFL;
 using Git.Domain.Owin.Api.v1.Services;
 using Swashbuckle.Swagger.Annotations;
+using WebApi.OutputCache.V2;
 
 namespace Git.Domain.Owin.Api.v1.ApiControllers
 {
     [RoutePrefix("v1/accidentstatistics")]
     public class AccidentStatisticsController : ApiController
     {
+        protected internal const int OneMinuteInSeconds = 60;
+        protected internal const int FiveMinuteTimeSpanInSeconds = 5 * OneMinuteInSeconds;
         private readonly IAccidentStatisticsService _accidentStatisticsService;
 
         public AccidentStatisticsController(IAccidentStatisticsService accidentStatisticsService)
@@ -37,6 +40,7 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
         [SwaggerResponseRemoveDefaults]
         [SwaggerResponse(HttpStatusCode.OK, "Paged list of accident statistics", typeof(Paged<AccidentStatistic>))]
         [SwaggerResponse(HttpStatusCode.BadRequest, "Bad Request")]
+        [CacheOutput(ClientTimeSpan = FiveMinuteTimeSpanInSeconds, ServerTimeSpan = FiveMinuteTimeSpanInSeconds)]
         public async Task<HttpResponseMessage> Get([ModelBinder] AccidentStatisticsQuery accidentStatisticsQuery)
         {
             if (accidentStatisticsQuery == null)
