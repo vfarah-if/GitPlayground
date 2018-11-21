@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AccidentStatisticListMockComponent } from '../accident-statistic-list/testing/accident-statistic-list.mock.component';
+import { AccidentStatisticListMockComponent } from '../accident-statistic-list/testing';
 
 @NgModule({
   declarations: [
