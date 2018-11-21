@@ -5,16 +5,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { switchMap, catchError, startWith, tap } from 'rxjs/internal/operators';
 
-import { SeverityOptions, PagedAccidentStatistic } from './../../model';
-import { AccidentStatiticsService } from './../../api';
+import { SeverityOptions, PagedAccidentStatistic } from '../../model';
+import { AccidentStatiticsService } from '../../api';
 import { empty } from 'rxjs';
 
 @Component({
-  selector: 'app-accident-statistic-summary',
-  templateUrl: './accident-statistic-summary.component.html',
-  styleUrls: ['./accident-statistic-summary.component.scss']
+  selector: 'app-accident-statistic-query',
+  templateUrl: './accident-statistic-query.component.html',
+  styleUrls: ['./accident-statistic-query.component.scss']
 })
-export class AccidentStatisticSummaryComponent implements OnInit {
+export class AccidentStatisticQueryComponent implements OnInit {
 
   @Input() fromDate: Date;
   @Input() toDate: Date;

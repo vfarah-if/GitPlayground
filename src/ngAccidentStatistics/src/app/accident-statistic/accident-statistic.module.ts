@@ -5,13 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
-import { AccidentStatisticSummaryComponent } from './accident-statistic-summary/accident-statistic-summary.component';
+import { AccidentStatisticQueryComponent } from './accident-statistic-query/accident-statistic-query.component';
 import { AccidentStatisticMapComponent } from './accident-statistic-map/accident-statistic-map.component';
 import { AccidentStatisticListComponent } from './accident-statistic-list/accident-statistic-list.component';
 
 @NgModule({
   declarations: [
-    AccidentStatisticSummaryComponent,
+    AccidentStatisticQueryComponent,
     AccidentStatisticMapComponent,
     AccidentStatisticListComponent],
   imports: [
@@ -21,6 +21,6 @@ import { AccidentStatisticListComponent } from './accident-statistic-list/accide
     DateValueAccessorModule,
     LeafletModule,
   ],
-  exports: [AccidentStatisticSummaryComponent, AccidentStatisticMapComponent, AccidentStatisticListComponent]
+  exports: [AccidentStatisticQueryComponent, AccidentStatisticMapComponent, AccidentStatisticListComponent]
 })
 export class AccidentStatisticModule { }
