@@ -42,7 +42,7 @@ describe('AccidentStatiticsService', () => {
       const fromDate = new Date(2014, 1, 1);
       const toDate = new Date(2018, 12, 31);
       const severity: SeverityOptions = 'Serious';
-      const sortBy: SortByOptions = 'ByDateAscending';
+      const sortBy: SortByOptions = 'DateAscending';
       const currentPage = 2;
       const pageSize = 200;
 

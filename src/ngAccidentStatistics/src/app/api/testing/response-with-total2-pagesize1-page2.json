@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "id": 312284,
+      "lat": "51.416839",
+      "lon": "-0.261767",
+      "location": "Traps Lane junction with Coombe Lane west",
+      "date": "2017-01-05T09:11:00Z",
+      "severity": 2,
+      "borough": "Kingston",
+      "casualties": [
+        {
+          "age": 46,
+          "class": "Driver",
+          "severity": 2,
+          "mode": "PoweredTwoWheeler",
+          "ageBand": "Adult"
+        }
+      ],
+      "vehicles": [
+        {
+          "type": "MediumGoodsVehicle"
+        },
+        {
+          "type": "Motorcycle_50_125cc"
+        }
+      ]
+    }
+  ],
+  "page": 2,
+  "nextPage": null,
+  "previousPage": 1,
+  "lastPage": 2,
+  "pageSize": 1,
+  "total": 1
+}
