@@ -19,6 +19,7 @@ export class AccidentStatisticQueryComponent implements OnInit {
   @Input() fromDate: Date;
   @Input() toDate: Date;
   @Input() severityOption: SeverityOptions;
+  @Input() pageSize: Number = 1;
 
   error: any;
   accidentStatisticsForm: FormGroup;
@@ -35,7 +36,7 @@ export class AccidentStatisticQueryComponent implements OnInit {
       from: [this.fromDate, Validators.required],
       to: [this.toDate],
       severity: [this.severityOption],
-      pageSize: [2],
+      pageSize: [this.pageSize],
     });
 
     this.pagedAccidentStatistics$ = this.accidentStatisticsForm.valueChanges.pipe(
@@ -45,7 +46,7 @@ export class AccidentStatisticQueryComponent implements OnInit {
         this.clearErrors();
         if (!this.accidentStatisticsForm.invalid) {
           return this.accidentStatisticService.get({
-            pageSize: 1,
+            pageSize: data.pageSize,
             from: data.from,
             to: data.to,
             severity: data.severity

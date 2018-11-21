@@ -5,10 +5,10 @@
     </header>
     <fieldset>
       <label for="from">From (*):
-        <input name="from" type="date" formControlName="from" useValueAsDate autofocus required/>
+        <input name="from" type="date" formControlName="from" useValueAsDate autofocus required>
       </label>
       <label for="to">To:
-        <input name="to" type="date" formControlName="to" useValueAsDate />
+        <input name="to" type="date" formControlName="to" useValueAsDate >
       </label>
       <label for="severity">Severity:
         <select name="severity" formControlName="severity">
@@ -17,6 +17,9 @@
           <option value="Fatal">Fatal</option>
         </select>
       </label>
+      <label for="pageSize">PageSize:
+          <input type="number" min="1" max="100" formControlName="pageSize">
+        </label>
     </fieldset>
     <fieldset *ngIf="((pagedAccidentStatistics$|async))">
       <label for="out-json">Summary JSON ({{pagedAccidentStatistics?.total}}) :
