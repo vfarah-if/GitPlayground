@@ -1,24 +1,24 @@
 <section class="accident-query">
   <form [formGroup]="accidentStatisticsForm">
     <header>
-      <h1>Accident Statistics Count Component</h1>
+      <h1>Accident Statistics Query Component</h1>
     </header>
     <fieldset>
-      <label for="from">From (*):
-        <input name="from" type="date" formControlName="from" useValueAsDate autofocus required>
+      <label for="from"><strong>From(*)</strong> [alt+1]:
+        <input name="from" type="date" formControlName="from" useValueAsDate autofocus required accesskey="1">
       </label>
-      <label for="to">To:
-        <input name="to" type="date" formControlName="to" useValueAsDate >
+      <label for="to"><strong>To</strong> [alt+2]:
+        <input name="to" type="date" formControlName="to" useValueAsDate accesskey="2">
       </label>
-      <label for="severity">Severity:
-        <select name="severity" formControlName="severity">
+      <label for="severity"><strong>Severity</strong> [alt+3]:
+        <select name="severity" formControlName="severity" accesskey="3">
           <option value="Serious">Serious</option>
           <option value="Slight">Slight</option>
           <option value="Fatal">Fatal</option>
         </select>
       </label>
-      <label for="pageSize">PageSize:
-          <input type="number" min="1" max="100" formControlName="pageSize">
+      <label for="pageSize"><strong>PageSize</strong> [alt+4]:
+          <input type="number" min="1" max="100" formControlName="pageSize" accesskey="4">
         </label>
     </fieldset>
     <fieldset *ngIf="((pagedAccidentStatistics$|async))">
