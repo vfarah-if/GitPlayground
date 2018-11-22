@@ -2,10 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Observable } from 'rxjs/internal/observable';
 import { EMPTY } from 'rxjs/internal/observable/EMPTY';
-import { map, expand, reduce } from 'rxjs/internal/operators';
+import { map, expand, reduce, tap } from 'rxjs/internal/operators';
 
 import { AccidentStatiticsService } from './../../api';
 import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions, SortByOptions } from './../../model';
+
+export const DEFAULT_FROM_DATE: Date = new Date(2010, 1, 1);
 
 @Component({
   selector: 'app-accident-statistic-list',
@@ -31,7 +33,7 @@ export class AccidentStatisticListComponent implements OnInit {
     if (this.fromDate) {
       this.from = new Date(this.fromDate);
     } else {
-      this.from = new Date(2010, 1, 1);
+      this.from = DEFAULT_FROM_DATE;
     }
 
     if (this.toDate) {
@@ -52,7 +54,9 @@ export class AccidentStatisticListComponent implements OnInit {
 
     this.accidentStatics$ = this.accidentStatisticsFirstPage$
       .pipe(
-        expand(({ nextPage }) =>  nextPage
+        expand(({ nextPage }) => {
+          //debugger;
+          return nextPage
           ? this.accidentStatisticService.get({
               pageSize: this.pageSize,
               from: this.from,
@@ -61,9 +65,15 @@ export class AccidentStatisticListComponent implements OnInit {
               severity: this.severityOption,
               sortBy: this.orderByOption,
             })
-          : EMPTY),
+          : EMPTY;
+        }),
         map(({ data }) => data),
-        reduce((acc, data) => acc.concat(data), [])
+        reduce((acc, data) => acc.concat(data), []),
+        tap((data) => {
+          // debugger;
+          // console.log('Accident Statistic List to be returned', data);
+        })
+
       );
   }
 

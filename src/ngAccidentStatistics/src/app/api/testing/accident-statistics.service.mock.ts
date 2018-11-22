@@ -8,9 +8,9 @@ import { AccidentStatisticsQuery, PagedAccidentStatistic } from '../../model';
 import { AccidentStatiticsService } from '../accident-statistics.service';
 
 // response test data in json wihin the file system for easy mocking of responses
-import * as pageSizeOfOnePageOneOfTwoTestData from './response-with-total2-pageSize1-page2.json';
-import * as pageSizeOfOnePageTwoOfTwoTestData from './response-with-total2-pageSize1-page2.json';
-import * as  pageSizeOfTwoWithTotalOfTwoTestData from './response-with-total2-pagesize2.json';
+import { default as pageSizeOfOnePageOneOfTwoTestData } from './response-with-total2-pagesize1-page1.json';
+import { default as pageSizeOfOnePageTwoOfTwoTestData } from './response-with-total2-pageSize1-page2.json';
+import { default as pageSizeOfTwoWithTotalOfTwoTestData } from './response-with-total2-pagesize2.json';
 // TODO: Add more scenarios here
 
 // NOTE: Had to exclude mock from the compiler because it does not understand JASMINE and hence the testing folder being excluded
@@ -19,8 +19,6 @@ import * as  pageSizeOfTwoWithTotalOfTwoTestData from './response-with-total2-pa
   providedIn: 'root'
 })
 export class AccidentStatiticsServiceMock {
-
-
   public simplePageOneOfTwoResponseSubject: BehaviorSubject<PagedAccidentStatistic>
     = new BehaviorSubject<PagedAccidentStatistic>(pageSizeOfOnePageOneOfTwoTestData as PagedAccidentStatistic);
   public simplePageTwoOfTwoResponseSubject: BehaviorSubject<PagedAccidentStatistic>
