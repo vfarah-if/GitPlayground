@@ -7,7 +7,6 @@ import { switchMap, catchError, startWith, tap } from 'rxjs/internal/operators';
 
 import { SeverityOptions, PagedAccidentStatistic } from '../../model';
 import { AccidentStatiticsService } from '../../api';
-import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-accident-statistic-query',
@@ -63,7 +62,6 @@ export class AccidentStatisticQueryComponent implements OnInit {
         // Output result so we dont fire several observers but NOTE this has side effects and is not a good pattern
         // however firing several calls to get the result is not good either
         this.pagedAccidentStatistics = data;
-        return data;
       })
     );
   }

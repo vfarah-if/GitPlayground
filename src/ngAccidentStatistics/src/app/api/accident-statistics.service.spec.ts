@@ -5,7 +5,7 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 
 import { AccidentStatiticsService } from './accident-statistics.service';
 import { environment } from '../../environments/environment';
-import * as testData from './accident-statistics.service.json';
+import {default as testData} from './accident-statistics.service.json';
 
 describe('AccidentStatiticsService', () => {
   let testbed: TestBed;
