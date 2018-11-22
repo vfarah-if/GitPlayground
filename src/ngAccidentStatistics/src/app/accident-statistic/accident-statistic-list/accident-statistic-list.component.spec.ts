@@ -47,6 +47,7 @@ fdescribe('AccidentStatisticListComponent', () => {
     expect(component.orderByOption).toBe('DateDescending');
     expect(component.pageSize).toBe(500);
     expect(component.showJson).toBe(false);
+    expect(component.severityOption).toBe('Fatal');
     expect(apiService).toBeTruthy();
   });
 
@@ -58,16 +59,18 @@ fdescribe('AccidentStatisticListComponent', () => {
       expect(header.innerText).toBe(expectedHeader);
   }));
 
-  it('should call the accident statistic service twice with all the default values', async(() => {
-    expect(apiService.spy_get).toHaveBeenCalledTimes(2);
+  it('should call the accident statistic service twice with all the default values', fakeAsync(() => {
+      tick();
 
-    expect(apiService.spy_get).toHaveBeenCalledWith({
-      pageSize: component.pageSize,
-      from: component.from,
-      to: component.to,
-      severity: component.severityOption,
-      sortBy: component.orderByOption,
-      });
+      expect(apiService.spy_get).toHaveBeenCalledTimes(2);
+
+      expect(apiService.spy_get).toHaveBeenCalledWith({
+        pageSize: component.pageSize,
+        from: component.from,
+        to: component.to,
+        severity: component.severityOption,
+        sortBy: component.orderByOption,
+        });
 
       expect(apiService.spy_get).toHaveBeenCalledWith({
         pageSize: component.pageSize,
@@ -75,8 +78,6 @@ fdescribe('AccidentStatisticListComponent', () => {
         to: component.to,
         page: 2,
         severity: component.severityOption,
-        sortBy: component.orderByOption,
-        });
+        sortBy: component.orderByOption});
   }));
-
 });
