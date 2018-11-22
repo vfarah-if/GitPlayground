@@ -27,28 +27,25 @@
         ]
       },
       {
-        "id": 312284,
-        "lat": "51.416839",
-        "lon": "-0.261767",
-        "location": "Traps Lane junction with Coombe Lane west",
-        "date": "2017-01-05T09:11:00Z",
+        "id": 615289,
+        "lat": "51.495614",
+        "lon": "-0.133148",
+        "location": "Horseferry Road junction with Medway Street",
+        "date": "2017-12-29T10:58:00Z",
         "severity": 2,
-        "borough": "Kingston",
+        "borough": "City of Westminster",
         "casualties": [
           {
-            "age": 46,
-            "class": "Driver",
+            "age": 67,
+            "class": "Pedestrian",
             "severity": 2,
-            "mode": "PoweredTwoWheeler",
+            "mode": "Pedestrian",
             "ageBand": "Adult"
           }
         ],
         "vehicles": [
           {
-            "type": "MediumGoodsVehicle"
-          },
-          {
-            "type": "Motorcycle_50_125cc"
+            "type": "Taxi"
           }
         ]
       }

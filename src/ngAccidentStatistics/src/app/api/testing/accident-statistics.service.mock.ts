@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/internal/Observable';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 import { AccidentStatisticsQuery, PagedAccidentStatistic } from '../../model';
 import { AccidentStatiticsService } from '../accident-statistics.service';
@@ -11,7 +10,7 @@ import { AccidentStatiticsService } from '../accident-statistics.service';
 import { default as pageSizeOfOnePageOneOfTwoTestData } from './response-with-total2-pagesize1-page1.json';
 import { default as pageSizeOfOnePageTwoOfTwoTestData } from './response-with-total2-pageSize1-page2.json';
 import { default as pageSizeOfTwoWithTotalOfTwoTestData } from './response-with-total2-pagesize2.json';
-// TODO: Add more scenarios here
+import { of } from 'rxjs/internal/observable/of';
 
 // NOTE: Had to exclude mock from the compiler because it does not understand JASMINE and hence the testing folder being excluded
 
@@ -19,12 +18,12 @@ import { default as pageSizeOfTwoWithTotalOfTwoTestData } from './response-with-
   providedIn: 'root'
 })
 export class AccidentStatiticsServiceMock {
-  public simplePageOneOfTwoResponseSubject: BehaviorSubject<PagedAccidentStatistic>
-    = new BehaviorSubject<PagedAccidentStatistic>(pageSizeOfOnePageOneOfTwoTestData as PagedAccidentStatistic);
-  public simplePageTwoOfTwoResponseSubject: BehaviorSubject<PagedAccidentStatistic>
-    = new BehaviorSubject<PagedAccidentStatistic>(pageSizeOfOnePageTwoOfTwoTestData as PagedAccidentStatistic);
-  public simpleOnlyOnePageNeededResponseSubject: BehaviorSubject<PagedAccidentStatistic>
-    = new BehaviorSubject<PagedAccidentStatistic>(pageSizeOfTwoWithTotalOfTwoTestData as PagedAccidentStatistic);
+  public simplePageOneOfTwoResponseSubject: Observable<PagedAccidentStatistic>
+    = of(pageSizeOfOnePageOneOfTwoTestData as PagedAccidentStatistic);
+  public simplePageTwoOfTwoResponseSubject: Observable<PagedAccidentStatistic>
+    = of(pageSizeOfOnePageTwoOfTwoTestData as PagedAccidentStatistic);
+  public simpleOnlyOnePageNeededResponseSubject: Observable<PagedAccidentStatistic>
+    = of(pageSizeOfTwoWithTotalOfTwoTestData as PagedAccidentStatistic);
 
   public spy_get = jasmine.createSpy('get');
 
@@ -33,8 +32,10 @@ export class AccidentStatiticsServiceMock {
   }
 }
 
-// tslint:disable-next-line:max-line-length
-export function ACCIDENT_STATISTIC_SERVICE_PROVIDER(): { provide: typeof AccidentStatiticsService, useValue: AccidentStatiticsServiceMock } {
+export function ACCIDENT_STATISTIC_SERVICE_PROVIDER(): {
+  provide: typeof AccidentStatiticsService,
+  useValue: AccidentStatiticsServiceMock
+} {
   return {
     provide: AccidentStatiticsService,
     useValue: new AccidentStatiticsServiceMock()

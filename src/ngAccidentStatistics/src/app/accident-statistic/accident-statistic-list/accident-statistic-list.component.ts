@@ -55,7 +55,7 @@ export class AccidentStatisticListComponent implements OnInit {
     this.accidentStatics$ = this.accidentStatisticsFirstPage$
       .pipe(
         expand(({ nextPage }) => {
-          //debugger;
+          // debugger;
           return nextPage
           ? this.accidentStatisticService.get({
               pageSize: this.pageSize,
@@ -68,12 +68,13 @@ export class AccidentStatisticListComponent implements OnInit {
           : EMPTY;
         }),
         map(({ data }) => data),
-        reduce((acc, data) => acc.concat(data), []),
-        tap((data) => {
-          // debugger;
-          // console.log('Accident Statistic List to be returned', data);
-        })
+        reduce((acc, data) => acc.concat(data), [])
+        // TODO: Error branch
 
+        // uncomment for debugging purposes
+        // , tap((data) => {
+        //   console.log('Accident Statistic Data to be returned', data);
+        // })
       );
   }
 
