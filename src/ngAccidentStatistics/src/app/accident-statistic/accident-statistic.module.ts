@@ -21,6 +21,9 @@ import { AccidentStatisticListComponent } from './accident-statistic-list/accide
     DateValueAccessorModule,
     LeafletModule,
   ],
-  exports: [AccidentStatisticQueryComponent, AccidentStatisticMapComponent, AccidentStatisticListComponent]
+  exports: [
+    AccidentStatisticQueryComponent,
+    AccidentStatisticMapComponent,
+    AccidentStatisticListComponent]
 })
 export class AccidentStatisticModule { }
