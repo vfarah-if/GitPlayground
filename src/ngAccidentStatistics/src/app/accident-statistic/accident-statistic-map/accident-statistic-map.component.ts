@@ -14,6 +14,8 @@ import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './..
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
 
+export type ImageOptions = 'Heatmap' | 'Macarbe' | 'Friendly';
+
 @Component({
   selector: 'app-accident-statistic-map',
   templateUrl: './accident-statistic-map.component.html',
@@ -23,7 +25,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   @Input() fromDate: string;
   @Input() toDate: string;
   @Input() severityOption: SeverityOptions;
-  @Input() imageType: 'heatmap' | 'macarbe' | 'friendly';
+  @Input() imageOption: ImageOptions;
   @Input() pageSize = 500;
 
   public from: Date;
@@ -32,7 +34,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
     ],
-    zoom: 10,
+    zoom: 9,
     center: latLng(51.5074, 0.1278)
   };
 
@@ -72,8 +74,8 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
       this.to = new Date(`${previousYear}-12-31T12:00:00`);
     }
 
-    if (!this.imageType) {
-      this.imageType = 'macarbe';
+    if (!this.imageOption) {
+      this.imageOption = 'Macarbe';
     }
 
     if (!this.severityOption) {
@@ -106,11 +108,11 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   }
 
   setMapIcon() {
-    switch (this.imageType) {
-      case 'heatmap':
+    switch (this.imageOption) {
+      case 'Heatmap':
         this.mapIcon = null;
         break;
-      case 'friendly':
+      case 'Friendly':
         this.mapIcon = icon({
           iconSize: [25, 25],
           iconAnchor: [13, 25],
