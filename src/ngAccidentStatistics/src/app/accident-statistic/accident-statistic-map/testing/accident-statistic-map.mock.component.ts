@@ -20,15 +20,19 @@ export class AccidentStatisticMapMockComponent {
   @Input() severityOption: SeverityOptions = 'Fatal';
   @Input() imageType: 'heatmap' | 'macarbe' | 'friendly';
   @Input() pageSize = 500;
+  @Input() zoom = 9;
+  @Input() latitude = 51.5074;
+  @Input() longitude = 0.1278;
+  @Input() maxZoom = 18;
 
   public from: Date;
   public to: Date;
   public leafletOptions: MapOptions = {
     layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
+      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: this.maxZoom })
     ],
-    zoom: 10,
-    center: latLng(51.5074, 0.1278)
+    zoom: this.zoom,
+    center: latLng(this.latitude, this.longitude)
   };
 
   public layersControl = {};

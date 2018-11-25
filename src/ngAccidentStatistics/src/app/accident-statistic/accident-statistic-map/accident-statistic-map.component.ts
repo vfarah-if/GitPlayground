@@ -27,15 +27,20 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   @Input() severityOption: SeverityOptions;
   @Input() imageOption: ImageOptions;
   @Input() pageSize = 500;
+  @Input() zoom = 9;
+
+  @Input() latitude = 51.50608021;
+  @Input() longitude = -0.12184322;
+  @Input() maxZoom = 18;
 
   public from: Date;
   public to: Date;
   public leafletOptions: MapOptions = {
     layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
+      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: this.maxZoom })
     ],
-    zoom: 9,
-    center: latLng(51.5074, 0.1278)
+    zoom: this.zoom,
+    center: latLng(this.latitude, this.longitude)
   };
 
   public layersControl = {
@@ -83,6 +88,15 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     }
 
     this.setMapIcon();
+    this.setLeafletOptions();
+    this.leafletOptions = {
+      layers: [
+        tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: this.maxZoom })
+      ],
+      zoom: this.zoom,
+      center: latLng(this.latitude, this.longitude)
+    };
+
 
     this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({
       pageSize: this.pageSize,
@@ -107,6 +121,15 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
       );
   }
 
+  setLeafletOptions() {
+    this.leafletOptions = {
+      layers: [
+        tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: this.maxZoom })
+      ],
+      zoom: this.zoom,
+      center: latLng(this.latitude, this.longitude)
+    };
+  }
   setMapIcon() {
     switch (this.imageOption) {
       case 'Heatmap':
