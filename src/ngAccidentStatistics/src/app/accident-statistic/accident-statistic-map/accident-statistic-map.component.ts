@@ -32,6 +32,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
   @Input() latitude = 51.50608021;
   @Input() longitude = -0.12184322;
   @Input() maxZoom = 18;
+  @Input() useGeolocationPosition = false;
 
   public from: Date;
   public to: Date;
@@ -87,16 +88,17 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
       this.severityOption = 'Fatal';
     }
 
+    if (this.useGeolocationPosition) {
+      window.navigator.geolocation.getCurrentPosition((position) => {
+        console.log('Attaining position from geolocation api', position);
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.setLeafletOptions();
+      });
+    }
+
     this.setMapIcon();
     this.setLeafletOptions();
-    this.leafletOptions = {
-      layers: [
-        tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: this.maxZoom })
-      ],
-      zoom: this.zoom,
-      center: latLng(this.latitude, this.longitude)
-    };
-
 
     this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({
       pageSize: this.pageSize,
@@ -130,6 +132,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
       center: latLng(this.latitude, this.longitude)
     };
   }
+
   setMapIcon() {
     switch (this.imageOption) {
       case 'Heatmap':

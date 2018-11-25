@@ -24,6 +24,7 @@ export class AccidentStatisticMapMockComponent {
   @Input() latitude = 51.5074;
   @Input() longitude = 0.1278;
   @Input() maxZoom = 18;
+  @Input() useGeolocationPosition = false;
 
   public from: Date;
   public to: Date;
