@@ -10,9 +10,11 @@ import { Map, MapOptions, Control, tileLayer, latLng, marker, icon } from 'leafl
 
 import { AccidentStatiticsService } from './../../api';
 import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './../../model';
+import { DEFAULT_FROM_DATE } from '..';
 
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
+
 
 export type ImageOptions = 'Heatmap' | 'Macarbe' | 'Friendly';
 
@@ -69,7 +71,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     if (this.fromDate) {
       this.from = new Date(this.fromDate);
     } else {
-      this.from = new Date(2010, 1, 1);
+      this.from = DEFAULT_FROM_DATE;
     }
 
     if (this.toDate) {
@@ -95,10 +97,12 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
         this.longitude = position.coords.longitude;
         this.setLeafletOptions();
       });
+    } else {
+      console.log('Utilising default location position', this.latitude, this.longitude);
+      this.setLeafletOptions();
     }
 
     this.setMapIcon();
-    this.setLeafletOptions();
 
     this.accidentStatisticsFirstPage$ = this.accidentStatisticService.get({
       pageSize: this.pageSize,
