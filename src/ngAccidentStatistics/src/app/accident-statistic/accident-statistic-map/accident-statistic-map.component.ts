@@ -182,9 +182,16 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     });
   }
 
-  createPopupContent(accidentStatistic: AccidentStatistic): string {
+  private createPopupContent(accidentStatistic: AccidentStatistic): string {
     const dateOfAccident = new Date(accidentStatistic.date);
     // tslint:disable-next-line:max-line-length
-    return `<mark>${this.severityOption} Incident ${accidentStatistic.id}</mark>, occured on <em>${dateOfAccident.toDateString()} ${dateOfAccident.toTimeString()}</em>, involving ${accidentStatistic.casualties.length} person(s) and ${accidentStatistic.vehicles.length} vehicle(s) in the borough of ${accidentStatistic.borough}.`;
+    return `<mark>${this.severityOption} Incident ${accidentStatistic.id}</mark>, occured on <em>${dateOfAccident.toDateString()} ${dateOfAccident.toTimeString()}</em>, involving ${accidentStatistic.casualties.length} ${this.pluralOrSingleForm(accidentStatistic.casualties, 'casualties', 'casualty')} and ${accidentStatistic.vehicles.length} ${this.pluralOrSingleForm(accidentStatistic.vehicles, 'vehicles', 'vehicle')} in the borough of ${accidentStatistic.borough}.`;
+  }
+
+  private pluralOrSingleForm(array: Array<any>, plural: string, single: string): string {
+    if (array && array.length === 1) {
+      return single;
+    }
+    return plural;
   }
 }

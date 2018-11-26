@@ -92,10 +92,10 @@ fdescribe('AccidentStatisticMapComponent', () => {
       const popupElement = popupDivElement(compiled);
       expect(popupElement).toBeTruthy();
       // tslint:disable-next-line:max-line-length
-      expect(popupElement.innerText).toContain('Fatal Incident 632474, occured on Thu Jan 05 2017 09:11:00 GMT+0000 (Greenwich Mean Time), involving 1 person(s) and 2 vehicle(s) in the borough of Kingston.')
+      expect(popupElement.innerText).toContain('Fatal Incident 632474, occured on Thu Jan 05 2017 09:11:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 2 vehicles in the borough of Kingston.')
     }));
 
-    it('should create a pop up on the first image describing the incident when clicked', async(() => {
+    it('should create a pop up on the second image describing the incident when clicked', async(() => {
       const images = imageMarkerElements(compiled);
 
       images[1].click();
@@ -103,10 +103,13 @@ fdescribe('AccidentStatisticMapComponent', () => {
       const popupElement = popupDivElement(compiled);
       expect(popupElement).toBeTruthy();
       // tslint:disable-next-line:max-line-length
-      expect(popupElement.innerText).toContain('Fatal Incident 615289, occured on Fri Dec 29 2017 10:58:00 GMT+0000 (Greenwich Mean Time), involving 1 person(s) and 1 vehicle(s) in the borough of City of Westminster.')
+      expect(popupElement.innerText).toContain('Fatal Incident 615289, occured on Fri Dec 29 2017 10:58:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 1 vehicle in the borough of City of Westminster.')
     }));
 
-    // TODO: Fix the pop up message to display the accident summary better with pluralizations
+    // TODO: Test specific settings like:
+    //       1. useGeolocationPosition
+    //       2. different image types
+    //       3. The service gets called with other values
     // TODO: Remove the fdescribe and for other tests to run
   });
 });
