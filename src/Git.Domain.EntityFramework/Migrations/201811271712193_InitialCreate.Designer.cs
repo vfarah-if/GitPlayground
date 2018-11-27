@@ -13,7 +13,7 @@ namespace Git.Domain.EntityFramework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201811271551029_InitialCreate"; }
+            get { return "201811271712193_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

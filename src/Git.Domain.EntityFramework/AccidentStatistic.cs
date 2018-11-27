@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Git.Domain.EntityFramework
 {
@@ -21,6 +22,7 @@ namespace Git.Domain.EntityFramework
 
         public string Location { get; set; }
 
+        [Column(TypeName = "datetime2")]
         public DateTime Date { get; set; }
 
         public Severity Severity { get; set; }
@@ -36,7 +38,11 @@ namespace Git.Domain.EntityFramework
             var result = new AccidentStatistic
             {
                 TflId = accidentStatistic.Id,
-                Borough = accidentStatistic.Borough
+                Borough = accidentStatistic.Borough,
+                Date = accidentStatistic.Date,
+                Latitude = accidentStatistic.Latitude,
+                Longitude = accidentStatistic.Longitude,
+                Location = accidentStatistic.Location
             };
             MapVehicles(accidentStatistic, result);
             MapCasualties(accidentStatistic, result);

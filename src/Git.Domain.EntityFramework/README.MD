@@ -16,9 +16,13 @@ Configure **IntelliTrace** to view details that carry on behind the scene [here]
 
 1. Enable-Migrations
 
-2. Add-Migration initial
+2. Add-Migration InitialCreate
 
-3. Run the Console application to see the unoptimized first version
+3. Update-Database
 
-4. Create a seed for setting up the data from the live server
+4. Run the Console application to see the unoptimized first version
+
+5. Create a seed for setting up the data from the live server
+
+6. Other commands you may be interested in https://coding.abel.nu/2012/03/ef-migrations-command-reference/
 

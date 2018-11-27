@@ -16,7 +16,7 @@ namespace Git.Domain.EntityFramework.Migrations
                         Latitude = c.String(),
                         Longitude = c.String(),
                         Location = c.String(),
-                        Date = c.DateTime(nullable: false),
+                        Date = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         Severity = c.Int(nullable: false),
                         Borough = c.String(),
                     })
