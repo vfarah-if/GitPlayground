@@ -12,6 +12,8 @@ Finally feel free to create a controller that will access this data and structur
 
 ## Initially Setup the database by running
 
+Configure **IntelliTrace** to view details that carry on behind the scene [here](https://docs.microsoft.com/en-us/visualstudio/debugger/intellitrace?view=vs-2017) .
+
 1. Enable-Migrations
 
 2. Add-Migration initial

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace Git.Domain.EntityFramework
 {
@@ -16,7 +16,22 @@ namespace Git.Domain.EntityFramework
 
         public string AgeBand { get; set; }
 
-        public virtual List<AccidentStatistic> AccidentStatistics{ get; set; }
-   
+        public virtual AccidentStatistic AccidentStatistic{ get; set; }
+
+        public static Casualty MapFrom(AccidentStatistic accidentStatistic, Models.TFL.Casualty accidentStatisticCasualty)
+        {
+            var result = new Casualty
+            {
+                AccidentStatistic = accidentStatistic,
+                Age = accidentStatisticCasualty.Age,
+                AgeBand = accidentStatisticCasualty.AgeBand,
+                Class = accidentStatisticCasualty.Class,
+                Mode = accidentStatisticCasualty.Mode
+            };
+            Enum.TryParse(accidentStatisticCasualty.Severity.ToString(), false,
+                out EntityFramework.Severity severity);
+            result.Severity = severity;
+            return result;
+        }
     }
 }

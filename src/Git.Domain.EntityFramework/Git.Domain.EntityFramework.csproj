@@ -52,9 +52,9 @@
     <Compile Include="AccidentStatisticDbContext.cs" />
     <Compile Include="AccidentStatisticDbInitializer.cs" />
     <Compile Include="Casualty.cs" />
-    <Compile Include="Migrations\201811271305313_InitialCreate.cs" />
-    <Compile Include="Migrations\201811271305313_InitialCreate.Designer.cs">
-      <DependentUpon>201811271305313_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201811271551029_InitialCreate.cs" />
+    <Compile Include="Migrations\201811271551029_InitialCreate.Designer.cs">
+      <DependentUpon>201811271551029_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,13 +62,18 @@
     <Compile Include="Vehicle.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811271305313_InitialCreate.resx">
-      <DependentUpon>201811271305313_InitialCreate.cs</DependentUpon>
+    <ProjectReference Include="..\Git.Domain\Git.Domain.csproj">
+      <Project>{aabc3ad0-37c7-4e2f-b420-419ac1dea321}</Project>
+      <Name>Git.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811271551029_InitialCreate.resx">
+      <DependentUpon>201811271551029_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
