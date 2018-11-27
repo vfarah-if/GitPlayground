@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AccidentStatistic.cs" />
     <Compile Include="AccidentStatisticDbContext.cs" />
+    <Compile Include="AccidentStatisticDbInitializer.cs" />
     <Compile Include="Casualty.cs" />
     <Compile Include="Migrations\201811271305313_InitialCreate.cs" />
     <Compile Include="Migrations\201811271305313_InitialCreate.Designer.cs">

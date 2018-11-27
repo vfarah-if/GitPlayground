@@ -4,6 +4,10 @@ namespace Git.Domain.EntityFramework
 {
     public class AccidentStatisticDbContext: DbContext
     {
+        public AccidentStatisticDbContext()
+        {
+            Database.SetInitializer(new AccidentStatisticDbInitializer());
+        }
         public DbSet<AccidentStatistic> AccidentStatistics { get; set; }
         public DbSet<Casualty> Casualties { get; set; }
         public DbSet<Vehicle> Vehicles{ get; set; }
