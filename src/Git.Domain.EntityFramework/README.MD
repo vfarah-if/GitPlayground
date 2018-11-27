@@ -26,3 +26,5 @@ Configure **IntelliTrace** to view details that carry on behind the scene [here]
 
 6. Other commands you may be interested in https://coding.abel.nu/2012/03/ef-migrations-command-reference/
 
+7. Bulk insert library to help insert lots of data quickly [](https://www.nuget.org/packages/Z.EntityFramework.Extensions/)
+

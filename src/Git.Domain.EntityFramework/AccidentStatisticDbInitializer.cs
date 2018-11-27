@@ -12,24 +12,25 @@ namespace Git.Domain.EntityFramework
     {
         public override void InitializeDatabase(AccidentStatisticDbContext context)
         {
-            //            context.Database.Delete();
+            // Uncomment if you want to delete the database before seeding the data
+            // context.Database.Delete();
             if (!context.Database.Exists())
             {
                 context.Database.Create();
             }
 
             this.Seed(context);
-            // context.SaveChanges();
-
-            // Comment above and uncomment below for typical create and drop functionality
-            // base.InitializeDatabase(context);
+            context.SaveChanges();
         }
 
         protected override async void Seed(AccidentStatisticDbContext context)
         {
             if (!context.AccidentStatistics.Any())
             {
+                Stopwatch stopwatch = Stopwatch.StartNew();
                 await GenerateDataFromLiveFeed(context);
+                stopwatch.Stop();
+                Trace.TraceWarning($"Took '{stopwatch.Elapsed.ToString()}' to seed the data from the live server");                
             }
             else
             {
@@ -51,26 +52,43 @@ namespace Git.Domain.EntityFramework
             for (int year = lastYear; year >= 2005; year--)
             {
                 Trace.TraceInformation($"Getting data for year '{year}'");
+                Stopwatch stopwatch = Stopwatch.StartNew();
                 var accidentStatistics =
                     await transportForLondonClient.GetAllAccidentStatistics(year).ConfigureAwait(false);
+                stopwatch.Stop();
+                Trace.TraceInformation($"Took '{stopwatch.Elapsed.ToString()}' to retrieve data for year '{year}'");
+                stopwatch = Stopwatch.StartNew();
                 await GeneraDataFor(context, accidentStatistics);
+                stopwatch.Stop();
+                Trace.TraceInformation($"Took '{stopwatch.Elapsed.ToString()}' to insert data for year '{year}' into the local database");
             }
         }
 
         private async Task GeneraDataFor(AccidentStatisticDbContext context,
             IReadOnlyList<Models.TFL.AccidentStatistic> accidentStatistics)
         {
-            // TODO: Update to some bulk insert version
             Trace.TraceInformation($"Inserting '{accidentStatistics.Count}' records into the database");
+            var accidents = new List<AccidentStatistic>();
+            var vehicles = new List<Vehicle>();
+            var casualties = new List<Casualty>();
             foreach (var accidentStatistic in accidentStatistics)
             {
+                Trace.TraceInformation($"Generating '{accidentStatistic.Id}' record for bulk insert");
                 var newAccidentStatistic = AccidentStatistic.MapFrom(accidentStatistic);
-                Trace.TraceInformation($"Inserting '{newAccidentStatistic.TflId}' record into the database");
-                context.AccidentStatistics.AddOrUpdate(newAccidentStatistic);
-                await context.SaveChangesAsync();
-                Trace.TraceInformation(
-                    $"Inserted '{newAccidentStatistic.AccidentStatisticId}' record into the database");
+                accidents.Add(newAccidentStatistic);
+                vehicles.AddRange(newAccidentStatistic.Vehicles);
+                casualties.AddRange(newAccidentStatistic.Casualties);
             }
+
+            Trace.TraceInformation($"Inserting AccidentStatistics'{accidents.Count}' records into the database");
+            await context.BulkInsertAsync(accidents);
+            Trace.TraceInformation($"Inserting Vehicles '{vehicles.Count}' records into the database");
+            await context.BulkInsertAsync(vehicles);
+            Trace.TraceInformation($"Inserting Casualties '{casualties.Count}' records into the database");
+            await context.BulkInsertAsync(casualties);
+            Trace.TraceInformation("Before Save ...");
+            await context.BulkSaveChangesAsync();
+            Trace.TraceInformation("After Save ...");                        
         }
     }
 }

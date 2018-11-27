@@ -11,7 +11,9 @@ namespace Git.Domain.EntityFramework.ConsoleApp
             ConfigureTraceListener();
             using (var accidentStatisticDbContext = new AccidentStatisticDbContext())
             {
-                Console.Write($"{accidentStatisticDbContext.AccidentStatistics.Count()} Accident Statistic records found");
+                Console.WriteLine($"{accidentStatisticDbContext.AccidentStatistics.Count()} Accident Statistic records found");
+                Console.WriteLine($"{accidentStatisticDbContext.Vehicles.Count()} Vehicle records found");
+                Console.WriteLine($"{accidentStatisticDbContext.Casualties.Count()} Casualty records found");
                 Console.Read();
             }
         }
