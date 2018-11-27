@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ namespace Git.Domain.EntityFramework
 {
     public class AccidentStatisticDbInitializer : DropCreateDatabaseAlways<AccidentStatisticDbContext>
     {
-        public override void InitializeDatabase(AccidentStatisticDbContext context)
+        public override async void InitializeDatabase(AccidentStatisticDbContext context)
         {
             // Uncomment if you want to delete the database before seeding the data
             // context.Database.Delete();
@@ -20,7 +19,7 @@ namespace Git.Domain.EntityFramework
             }
 
             this.Seed(context);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
         protected override async void Seed(AccidentStatisticDbContext context)
@@ -42,10 +41,6 @@ namespace Git.Domain.EntityFramework
 
         private async Task GenerateDataFromLiveFeed(AccidentStatisticDbContext context)
         {
-            // Speed up inserts
-            context.Configuration.AutoDetectChangesEnabled = false;
-            context.Configuration.ValidateOnSaveEnabled = false;
-
             Trace.TraceInformation("About to generate data from the TFL live feed ...");
             ITransportForLondonClient transportForLondonClient = new TransportForLondonClient(Configuration.Create());
             var lastYear = DateTime.Now.Year - 1;
