@@ -10,3 +10,13 @@ The exercise will should validate setting up an ORM (any) database and its migra
 
 Finally feel free to create a controller that will access this data and structure to compare how much more efficient this will be than the existing structure, and feature toggle this into the final solution so it is possible to compare. Feel free to create some timed mechanism that will get both sets of data and output the timing.
 
+## Initially Setup the database by running
+
+1. Enable-Migrations
+
+2. Add-Migration initial
+
+3. Run the Console application to see the unoptimized first version
+
+4. Create a seed for setting up the data from the live server
+
