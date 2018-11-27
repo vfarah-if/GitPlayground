@@ -8,7 +8,9 @@ namespace Git.Domain.EntityFramework
     {
         public AccidentStatistic()
         {
+            // ReSharper disable once VirtualMemberCallInConstructor
             Casualties = new HashSet<Casualty>();
+            // ReSharper disable once VirtualMemberCallInConstructor
             Vehicles = new HashSet<Vehicle>();
         }
 
@@ -44,28 +46,28 @@ namespace Git.Domain.EntityFramework
                 Longitude = accidentStatistic.Longitude,
                 Location = accidentStatistic.Location
             };
-            MapVehicles(accidentStatistic, result);
-            MapCasualties(accidentStatistic, result);
+            MapVehiclesOn(result, accidentStatistic);
+            MapCasualtiesOn(result, accidentStatistic);
             Enum.TryParse(accidentStatistic.Severity.ToString(), true, out Severity severity);
             result.Severity = severity;
             return result;
         }
 
-        private static void MapVehicles(Models.TFL.AccidentStatistic accidentStatistic, AccidentStatistic parent)
+        private static void MapVehiclesOn(AccidentStatistic efAccidentStatistic, Models.TFL.AccidentStatistic tflAccidentStatistic)
         {
-            foreach (var accidentStatisticVehicle in accidentStatistic.Vehicles)
+            foreach (var accidentStatisticVehicle in tflAccidentStatistic.Vehicles)
             {
-                var newVehicle = Vehicle.MapFrom(parent, accidentStatisticVehicle);
-                parent.Vehicles.Add(newVehicle);
+                var newVehicle = Vehicle.MapFrom(efAccidentStatistic, accidentStatisticVehicle);
+                efAccidentStatistic.Vehicles.Add(newVehicle);
             }
         }
 
-        private static void MapCasualties(Models.TFL.AccidentStatistic accidentStatistic, AccidentStatistic parent)
+        private static void MapCasualtiesOn(AccidentStatistic efAccidentStatistic, Models.TFL.AccidentStatistic tflAccidentStatistic)
         {
-            foreach (var accidentStatisticCasualty in accidentStatistic.Casualties)
+            foreach (var accidentStatisticCasualty in tflAccidentStatistic.Casualties)
             {
-                var newCasualty = Casualty.MapFrom(parent, accidentStatisticCasualty);
-                parent.Casualties.Add(newCasualty);
+                var newCasualty = Casualty.MapFrom(efAccidentStatistic, accidentStatisticCasualty);
+                efAccidentStatistic.Casualties.Add(newCasualty);
             }
         }
     }
