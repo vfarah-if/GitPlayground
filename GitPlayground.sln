@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Unit.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole.UnitTests", "tests\TestConsole.UnitTests\TestConsole.UnitTests.csproj", "{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.EntityFramework", "src\Git.Domain.EntityFramework\Git.Domain.EntityFramework.csproj", "{870242CA-E5F2-4A17-B21E-A6B4D2833FC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{870242CA-E5F2-4A17-B21E-A6B4D2833FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{870242CA-E5F2-4A17-B21E-A6B4D2833FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{870242CA-E5F2-4A17-B21E-A6B4D2833FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{870242CA-E5F2-4A17-B21E-A6B4D2833FC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
