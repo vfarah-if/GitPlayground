@@ -47,3 +47,8 @@ https://alligator.io/angular/testing-httpclient/
 Start coming up with ideas for lightning talks
 
 TODO: Create a react client doing the same thing to compare and do it in typescript
+	
+	Follow the instructions for generating the base typescript project https://github.com/Microsoft/TypeScript-React-Starter
+
+
+
