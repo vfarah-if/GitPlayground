@@ -1,5 +1,4 @@
 import * as enzyme from 'enzyme';
-
 import * as React from 'react'
 import Hello from './hello';
 
