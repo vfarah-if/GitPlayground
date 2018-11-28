@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Git.Domain.EntityFramework
 {
+    [ExcludeFromCodeCoverage]
     public class AccidentStatisticDbInitializer : DropCreateDatabaseAlways<AccidentStatisticDbContext>
     {
         public override async void InitializeDatabase(AccidentStatisticDbContext context)
@@ -63,13 +65,13 @@ namespace Git.Domain.EntityFramework
             IReadOnlyList<Models.TFL.AccidentStatistic> accidentStatistics)
         {
             Trace.TraceInformation($"Inserting '{accidentStatistics.Count}' records into the database");
-            var accidents = new List<AccidentStatistic>();
-            var vehicles = new List<Vehicle>();
-            var casualties = new List<Casualty>();
+            var accidents = new List<AccidentStatisticDb>();
+            var vehicles = new List<VehicleDb>();
+            var casualties = new List<CasualtyDb>();
             foreach (var accidentStatistic in accidentStatistics)
             {
                 Trace.TraceInformation($"Generating '{accidentStatistic.Id}' record for bulk insert");
-                var newAccidentStatistic = AccidentStatistic.MapFrom(accidentStatistic);
+                AccidentStatisticDb newAccidentStatistic = accidentStatistic.ConvertFrom();
                 accidents.Add(newAccidentStatistic);
                 vehicles.AddRange(newAccidentStatistic.Vehicles);
                 casualties.AddRange(newAccidentStatistic.Casualties);

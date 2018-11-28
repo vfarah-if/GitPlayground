@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
+using Console = System.Console;
 
 namespace Git.Domain.EntityFramework.ConsoleApp
 {
@@ -11,11 +13,22 @@ namespace Git.Domain.EntityFramework.ConsoleApp
             ConfigureTraceListener();
             using (var accidentStatisticDbContext = new AccidentStatisticDbContext())
             {
-                Console.WriteLine($"{accidentStatisticDbContext.AccidentStatistics.Count()} Accident Statistic records found");
-                Console.WriteLine($"{accidentStatisticDbContext.Vehicles.Count()} Vehicle records found");
-                Console.WriteLine($"{accidentStatisticDbContext.Casualties.Count()} Casualty records found");
+                LogAllDatabaseActivities(accidentStatisticDbContext);
+                Console.WriteLine($"{accidentStatisticDbContext.AccidentStatistics.LongCountAsync().GetAwaiter().GetResult()} Accident Statistic records found");
+                Console.WriteLine($"{accidentStatisticDbContext.Vehicles.LongCountAsync().GetAwaiter().GetResult()} Vehicle records found");
+                Console.WriteLine($"{accidentStatisticDbContext.Casualties.LongCountAsync().GetAwaiter().GetResult()} Casualty records found");
                 Console.Read();
             }
+        }
+
+        private static void LogAllDatabaseActivities(AccidentStatisticDbContext accidentStatisticDbContext)
+        {
+            accidentStatisticDbContext.Database.Log = (sql) =>
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(sql);
+                Console.ForegroundColor = ConsoleColor.White;
+            };
         }
 
         private static void ConfigureTraceListener()

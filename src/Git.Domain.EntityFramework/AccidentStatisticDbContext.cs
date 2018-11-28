@@ -1,15 +1,17 @@
 ﻿using System.Data.Entity;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Git.Domain.EntityFramework
 {
+    [ExcludeFromCodeCoverage]
     public class AccidentStatisticDbContext: DbContext
     {
         public AccidentStatisticDbContext()
         {
             Database.SetInitializer(new AccidentStatisticDbInitializer());
         }
-        public DbSet<AccidentStatistic> AccidentStatistics { get; set; }
-        public DbSet<Casualty> Casualties { get; set; }
-        public DbSet<Vehicle> Vehicles{ get; set; }
+        public DbSet<AccidentStatisticDb> AccidentStatistics { get; set; }
+        public DbSet<CasualtyDb> Casualties { get; set; }
+        public DbSet<VehicleDb> Vehicles{ get; set; }
     }
 }

@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,18 +52,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccidentStatistic.cs" />
+    <Compile Include="AccidentStatisticDb.cs" />
     <Compile Include="AccidentStatisticDbContext.cs" />
     <Compile Include="AccidentStatisticDbInitializer.cs" />
-    <Compile Include="Casualty.cs" />
+    <Compile Include="CasualtyDb.cs" />
+    <Compile Include="MappingExtensions.cs" />
     <Compile Include="Migrations\201811271712193_InitialCreate.cs" />
     <Compile Include="Migrations\201811271712193_InitialCreate.Designer.cs">
       <DependentUpon>201811271712193_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Severity.cs" />
-    <Compile Include="Vehicle.cs" />
+    <Compile Include="VehicleDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
