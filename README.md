@@ -50,5 +50,7 @@ TODO: Create a react client doing the same thing to compare and do it in typescr
 	
 	Follow the instructions for generating the base typescript project https://github.com/Microsoft/TypeScript-React-Starter
 
+	https://airbnb.io/enzyme/docs/installation/index.html for setting up enzyme
+
 
 
