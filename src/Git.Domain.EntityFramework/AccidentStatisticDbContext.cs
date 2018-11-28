@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Diagnostics.CodeAnalysis;
+using Git.Domain.EntityFramework.Models;
 
 namespace Git.Domain.EntityFramework
 {

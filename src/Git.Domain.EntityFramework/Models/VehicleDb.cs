@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Git.Domain.Models.TFL;
 
-namespace Git.Domain.EntityFramework
+namespace Git.Domain.EntityFramework.Models
 {
     [Table("Vehicles")]
     public class VehicleDb

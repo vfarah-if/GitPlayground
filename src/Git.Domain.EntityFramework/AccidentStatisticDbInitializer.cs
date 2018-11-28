@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Git.Domain.EntityFramework.Models;
+using Git.Domain.Models.TFL;
 
 namespace Git.Domain.EntityFramework
 {
@@ -62,7 +64,7 @@ namespace Git.Domain.EntityFramework
         }
 
         private async Task GeneraDataFor(AccidentStatisticDbContext context,
-            IReadOnlyList<Models.TFL.AccidentStatistic> accidentStatistics)
+            IReadOnlyList<AccidentStatistic> accidentStatistics)
         {
             Trace.TraceInformation($"Inserting '{accidentStatistics.Count}' records into the database");
             var accidents = new List<AccidentStatisticDb>();

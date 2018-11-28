@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Git.Domain.Models.TFL;
 
-namespace Git.Domain.EntityFramework
+namespace Git.Domain.EntityFramework.Models
 {
     [Table("Casualties")]
     public class CasualtyDb
