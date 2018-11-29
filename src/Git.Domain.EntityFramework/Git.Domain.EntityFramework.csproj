@@ -52,6 +52,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccidentStatisticRepository.cs" />
+    <Compile Include="IAccidentStatisticDbContext.cs" />
+    <Compile Include="IAccidentStatisticRepository.cs" />
     <Compile Include="Models\AccidentStatisticDb.cs" />
     <Compile Include="AccidentStatisticDbContext.cs" />
     <Compile Include="AccidentStatisticDbInitializer.cs" />

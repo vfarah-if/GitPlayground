@@ -5,7 +5,7 @@ using Git.Domain.EntityFramework.Models;
 namespace Git.Domain.EntityFramework
 {
     [ExcludeFromCodeCoverage]
-    public class AccidentStatisticDbContext: DbContext
+    public class AccidentStatisticDbContext : DbContext, IAccidentStatisticDbContext
     {
         public AccidentStatisticDbContext()
         {
