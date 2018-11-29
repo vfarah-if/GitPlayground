@@ -43,7 +43,6 @@ https://github.com/angular/angular-cli/wiki
 https://alligator.io/angular/testing-httpclient/
 
 
-
 Start coming up with ideas for lightning talks
 
 TODO: Create a react client doing the same thing to compare and do it in typescript
@@ -52,5 +51,10 @@ TODO: Create a react client doing the same thing to compare and do it in typescr
 
 	https://airbnb.io/enzyme/docs/installation/index.html for setting up enzyme
 
+TODO: Come up with idea for migrating data utilising Entity framework
+	
+	Take a look at the latest best ideas on a repository e.g. http://blog.gauffin.org/2013/01/repository-pattern-done-right/
+	
+	Make sure that a Readonly repository is setup to represent the final changes
 
-
+	https://dzone.com/articles/repository-pattern-done-right
