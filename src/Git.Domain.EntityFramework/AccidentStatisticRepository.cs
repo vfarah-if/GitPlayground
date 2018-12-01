@@ -27,6 +27,7 @@ namespace Git.Domain.EntityFramework
         {
             if (page < 1)
             {
+                Trace.TraceWarning($"Page was {page} and will be set to the minimum page of 1");
                 page = 1;
             }
 
@@ -34,6 +35,7 @@ namespace Git.Domain.EntityFramework
 
             if (sortBy == null)
             {
+                Trace.TraceWarning($"The default date sorting will be assumed");
                 sortBy = db => db.Date;
             }
 
@@ -42,13 +44,16 @@ namespace Git.Domain.EntityFramework
             var maxPageCount = accidentCount % pageSize != 0
                 ? accidentCount / pageSize + 1
                 : accidentCount / pageSize;
+            Trace.TraceInformation($"The maximum page count is {maxPageCount}");
 
             if (page > maxPageCount)
             {
+                Trace.TraceWarning($"The current page {page} is below the maximum page of {maxPageCount} so will be defaulted to the last page");
                 page = maxPageCount;
             }
 
             var skip = (page - 1) * pageSize;
+            Trace.TraceInformation($"The skip is {skip }");
 
             IQueryable<AccidentStatisticDb> accidentQuery = filter != null
                 ? _accidentStatisticDbContext?

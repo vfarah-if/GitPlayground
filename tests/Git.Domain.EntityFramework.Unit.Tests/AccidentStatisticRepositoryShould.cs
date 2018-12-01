@@ -117,7 +117,7 @@ namespace Git.Domain.EntityFramework.Unit.Tests
         }
 
         [Fact]
-        public void GetAListOfFilteredByFatalCyclingAccidentsAndWhenAThePageIsHigherThan20ReturnPage20()
+        public void GetAListOfFilteredByFatalCyclingAccidentsAndWhenThePageIsHigherThan20ReturnPage20()
         {
             const int AboveTwentyPage = 21;
             var actual = _subject.Get(filter =>

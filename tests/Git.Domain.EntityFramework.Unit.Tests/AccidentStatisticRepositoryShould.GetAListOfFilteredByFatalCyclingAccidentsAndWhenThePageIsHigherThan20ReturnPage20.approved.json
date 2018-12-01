@@ -4,61 +4,61 @@
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  800,
+          "casualtyId":  800,
                     
-          "Age":  32,
+          "age":  32,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  1213,
+          "vehicleId":  1213,
                     
-          "VehicleType":  "BusOrCoach"
+          "vehicleType":  "BusOrCoach"
         
                 },
                 
         {
                     
-          "VehicleId":  1214,
+          "vehicleId":  1214,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  714,
+      "accidentStatisticId":  714,
             
-      "TflId":  297972,
+      "id":  297972,
             
-      "Latitude":  "51.516166",
+      "lat":  "51.516166",
             
-      "Longitude":  "-0.069496",
+      "lon":  "-0.069496",
             
-      "Location":  "White Church Lane junction with Whitechapel Road",
+      "location":  "White Church Lane junction with Whitechapel Road",
             
-      "Date":  "2017-02-06T08:55:00",
+      "date":  "2017-02-06T08:55:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Tower Hamlets"
+      "borough":  "Tower Hamlets"
     
         }
   

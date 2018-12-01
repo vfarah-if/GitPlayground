@@ -4,61 +4,61 @@
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  59792,
+          "casualtyId":  59792,
                     
-          "Age":  78,
+          "age":  78,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  87193,
+          "vehicleId":  87193,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  87194,
+          "vehicleId":  87194,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  49660,
+      "accidentStatisticId":  49660,
             
-      "TflId":  635808,
+      "id":  635808,
             
-      "Latitude":  "51.509402",
+      "lat":  "51.509402",
             
-      "Longitude":  "-0.376845",
+      "lon":  "-0.376845",
             
-      "Location":  "South Road junction with St Josephs Drive",
+      "location":  "South Road junction with St Josephs Drive",
             
-      "Date":  "2017-11-09T08:56:00",
+      "date":  "2017-11-09T08:56:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Ealing"
+      "borough":  "Ealing"
     
         }
   

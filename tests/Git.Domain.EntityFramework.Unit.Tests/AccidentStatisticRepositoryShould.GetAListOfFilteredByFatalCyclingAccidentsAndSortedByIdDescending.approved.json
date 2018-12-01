@@ -4,1201 +4,1201 @@
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  60448,
+          "casualtyId":  60448,
                     
-          "Age":  32,
+          "age":  32,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  88117,
+          "vehicleId":  88117,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  88118,
+          "vehicleId":  88118,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  50185,
+      "accidentStatisticId":  50185,
             
-      "TflId":  628500,
+      "id":  628500,
             
-      "Latitude":  "51.502723",
+      "lat":  "51.502723",
             
-      "Longitude":  "0.023766",
+      "lon":  "0.023766",
             
-      "Location":  "North Woolwich Road junction with Knights Road",
+      "location":  "North Woolwich Road junction with Knights Road",
             
-      "Date":  "2017-02-09T13:25:00",
+      "date":  "2017-02-09T13:25:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Newham"
+      "borough":  "Newham"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  59792,
+          "casualtyId":  59792,
                     
-          "Age":  78,
+          "age":  78,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  87193,
+          "vehicleId":  87193,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  87194,
+          "vehicleId":  87194,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  49660,
+      "accidentStatisticId":  49660,
             
-      "TflId":  635808,
+      "id":  635808,
             
-      "Latitude":  "51.509402",
+      "lat":  "51.509402",
             
-      "Longitude":  "-0.376845",
+      "lon":  "-0.376845",
             
-      "Location":  "South Road junction with St Josephs Drive",
+      "location":  "South Road junction with St Josephs Drive",
             
-      "Date":  "2017-11-09T08:56:00",
+      "date":  "2017-11-09T08:56:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Ealing"
+      "borough":  "Ealing"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  58654,
+          "casualtyId":  58654,
                     
-          "Age":  51,
+          "age":  51,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  85601,
+          "vehicleId":  85601,
                     
-          "VehicleType":  "MediumGoodsVehicle"
+          "vehicleType":  "MediumGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  85602,
+          "vehicleId":  85602,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  48769,
+      "accidentStatisticId":  48769,
             
-      "TflId":  635709,
+      "id":  635709,
             
-      "Latitude":  "51.510929",
+      "lat":  "51.510929",
             
-      "Longitude":  "-0.319291",
+      "lon":  "-0.319291",
             
-      "Location":  "Uxbridge Road junction with northfields Avenue",
+      "location":  "Uxbridge Road junction with northfields Avenue",
             
-      "Date":  "2017-10-12T14:30:00",
+      "date":  "2017-10-12T14:30:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Ealing"
+      "borough":  "Ealing"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  55918,
+          "casualtyId":  55918,
                     
-          "Age":  80,
+          "age":  80,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  81696,
+          "vehicleId":  81696,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  81697,
+          "vehicleId":  81697,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  46572,
+      "accidentStatisticId":  46572,
             
-      "TflId":  627764,
+      "id":  627764,
             
-      "Latitude":  "51.575622",
+      "lat":  "51.575622",
             
-      "Longitude":  "0.176232",
+      "lon":  "0.176232",
             
-      "Location":  "London Road junction with Knightsbridge Gardens",
+      "location":  "London Road junction with Knightsbridge Gardens",
             
-      "Date":  "2017-12-19T15:00:00",
+      "date":  "2017-12-19T15:00:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Havering"
+      "borough":  "Havering"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  54822,
+          "casualtyId":  54822,
                     
-          "Age":  80,
+          "age":  80,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  80136,
+          "vehicleId":  80136,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  80137,
+          "vehicleId":  80137,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  45702,
+      "accidentStatisticId":  45702,
             
-      "TflId":  307574,
+      "id":  307574,
             
-      "Latitude":  "51.575622",
+      "lat":  "51.575622",
             
-      "Longitude":  "0.176232",
+      "lon":  "0.176232",
             
-      "Location":  "London Road junction with Knightsbridge Gardens",
+      "location":  "London Road junction with Knightsbridge Gardens",
             
-      "Date":  "2017-12-19T15:00:00",
+      "date":  "2017-12-19T15:00:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Havering"
+      "borough":  "Havering"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  49027,
+          "casualtyId":  49027,
                     
-          "Age":  57,
+          "age":  57,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  71757,
+          "vehicleId":  71757,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  71758,
+          "vehicleId":  71758,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  41032,
+      "accidentStatisticId":  41032,
             
-      "TflId":  305112,
+      "id":  305112,
             
-      "Latitude":  "51.484078",
+      "lat":  "51.484078",
             
-      "Longitude":  "-0.184216",
+      "lon":  "-0.184216",
             
-      "Location":  "Fulham Road junction with Redcliffe Gardens",
+      "location":  "Fulham Road junction with Redcliffe Gardens",
             
-      "Date":  "2017-05-22T11:43:00",
+      "date":  "2017-05-22T11:43:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Kensington and Chelsea"
+      "borough":  "Kensington and Chelsea"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  48614,
+          "casualtyId":  48614,
                     
-          "Age":  36,
+          "age":  36,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  71149,
+          "vehicleId":  71149,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  71150,
+          "vehicleId":  71150,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  40686,
+      "accidentStatisticId":  40686,
             
-      "TflId":  625562,
+      "id":  625562,
             
-      "Latitude":  "51.485807",
+      "lat":  "51.485807",
             
-      "Longitude":  "-0.149825",
+      "lon":  "-0.149825",
             
-      "Location":  "Grosvenor Road junction with Chelsea Bridge Road",
+      "location":  "Grosvenor Road junction with Chelsea Bridge Road",
             
-      "Date":  "2017-09-27T08:15:00",
+      "date":  "2017-09-27T08:15:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Kensington and Chelsea"
+      "borough":  "Kensington and Chelsea"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  44392,
+          "casualtyId":  44392,
                     
-          "Age":  57,
+          "age":  57,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  65099,
+          "vehicleId":  65099,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  65100,
+          "vehicleId":  65100,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  37291,
+      "accidentStatisticId":  37291,
             
-      "TflId":  625302,
+      "id":  625302,
             
-      "Latitude":  "51.484078",
+      "lat":  "51.484078",
             
-      "Longitude":  "-0.184216",
+      "lon":  "-0.184216",
             
-      "Location":  "Fulham Road junction with Redcliffe Gardens",
+      "location":  "Fulham Road junction with Redcliffe Gardens",
             
-      "Date":  "2017-05-22T11:43:00",
+      "date":  "2017-05-22T11:43:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Kensington and Chelsea"
+      "borough":  "Kensington and Chelsea"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  43702,
+          "casualtyId":  43702,
                     
-          "Age":  30,
+          "age":  30,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  64090,
+          "vehicleId":  64090,
                     
-          "VehicleType":  "Car"
+          "vehicleType":  "Car"
         
                 },
                 
         {
                     
-          "VehicleId":  64091,
+          "vehicleId":  64091,
                     
-          "VehicleType":  "Car"
+          "vehicleType":  "Car"
         
                 },
                 
         {
                     
-          "VehicleId":  64092,
+          "vehicleId":  64092,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  36726,
+      "accidentStatisticId":  36726,
             
-      "TflId":  639533,
+      "id":  639533,
             
-      "Latitude":  "51.628073",
+      "lat":  "51.628073",
             
-      "Longitude":  "-0.049087",
+      "lon":  "-0.049087",
             
-      "Location":  "Bounces Road junction with Exeter Road N9",
+      "location":  "Bounces Road junction with Exeter Road N9",
             
-      "Date":  "2017-02-06T01:42:00",
+      "date":  "2017-02-06T01:42:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Enfield"
+      "borough":  "Enfield"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  31702,
+          "casualtyId":  31702,
                     
-          "Age":  33,
+          "age":  33,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  41806,
+          "vehicleId":  41806,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  26825,
+      "accidentStatisticId":  26825,
             
-      "TflId":  297700,
+      "id":  297700,
             
-      "Latitude":  "51.558971",
+      "lat":  "51.558971",
             
-      "Longitude":  "-0.053228",
+      "lon":  "-0.053228",
             
-      "Location":  "Lea Bridge Road 15 metres south of junction with Cornthwaite Road",
+      "location":  "Lea Bridge Road 15 metres south of junction with Cornthwaite Road",
             
-      "Date":  "2017-10-23T14:30:00",
+      "date":  "2017-10-23T14:30:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Hackney"
+      "borough":  "Hackney"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  29361,
+          "casualtyId":  29361,
                     
-          "Age":  32,
+          "age":  32,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  48327,
+          "vehicleId":  48327,
                     
-          "VehicleType":  "BusOrCoach"
+          "vehicleType":  "BusOrCoach"
         
                 },
                 
         {
                     
-          "VehicleId":  48328,
+          "vehicleId":  48328,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  24834,
+      "accidentStatisticId":  24834,
             
-      "TflId":  618162,
+      "id":  618162,
             
-      "Latitude":  "51.516166",
+      "lat":  "51.516166",
             
-      "Longitude":  "-0.069496",
+      "lon":  "-0.069496",
             
-      "Location":  "White Church Lane junction with Whitechapel Road",
+      "location":  "White Church Lane junction with Whitechapel Road",
             
-      "Date":  "2017-02-06T08:55:00",
+      "date":  "2017-02-06T08:55:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Tower Hamlets"
+      "borough":  "Tower Hamlets"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  26605,
+          "casualtyId":  26605,
                     
-          "Age":  33,
+          "age":  33,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  39012,
+          "vehicleId":  39012,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  22527,
+      "accidentStatisticId":  22527,
             
-      "TflId":  617890,
+      "id":  617890,
             
-      "Latitude":  "51.558971",
+      "lat":  "51.558971",
             
-      "Longitude":  "-0.053228",
+      "lon":  "-0.053228",
             
-      "Location":  "Lea Bridge Road 15 metres south of junction with Cornthwaite Road",
+      "location":  "Lea Bridge Road 15 metres south of junction with Cornthwaite Road",
             
-      "Date":  "2017-10-23T14:30:00",
+      "date":  "2017-10-23T14:30:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Hackney"
+      "borough":  "Hackney"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  19849,
+          "casualtyId":  19849,
                     
-          "Age":  36,
+          "age":  36,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  29096,
+          "vehicleId":  29096,
                     
-          "VehicleType":  "LightGoodsVehicle"
+          "vehicleType":  "LightGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  29097,
+          "vehicleId":  29097,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  16809,
+      "accidentStatisticId":  16809,
             
-      "TflId":  296665,
+      "id":  296665,
             
-      "Latitude":  "51.549848",
+      "lat":  "51.549848",
             
-      "Longitude":  "-0.128044",
+      "lon":  "-0.128044",
             
-      "Location":  "Camden Road 20 metres west of junction with Hilldrop Crescent",
+      "location":  "Camden Road 20 metres west of junction with Hilldrop Crescent",
             
-      "Date":  "2017-08-29T06:50:00",
+      "date":  "2017-08-29T06:50:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Islington"
+      "borough":  "Islington"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  19421,
+          "casualtyId":  19421,
                     
-          "Age":  30,
+          "age":  30,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  28456,
+          "vehicleId":  28456,
                     
-          "VehicleType":  "Car"
+          "vehicleType":  "Car"
         
                 },
                 
         {
                     
-          "VehicleId":  28457,
+          "vehicleId":  28457,
                     
-          "VehicleType":  "Car"
+          "vehicleType":  "Car"
         
                 },
                 
         {
                     
-          "VehicleId":  28458,
+          "vehicleId":  28458,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  16465,
+      "accidentStatisticId":  16465,
             
-      "TflId":  319343,
+      "id":  319343,
             
-      "Latitude":  "51.628073",
+      "lat":  "51.628073",
             
-      "Longitude":  "-0.049087",
+      "lon":  "-0.049087",
             
-      "Location":  "Bounces Road junction with Exeter Road N9",
+      "location":  "Bounces Road junction with Exeter Road N9",
             
-      "Date":  "2017-02-06T01:42:00",
+      "date":  "2017-02-06T01:42:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Enfield"
+      "borough":  "Enfield"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  13588,
+          "casualtyId":  13588,
                     
-          "Age":  36,
+          "age":  36,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  18800,
+          "vehicleId":  18800,
                     
-          "VehicleType":  "LightGoodsVehicle"
+          "vehicleType":  "LightGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  18801,
+          "vehicleId":  18801,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  11491,
+      "accidentStatisticId":  11491,
             
-      "TflId":  616855,
+      "id":  616855,
             
-      "Latitude":  "51.549848",
+      "lat":  "51.549848",
             
-      "Longitude":  "-0.128044",
+      "lon":  "-0.128044",
             
-      "Location":  "Camden Road 20 metres west of junction with Hilldrop Crescent",
+      "location":  "Camden Road 20 metres west of junction with Hilldrop Crescent",
             
-      "Date":  "2017-08-29T06:50:00",
+      "date":  "2017-08-29T06:50:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Islington"
+      "borough":  "Islington"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  10991,
+          "casualtyId":  10991,
                     
-          "Age":  32,
+          "age":  32,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  15030,
+          "vehicleId":  15030,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  15031,
+          "vehicleId":  15031,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  9348,
+      "accidentStatisticId":  9348,
             
-      "TflId":  308310,
+      "id":  308310,
             
-      "Latitude":  "51.502723",
+      "lat":  "51.502723",
             
-      "Longitude":  "0.023766",
+      "lon":  "0.023766",
             
-      "Location":  "North Woolwich Road junction with Knights Road",
+      "location":  "North Woolwich Road junction with Knights Road",
             
-      "Date":  "2017-02-09T13:25:00",
+      "date":  "2017-02-09T13:25:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Newham"
+      "borough":  "Newham"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  5003,
+          "casualtyId":  5003,
                     
-          "Age":  78,
+          "age":  78,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  7418,
+          "vehicleId":  7418,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  7419,
+          "vehicleId":  7419,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  4292,
+      "accidentStatisticId":  4292,
             
-      "TflId":  315618,
+      "id":  315618,
             
-      "Latitude":  "51.509402",
+      "lat":  "51.509402",
             
-      "Longitude":  "-0.376845",
+      "lon":  "-0.376845",
             
-      "Location":  "South Road junction with St Josephs Drive",
+      "location":  "South Road junction with St Josephs Drive",
             
-      "Date":  "2017-11-09T08:56:00",
+      "date":  "2017-11-09T08:56:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Ealing"
+      "borough":  "Ealing"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  2992,
+          "casualtyId":  2992,
                     
-          "Age":  51,
+          "age":  51,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  4475,
+          "vehicleId":  4475,
                     
-          "VehicleType":  "MediumGoodsVehicle"
+          "vehicleType":  "MediumGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  4476,
+          "vehicleId":  4476,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  2597,
+      "accidentStatisticId":  2597,
             
-      "TflId":  315519,
+      "id":  315519,
             
-      "Latitude":  "51.510929",
+      "lat":  "51.510929",
             
-      "Longitude":  "-0.319291",
+      "lon":  "-0.319291",
             
-      "Location":  "Uxbridge Road junction with northfields Avenue",
+      "location":  "Uxbridge Road junction with northfields Avenue",
             
-      "Date":  "2017-10-12T14:30:00",
+      "date":  "2017-10-12T14:30:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Ealing"
+      "borough":  "Ealing"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  863,
+          "casualtyId":  863,
                     
-          "Age":  36,
+          "age":  36,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  1308,
+          "vehicleId":  1308,
                     
-          "VehicleType":  "HeavyGoodsVehicle"
+          "vehicleType":  "HeavyGoodsVehicle"
         
                 },
                 
         {
                     
-          "VehicleId":  1309,
+          "vehicleId":  1309,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  771,
+      "accidentStatisticId":  771,
             
-      "TflId":  305372,
+      "id":  305372,
             
-      "Latitude":  "51.485807",
+      "lat":  "51.485807",
             
-      "Longitude":  "-0.149825",
+      "lon":  "-0.149825",
             
-      "Location":  "Grosvenor Road junction with Chelsea Bridge Road",
+      "location":  "Grosvenor Road junction with Chelsea Bridge Road",
             
-      "Date":  "2017-09-27T08:15:00",
+      "date":  "2017-09-27T08:15:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Kensington and Chelsea"
+      "borough":  "Kensington and Chelsea"
     
         },
         
     {
             
-      "Casualties":  [
+      "casualties":  [
                 
         {
                     
-          "CasualtyId":  800,
+          "casualtyId":  800,
                     
-          "Age":  32,
+          "age":  32,
                     
-          "Class":  "Driver",
+          "class":  "Driver",
                     
-          "Severity":  2,
+          "severity":  2,
                     
-          "Mode":  "PedalCycle",
+          "mode":  "PedalCycle",
                     
-          "AgeBand":  "Adult"
+          "ageBand":  "Adult"
         
                 }
       
             ],
             
-      "Vehicles":  [
+      "vehicles":  [
                 
         {
                     
-          "VehicleId":  1213,
+          "vehicleId":  1213,
                     
-          "VehicleType":  "BusOrCoach"
+          "vehicleType":  "BusOrCoach"
         
                 },
                 
         {
                     
-          "VehicleId":  1214,
+          "vehicleId":  1214,
                     
-          "VehicleType":  "PedalCycle"
+          "vehicleType":  "PedalCycle"
         
                 }
       
             ],
             
-      "AccidentStatisticId":  714,
+      "accidentStatisticId":  714,
             
-      "TflId":  297972,
+      "id":  297972,
             
-      "Latitude":  "51.516166",
+      "lat":  "51.516166",
             
-      "Longitude":  "-0.069496",
+      "lon":  "-0.069496",
             
-      "Location":  "White Church Lane junction with Whitechapel Road",
+      "location":  "White Church Lane junction with Whitechapel Road",
             
-      "Date":  "2017-02-06T08:55:00",
+      "date":  "2017-02-06T08:55:00",
             
-      "Severity":  2,
+      "severity":  2,
             
-      "Borough":  "Tower Hamlets"
+      "borough":  "Tower Hamlets"
     
         }
   

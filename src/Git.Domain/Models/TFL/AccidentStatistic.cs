@@ -33,7 +33,6 @@ namespace Git.Domain.Models.TFL
     /// </example>>
     public class AccidentStatistic
     {
-        [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "lat")]
@@ -42,7 +41,6 @@ namespace Git.Domain.Models.TFL
         [JsonProperty(PropertyName = "lon")]
         public string Longitude { get; set; }
 
-        [JsonProperty(PropertyName = "location")]
         public string Location { get; set; }
 
         [JsonProperty(PropertyName = "date")]
@@ -57,16 +55,12 @@ namespace Git.Domain.Models.TFL
             }
         }
 
-        [JsonProperty(PropertyName = "severity")]
         public Severity Severity { get; set; }
 
-        [JsonProperty(PropertyName = "borough")]
         public string Borough { get; set; }
 
-        [JsonProperty(PropertyName = "casualties")]
         public List<Casualty> Casualties { get; set; }
 
-        [JsonProperty(PropertyName = "vehicles")]
         public List<Vehicle> Vehicles { get; set; }
     }
 }

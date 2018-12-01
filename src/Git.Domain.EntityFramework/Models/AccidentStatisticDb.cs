@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Git.Domain.Models.TFL;
+using Newtonsoft.Json;
 
 namespace Git.Domain.EntityFramework.Models
 {
@@ -20,10 +21,13 @@ namespace Git.Domain.EntityFramework.Models
         [Key]
         public int AccidentStatisticId { get; set; }
 
+        [JsonProperty(PropertyName = "id")]
         public int TflId { get; set; }
 
+        [JsonProperty(PropertyName = "lat")]
         public string Latitude { get; set; }
 
+        [JsonProperty(PropertyName = "lon")]
         public string Longitude { get; set; }
 
         public string Location { get; set; }
