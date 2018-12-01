@@ -1,0 +1,77 @@
+﻿{
+    
+  "data":  [
+        
+    {
+            
+      "Casualties":  [
+                
+        {
+                    
+          "CasualtyId":  60448,
+                    
+          "Age":  32,
+                    
+          "Class":  "Driver",
+                    
+          "Severity":  2,
+                    
+          "Mode":  "PedalCycle",
+                    
+          "AgeBand":  "Adult"
+        
+                }
+      
+            ],
+            
+      "Vehicles":  [
+                
+        {
+                    
+          "VehicleId":  88117,
+                    
+          "VehicleType":  "HeavyGoodsVehicle"
+        
+                },
+                
+        {
+                    
+          "VehicleId":  88118,
+                    
+          "VehicleType":  "PedalCycle"
+        
+                }
+      
+            ],
+            
+      "AccidentStatisticId":  50185,
+            
+      "TflId":  628500,
+            
+      "Latitude":  "51.502723",
+            
+      "Longitude":  "0.023766",
+            
+      "Location":  "North Woolwich Road junction with Knights Road",
+            
+      "Date":  "2017-02-09T13:25:00",
+            
+      "Severity":  2,
+            
+      "Borough":  "Newham"
+    
+        }
+  
+    ],
+    
+  "page":  1,
+    
+  "nextPage":  2,
+    
+  "lastPage":  20,
+    
+  "pageSize":  1,
+    
+  "total":  20
+
+}

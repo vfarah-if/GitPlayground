@@ -21,7 +21,7 @@ namespace Git.Domain.EntityFramework
         public async Task<Paged<AccidentStatisticDb>> Get(
             Expression<Func<AccidentStatisticDb, bool>> filter = null,            
             Expression<Func<AccidentStatisticDb, object>> sortBy = null,
-            bool inReverse = false,
+            bool ascending = false,
             int page = 1,
             int pageSize = 100)
         {
@@ -36,7 +36,6 @@ namespace Git.Domain.EntityFramework
             if (sortBy == null)
             {
                 sortBy = db => db.Date;
-                inReverse = true;
             }
 
             var accidentCount = await Count(filter);
@@ -59,14 +58,8 @@ namespace Git.Domain.EntityFramework
                     .AsQueryable();
 
             Debug.Assert(accidentQuery != null, nameof(accidentQuery) + " != null");
-            IEnumerable<AccidentStatisticDb> accidents = inReverse
-                ? await accidentQuery
-                    .OrderByDescending(sortBy)
-                    .Skip(skip)
-                    .Take(pageSize)
-                    .ToListAsync()
-                : await accidentQuery
-                    .OrderBy(sortBy)
+            IEnumerable<AccidentStatisticDb> accidents = await accidentQuery
+                    .OrderIt(sortBy, ascending)
                     .Skip(skip)
                     .Take(pageSize)
                     .ToListAsync();            

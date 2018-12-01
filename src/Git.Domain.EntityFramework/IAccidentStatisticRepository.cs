@@ -11,7 +11,7 @@ namespace Git.Domain.EntityFramework
         Task<Paged<AccidentStatisticDb>> Get(
             Expression<Func<AccidentStatisticDb, bool>> filter = null, 
             Expression<Func<AccidentStatisticDb, object>> sortBy = null, 
-            bool inReverse = false, 
+            bool ascending = false,
             int page = 1, 
             int pageSize = 100);
     }

@@ -1,15 +1,17 @@
 ﻿using FluentAssertions;
 using System;
 using System.Data.Entity;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ApprovalTests;
+using ApprovalTests.Reporters;
 using Git.Domain.Models.TFL;
 using Xunit;
 
 namespace Git.Domain.EntityFramework.Unit.Tests
 {
+    [UseReporter(typeof(DiffReporter), typeof(FileLauncherWithDelayReporter))]
     public class AccidentStatisticRepositoryShould : IDisposable
     {
         private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
@@ -54,18 +56,64 @@ namespace Git.Domain.EntityFramework.Unit.Tests
 
             actualCount.Should().Be(1);
         }
-
-        [Fact]
-        public async Task GetAListOfFilteredAccidents()
+        
+        [Fact]        
+        public void GetAListOfFilteredByFatalCyclingAccidentsAndSortedByIdAscending()
         {
-            var actual = await _subject.Get(filter => 
+            var actual = _subject.Get(filter => 
                     filter.Severity == Severity.Fatal &&
                     filter.Casualties.Any(casualty =>
                         casualty.Mode.Equals("PedalCycle") && 
                         casualty.Severity == Severity.Fatal)
-                ,sort => sort.Borough, true);
+                ,sort => sort.AccidentStatisticId, true).GetAwaiter().GetResult();
 
-            actual.Should().NotBeNull();
+            Approvals.VerifyJson(actual.ToJson());
+        }
+
+        [Fact]
+        public void GetAListOfFilteredByFatalCyclingAccidentsAndSortedByIdDescending()
+        {
+            var actual = _subject.Get(filter =>
+                    filter.Severity == Severity.Fatal &&
+                    filter.Casualties.Any(casualty =>
+                        casualty.Mode.Equals("PedalCycle") &&
+                        casualty.Severity == Severity.Fatal)
+                , sort => sort.AccidentStatisticId, false)
+                .GetAwaiter()
+                .GetResult();
+
+            Approvals.VerifyJson(actual.ToJson());
+        }
+
+        [Fact]
+        public void GetAListOfFilteredByFatalCyclingAccidentsAndSortedByIdDescendingAndOnlyReturnPage1Of1()
+        {
+            var actual = _subject.Get(filter =>
+                    filter.Severity == Severity.Fatal &&
+                    filter.Casualties.Any(casualty =>
+                        casualty.Mode.Equals("PedalCycle") &&
+                        casualty.Severity == Severity.Fatal)
+                , sort => sort.AccidentStatisticId, false, 1, 1)
+                .GetAwaiter()
+                .GetResult();
+
+            Approvals.VerifyJson(actual.ToJson());
+        }
+
+
+        [Fact]
+        public void GetAListOfFilteredByFatalCyclingAccidentsAndSortedByIdDescendingAndOnlyReturnPage2Of1()
+        {
+            var actual = _subject.Get(filter =>
+                    filter.Severity == Severity.Fatal &&
+                    filter.Casualties.Any(casualty =>
+                        casualty.Mode.Equals("PedalCycle") &&
+                        casualty.Severity == Severity.Fatal)
+                , sort => sort.AccidentStatisticId, false, 2, 1)
+                .GetAwaiter()
+                .GetResult();
+
+            Approvals.VerifyJson(actual.ToJson());
         }
 
         public void Dispose()
