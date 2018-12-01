@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Git.Domain.EntityFramework.Unit.Tests
 {
-    [UseReporter(typeof(DiffReporter), typeof(FileLauncherWithDelayReporter))]
+    [UseReporter(typeof(DiffReporter))]
     public class AccidentStatisticRepositoryShould : IDisposable
     {
         private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
@@ -110,6 +110,40 @@ namespace Git.Domain.EntityFramework.Unit.Tests
                         casualty.Mode.Equals("PedalCycle") &&
                         casualty.Severity == Severity.Fatal)
                 , sort => sort.AccidentStatisticId, false, 2, 1)
+                .GetAwaiter()
+                .GetResult();
+
+            Approvals.VerifyJson(actual.ToJson());
+        }
+
+        [Fact]
+        public void GetAListOfFilteredByFatalCyclingAccidentsAndWhenAThePageIsHigherThan20ReturnPage20()
+        {
+            const int AboveTwentyPage = 21;
+            var actual = _subject.Get(filter =>
+                        filter.Severity == Severity.Fatal &&
+                        filter.Casualties.Any(casualty =>
+                            casualty.Mode.Equals("PedalCycle") &&
+                            casualty.Severity == Severity.Fatal)
+                    , sort => sort.AccidentStatisticId, false, AboveTwentyPage, 1)
+                .GetAwaiter()
+                .GetResult();
+
+            Approvals.VerifyJson(actual.ToJson());
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void GetAListOfFilteredByFatalCyclingAccidentsAndWhenThePageIsBelowZeroShouldReturnTheFirstPage(
+            int invalidPage)
+        {
+            var actual = _subject.Get(filter =>
+                        filter.Severity == Severity.Fatal &&
+                        filter.Casualties.Any(casualty =>
+                            casualty.Mode.Equals("PedalCycle") &&
+                            casualty.Severity == Severity.Fatal)
+                    , sort => sort.AccidentStatisticId, false, invalidPage, 1)
                 .GetAwaiter()
                 .GetResult();
 

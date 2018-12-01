@@ -32,7 +32,6 @@ namespace Git.Domain.EntityFramework
 
             // Should validate the maximum page size but will leave it open for abuse :)
 
-            var skip = (page - 1) * pageSize;
             if (sortBy == null)
             {
                 sortBy = db => db.Date;
@@ -43,6 +42,13 @@ namespace Git.Domain.EntityFramework
             var maxPageCount = accidentCount % pageSize != 0
                 ? accidentCount / pageSize + 1
                 : accidentCount / pageSize;
+
+            if (page > maxPageCount)
+            {
+                page = maxPageCount;
+            }
+
+            var skip = (page - 1) * pageSize;
 
             IQueryable<AccidentStatisticDb> accidentQuery = filter != null
                 ? _accidentStatisticDbContext?

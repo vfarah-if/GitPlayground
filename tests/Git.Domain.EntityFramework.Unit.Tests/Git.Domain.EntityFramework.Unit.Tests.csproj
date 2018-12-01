@@ -205,6 +205,8 @@
     <None Include="AccidentStatisticRepositoryShould.GetAListOfFilteredByFatalCyclingAccidentsAndSortedByIdDescending.approved.json" />
     <None Include="AccidentStatisticRepositoryShould.GetAListOfFilteredByFatalCyclingAccidentsAndSortedByIdDescendingAndOnlyReturnPage1Of1.approved.json" />
     <None Include="AccidentStatisticRepositoryShould.GetAListOfFilteredByFatalCyclingAccidentsAndSortedByIdDescendingAndOnlyReturnPage2Of1.approved.json" />
+    <None Include="AccidentStatisticRepositoryShould.GetAListOfFilteredByFatalCyclingAccidentsAndWhenAThePageIsHigherThan20ReturnPage20.approved.json" />
+    <None Include="AccidentStatisticRepositoryShould.GetAListOfFilteredByFatalCyclingAccidentsAndWhenThePageIsBelowZeroShouldReturnTheFirstPage.approved.json" />
     <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

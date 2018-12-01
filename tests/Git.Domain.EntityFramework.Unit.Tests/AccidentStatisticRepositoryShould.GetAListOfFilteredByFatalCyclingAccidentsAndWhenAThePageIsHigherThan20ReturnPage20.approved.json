@@ -1,0 +1,77 @@
+﻿{
+    
+  "data":  [
+        
+    {
+            
+      "Casualties":  [
+                
+        {
+                    
+          "CasualtyId":  800,
+                    
+          "Age":  32,
+                    
+          "Class":  "Driver",
+                    
+          "Severity":  2,
+                    
+          "Mode":  "PedalCycle",
+                    
+          "AgeBand":  "Adult"
+        
+                }
+      
+            ],
+            
+      "Vehicles":  [
+                
+        {
+                    
+          "VehicleId":  1213,
+                    
+          "VehicleType":  "BusOrCoach"
+        
+                },
+                
+        {
+                    
+          "VehicleId":  1214,
+                    
+          "VehicleType":  "PedalCycle"
+        
+                }
+      
+            ],
+            
+      "AccidentStatisticId":  714,
+            
+      "TflId":  297972,
+            
+      "Latitude":  "51.516166",
+            
+      "Longitude":  "-0.069496",
+            
+      "Location":  "White Church Lane junction with Whitechapel Road",
+            
+      "Date":  "2017-02-06T08:55:00",
+            
+      "Severity":  2,
+            
+      "Borough":  "Tower Hamlets"
+    
+        }
+  
+    ],
+    
+  "page":  20,
+    
+  "previousPage":  19,
+    
+  "lastPage":  20,
+    
+  "pageSize":  1,
+    
+  "total":  20
+
+}
