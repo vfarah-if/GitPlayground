@@ -1,47 +1,76 @@
-﻿using System.Data.Entity;
+﻿using FluentAssertions;
+using System;
+using System.Data.Entity;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using Git.Domain.EntityFramework.Models;
-using Moq;
-using Moq.AutoMock;
+using Git.Domain.Models.TFL;
 using Xunit;
 
 namespace Git.Domain.EntityFramework.Unit.Tests
 {
-    // TODO: Figure out an effective way to unit test ef but for now, the console has been 
-    //       a driver for the test
-    public class AccidentStatisticRepositoryShould
+    public class AccidentStatisticRepositoryShould : IDisposable
     {
-        private AutoMocker _autoMock;
-        private AccidentStatisticRepository _subject;
-        private Mock<IAccidentStatisticDbContext> _accidentStatisticDbContextMock;
-        private Mock<DbSet<AccidentStatisticDb>> _accidentStatisticsDbSetMock;
-        private int _countResult;
+        private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
+        private readonly AccidentStatisticRepository _subject;
 
         public AccidentStatisticRepositoryShould()
         {
-            _autoMock = new AutoMocker();
-            _subject = _autoMock.CreateInstance<AccidentStatisticRepository>();
-            
-            _accidentStatisticsDbSetMock = new Mock<DbSet<AccidentStatisticDb>>();
-            _countResult = 4;
-
-            _accidentStatisticDbContextMock = _autoMock.GetMock<IAccidentStatisticDbContext>();
-            _accidentStatisticDbContextMock.Setup(x => x.AccidentStatistics)
-                .Returns(_accidentStatisticsDbSetMock.Object);
-//            _accidentStatisticsDbSetMock
-//                .Setup(x => x.CountAsync())
-//                .ReturnsAsync(() => _countResult);
-
-            _accidentStatisticDbContextMock.Setup(x => x.AccidentStatistics)
-                .Returns(_accidentStatisticsDbSetMock.Object);
+            _accidentStatisticDbContext = new AccidentStatisticDbContext();
+            _subject = new AccidentStatisticRepository(_accidentStatisticDbContext);
+            int actualCount = _accidentStatisticDbContext.AccidentStatistics.Count();
+            if (actualCount == 0)
+            {
+                // Hack to let the temp database generate in the background
+                // TODO: Come up with a more efficient way of doing this
+                do
+                {
+                    Thread.Sleep(10000);
+                } while (!_accidentStatisticDbContext.AccidentStatistics.Any());
+            }
         }
 
-        [Fact(Skip = "Need to figure out a good way of testing entity framework when I have time")]
+        [Fact]
+        public async Task ContainDataForThisIntegrationTestToRunSuccessfully()
+        {
+            var actualCount = await _accidentStatisticDbContext.AccidentStatistics.CountAsync();
+
+            actualCount.Should().BeGreaterThan(0, "If this test fails than there is no database generated yet");
+        }
+
+        [Fact]
         public async Task CountAccidentStatistics()
         {
-            await _subject.Count();
+            var actualCount = await _subject.Count();
 
-            _accidentStatisticsDbSetMock.Verify(x => x.CountAsync(), Times.Once);
+            actualCount.Should().BeGreaterThan(0);
+        }
+
+        [Fact]
+        public async Task CountForOneAccidentStatisticWhenFilteringForTheFirstAccident()
+        {
+            var actualCount = await _subject.Count( x=> x.AccidentStatisticId == 1);
+
+            actualCount.Should().Be(1);
+        }
+
+        [Fact]
+        public async Task GetAListOfFilteredAccidents()
+        {
+            var actual = await _subject.Get(filter => 
+                    filter.Severity == Severity.Fatal &&
+                    filter.Casualties.Any(casualty =>
+                        casualty.Mode.Equals("PedalCycle") && 
+                        casualty.Severity == Severity.Fatal)
+                ,sort => sort.Borough, true);
+
+            actual.Should().NotBeNull();
+        }
+
+        public void Dispose()
+        {
+            _accidentStatisticDbContext.Dispose();
         }
     }
 }

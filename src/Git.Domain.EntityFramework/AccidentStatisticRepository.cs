@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Git.Domain.EntityFramework
-{
+{    
     public class AccidentStatisticRepository : IAccidentStatisticRepository
     {
         private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
@@ -19,7 +19,7 @@ namespace Git.Domain.EntityFramework
         }
 
         public async Task<Paged<AccidentStatisticDb>> Get(
-            Expression<Func<AccidentStatisticDb, bool>> filter = null,
+            Expression<Func<AccidentStatisticDb, bool>> filter = null,            
             Expression<Func<AccidentStatisticDb, object>> sortBy = null,
             bool inReverse = false,
             int page = 1,

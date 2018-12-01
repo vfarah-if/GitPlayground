@@ -40,7 +40,7 @@ namespace Git.Domain.EntityFramework.ConsoleApp
                             casualty.Mode.Equals("PedalCycle") && casualty.Severity == Severity.Fatal),
                     sort => sort.Borough, false, nextPage.Value);
 
-                Console.WriteLine($"Displaing Page {nextPage} returning '{result.PageSize}' records of '{result.Total}' cycling fatalities in total from {from.ToLongDateString()} to {to.ToLongDateString()} ...");
+                Console.WriteLine($"Displaying Page {nextPage} returning '{result.PageSize}' records of '{result.Total}' cycling fatalities in total from {from.ToLongDateString()} to {to.ToLongDateString()} ...");
                 foreach (var cyclingAccident in result.Data)
                 {
                     Console.WriteLine($"Cycling accident occured in the borough of {cyclingAccident.Borough.ToUpper()} involving '{cyclingAccident.Casualties.Count}' casualties and '{cyclingAccident.Vehicles.Count}' vehicles.");

@@ -48,7 +48,12 @@ namespace Git.Domain.EntityFramework
             Trace.TraceInformation("About to generate data from the TFL live feed ...");
             ITransportForLondonClient transportForLondonClient = new TransportForLondonClient(Configuration.Create());
             var lastYear = DateTime.Now.Year - 1;
-            for (int year = lastYear; year >= 2005; year--)
+            var firstYear = 2005;
+            if (IsTestDatabase(context))
+            {
+                firstYear = 2017;
+            }
+            for (int year = lastYear; year >= firstYear; year--)
             {
                 Trace.TraceInformation($"Getting data for year '{year}'");
                 Stopwatch stopwatch = Stopwatch.StartNew();
@@ -61,6 +66,11 @@ namespace Git.Domain.EntityFramework
                 stopwatch.Stop();
                 Trace.TraceInformation($"Took '{stopwatch.Elapsed.ToString()}' to insert data for year '{year}' into the local database");
             }
+        }
+
+        private static bool IsTestDatabase(AccidentStatisticDbContext context)
+        {
+            return context.Database.Connection.Database.Contains("AccidentStatisticsTestDB");
         }
 
         private async Task GeneraDataFor(AccidentStatisticDbContext context,
