@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Git.Domain.Owin.Api.v1.Models
+namespace Git.Domain.Owin.Api.Models
 {
     public class AccidentStatisticsQuery
     {

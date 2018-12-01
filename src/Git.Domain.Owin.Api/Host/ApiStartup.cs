@@ -10,7 +10,7 @@ using System.Web.Http.ModelBinding.Binders;
 using Git.Domain.Owin.Api.Host;
 using Git.Domain.Owin.Api.Infrastructure.ModelBinders;
 using Git.Domain.Owin.Api.Infrastructure.Configuration;
-using Git.Domain.Owin.Api.v1.Models;
+using Git.Domain.Owin.Api.Models;
 using Microsoft.Owin;
 using Owin;
 using Swashbuckle.Application;

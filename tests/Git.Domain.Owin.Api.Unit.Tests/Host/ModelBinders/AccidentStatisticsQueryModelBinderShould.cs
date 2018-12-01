@@ -9,7 +9,7 @@ using System.Web.Http.Metadata.Providers;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.Routing;
 using FluentAssertions;
-using Git.Domain.Owin.Api.v1.Models;
+using Git.Domain.Owin.Api.Models;
 using Xunit;
 
 namespace Git.Domain.Owin.Api.Unit.Tests.Host.ModelBinders

@@ -1,8 +1,8 @@
-﻿using Git.Domain.Owin.Api.v1.Models;
-using System;
+﻿using System;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.ModelBinding;
+using Git.Domain.Owin.Api.Models;
 using IModelBinder = System.Web.Http.ModelBinding.IModelBinder;
 
 namespace Git.Domain.Owin.Api.Infrastructure.ModelBinders
