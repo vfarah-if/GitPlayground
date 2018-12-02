@@ -3,9 +3,9 @@ using System.Linq.Expressions;
 
 namespace Git.Domain.EntityFramework
 {
-    public class SortOption<TSortObject>
+    public class SortOptions<TSortObject>
     {
-        public SortOption(Expression<Func<TSortObject, object>> sortBy, 
+        public SortOptions(Expression<Func<TSortObject, object>> sortBy, 
             bool isAscending = true)
         {
             SortBy = sortBy;
@@ -15,9 +15,9 @@ namespace Git.Domain.EntityFramework
         public Expression<Func<TSortObject, object>> SortBy { get; }
         public bool IsAscending { get; }
 
-        public static SortOption<TSortObject> OrderBy(Expression<Func<TSortObject, object>> sortBy, bool ascending = true)
+        public static SortOptions<TSortObject> OrderBy(Expression<Func<TSortObject, object>> sortBy, bool ascending = true)
         {
-            return new SortOption<TSortObject>(sortBy, ascending);
+            return new SortOptions<TSortObject>(sortBy, ascending);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Git.Domain.Models.TFL;
 using Console = System.Console;
 
-using static Git.Domain.EntityFramework.SortOption<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
+using static Git.Domain.EntityFramework.SortOptions<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
 
 namespace Git.Domain.EntityFramework.ConsoleApp
 {

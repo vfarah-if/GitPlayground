@@ -11,6 +11,7 @@ namespace Git.Domain.EntityFramework
 {    
     public class AccidentStatisticRepository : IAccidentStatisticRepository
     {
+//        private const int MaxPageSize = 1000;
         private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
 
         public AccidentStatisticRepository(IAccidentStatisticDbContext accidentStatisticDbContext)
@@ -20,7 +21,7 @@ namespace Git.Domain.EntityFramework
 
         public async Task<Paged<AccidentStatisticDb>> Get(
             Expression<Func<AccidentStatisticDb, bool>> filter = null,
-            SortOption<AccidentStatisticDb> sortOption = null,
+            SortOptions<AccidentStatisticDb> sortOption = null,
             int page = 1,
             int pageSize = 100)
         {
@@ -30,12 +31,20 @@ namespace Git.Domain.EntityFramework
                 page = 1;
             }
 
-            // Should validate the maximum page size but will leave it open for abuse :)
+            /* Should validate the maximum page size but will leave it open for abuse as :)
+                as it is a smallish database, readonly and it is a great way to see why
+                it is bad to leave it open
+             */
+              // Uncomment if you want it done better and write some tests for it :)
+//            if (pageSize > MaxPageSize)
+//            {
+//                pageSize = MaxPageSize;
+//            }
 
             if (sortOption == null)
             {
-                Trace.TraceWarning($"The default date sorting will be assumed");
-                sortOption = SortOption<AccidentStatisticDb>.OrderBy(x => x.Date, false);
+                Trace.TraceWarning($"The default date sorting descending will be assumed");
+                sortOption = SortOptions<AccidentStatisticDb>.OrderBy(x => x.Date);
             }
 
             var accidentCount = await Count(filter);

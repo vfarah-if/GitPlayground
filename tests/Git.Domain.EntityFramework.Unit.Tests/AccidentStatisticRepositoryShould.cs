@@ -9,7 +9,7 @@ using ApprovalTests.Reporters;
 using Git.Domain.Models.TFL;
 using Xunit;
 
-using static Git.Domain.EntityFramework.SortOption<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
+using static Git.Domain.EntityFramework.SortOptions<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
 
 namespace Git.Domain.EntityFramework.Unit.Tests
 {

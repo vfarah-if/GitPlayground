@@ -10,7 +10,7 @@ namespace Git.Domain.EntityFramework
         Task<int> Count(Expression<Func<AccidentStatisticDb, bool>> filter = null);
         Task<Paged<AccidentStatisticDb>> Get(
             Expression<Func<AccidentStatisticDb, bool>> filter = null, 
-            SortOption<AccidentStatisticDb> sortOption = null,
+            SortOptions<AccidentStatisticDb> sortOption = null,
             int page = 1, 
             int pageSize = 100);
     }
