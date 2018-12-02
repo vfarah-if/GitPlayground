@@ -14,7 +14,7 @@ import { DEFAULT_FROM_DATE } from './../accident-statistic-list/accident-statist
 
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
-
+import 'leaflet/dist/images/marker-icon-2x.png';
 export type ImageOptions = 'Heatmap' | 'Macarbe' | 'Friendly';
 
 @Component({
