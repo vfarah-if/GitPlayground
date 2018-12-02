@@ -75,7 +75,7 @@ namespace Git.Domain.Owin.Api.Host
 
         private static void ConfigureSwagger(HttpConfiguration config)
         {
-            SwaggerConfig.Register();
+            // SwaggerConfig.Register();
             config.EnableSwagger(
                     c =>
                     {
