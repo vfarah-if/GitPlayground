@@ -44,10 +44,10 @@ namespace Git.Domain.Owin.Api.Host
             ConfigureSwagger(config);
             UseCorsMiddleware(config);
 
-            ConfigureJsonAsCamelCase(config);
+            ConfigureJsonWithCamelCasePropertyNames(config);
         }
 
-        private static void ConfigureJsonAsCamelCase(HttpConfiguration config)
+        private static void ConfigureJsonWithCamelCasePropertyNames(HttpConfiguration config)
         {            
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();         
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

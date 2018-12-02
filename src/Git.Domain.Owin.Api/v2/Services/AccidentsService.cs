@@ -42,9 +42,9 @@ namespace Git.Domain.Owin.Api.v2.Services
 
             var severity = ParseSeverity(accidentStatisticsQuery.Severity);
             var result = await accidentStatisticRepository.Get(filter =>
-                    filter.Date >= accidentStatisticsQuery.From &&
-                    filter.Date <= accidentStatisticsQuery.To &&
-                    filter.Severity == severity,
+                filter.Date >= accidentStatisticsQuery.From &&
+                filter.Date <= accidentStatisticsQuery.To &&
+                filter.Severity == severity,
                 ParseSortBy(accidentStatisticsQuery.SortBy),
                 accidentStatisticsQuery.Page,
                 accidentStatisticsQuery.PageSize);
