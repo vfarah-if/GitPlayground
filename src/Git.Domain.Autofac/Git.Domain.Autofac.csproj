@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Git.Domain.EntityFramework\Git.Domain.EntityFramework.csproj">
+      <Project>{870242ca-e5f2-4a17-b21e-a6b4d2833fc9}</Project>
+      <Name>Git.Domain.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Git.Domain\Git.Domain.csproj">
       <Project>{aabc3ad0-37c7-4e2f-b420-419ac1dea321}</Project>
       <Name>Git.Domain</Name>

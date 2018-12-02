@@ -170,6 +170,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="v1\Controllers\AccidentStatisticsControllerShould.cs" />
     <Compile Include="v1\Services\AccidentStatisticsServiceShould.cs" />
+    <Compile Include="v2\Controllers\AccidentsControllerShould.cs" />
+    <Compile Include="v2\Services\AccidentsServiceShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -179,6 +181,10 @@
     <Analyzer Include="..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Git.Domain.EntityFramework\Git.Domain.EntityFramework.csproj">
+      <Project>{870242CA-E5F2-4A17-B21E-A6B4D2833FC9}</Project>
+      <Name>Git.Domain.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Git.Domain.Owin.Api\Git.Domain.Owin.Api.csproj">
       <Project>{AF1BD7A4-DA05-49FE-A003-093BC73D4F3A}</Project>
       <Name>Git.Domain.Owin.Api</Name>

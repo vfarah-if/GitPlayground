@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Git.Domain.Models.TFL;
 using Console = System.Console;
 
+using static Git.Domain.EntityFramework.SortOptions<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
+
 namespace Git.Domain.EntityFramework.ConsoleApp
 {
     class Program
@@ -15,7 +17,6 @@ namespace Git.Domain.EntityFramework.ConsoleApp
             ConfigureTraceListener();
             using (var accidentStatisticDbContext = new AccidentStatisticDbContext())
             {
-                LogAllDatabaseActivities(accidentStatisticDbContext);
                 var accidentStatisticRepository = new AccidentStatisticRepository(accidentStatisticDbContext);
                 var accidentCount = accidentStatisticRepository.Count().GetAwaiter().GetResult();
                 Console.WriteLine($"{accidentCount} Accident Statistic records found");
@@ -38,25 +39,16 @@ namespace Git.Domain.EntityFramework.ConsoleApp
                         filter.Severity == Severity.Fatal &&
                         filter.Casualties.Any(casualty =>
                             casualty.Mode.Equals("PedalCycle") && casualty.Severity == Severity.Fatal),
-                    sort => sort.Borough, false, nextPage.Value);
+                    OrderBy(x => x.Borough, false), 
+                    nextPage.Value);
 
-                Console.WriteLine($"Displaing Page {nextPage} returning '{result.PageSize}' records of '{result.Total}' cycling fatalities in total from {from.ToLongDateString()} to {to.ToLongDateString()} ...");
+                Console.WriteLine($"Displaying Page {nextPage} returning '{result.PageSize}' records of '{result.Total}' cycling fatalities in total from {from.ToLongDateString()} to {to.ToLongDateString()} ...");
                 foreach (var cyclingAccident in result.Data)
                 {
                     Console.WriteLine($"Cycling accident occured in the borough of {cyclingAccident.Borough.ToUpper()} involving '{cyclingAccident.Casualties.Count}' casualties and '{cyclingAccident.Vehicles.Count}' vehicles.");
                 }
                 nextPage = result.NextPage;
             } while (nextPage.HasValue);
-        }
-
-        private static void LogAllDatabaseActivities(AccidentStatisticDbContext accidentStatisticDbContext)
-        {
-            accidentStatisticDbContext.Database.Log = (sql) =>
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(sql);
-                Console.ForegroundColor = ConsoleColor.White;
-            };
         }
 
         private static void ConfigureTraceListener()

@@ -10,10 +10,13 @@ using System.Web.Http.ModelBinding.Binders;
 using Git.Domain.Owin.Api.Host;
 using Git.Domain.Owin.Api.Infrastructure.ModelBinders;
 using Git.Domain.Owin.Api.Infrastructure.Configuration;
-using Git.Domain.Owin.Api.v1.Models;
+using Git.Domain.Owin.Api.Models;
 using Microsoft.Owin;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Owin;
 using Swashbuckle.Application;
+using System.Net.Http.Formatting;
 
 [assembly: OwinStartup(typeof(ApiStartup))]
 
@@ -39,7 +42,15 @@ namespace Git.Domain.Owin.Api.Host
             config.Services.Insert(typeof(ModelBinderProvider), 0, provider);
 
             ConfigureSwagger(config);
-            UseCorsMiddleware(config);                        
+            UseCorsMiddleware(config);
+
+            ConfigureJsonWithCamelCasePropertyNames(config);
+        }
+
+        private static void ConfigureJsonWithCamelCasePropertyNames(HttpConfiguration config)
+        {            
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();         
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
 
         private void UseCorsMiddleware(HttpConfiguration configuration)
@@ -47,7 +58,6 @@ namespace Git.Domain.Owin.Api.Host
             var corsOrigins = CorsConfiguration.GetSection().CorsConfigs.Select(x => x.AllowedOrigin).ToList();
             configuration.EnableCors(new EnableCorsAttribute(string.Join(",", corsOrigins), "*", "*"));
         }
-
 
         private static void ConfigureConventionBasedRouting(HttpConfiguration config)
         {

@@ -11,32 +11,46 @@ namespace Git.Domain.EntityFramework
 {
     public class AccidentStatisticRepository : IAccidentStatisticRepository
     {
+        //        private const int MaxPageSize = 1000;
         private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
 
         public AccidentStatisticRepository(IAccidentStatisticDbContext accidentStatisticDbContext)
         {
             _accidentStatisticDbContext = accidentStatisticDbContext;
+            // NOTE: This exposes the SQL and the time durations
+            _accidentStatisticDbContext.Database.Log = (sql) =>
+            {
+                Trace.TraceInformation(sql);
+            };
+
         }
 
         public async Task<Paged<AccidentStatisticDb>> Get(
             Expression<Func<AccidentStatisticDb, bool>> filter = null,
-            Expression<Func<AccidentStatisticDb, object>> sortBy = null,
-            bool inReverse = false,
+            SortOptions<AccidentStatisticDb> sortOption = null,
             int page = 1,
             int pageSize = 100)
         {
             if (page < 1)
             {
+                Trace.TraceWarning($"Page was {page} and will be set to the minimum page of 1");
                 page = 1;
             }
 
-            // Should validate the maximum page size but will leave it open for abuse :)
+            /* Should validate the maximum page size but will leave it open for abuse as :)
+                as it is a smallish database, readonly and it is a great way to see why
+                it is not good practice leaving an api open to any amount of data being returned
+             */
+            // Uncomment if you want it done better and write some tests for it :)
+            //            if (pageSize > MaxPageSize)
+            //            {
+            //                pageSize = MaxPageSize;
+            //            }
 
-            var skip = (page - 1) * pageSize;
-            if (sortBy == null)
+            if (sortOption == null)
             {
-                sortBy = db => db.Date;
-                inReverse = true;
+                Trace.TraceWarning($"The default date sorting descending will be assumed");
+                sortOption = SortOptions<AccidentStatisticDb>.OrderBy(x => x.Date);
             }
 
             var accidentCount = await Count(filter);
@@ -44,6 +58,16 @@ namespace Git.Domain.EntityFramework
             var maxPageCount = accidentCount % pageSize != 0
                 ? accidentCount / pageSize + 1
                 : accidentCount / pageSize;
+            Trace.TraceInformation($"The maximum page count is {maxPageCount}");
+
+            if (page > maxPageCount)
+            {
+                Trace.TraceWarning($"The current page {page} is below the maximum page of {maxPageCount} so will be defaulted to the last page");
+                page = maxPageCount;
+            }
+
+            var skip = (page - 1) * pageSize;
+            Trace.TraceInformation($"The skip is {skip}");
 
             IQueryable<AccidentStatisticDb> accidentQuery = filter != null
                 ? _accidentStatisticDbContext?
@@ -59,25 +83,19 @@ namespace Git.Domain.EntityFramework
                     .AsQueryable();
 
             Debug.Assert(accidentQuery != null, nameof(accidentQuery) + " != null");
-            IEnumerable<AccidentStatisticDb> accidents = inReverse
-                ? await accidentQuery
-                    .OrderByDescending(sortBy)
+            IEnumerable<AccidentStatisticDb> accidents = await accidentQuery
+                    .OrderIt(sortOption.SortBy, sortOption.IsAscending)
                     .Skip(skip)
                     .Take(pageSize)
-                    .ToListAsync()
-                : await accidentQuery
-                    .OrderBy(sortBy)
-                    .Skip(skip)
-                    .Take(pageSize)
-                    .ToListAsync();            
+                    .ToListAsync();
 
             return Paged<AccidentStatisticDb>.Create(accidentCount, accidents, page, accidents.Count(), maxPageCount);
         }
 
         public async Task<int> Count(Expression<Func<AccidentStatisticDb, bool>> filter = null)
         {
-            return filter != null 
-                ? await _accidentStatisticDbContext.AccidentStatistics.CountAsync(filter) 
+            return filter != null
+                ? await _accidentStatisticDbContext.AccidentStatistics.CountAsync(filter)
                 : await _accidentStatisticDbContext.AccidentStatistics.CountAsync();
         }
 

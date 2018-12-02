@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Git.Domain
 {
@@ -15,7 +16,11 @@ namespace Git.Domain
 
             if (serializerSettings == null)
             {
-                serializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+                serializerSettings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
             }
             return JsonConvert.SerializeObject(source, formatting, serializerSettings);
         }

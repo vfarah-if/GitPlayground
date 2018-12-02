@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Git.Domain.Models.TFL;
+using Newtonsoft.Json;
 
 namespace Git.Domain.EntityFramework.Models
 {
@@ -20,6 +21,7 @@ namespace Git.Domain.EntityFramework.Models
 
         public string AgeBand { get; set; }
 
+        [JsonIgnore]
         public virtual AccidentStatisticDb AccidentStatistic{ get; set; }
     }
 }

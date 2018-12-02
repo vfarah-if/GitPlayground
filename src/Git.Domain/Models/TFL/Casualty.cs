@@ -13,19 +13,14 @@ namespace Git.Domain.Models.TFL
     /// </example>>
     public class Casualty
     {
-        [JsonProperty(PropertyName = "age")]
         public int Age { get; set; }
 
-        [JsonProperty(PropertyName = "class")]
         public string Class { get; set; }
 
-        [JsonProperty(PropertyName = "severity")]
         public Severity Severity { get; set; }
 
-        [JsonProperty(PropertyName = "mode")]
         public string Mode { get; set; }
 
-        [JsonProperty(PropertyName = "ageBand")]
         public string AgeBand { get; set; }
 
     }

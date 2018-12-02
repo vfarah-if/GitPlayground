@@ -63,6 +63,12 @@
     <Reference Include="Autofac.Integration.WebApi.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.WebApi2.Owin.4.0.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
     </Reference>
@@ -146,9 +152,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="v1\ApiControllers\AccidentStatisticsController.cs" />
-    <Compile Include="v1\Models\AccidentStatisticsQuery.cs" />
+    <Compile Include="Models\AccidentStatisticsQuery.cs" />
     <Compile Include="v1\Services\AccidentStatisticsService.cs" />
     <Compile Include="v1\Services\IAccidentStatisticsService.cs" />
+    <Compile Include="v2\ApiControllers\AccidentsController.cs" />
+    <Compile Include="v2\Services\AccidentsService.cs" />
+    <Compile Include="v2\Services\IAccidentsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -160,6 +169,10 @@
     <ProjectReference Include="..\Git.Domain.Autofac\Git.Domain.Autofac.csproj">
       <Project>{e0884e8a-3493-4aa7-b515-eef7b378984f}</Project>
       <Name>Git.Domain.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Git.Domain.EntityFramework\Git.Domain.EntityFramework.csproj">
+      <Project>{870242ca-e5f2-4a17-b21e-a6b4d2833fc9}</Project>
+      <Name>Git.Domain.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Git.Domain\Git.Domain.csproj">
       <Project>{aabc3ad0-37c7-4e2f-b420-419ac1dea321}</Project>

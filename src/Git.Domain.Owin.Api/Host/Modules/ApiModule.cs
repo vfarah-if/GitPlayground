@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Autofac;
 using Git.Domain.Owin.Api.v1.Services;
+using Git.Domain.Owin.Api.v2.Services;
 
 namespace Git.Domain.Owin.Api.Host.Modules
 {
@@ -10,6 +11,7 @@ namespace Git.Domain.Owin.Api.Host.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AccidentStatisticsService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<AccidentsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
-    }
+}
 }
