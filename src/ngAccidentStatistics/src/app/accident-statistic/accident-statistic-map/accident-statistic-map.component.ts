@@ -4,17 +4,16 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { expand, map, reduce } from 'rxjs/internal/operators';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { EMPTY } from 'rxjs/internal/observable/EMPTY';
+import { EMPTY } from 'rxjs/internal/observable/empty';
 
 import { Map, MapOptions, Control, tileLayer, latLng, marker, icon } from 'leaflet';
 
 import { AccidentStatiticsService } from './../../api';
 import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './../../model';
-import { DEFAULT_FROM_DATE } from '..';
+import { DEFAULT_FROM_DATE } from './../accident-statistic-list/accident-statistic-list.component';
 
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
-
 
 export type ImageOptions = 'Heatmap' | 'Macarbe' | 'Friendly';
 

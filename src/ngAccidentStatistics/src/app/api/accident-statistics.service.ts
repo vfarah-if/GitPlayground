@@ -48,7 +48,7 @@ export class AccidentStatiticsService {
 
     headers = headers.set('Accept', 'application/json');
 
-    return this.httpClient.get<PagedAccidentStatistic>(`${this.basePath}/v1/AccidentStatistics`,
+    return this.httpClient.get<PagedAccidentStatistic>(`${this.basePath}/v2/Accidents`,
       {
         params: queryParams,
         headers: headers
