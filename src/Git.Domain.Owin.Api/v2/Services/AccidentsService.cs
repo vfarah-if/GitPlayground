@@ -1,39 +1,56 @@
 ﻿using Git.Domain.EntityFramework;
 using Git.Domain.EntityFramework.Models;
+using Git.Domain.Models.TFL;
 using Git.Domain.Owin.Api.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Git.Domain.Models.TFL;
+using static Git.Domain.EntityFramework.SortOptions<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
 
 namespace Git.Domain.Owin.Api.v2.Services
 {
     public class AccidentsService : IAccidentsService
     {
         private readonly IAccidentStatisticRepository accidentStatisticRepository;
+        private readonly Dictionary<string, EntityFramework.SortOptions<AccidentStatisticDb>> _sortOptions;
 
         public AccidentsService(IAccidentStatisticRepository accidentStatisticRepository)
         {
             this.accidentStatisticRepository = accidentStatisticRepository;
+            _sortOptions = new Dictionary<string, EntityFramework.SortOptions<AccidentStatisticDb>>
+            {
+                { "DateAscending", OrderBy(sortBy:x => x.Date, ascending:true)},
+                { "LocationAscending", OrderBy(x => x.Location, true)},
+                { "BoroughAscending", OrderBy(x => x.Borough, true)},
+                { "DateDescending",  OrderBy(x => x.Date)},
+                { "LocationDescending", OrderBy(x => x.Location)},
+                { "BoroughDescending", OrderBy(x => x.Borough)},
+            };
         }
-        public Task<Paged<AccidentStatisticDb>> GetAccidents(AccidentStatisticsQuery accidentStatisticsQuery)
+
+        public async Task<Paged<AccidentStatisticDb>> GetAccidentsAsync(AccidentStatisticsQuery accidentStatisticsQuery)
         {
             var severity = ParseSeverity(accidentStatisticsQuery.Severity);
-            var result = accidentStatisticRepository.Get(filter =>
+            var result = await accidentStatisticRepository.Get(filter =>
                     filter.Date >= accidentStatisticsQuery.From &&
-                    filter.Date <= accidentStatisticsQuery.To && 
+                    filter.Date <= accidentStatisticsQuery.To &&
                     filter.Severity == severity,
-                null, 
+                ParseSortBy(accidentStatisticsQuery.SortBy),
                 accidentStatisticsQuery.Page,
                 accidentStatisticsQuery.PageSize);
             return result;
+        }
+
+        private EntityFramework.SortOptions<AccidentStatisticDb> ParseSortBy(string sortBy)
+        {
+            return string.IsNullOrEmpty(sortBy) 
+                ? OrderBy(x => x.Date) 
+                : _sortOptions[sortBy] ?? OrderBy(x => x.Date);
         }
 
         private static Severity ParseSeverity(string severity)
         {
             return Enum.TryParse(severity, true, out Severity result) ? result : Severity.Fatal;
         }
-
     }
 }

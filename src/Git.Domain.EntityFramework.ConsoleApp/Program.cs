@@ -17,7 +17,6 @@ namespace Git.Domain.EntityFramework.ConsoleApp
             ConfigureTraceListener();
             using (var accidentStatisticDbContext = new AccidentStatisticDbContext())
             {
-                LogAllDatabaseActivities(accidentStatisticDbContext);
                 var accidentStatisticRepository = new AccidentStatisticRepository(accidentStatisticDbContext);
                 var accidentCount = accidentStatisticRepository.Count().GetAwaiter().GetResult();
                 Console.WriteLine($"{accidentCount} Accident Statistic records found");
@@ -50,16 +49,6 @@ namespace Git.Domain.EntityFramework.ConsoleApp
                 }
                 nextPage = result.NextPage;
             } while (nextPage.HasValue);
-        }
-
-        private static void LogAllDatabaseActivities(AccidentStatisticDbContext accidentStatisticDbContext)
-        {
-            accidentStatisticDbContext.Database.Log = (sql) =>
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(sql);
-                Console.ForegroundColor = ConsoleColor.White;
-            };
         }
 
         private static void ConfigureTraceListener()

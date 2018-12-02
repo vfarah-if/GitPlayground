@@ -8,15 +8,21 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Git.Domain.EntityFramework
-{    
+{
     public class AccidentStatisticRepository : IAccidentStatisticRepository
     {
-//        private const int MaxPageSize = 1000;
+        //        private const int MaxPageSize = 1000;
         private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
 
         public AccidentStatisticRepository(IAccidentStatisticDbContext accidentStatisticDbContext)
         {
             _accidentStatisticDbContext = accidentStatisticDbContext;
+            // NOTE: This exposes the SQL and the time durations
+            _accidentStatisticDbContext.Database.Log = (sql) =>
+            {
+                Trace.TraceInformation(sql);
+            };
+
         }
 
         public async Task<Paged<AccidentStatisticDb>> Get(
@@ -33,13 +39,13 @@ namespace Git.Domain.EntityFramework
 
             /* Should validate the maximum page size but will leave it open for abuse as :)
                 as it is a smallish database, readonly and it is a great way to see why
-                it is bad to leave it open
+                it is not good practice leaving an api open to any amount of data being returned
              */
-              // Uncomment if you want it done better and write some tests for it :)
-//            if (pageSize > MaxPageSize)
-//            {
-//                pageSize = MaxPageSize;
-//            }
+            // Uncomment if you want it done better and write some tests for it :)
+            //            if (pageSize > MaxPageSize)
+            //            {
+            //                pageSize = MaxPageSize;
+            //            }
 
             if (sortOption == null)
             {
@@ -81,15 +87,15 @@ namespace Git.Domain.EntityFramework
                     .OrderIt(sortOption.SortBy, sortOption.IsAscending)
                     .Skip(skip)
                     .Take(pageSize)
-                    .ToListAsync();            
+                    .ToListAsync();
 
             return Paged<AccidentStatisticDb>.Create(accidentCount, accidents, page, accidents.Count(), maxPageCount);
         }
 
         public async Task<int> Count(Expression<Func<AccidentStatisticDb, bool>> filter = null)
         {
-            return filter != null 
-                ? await _accidentStatisticDbContext.AccidentStatistics.CountAsync(filter) 
+            return filter != null
+                ? await _accidentStatisticDbContext.AccidentStatistics.CountAsync(filter)
                 : await _accidentStatisticDbContext.AccidentStatistics.CountAsync();
         }
 

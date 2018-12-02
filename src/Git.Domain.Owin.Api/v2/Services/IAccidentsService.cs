@@ -6,6 +6,6 @@ namespace Git.Domain.Owin.Api.v2.Services
 {
     public interface IAccidentsService
     {
-        Task<Paged<AccidentStatisticDb>> GetAccidents(AccidentStatisticsQuery accidentStatisticsQuery);
+        Task<Paged<AccidentStatisticDb>> GetAccidentsAsync(AccidentStatisticsQuery accidentStatisticsQuery);
     }
 }

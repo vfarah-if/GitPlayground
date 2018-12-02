@@ -15,7 +15,7 @@ namespace Git.Domain.EntityFramework
         public Expression<Func<TSortObject, object>> SortBy { get; }
         public bool IsAscending { get; }
 
-        public static SortOptions<TSortObject> OrderBy(Expression<Func<TSortObject, object>> sortBy, bool ascending = true)
+        public static SortOptions<TSortObject> OrderBy(Expression<Func<TSortObject, object>> sortBy, bool ascending = false)
         {
             return new SortOptions<TSortObject>(sortBy, ascending);
         }
