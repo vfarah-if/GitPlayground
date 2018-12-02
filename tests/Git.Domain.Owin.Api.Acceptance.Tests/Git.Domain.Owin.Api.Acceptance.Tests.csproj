@@ -87,8 +87,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="v1\ApiControllers\AccidentStatisticsControllerShould.cs" />
     <Compile Include="v2\ApiControllers\AccidentStatisticsControllerShould.cs" />
+    <Compile Include="v2\Services\AccidentsServiceShould.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Git.Domain.EntityFramework\Git.Domain.EntityFramework.csproj">
+      <Project>{870242CA-E5F2-4A17-B21E-A6B4D2833FC9}</Project>
+      <Name>Git.Domain.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Git.Domain.Owin.Api\Git.Domain.Owin.Api.csproj">
       <Project>{af1bd7a4-da05-49fe-a003-093bc73d4f3a}</Project>
       <Name>Git.Domain.Owin.Api</Name>

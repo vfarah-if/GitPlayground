@@ -40,7 +40,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Controllers
 
             _pagedResult = _autoFixture.Create<Paged<AccidentStatisticDb>>();
             _accidentsServiceMock = _autoMocker.GetMock<IAccidentsService>();
-            _accidentsServiceMock.Setup(x => x.GetAccidentsAsync(It.IsAny<AccidentStatisticsQuery>()))
+            _accidentsServiceMock.Setup(x => x.GetAccidents(It.IsAny<AccidentStatisticsQuery>()))
                 .ReturnsAsync(() => _pagedResult);
             _accidentStatisticsQuery = _autoFixture.Create<AccidentStatisticsQuery>();
         }
@@ -50,7 +50,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Controllers
         {
             await _subject.GetAccidents(_accidentStatisticsQuery);
 
-            _accidentsServiceMock.Verify(x => x.GetAccidentsAsync(_accidentStatisticsQuery));
+            _accidentsServiceMock.Verify(x => x.GetAccidents(_accidentStatisticsQuery));
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Controllers
         [Fact]
         public async Task GetAccidentStatisticsShouldReturnABadRequestWhenAccidentServiceThrowsAnyException()
         {
-            _accidentsServiceMock.Setup(x => x.GetAccidentsAsync(It.IsAny<AccidentStatisticsQuery>()))
+            _accidentsServiceMock.Setup(x => x.GetAccidents(It.IsAny<AccidentStatisticsQuery>()))
                 .Throws<Exception>();
 
             var result = await _subject.GetAccidents(_accidentStatisticsQuery);

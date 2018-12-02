@@ -171,6 +171,7 @@
     <Compile Include="v1\Controllers\AccidentStatisticsControllerShould.cs" />
     <Compile Include="v1\Services\AccidentStatisticsServiceShould.cs" />
     <Compile Include="v2\Controllers\AccidentsControllerShould.cs" />
+    <Compile Include="v2\Services\AccidentsServiceShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

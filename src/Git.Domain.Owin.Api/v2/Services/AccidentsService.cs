@@ -17,7 +17,7 @@ namespace Git.Domain.Owin.Api.v2.Services
         public AccidentsService(IAccidentStatisticRepository accidentStatisticRepository)
         {
             this.accidentStatisticRepository = accidentStatisticRepository;
-            _sortOptions = new Dictionary<string, EntityFramework.SortOptions<AccidentStatisticDb>>
+            _sortOptions = new Dictionary<string, EntityFramework.SortOptions<AccidentStatisticDb>>(StringComparer.InvariantCultureIgnoreCase)
             {
                 { "DateAscending", OrderBy(sortBy:x => x.Date, ascending:true)},
                 { "LocationAscending", OrderBy(x => x.Location, true)},
@@ -33,8 +33,13 @@ namespace Git.Domain.Owin.Api.v2.Services
             };
         }
 
-        public async Task<Paged<AccidentStatisticDb>> GetAccidentsAsync(AccidentStatisticsQuery accidentStatisticsQuery)
+        public async Task<Paged<AccidentStatisticDb>> GetAccidents(AccidentStatisticsQuery accidentStatisticsQuery)
         {
+            if (accidentStatisticsQuery == null)
+            {
+                throw new ArgumentNullException(nameof(accidentStatisticsQuery));
+            }
+
             var severity = ParseSeverity(accidentStatisticsQuery.Severity);
             var result = await accidentStatisticRepository.Get(filter =>
                     filter.Date >= accidentStatisticsQuery.From &&

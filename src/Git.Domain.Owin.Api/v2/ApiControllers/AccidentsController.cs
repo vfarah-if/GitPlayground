@@ -46,7 +46,7 @@ namespace Git.Domain.Owin.Api.v2.ApiControllers
                 try
                 {                    
                     Trace.TraceInformation($"Retrieving Accident Statistics for {accidentStatisticsQuery}");
-                    var result = await _accidentStatisticsService.GetAccidentsAsync(accidentStatisticsQuery);
+                    var result = await _accidentStatisticsService.GetAccidents(accidentStatisticsQuery);
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
                 catch (Exception e)
