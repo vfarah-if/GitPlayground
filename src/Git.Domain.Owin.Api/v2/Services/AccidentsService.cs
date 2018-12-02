@@ -24,8 +24,7 @@ namespace Git.Domain.Owin.Api.v2.Services
                     filter.Date >= accidentStatisticsQuery.From &&
                     filter.Date <= accidentStatisticsQuery.To && 
                     filter.Severity == severity,
-                null, // TODO: Need to consolidate and built some sort of SortOption that can be passed in as one parameter
-                false,
+                null, 
                 accidentStatisticsQuery.Page,
                 accidentStatisticsQuery.PageSize);
             return result;

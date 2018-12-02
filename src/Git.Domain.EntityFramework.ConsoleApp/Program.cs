@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Git.Domain.Models.TFL;
 using Console = System.Console;
 
+using static Git.Domain.EntityFramework.SortOption<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
+
 namespace Git.Domain.EntityFramework.ConsoleApp
 {
     class Program
@@ -38,7 +40,8 @@ namespace Git.Domain.EntityFramework.ConsoleApp
                         filter.Severity == Severity.Fatal &&
                         filter.Casualties.Any(casualty =>
                             casualty.Mode.Equals("PedalCycle") && casualty.Severity == Severity.Fatal),
-                    sort => sort.Borough, false, nextPage.Value);
+                    OrderBy(x => x.Borough, false), 
+                    nextPage.Value);
 
                 Console.WriteLine($"Displaying Page {nextPage} returning '{result.PageSize}' records of '{result.Total}' cycling fatalities in total from {from.ToLongDateString()} to {to.ToLongDateString()} ...");
                 foreach (var cyclingAccident in result.Data)

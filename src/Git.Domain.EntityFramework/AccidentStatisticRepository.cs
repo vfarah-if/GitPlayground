@@ -19,9 +19,8 @@ namespace Git.Domain.EntityFramework
         }
 
         public async Task<Paged<AccidentStatisticDb>> Get(
-            Expression<Func<AccidentStatisticDb, bool>> filter = null,            
-            Expression<Func<AccidentStatisticDb, object>> sortBy = null,
-            bool ascending = false,
+            Expression<Func<AccidentStatisticDb, bool>> filter = null,
+            SortOption<AccidentStatisticDb> sortOption = null,
             int page = 1,
             int pageSize = 100)
         {
@@ -33,10 +32,10 @@ namespace Git.Domain.EntityFramework
 
             // Should validate the maximum page size but will leave it open for abuse :)
 
-            if (sortBy == null)
+            if (sortOption == null)
             {
                 Trace.TraceWarning($"The default date sorting will be assumed");
-                sortBy = db => db.Date;
+                sortOption = SortOption<AccidentStatisticDb>.OrderBy(x => x.Date, false);
             }
 
             var accidentCount = await Count(filter);
@@ -53,7 +52,7 @@ namespace Git.Domain.EntityFramework
             }
 
             var skip = (page - 1) * pageSize;
-            Trace.TraceInformation($"The skip is {skip }");
+            Trace.TraceInformation($"The skip is {skip}");
 
             IQueryable<AccidentStatisticDb> accidentQuery = filter != null
                 ? _accidentStatisticDbContext?
@@ -70,7 +69,7 @@ namespace Git.Domain.EntityFramework
 
             Debug.Assert(accidentQuery != null, nameof(accidentQuery) + " != null");
             IEnumerable<AccidentStatisticDb> accidents = await accidentQuery
-                    .OrderIt(sortBy, ascending)
+                    .OrderIt(sortOption.SortBy, sortOption.IsAscending)
                     .Skip(skip)
                     .Take(pageSize)
                     .ToListAsync();            

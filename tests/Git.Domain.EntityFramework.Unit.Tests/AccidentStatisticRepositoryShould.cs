@@ -9,6 +9,8 @@ using ApprovalTests.Reporters;
 using Git.Domain.Models.TFL;
 using Xunit;
 
+using static Git.Domain.EntityFramework.SortOption<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
+
 namespace Git.Domain.EntityFramework.Unit.Tests
 {
     [UseReporter(typeof(DiffReporter))]
@@ -22,15 +24,11 @@ namespace Git.Domain.EntityFramework.Unit.Tests
             _accidentStatisticDbContext = new AccidentStatisticDbContext();
             _subject = new AccidentStatisticRepository(_accidentStatisticDbContext);
             int actualCount = _accidentStatisticDbContext.AccidentStatistics.Count();
-            if (actualCount == 0)
+            if (actualCount != 0) return;            
+            do
             {
-                // Hack to let the temp database generate in the background
-                // TODO: Come up with a more efficient way of doing this
-                do
-                {
-                    Thread.Sleep(10000);
-                } while (!_accidentStatisticDbContext.AccidentStatistics.Any());
-            }
+                Thread.Sleep(10000);
+            } while (!_accidentStatisticDbContext.AccidentStatistics.Any());
         }
 
         [Fact]
@@ -64,8 +62,10 @@ namespace Git.Domain.EntityFramework.Unit.Tests
                     filter.Severity == Severity.Fatal &&
                     filter.Casualties.Any(casualty =>
                         casualty.Mode.Equals("PedalCycle") && 
-                        casualty.Severity == Severity.Fatal)
-                ,sort => sort.AccidentStatisticId, true).GetAwaiter().GetResult();
+                        casualty.Severity == Severity.Fatal), 
+                    OrderBy(x => x.AccidentStatisticId, true))
+                .GetAwaiter()
+                .GetResult();
 
             Approvals.VerifyJson(actual.ToJson());
         }
@@ -77,10 +77,10 @@ namespace Git.Domain.EntityFramework.Unit.Tests
                     filter.Severity == Severity.Fatal &&
                     filter.Casualties.Any(casualty =>
                         casualty.Mode.Equals("PedalCycle") &&
-                        casualty.Severity == Severity.Fatal)
-                , sort => sort.AccidentStatisticId, false)
-                .GetAwaiter()
-                .GetResult();
+                        casualty.Severity == Severity.Fatal),
+                        OrderBy(x => x.AccidentStatisticId, false))
+                    .GetAwaiter()
+                    .GetResult();
 
             Approvals.VerifyJson(actual.ToJson());
         }
@@ -92,8 +92,10 @@ namespace Git.Domain.EntityFramework.Unit.Tests
                     filter.Severity == Severity.Fatal &&
                     filter.Casualties.Any(casualty =>
                         casualty.Mode.Equals("PedalCycle") &&
-                        casualty.Severity == Severity.Fatal)
-                , sort => sort.AccidentStatisticId, false, 1, 1)
+                        casualty.Severity == Severity.Fatal), 
+                    OrderBy(x => x.AccidentStatisticId, false),
+                    1, 
+                    1)
                 .GetAwaiter()
                 .GetResult();
 
@@ -108,8 +110,10 @@ namespace Git.Domain.EntityFramework.Unit.Tests
                     filter.Severity == Severity.Fatal &&
                     filter.Casualties.Any(casualty =>
                         casualty.Mode.Equals("PedalCycle") &&
-                        casualty.Severity == Severity.Fatal)
-                , sort => sort.AccidentStatisticId, false, 2, 1)
+                        casualty.Severity == Severity.Fatal), 
+                    OrderBy(x => x.AccidentStatisticId, false), 
+                    2, 
+                    1)
                 .GetAwaiter()
                 .GetResult();
 
@@ -124,8 +128,10 @@ namespace Git.Domain.EntityFramework.Unit.Tests
                         filter.Severity == Severity.Fatal &&
                         filter.Casualties.Any(casualty =>
                             casualty.Mode.Equals("PedalCycle") &&
-                            casualty.Severity == Severity.Fatal)
-                    , sort => sort.AccidentStatisticId, false, AboveTwentyPage, 1)
+                            casualty.Severity == Severity.Fatal), 
+                    OrderBy(x => x.AccidentStatisticId, false), 
+                    AboveTwentyPage, 
+                    1)
                 .GetAwaiter()
                 .GetResult();
 
@@ -142,8 +148,10 @@ namespace Git.Domain.EntityFramework.Unit.Tests
                         filter.Severity == Severity.Fatal &&
                         filter.Casualties.Any(casualty =>
                             casualty.Mode.Equals("PedalCycle") &&
-                            casualty.Severity == Severity.Fatal)
-                    , sort => sort.AccidentStatisticId, false, invalidPage, 1)
+                            casualty.Severity == Severity.Fatal), 
+                    OrderBy(x => x.AccidentStatisticId, false), 
+                    invalidPage, 
+                    1)
                 .GetAwaiter()
                 .GetResult();
 
