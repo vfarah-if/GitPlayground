@@ -22,9 +22,14 @@ namespace Git.Domain.Owin.Api.v2.Services
                 { "DateAscending", OrderBy(sortBy:x => x.Date, ascending:true)},
                 { "LocationAscending", OrderBy(x => x.Location, true)},
                 { "BoroughAscending", OrderBy(x => x.Borough, true)},
+                { "AccidentStatisticIdAscending", OrderBy(x => x.AccidentStatisticId, true)},
+                { "TflIdAscending", OrderBy(x => x.TflId, true)},
+
                 { "DateDescending",  OrderBy(x => x.Date)},
                 { "LocationDescending", OrderBy(x => x.Location)},
                 { "BoroughDescending", OrderBy(x => x.Borough)},
+                { "AccidentStatisticIdDescending", OrderBy(x => x.AccidentStatisticId)},
+                { "TflIdDescending", OrderBy(x => x.TflId)},
             };
         }
 
