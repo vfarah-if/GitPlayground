@@ -143,15 +143,15 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
         break;
       case 'Friendly':
         this.mapIcon = icon({
-          iconSize: [25, 25],
-          iconAnchor: [13, 25],
+          iconSize: [40, 40],
+          iconAnchor: [13, 40],
           iconUrl: 'https://image.flaticon.com/icons/svg/130/130163.svg'
         });
         break;
       default:
         this.mapIcon = icon({
-          iconSize: [25, 25],
-          iconAnchor: [13, 25],
+          iconSize: [35, 35],
+          iconAnchor: [13, 35],
           iconUrl: 'https://static.thenounproject.com/png/14312-200.png'
         });
         break;
