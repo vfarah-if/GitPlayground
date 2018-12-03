@@ -1,10 +1,39 @@
-import { TestBed, async } from '@angular/core/testing';
+
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
-import { AccidentStatisticTestingModule } from './accident-statistic/testing';
+import {
+  AccidentStatisticTestingModule,
+  AccidentStatisticMapMockComponent,
+  AccidentStatisticQueryMockComponent,
+  AccidentStatisticListMockComponent} from './accident-statistic/testing';
 
-describe('AppComponent', () => {
+function accidentMapElements(compiled): Array<AccidentStatisticMapMockComponent> {
+  return compiled.querySelectorAll('app-accident-statistic-map');
+}
+
+function accidentQueryElements(compiled): Array<AccidentStatisticQueryMockComponent> {
+  return compiled.querySelectorAll('app-accident-statistic-query');
+}
+
+function accidentListElements(compiled): Array<AccidentStatisticListMockComponent> {
+  return compiled.querySelectorAll('app-accident-statistic-list');
+}
+
+function headerElement(compiled): HTMLHeadElement {
+  return compiled.querySelector('h1');
+}
+
+function header2Element(compiled): HTMLHeadingElement {
+  return compiled.querySelector('h2');
+}
+
+fdescribe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let compiled;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -17,22 +46,38 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    compiled = fixture.debugElement.nativeElement;
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it(`should have as title 'ngAccidentStatistics'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ngAccidentStatistics');
+    expect(component.title).toEqual('ngAccidentStatistics');
   });
 
   it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ngAccidentStatistics!');
+    expect(headerElement(compiled).textContent).toContain('Welcome to ngAccidentStatistics!');
+  });
+
+  it('should render title in a h2 tag', () => {
+    expect(header2Element(compiled).textContent).toContain('Business case for Accident Statistics');
+  });
+
+  it('should render 3 types of map components', () => {
+    expect(accidentMapElements(compiled).length).toBe(3);
+  });
+
+  it('should render 1 types of query components', () => {
+    expect(accidentQueryElements(compiled).length).toBe(1);
+  });
+
+  it('should render 5 types of list components', () => {
+    expect(accidentListElements(compiled).length).toBe(5);
   });
 });

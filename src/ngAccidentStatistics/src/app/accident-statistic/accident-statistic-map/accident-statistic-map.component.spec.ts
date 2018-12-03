@@ -23,9 +23,7 @@ function popupDivElement(compiled): HTMLDivElement {
   return compiled.querySelector('section > div > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-popup-pane > div > div.leaflet-popup-content-wrapper > div');
 }
 
-
-
-fdescribe('AccidentStatisticMapComponent', () => {
+describe('AccidentStatisticMapComponent', () => {
   let component: AccidentStatisticMapComponent;
   let fixture: ComponentFixture<AccidentStatisticMapComponent>;
   let apiService: AccidentStatiticsServiceMock;
