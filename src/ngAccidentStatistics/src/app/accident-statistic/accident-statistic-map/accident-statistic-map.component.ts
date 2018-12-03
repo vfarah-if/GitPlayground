@@ -10,7 +10,7 @@ import { Map, MapOptions, Control, tileLayer, latLng, marker, icon } from 'leafl
 
 import { AccidentStatiticsService } from './../../api';
 import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './../../model';
-import { DEFAULT_FROM_DATE } from './../accident-statistic-list/accident-statistic-list.component';
+import { DEFAULT_FROM_DATE } from '../constants';
 
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';

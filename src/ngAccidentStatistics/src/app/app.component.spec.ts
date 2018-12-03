@@ -29,7 +29,7 @@ function header2Element(compiled): HTMLHeadingElement {
   return compiled.querySelector('h2');
 }
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let compiled;

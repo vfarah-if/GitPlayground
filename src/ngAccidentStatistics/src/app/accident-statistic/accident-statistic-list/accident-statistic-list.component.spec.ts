@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 
-import { AccidentStatisticListComponent, DEFAULT_FROM_DATE } from './accident-statistic-list.component';
+import { AccidentStatisticListComponent } from './accident-statistic-list.component';
 import {
   ACCIDENT_STATISTIC_SERVICE_PROVIDER,
   AccidentStatiticsServiceMock,
   getAccidentStatiticsService
 } from './../../api/testing';
+import { DEFAULT_FROM_DATE } from '../constants';
 
 function headerElement(compiled): HTMLHeadingElement {
   return compiled.querySelector('section > header > h1');

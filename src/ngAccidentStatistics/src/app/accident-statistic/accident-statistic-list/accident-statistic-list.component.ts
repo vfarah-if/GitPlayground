@@ -6,8 +6,7 @@ import { map, expand, reduce, tap } from 'rxjs/internal/operators';
 
 import { AccidentStatiticsService } from './../../api';
 import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions, SortByOptions } from './../../model';
-
-export const DEFAULT_FROM_DATE: Date = new Date(2010, 1, 1);
+import { DEFAULT_FROM_DATE } from '../constants';
 
 @Component({
   selector: 'app-accident-statistic-list',

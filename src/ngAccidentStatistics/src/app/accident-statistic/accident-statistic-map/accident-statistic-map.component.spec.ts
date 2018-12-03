@@ -8,7 +8,7 @@ import {
   AccidentStatiticsServiceMock,
   getAccidentStatiticsService
 } from './../../api/testing';
-import { DEFAULT_FROM_DATE } from '..';
+import { DEFAULT_FROM_DATE } from '../constants';
 
 function headerElement(compiled): HTMLHeadingElement {
   return compiled.querySelector('section > header > h1');
@@ -90,7 +90,7 @@ describe('AccidentStatisticMapComponent', () => {
       const popupElement = popupDivElement(compiled);
       expect(popupElement).toBeTruthy();
       // tslint:disable-next-line:max-line-length
-      expect(popupElement.innerText).toContain('Fatal Incident 632474, occured on Thu Jan 05 2017 09:11:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 2 vehicles in the borough of Kingston.')
+      expect(popupElement.innerText).toContain('Fatal Incident 632474, occured on Thu Jan 05 2017 09:11:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 2 vehicles in the borough of Kingston.');
     }));
 
     it('should create a pop up on the second image describing the incident when clicked', async(() => {
@@ -101,7 +101,7 @@ describe('AccidentStatisticMapComponent', () => {
       const popupElement = popupDivElement(compiled);
       expect(popupElement).toBeTruthy();
       // tslint:disable-next-line:max-line-length
-      expect(popupElement.innerText).toContain('Fatal Incident 615289, occured on Fri Dec 29 2017 10:58:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 1 vehicle in the borough of City of Westminster.')
+      expect(popupElement.innerText).toContain('Fatal Incident 615289, occured on Fri Dec 29 2017 10:58:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 1 vehicle in the borough of City of Westminster.');
     }));
 
     // TODO: Test specific settings like:
