@@ -8,4 +8,5 @@ export interface AccidentStatisticsQuery {
   sortBy?: SortByOptions;
   page?: number;
   pageSize?: number;
+  useV1?: boolean;
 }

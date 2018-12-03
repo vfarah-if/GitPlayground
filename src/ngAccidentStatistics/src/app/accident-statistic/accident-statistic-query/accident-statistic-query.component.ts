@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { switchMap, catchError, startWith, tap } from 'rxjs/internal/operators';
 
-import { SeverityOptions, PagedAccidentStatistic } from '../../model';
+import { SeverityOptions, PagedAccidentStatistic, SortByOptions } from '../../model';
 import { AccidentStatiticsService } from '../../api';
 
 @Component({
@@ -18,6 +18,7 @@ export class AccidentStatisticQueryComponent implements OnInit {
   @Input() fromDate: Date;
   @Input() toDate: Date;
   @Input() severityOption: SeverityOptions;
+  @Input() orderByOption: SortByOptions = 'DateDescending';
   @Input() pageSize: Number = 1;
 
   error: any;
@@ -36,6 +37,8 @@ export class AccidentStatisticQueryComponent implements OnInit {
       to: [this.toDate],
       severity: [this.severityOption],
       pageSize: [this.pageSize],
+      useV1: [false],
+      sortBy: [this.orderByOption]
     });
 
     this.pagedAccidentStatistics$ = this.accidentStatisticsForm.valueChanges.pipe(
@@ -48,7 +51,9 @@ export class AccidentStatisticQueryComponent implements OnInit {
             pageSize: data.pageSize,
             from: data.from,
             to: data.to,
-            severity: data.severity
+            severity: data.severity,
+            useV1: data.useV1,
+            sortBy: data.sortBy
           });
         } else {
           return EMPTY;

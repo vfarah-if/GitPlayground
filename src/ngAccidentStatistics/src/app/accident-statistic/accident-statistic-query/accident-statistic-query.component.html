@@ -17,9 +17,27 @@
           <option value="Fatal">Fatal</option>
         </select>
       </label>
-      <label for="pageSize"><strong>PageSize</strong> [alt+4]:
+      <label for="pageSize"><strong>Page Size</strong> [alt+4]:
           <input type="number" min="1" max="100" formControlName="pageSize" accesskey="4">
-        </label>
+      </label>
+      <label for="sortBy"><strong>Order By</strong> [alt+5]:
+        <select name="sortBy" formControlName="sortBy" accesskey="5">}
+          <option value="DateAscending">Date asc</option>
+          <option value="LocationAscending">Location asc</option>
+          <option value="BoroughAscending" *ngIf="!accidentStatisticsForm.controls['useV1'].value">Borough asc</option>
+          <option value="AccidentStatisticIdAscending" *ngIf="!accidentStatisticsForm.controls['useV1'].value">AccidentStatistic Id asc</option>
+          <option value="TflIdAscending" *ngIf="!accidentStatisticsForm.controls['useV1'].value">Id asc</option>
+          
+          <option value="DateDescending">Date desc</option>
+          <option value="LocaionDescending">Location desc</option>
+          <option value="BoroughDescending" *ngIf="!accidentStatisticsForm.controls['useV1'].value">Borough desc</option>
+          <option value="AccidentStatisticIdDescending" *ngIf="!accidentStatisticsForm.controls['useV1'].value">AccidentStatisticId desc</option>
+          <option value="TflIdDescending" *ngIf="!accidentStatisticsForm.controls['useV1'].value">Id desc</option>
+        </select>
+      </label>
+      <label for="useV1"><strong>Use Ver 1.0 Api</strong> [alt + 6]
+          <input type="checkbox" formControlName="useV1" accesskey="6">
+      </label>
     </fieldset>
     <fieldset *ngIf="((pagedAccidentStatistics$|async))">
       <label for="out-json">Summary JSON ({{pagedAccidentStatistics?.total}}) :

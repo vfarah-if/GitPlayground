@@ -32,8 +32,11 @@ describe('AccidentStatisticQueryComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create with default expectations', () => {
     expect(component).toBeTruthy();
+    expect(component.fromDate).toBeUndefined();
+    expect(component.pageSize).toBe(1);
+    expect(component.severityOption).toBeUndefined();
     expect(apiService).toBeTruthy();
   });
 });
