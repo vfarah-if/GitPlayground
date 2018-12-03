@@ -7,7 +7,8 @@ import {
   AccidentStatisticTestingModule,
   AccidentStatisticMapMockComponent,
   AccidentStatisticQueryMockComponent,
-  AccidentStatisticListMockComponent} from './accident-statistic/testing';
+  AccidentStatisticListMockComponent
+} from './accident-statistic/testing';
 
 function accidentMapElements(compiled): Array<AccidentStatisticMapMockComponent> {
   return compiled.querySelectorAll('app-accident-statistic-map');

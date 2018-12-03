@@ -23,7 +23,7 @@ function popupDivElement(compiled): HTMLDivElement {
   return compiled.querySelector('section > div > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-popup-pane > div > div.leaflet-popup-content-wrapper > div');
 }
 
-describe('AccidentStatisticMapComponent', () => {
+fdescribe('AccidentStatisticMapComponent', () => {
   let component: AccidentStatisticMapComponent;
   let fixture: ComponentFixture<AccidentStatisticMapComponent>;
   let apiService: AccidentStatiticsServiceMock;
@@ -103,11 +103,56 @@ describe('AccidentStatisticMapComponent', () => {
       // tslint:disable-next-line:max-line-length
       expect(popupElement.innerText).toContain('Fatal Incident 615289, occured on Fri Dec 29 2017 10:58:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 1 vehicle in the borough of City of Westminster.');
     }));
+  });
 
-    // TODO: Test specific settings like:
-    //       1. useGeolocationPosition
-    //       2. different image types
-    //       3. The service gets called with other values
-    // TODO: Remove the fdescribe and for other tests to run
+  describe('Given a Friendly image type', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AccidentStatisticMapComponent);
+      component = fixture.componentInstance;
+      component.imageOption = 'Friendly';
+      apiService = getAccidentStatiticsService();
+      apiService.spy_get.and.returnValues(apiService.simplePageOneOfTwoResponseSubject, apiService.simplePageTwoOfTwoResponseSubject);
+      lastYear = new Date().getFullYear() - 1;
+      fixture.detectChanges();
+      compiled = fixture.debugElement.nativeElement;
+    });
+
+    it('should create exactly two friendly image markers on the map', async(() => {
+      const images = imageMarkerElements(compiled);
+      const expectedFriendlyImageUrl = 'https://image.flaticon.com/icons/svg/130/130163.svg';
+    
+
+      expect(images).toBeTruthy();
+      expect(images.length).toBe(2);
+      expect(images[0].src).toBe(expectedFriendlyImageUrl);
+      expect(images[1].src).toBe(expectedFriendlyImageUrl);
+    }));
+  });
+
+  describe('Given a Marker image type', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AccidentStatisticMapComponent);
+      component = fixture.componentInstance;
+      component.imageOption = 'Marker';
+      apiService = getAccidentStatiticsService();
+      apiService.spy_get.and.returnValues(apiService.simplePageOneOfTwoResponseSubject, apiService.simplePageTwoOfTwoResponseSubject);
+      lastYear = new Date().getFullYear() - 1;
+      fixture.detectChanges();
+      compiled = fixture.debugElement.nativeElement;
+    });
+
+    it('should create exactly two friendly image markers on the map', async(() => {
+      const images = imageMarkerElements(compiled);
+      const expectedHeatmapImageUrl = 'http://localhost:9876/marker-icon-2x.png';
+
+      expect(images).toBeTruthy();
+      expect(images.length).toBe(2);
+      expect(images[0].src).toBe(expectedHeatmapImageUrl);
+      expect(images[1].src).toBe(expectedHeatmapImageUrl);
+    }));
   });
 });
+
+// TODO: Test specific settings like:
+    //       1. useGeolocationPosition
+    //       3. The service gets called with other values

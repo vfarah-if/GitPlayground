@@ -15,7 +15,7 @@ import { DEFAULT_FROM_DATE } from '../constants';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
 import 'leaflet/dist/images/marker-icon-2x.png';
-export type ImageOptions = 'Heatmap' | 'Macarbe' | 'Friendly';
+export type ImageOptions = 'Marker' | 'Macarbe' | 'Friendly';
 
 @Component({
   selector: 'app-accident-statistic-map',
@@ -138,7 +138,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
 
   setMapIcon() {
     switch (this.imageOption) {
-      case 'Heatmap':
+      case 'Marker':
         this.mapIcon = null;
         break;
       case 'Friendly':

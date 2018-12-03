@@ -9,6 +9,7 @@ import { PagedAccidentStatistic, SeverityOptions } from './../../../model';
 
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
+import { ImageOptions } from '../accident-statistic-map.component';
 
 @Component({
   selector: 'app-accident-statistic-map',
@@ -18,7 +19,7 @@ export class AccidentStatisticMapMockComponent {
   @Input() fromDate: string;
   @Input() toDate: string;
   @Input() severityOption: SeverityOptions = 'Fatal';
-  @Input() imageType: 'heatmap' | 'macarbe' | 'friendly';
+  @Input() imageType: ImageOptions;
   @Input() pageSize = 500;
   @Input() zoom = 9;
   @Input() latitude = 51.5074;
