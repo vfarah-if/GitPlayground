@@ -16,12 +16,15 @@ namespace TestConsole
                     try
                     {
                         var applicationCommand = scope.Resolve<IApplicationCommand>();
-                        applicationCommand.Execute();                        
+                        applicationCommand.Execute();
                     }
                     catch (Exception e)
                     {
                         var logger = scope.Resolve<ILogger>();
                         logger.AsError(e, "Failed to get paged transport messages ...");
+                    }
+                    finally
+                    {
                         Console.Read();
                     }
                 });

@@ -38,7 +38,7 @@ namespace TestConsole.UnitTests
             _loggerMock.Setup(x => x.AsInformation(It.IsAny<string>()));
         }
 
-        [Fact(Skip = "Tests hang outside debugger")]
+        [Fact()]
         public void CallTransportForLondonClientToGetFatalAccidentStatisticsForJan2014()
         {
             _subject.Execute();
@@ -52,7 +52,7 @@ namespace TestConsole.UnitTests
                 20));
         }
 
-        [Fact(Skip = "Tests hang outside debugger")]
+        [Fact]
         public void LogInformationAboutHowManyFatalAccidentsOccured()
         {
             _subject.Execute();
@@ -60,7 +60,7 @@ namespace TestConsole.UnitTests
             _loggerMock.Verify(x => x.AsInformation($"{_pagedAccidentResponse.Total} fatal accidents occured"));
         }
 
-        [Fact(Skip = "Tests hang outside debugger")]
+        [Fact]
         public void LogInformationPageInformation()
         {
             _subject.Execute();

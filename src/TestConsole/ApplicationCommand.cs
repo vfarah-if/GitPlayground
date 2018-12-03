@@ -34,8 +34,6 @@ namespace TestConsole
                 _logger.AsInformation($"Next '{PageSize}' records ...");
                 currentPage += 1;
                 currentAmountOfRecordsRetrieved += pagedAccidentStatistics.PageSize;
-                Console.Read();
-
             } while (pagedAccidentStatistics.NextPage.HasValue);
         }
 
