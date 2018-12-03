@@ -23,7 +23,7 @@ function popupDivElement(compiled): HTMLDivElement {
   return compiled.querySelector('section > div > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-popup-pane > div > div.leaflet-popup-content-wrapper > div');
 }
 
-fdescribe('AccidentStatisticMapComponent', () => {
+describe('AccidentStatisticMapComponent', () => {
   let component: AccidentStatisticMapComponent;
   let fixture: ComponentFixture<AccidentStatisticMapComponent>;
   let apiService: AccidentStatiticsServiceMock;
@@ -112,7 +112,6 @@ fdescribe('AccidentStatisticMapComponent', () => {
       component.imageOption = 'Friendly';
       apiService = getAccidentStatiticsService();
       apiService.spy_get.and.returnValues(apiService.simplePageOneOfTwoResponseSubject, apiService.simplePageTwoOfTwoResponseSubject);
-      lastYear = new Date().getFullYear() - 1;
       fixture.detectChanges();
       compiled = fixture.debugElement.nativeElement;
     });
@@ -120,7 +119,7 @@ fdescribe('AccidentStatisticMapComponent', () => {
     it('should create exactly two friendly image markers on the map', async(() => {
       const images = imageMarkerElements(compiled);
       const expectedFriendlyImageUrl = 'https://image.flaticon.com/icons/svg/130/130163.svg';
-    
+
 
       expect(images).toBeTruthy();
       expect(images.length).toBe(2);
@@ -136,7 +135,6 @@ fdescribe('AccidentStatisticMapComponent', () => {
       component.imageOption = 'Marker';
       apiService = getAccidentStatiticsService();
       apiService.spy_get.and.returnValues(apiService.simplePageOneOfTwoResponseSubject, apiService.simplePageTwoOfTwoResponseSubject);
-      lastYear = new Date().getFullYear() - 1;
       fixture.detectChanges();
       compiled = fixture.debugElement.nativeElement;
     });
@@ -151,8 +149,85 @@ fdescribe('AccidentStatisticMapComponent', () => {
       expect(images[1].src).toBe(expectedHeatmapImageUrl);
     }));
   });
-});
 
-// TODO: Test specific settings like:
-    //       1. useGeolocationPosition
-    //       3. The service gets called with other values
+  describe('Given the option to use the GeoLocation api to get the users current position', () => {
+    let geolocationSpy: jasmine.Spy;
+    let userPosition: Position;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AccidentStatisticMapComponent);
+      component = fixture.componentInstance;
+      component.useGeolocationPosition = true;
+      apiService = getAccidentStatiticsService();
+      apiService.spy_get.and.returnValues(apiService.simplePageOneOfTwoResponseSubject, apiService.simplePageTwoOfTwoResponseSubject);
+      userPosition = <Position>{
+        coords: {
+          latitude: 60,
+          longitude: -1.12184322,
+          accuracy: 0.1
+        }
+      };
+      geolocationSpy = spyOn(window.navigator.geolocation, 'getCurrentPosition');
+      geolocationSpy.and.callFake(function (callback) {
+        callback(userPosition);
+      });
+      fixture.detectChanges();
+      compiled = fixture.debugElement.nativeElement;
+    });
+
+    it('should call the windows navigator to get and set the current position of the user', () => {
+      expect(geolocationSpy).toHaveBeenCalled();
+      expect(component.latitude).toBe(userPosition.coords.latitude);
+      expect(component.longitude).toBe(userPosition.coords.longitude);
+    });
+  });
+
+  describe('Given custom map configuration', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AccidentStatisticMapComponent);
+      component = fixture.componentInstance;
+      component.imageOption = 'Marker';
+      component.severityOption = 'Serious';
+      component.fromDate = '2017-01-01T22:00:00.000Z';
+      component.toDate = '2017-02-02T13:00:00.000Z';
+      component.pageSize = 2;
+      component.zoom = 1;
+      component.maxZoom = 2;
+      apiService = getAccidentStatiticsService();
+      apiService.spy_get.and.returnValues(apiService.simplePageOneOfTwoResponseSubject, apiService.simplePageTwoOfTwoResponseSubject);
+      fixture.detectChanges();
+      compiled = fixture.debugElement.nativeElement;
+    });
+
+    it('should call the accident statistic service twice with custom values', async(() => {
+      expect(apiService.spy_get).toHaveBeenCalledTimes(2);
+
+      expect(apiService.spy_get).toHaveBeenCalledWith({
+        pageSize: component.pageSize,
+        from: component.from,
+        to: component.to,
+        severity: component.severityOption,
+      });
+
+      expect(apiService.spy_get).toHaveBeenCalledWith({
+        pageSize: component.pageSize,
+        from: component.from,
+        to: component.to,
+        page: 2,
+        severity: component.severityOption,
+      });
+    }));
+
+    it('should set the zoom on the map', () => {
+      expect(component.leafletOptions).toBeDefined();
+      expect(component.leafletOptions.zoom).toBe(component.zoom);
+    });
+
+    it('should set the max zoom on the only configured layer', () => {
+      expect(component.leafletOptions.layers).toBeDefined();
+      expect(component.leafletOptions.layers.length).toBeGreaterThanOrEqual(1);
+      expect(component.leafletOptions.layers[0].options).toBeDefined();
+      expect(component.leafletOptions.layers[0].options.maxZoom).toBe(component.maxZoom);
+    });
+  });
+});
