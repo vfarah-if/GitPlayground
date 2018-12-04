@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { TileLayer, GridLayerOptions } from 'leaflet';
 
 import { AccidentStatisticMapComponent } from './accident-statistic-map.component';
 import {
@@ -226,8 +227,9 @@ describe('AccidentStatisticMapComponent', () => {
     it('should set the max zoom on the only configured layer', () => {
       expect(component.leafletOptions.layers).toBeDefined();
       expect(component.leafletOptions.layers.length).toBeGreaterThanOrEqual(1);
-      expect(component.leafletOptions.layers[0].options).toBeDefined();
-      expect(component.leafletOptions.layers[0].options.maxZoom).toBe(component.maxZoom);
+      const layer = <TileLayer>component.leafletOptions.layers[0];
+      expect(layer.options).toBeDefined();
+      expect(layer.options.maxZoom).toBe(component.maxZoom);
     });
   });
 });
