@@ -126,7 +126,7 @@ describe('Given a user navigates to the home page', () => {
     });
   });
 
-  it('should show the first list component displaying fatal accidents with json', () => {
+  it('should show the first list component displaying fatal accidents date descending with json as an example', () => {
     const listComponent = page.getListComponent(0);
     expect(listComponent).toBeTruthy();
     expect(listComponent.getAttribute('severityOption')).toBe('Fatal');
