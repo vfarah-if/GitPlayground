@@ -11,34 +11,34 @@
     <p>The business case for accident data can be a visual map of hotspots, a query tool for interrogating information or simply describing what happened with filtered data.</p>
     <p>Below are examples of 3 such components, the same components configured to show different data or perspectives on certain information.</p>
     <p>Make a point of utilising the developer tools to see the network activity and refresh the page to see the data optimisation the browser cache, or etag caching for 5 minutes at a time.</p>
-    <p>Monitor the console running the Api and make sure that the data is retreived from the cache once loaded from the server, therfore placing less of a strain on the TFL website</p>
+    <p>Monitor the console running the Api and make sure that the data is loaded from the TFL server or database, depending on the version of the Api being called, and the second reload shouldshow no activity within the logs, therfore taking the burden off the TFL website and the local web api service calling it or the database.</p>
   </li>
   <li>
-    <p>These are examples of the component types based on the colour, orange being a map type, yellow being a query type and finally red being the list component.</p>
+    <p>These are examples of the component types based on the colour, orange being a map component, yellow being a query component and finally red being the list component.</p>
       <dl>
         <dt>
-            <app-accident-statistic-map fromDate="Jan 1, 2010, 12:00:00 AM" imageOption="Macabre" severityOption="Fatal" zoom="11"></app-accident-statistic-map>
+            <app-accident-statistic-map fromDate="Jan 1, 2010, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" imageOption="Macabre" severityOption="Fatal" zoom="11"></app-accident-statistic-map>
         </dt>
         <dt>
-            <app-accident-statistic-map fromDate="Dec 1, 2017, 12:00:00 AM" imageOption="Friendly" severityOption="Serious" zoom="9"></app-accident-statistic-map>
+            <app-accident-statistic-map fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" imageOption="Friendly" severityOption="Serious" zoom="9"></app-accident-statistic-map>
         </dt>
         <dt>
-            <app-accident-statistic-map fromDate="Dec 15, 2017, 12:00:00 AM" imageOption="Marker" severityOption="Slight" zoom="10" useGeolocationPosition="true"></app-accident-statistic-map>
+            <app-accident-statistic-map fromDate="Dec 15, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" imageOption="Marker" severityOption="Slight" zoom="10" useGeolocationPosition="true"></app-accident-statistic-map>
         </dt>
         <dt>
             <app-accident-statistic-query severityOption="Fatal"></app-accident-statistic-query>
         </dt>
         <dt>
-            <app-accident-statistic-list severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" orderByOption="DateDescending" showJson="true"></app-accident-statistic-list>
+            <app-accident-statistic-list severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="DateDescending" showJson="true"></app-accident-statistic-list>
         </dt>
         <dt>
-            <app-accident-statistic-list severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" orderByOption="DateAscending"></app-accident-statistic-list>
+            <app-accident-statistic-list severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="DateAscending"></app-accident-statistic-list>
         </dt>
         <dt>
-            <app-accident-statistic-list severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" orderByOption="LocationAscending"></app-accident-statistic-list>
+            <app-accident-statistic-list severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="LocationAscending"></app-accident-statistic-list>
         </dt>
         <dt>
-            <app-accident-statistic-list severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" orderByOption="LocationDescending"></app-accident-statistic-list>
+            <app-accident-statistic-list severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="LocationDescending"></app-accident-statistic-list>
         </dt>
         <dt>
           <app-accident-statistic-list severityOption="Serious" fromDate="Dec 24, 2017, 12:00:00 AM"></app-accident-statistic-list>
