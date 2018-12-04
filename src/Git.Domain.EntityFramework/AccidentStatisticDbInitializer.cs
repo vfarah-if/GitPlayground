@@ -19,7 +19,14 @@ namespace Git.Domain.EntityFramework
             // context.Database.Delete();
             if (!context.Database.Exists())
             {
-                context.Database.Create();
+                try
+                {
+                    context.Database.Create();
+                }
+                catch (Exception e)
+                {
+                    Trace.TraceError("Failed to create database as expected because of {0}", e);
+                }
             }
 
             this.Seed(context);

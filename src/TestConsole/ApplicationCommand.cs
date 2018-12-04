@@ -1,6 +1,7 @@
 ﻿using Git.Domain;
 using Git.Domain.Models.TFL;
 using System;
+using System.Threading.Tasks;
 using static Git.Domain.Constants.AccidentStatisticSorting;
 
 namespace TestConsole
@@ -17,14 +18,14 @@ namespace TestConsole
             this._logger = logger;
         }
 
-        public void Execute()
+        public async Task Execute()
         {
             int currentPage = 1;
             int currentAmountOfRecordsRetrieved = PageSize;
             Paged<AccidentStatistic> pagedAccidentStatistics;
             do
             {
-                pagedAccidentStatistics = GetPagedFatalAccidentStatisticsFor2014To2017(currentPage, ByDateDescending);
+                pagedAccidentStatistics = await GetPagedFatalAccidentStatisticsFor2014To2017(currentPage, ByDateDescending).ConfigureAwait(false);
                 _logger.AsInformation($"{pagedAccidentStatistics.Total} fatal accidents occured");
                 _logger.AsInformation($"Page '{pagedAccidentStatistics.Page}' of '{pagedAccidentStatistics.LastPage}' pages with {currentAmountOfRecordsRetrieved} records");
                 foreach (var accidentStatistic in pagedAccidentStatistics.Data)
@@ -37,19 +38,17 @@ namespace TestConsole
             } while (pagedAccidentStatistics.NextPage.HasValue);
         }
 
-        private Paged<AccidentStatistic> GetPagedFatalAccidentStatisticsFor2014To2017(
+        private async Task<Paged<AccidentStatistic>> GetPagedFatalAccidentStatisticsFor2014To2017(
             int page,
             SortOptions<AccidentStatistic> sortOptions)
         {
-            return _transportForLondonClient.GetAccidentStatistics(
+            return await _transportForLondonClient.GetAccidentStatistics(
                     from: DateTime.Parse("01 January 2014 00:00:00"),
                     to: DateTime.Parse("31 December 2017 00:00:00"),
                     severity: Severity.Fatal,
                     sortOptions: sortOptions,
                     page: page,
-                    pageSize: PageSize)
-                .GetAwaiter()
-                .GetResult();
+                    pageSize: PageSize).ConfigureAwait(false);
         }
     }
 }

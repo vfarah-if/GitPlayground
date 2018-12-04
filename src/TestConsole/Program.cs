@@ -16,7 +16,7 @@ namespace TestConsole
                     try
                     {
                         var applicationCommand = scope.Resolve<IApplicationCommand>();
-                        applicationCommand.Execute();
+                        applicationCommand.Execute().GetAwaiter().GetResult();
                     }
                     catch (Exception e)
                     {

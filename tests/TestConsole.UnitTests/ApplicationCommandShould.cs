@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoFixture;
 using Git.Domain;
 using Git.Domain.Models.TFL;
@@ -39,9 +40,9 @@ namespace TestConsole.UnitTests
         }
 
         [Fact()]
-        public void CallTransportForLondonClientToGetFatalAccidentStatisticsForJan2014()
+        public async Task CallTransportForLondonClientToGetFatalAccidentStatisticsForJan2014()
         {
-            _subject.Execute();
+            await _subject.Execute();
 
             _transportForLondonClientMock.Verify(x => x.GetAccidentStatistics(
                 DateTime.Parse("01 January 2014 00:00:00"),
@@ -53,17 +54,17 @@ namespace TestConsole.UnitTests
         }
 
         [Fact]
-        public void LogInformationAboutHowManyFatalAccidentsOccured()
+        public async Task LogInformationAboutHowManyFatalAccidentsOccured()
         {
-            _subject.Execute();
+            await _subject.Execute();
 
             _loggerMock.Verify(x => x.AsInformation($"{_pagedAccidentResponse.Total} fatal accidents occured"));
         }
 
         [Fact]
-        public void LogInformationPageInformation()
+        public async Task LogInformationPageInformation()
         {
-            _subject.Execute();
+            await _subject.Execute();
 
             _loggerMock.Verify(x => x.AsInformation($"Page '{_pagedAccidentResponse.Page}' of '{_pagedAccidentResponse.LastPage}' pages with 20 records"));
         }

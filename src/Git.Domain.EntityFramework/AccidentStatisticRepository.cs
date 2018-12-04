@@ -69,25 +69,29 @@ namespace Git.Domain.EntityFramework
             var skip = (page - 1) * pageSize;
             Trace.TraceInformation($"The skip is {skip}");
 
-            IQueryable<AccidentStatisticDb> accidentQuery = filter != null
-                ? _accidentStatisticDbContext?
-                    .AccidentStatistics
-                    .Where(filter)
-                    .Include(x => x.Casualties)
-                    .Include(x => x.Vehicles)
-                    .AsQueryable()
-                : _accidentStatisticDbContext
-                    .AccidentStatistics
-                    .Include(x => x.Casualties)
-                    .Include(x => x.Vehicles)
-                    .AsQueryable();
+            IEnumerable<AccidentStatisticDb> accidents = new List<AccidentStatisticDb>();
+            if (maxPageCount > 0)
+            {
+                IQueryable<AccidentStatisticDb> accidentQuery = filter != null
+                    ? _accidentStatisticDbContext?
+                        .AccidentStatistics
+                        .Where(filter)
+                        .Include(x => x.Casualties)
+                        .Include(x => x.Vehicles)
+                        .AsQueryable()
+                    : _accidentStatisticDbContext
+                        .AccidentStatistics
+                        .Include(x => x.Casualties)
+                        .Include(x => x.Vehicles)
+                        .AsQueryable();
 
-            Debug.Assert(accidentQuery != null, nameof(accidentQuery) + " != null");
-            IEnumerable<AccidentStatisticDb> accidents = await accidentQuery
+                Debug.Assert(accidentQuery != null, nameof(accidentQuery) + " != null");
+                accidents = await accidentQuery
                     .OrderIt(sortOption.SortBy, sortOption.IsAscending)
                     .Skip(skip)
                     .Take(pageSize)
                     .ToListAsync();
+            }
 
             return Paged<AccidentStatisticDb>.Create(accidentCount, accidents, page, accidents.Count(), maxPageCount);
         }

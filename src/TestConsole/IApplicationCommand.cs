@@ -1,7 +1,9 @@
-﻿namespace TestConsole
+﻿using System.Threading.Tasks;
+
+namespace TestConsole
 {
     public interface IApplicationCommand
     {
-        void Execute();
+        Task Execute();
     }
 }
