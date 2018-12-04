@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Observable } from 'rxjs/internal/Observable';
-import { switchMap, catchError, startWith, tap } from 'rxjs/internal/operators';
+import { switchMap, catchError, tap } from 'rxjs/internal/operators';
 
 import { SeverityOptions, PagedAccidentStatistic, SortByOptions } from '../../model';
 import { AccidentStatiticsService } from '../../api';
@@ -42,7 +42,6 @@ export class AccidentStatisticQueryComponent implements OnInit {
     });
 
     this.pagedAccidentStatistics$ = this.accidentStatisticsForm.valueChanges.pipe(
-      // startWith(this.accidentStatisticsForm.value), // Note errors dont get raised now because of this
       switchMap(data => {
         // debugger;
         this.clearErrors();

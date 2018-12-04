@@ -1,4 +1,6 @@
-export type SortByOptions = 'DateAscending'|'LocationAscending'|'DateDescending'|'LocationDescending';
+export type SortByOptions = 'DateAscending' | 'LocationAscending' | 'DateDescending' |
+  'LocationDescending' | 'BoroughAscending' | 'AccidentStatisticIdAscending' |
+  'TflIdAscending' | 'BoroughDescending' | 'AccidentStatisticIdDescending' | 'TflIdDescending';
 export type SeverityOptions = 'Serious' | 'Slight' | 'Fatal';
 
 export interface AccidentStatisticsQuery {
