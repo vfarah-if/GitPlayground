@@ -32,6 +32,7 @@ namespace Git.Domain.EntityFramework.Models
 
         public string Location { get; set; }
 
+        [Index]
         [Column(TypeName = "datetime2")]
         public DateTime Date { get; set; }
 

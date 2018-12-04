@@ -58,6 +58,10 @@
     <Compile Include="AccidentStatisticRepository.cs" />
     <Compile Include="IAccidentStatisticDbContext.cs" />
     <Compile Include="IAccidentStatisticRepository.cs" />
+    <Compile Include="Migrations\201812041046106_OptimizeOrderBy.cs" />
+    <Compile Include="Migrations\201812041046106_OptimizeOrderBy.Designer.cs">
+      <DependentUpon>201812041046106_OptimizeOrderBy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccidentStatisticDb.cs" />
     <Compile Include="AccidentStatisticDbContext.cs" />
     <Compile Include="AccidentStatisticDbInitializer.cs" />
@@ -74,6 +78,7 @@
     <Compile Include="SortOptions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -88,6 +93,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811271712193_InitialCreate.resx">
       <DependentUpon>201811271712193_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812041046106_OptimizeOrderBy.resx">
+      <DependentUpon>201812041046106_OptimizeOrderBy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
