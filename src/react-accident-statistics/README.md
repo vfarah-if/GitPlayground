@@ -18,6 +18,9 @@ https://sinonjs.org/
 In the end I have decided to go with a mixture of the above and link with https://github.com/axios/moxios
 https://www.npmjs.com/package/@types/moxios
 
+##Jest mocks
+https://jestjs.io/docs/en/es6-class-mocks
+
 ##Loading JSON files for testing stuff
 https://www.npmjs.com/package/json-loader is what was suggested
 

@@ -3,8 +3,8 @@ import axios from 'axios';
 import { PagedAccidentStatistic, AccidentStatisticsQuery } from 'src/models';
 
 export class AccidentStatisticsService {
-    basePath: 'http://localhost:9000'; // TODO: hook this up with environment variables
-    
+    private basePath:string = 'http://localhost:9000'; // TODO: hook this up with environment variables
+
     public async get(query?: AccidentStatisticsQuery): Promise<PagedAccidentStatistic> {
         // NOTE: Not all browsers support this so pollyfill or use something better
         var params = new URLSearchParams();
