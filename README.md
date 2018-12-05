@@ -1,7 +1,7 @@
 # Welcome to your first indaba
 So you may be asking what is an indaba? As a native South African, I have often used this term out of context, but appropriatly, at least in this context. Officially an indaba is an important meeting or conference held by the Zulu or Xhosa people. However we South African's overload this by saying "that is your Indaba my brew", meaning good luck and you should solve this what ever desperate way you can because you are probably in the kak.
 
-So what does this have to do with the Git Playground? This is a series of real-world Katas, or soon to become, and for you that is about chosing how you solve you indaba. An indaba is really a marathon Kata exercising a lot of real world issues.
+So what does this have to do with the Git Playground? This is a series of real-world Katas, or soon to become, and for you that is about chosing how you solve your indaba. An indaba is really a marathon Kata exercising a lot of real world issues.
 Essentially the gist of it is below and if you are interested in how it is solved by me, look at my indaba src within the repository. Good luck my brew or sister!
 
 # Transport For London Indaba
@@ -10,7 +10,9 @@ Transport for London have created an endpoint that returns an abundance of data 
 
 !["TFL Unified Api"](screenshots/TFLUnifiedApi.png)
 
-This Api is a great way to exercise real world solutions, to not only creat better Api's, but also exercise different skills in getting to this. My original reason for stumbling across this Api was to find some statistics about my menacing cycle route through London city traffic, to work out where I should cycle safely and what roads I should avoid because of their menacing reputation for claiming souls. This Api was a little tricky in helping me safe up my route and returned almost 49000 records per year at once, with no option to filter or return the data in some other useful order. I thought this is a wonderful chance to create a full stack, partial or minimal solution depending on which Indaba you decide to endure down.
+This Api is a great way to exercise real world solutions, for not only creating better Api's, but also to exercise different skills in getting arriving to the end goal.
+
+My original reason for stumbling across this Api was to find some statistics about my menacing cycle route through London city traffic, to work out where I should cycle safely and what roads I should avoid. This Api was a little tricky in helping me safe-up my route and returned almost 49000 records per year at once, with no option to filter or return the data in some other useful order. I thought this is agood opportunity to create a full stack, partial or minimal solution depending on which Indaba you decide to endure down.
 
 Full stack indaba is a *Marathon Indaba* making you a *Shaka Zulu*. Solving the front-end using my backend solution, or the data part only, or the domain logic is more a 5 km run to half marathon, making you a *Senzangakona*. If you just want to learn about how I solved it, academic or for another reason I cant fathom, you will just have to be a *Voortrekker* in the face of all this so endure on!
 
