@@ -39,7 +39,6 @@ export class AccidentStatisticsService {
             }
         }
         const url = query && query.useV1 ? `${this.basePath}/v1/AccidentStatistics` : `${this.basePath}/v2/Accidents`;
-
         return await axios.get(url, { params: params, headers: headers })
     }
 }

@@ -1,13 +1,19 @@
 
 import * as moxios from 'moxios';
-import testData from './accident-statistics-service.json';
+
+// import * as testData from './accident-statistics-service.json';
+// import { default as testData } from './accident-statistics-service.json';
+// import testData from './accident-statistics-service.json';
+// const testData = require('./accident-statistics-service.json');
+
 import { AccidentStatisticsService } from './accident-statistics-service';
+
 
 describe('AccidentStatisticsService', () => {
     let service: AccidentStatisticsService;
     beforeEach(() => {
         moxios.install()
-        service = new AccidentStatisticsService();
+        // service = new AccidentStatisticsService();
     });
 
     afterEach(() => {
@@ -15,7 +21,7 @@ describe('AccidentStatisticsService', () => {
     });
 
     it('should create test with all expectations', () => {
-        expect(testData).toBeTruthy();
+        // expect(testData).toBeTruthy();
         expect(service).toBeTruthy();
     });
 
