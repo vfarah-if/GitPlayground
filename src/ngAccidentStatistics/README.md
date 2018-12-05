@@ -54,11 +54,9 @@ This is a fairly complex area, but for more information check out the
 
 [Creating streams in angular](https://blog.angularindepth.com/the-extensive-guide-to-creating-streams-in-rxjs-aaa02baaff9a)
 
-## Map libraries and better understa
+## Map libraries
 
-Take a look at utilising this with [openlayers map documentation](https://openlayers.org/en/latest/apidoc/) and code is [here](https://github.com/openlayers/openlayers)
+Take a look at utilising this with [openlayers map documentation](https://openlayers.org/en/latest/apidoc/) and the api if you wanted to use this map is [here](https://github.com/openlayers/openlayers)
 
-Take a look at [https://leafletjs.com/](https://leafletjs.com/) for information about the map utility
-Angular version and typings, look at [https://openlayers.org/en/latest/apidoc/](https://openlayers.org/en/latest/apidoc/) for extending what is here
-
-[Setting markers](https://journocode.com/2016/07/07/set-marker-map-leaflet-js/)
+I developed my map component with this lovely component [https://leafletjs.com/](https://leafletjs.com/) for information about the map utility
+Angular version and typings, look at [https://openlayers.org/en/latest/apidoc/](https://openlayers.org/en/latest/apidoc/).
