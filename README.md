@@ -10,7 +10,7 @@ Transport for London have created an endpoint that returns an abundance of data 
 
 !["TFL Unified Api"](screenshots/TFLUnifiedApi.png)
 
-This Api is a great way to exercise real world solutions, for not only creating better Api's, but also to exercise different skills in getting arriving to the end goal.
+This Api is a great way to exercise real world solutions, for not only creating better Api's, but also to exercise different skills in  solving the Api issue.
 
 My original reason for stumbling across this Api was to find some statistics about my menacing cycle route through London city traffic, to work out where I should cycle safely and what roads I should avoid. This Api was a little tricky in helping me safe-up my route and returned almost 49000 records per year at once, with no option to filter or return the data in some other useful order. I thought this is agood opportunity to create a full stack, partial or minimal solution depending on which Indaba you decide to endure down.
 
