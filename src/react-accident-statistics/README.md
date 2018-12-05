@@ -3,6 +3,24 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+
+##Axios
+Axios is HTTP client I used for communicating with the Owin Api. See more information about the library documentation at [Axios setup](https://www.npmjs.com/package/axios)
+
+##Sinon
+I wanted to stub out stuff for the purpose of unit testing axios, investigated
+
+https://medium.com/@srph/axios-easily-test-requests-f04caf49e057
+https://sinonjs.org/
+
+
+##Moxios
+In the end I have decided to go with a mixture of the above and link with https://github.com/axios/moxios
+https://www.npmjs.com/package/@types/moxios
+
+##Loading JSON files for testing stuff
+https://www.npmjs.com/package/json-loader is what was suggested
+
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)
