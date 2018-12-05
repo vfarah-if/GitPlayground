@@ -100,17 +100,5 @@ describe('AccidentStatiticsService', () => {
       expect(req.request.url).toBe(`${environment.accidentStatisticsBaseUrl}/v1/AccidentStatistics`);
       expect(req.request.urlWithParams).toBe(expectedUrl);
     });
-
-    it('should get expected data', async () => {
-      const mockAccidentStatistics: PagedAccidentStatistic = <PagedAccidentStatistic>testData;
-      service.get().subscribe((response) => {
-        expect(response).toEqual(mockAccidentStatistics);
-      });
-
-      const expectedUrl = `${environment.accidentStatisticsBaseUrl}/v2/Accidents`;
-      const req = httpMock.expectOne(expectedUrl);
-      expect(req.request.responseType).toEqual('json');
-      req.flush(mockAccidentStatistics);
-    });
   });
 });
