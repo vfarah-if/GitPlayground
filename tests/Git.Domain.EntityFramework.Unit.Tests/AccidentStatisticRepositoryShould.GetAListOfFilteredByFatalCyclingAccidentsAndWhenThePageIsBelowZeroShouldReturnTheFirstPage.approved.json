@@ -30,7 +30,7 @@
                     
           "vehicleId":  88117,
                     
-          "vehicleType":  "HeavyGoodsVehicle"
+          "type":  "HeavyGoodsVehicle"
         
                 },
                 
@@ -38,7 +38,7 @@
                     
           "vehicleId":  88118,
                     
-          "vehicleType":  "PedalCycle"
+          "type":  "PedalCycle"
         
                 }
       
