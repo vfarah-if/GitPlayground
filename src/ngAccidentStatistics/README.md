@@ -18,9 +18,26 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+!["Test Results"](screenshots/TestResults.png)
+
+To debug within tests, simply place *console.log* statements or *debugger* where you want to debug and chrome has all sorts of watches to evaluate and step through the problem.
+
+!["Debugging"](screenshots/DebuggingKarmaWithChrome.png)
+
+Viewing the debug output can be seen within the terminal window, as well as the same information from the chrome browser, which means you could essentially run in headless mode to speed up the tests and see teh results within the terminal.
+
+!["Debugging with vs code"](screenshots/VSCodeDebugging.png)
+
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). Make sure the Owin Api is running in the background so the test can access the data.
+
+!["Test runner"](screenshots/e2eTestRunner.png)
+
+A summary of the results can be seen within the output.
+
+!["Ouput or terminal"](screenshots/e2eTerminal.png)
+
 
 ## Further help
 
