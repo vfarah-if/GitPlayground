@@ -59,7 +59,7 @@ Do not look at this if you want to solve this on your own. This is my indaba and
 	4. **The TestConsole** is the simplest solution for solving the domain problem, and the poormans UI for looking at how it works, other than the tests. The console will simply load the Transport for London client using an autofac dependency injection framework and show severe fatalities between 2014 and 2017. All the trace outputs will be logged to the window showing when this is loading from the server or when being loaded from my custom in memory cache, and then will run through the details one page at a time. The console will pause at the end for you to scroll through the data to view what happened.
 	!["Test Console"](screenshots/TestConsoleUI.png)
 	5. **The domain** data serialized the data into poco classes. I tried initially to get away with doing it into a dynamic object, to see if I could get away with doing nothing, but in the end I felt it was beneficial to have this strongly typed as dynamic can be clunky. I chose to use Flurl as I usually take time to create an HtmlClient builder, and then tests to support this and I found that in the end I created the same thing that looks like Flurl's ugly cousin. Creating it from scratch may have been useful for this exercise but I say pick your battles. This is a very useful library and has a nice testing interface which I exercised within my own tests. Feel free to use the standard .net HttpClient, as this does nothing more than create a builder and make testing easier when mocking http endpoints. I included custom caching objects, sorting comparers, configuration extensions and various things to make a simple project more intersting. In your indaba, create what challenges you and your goals you want to face and drive ... like you stole it.
-	6. **The database project** utilises entity framework code first. To setup the database run *Git.Domain.EntityFramework.ConsoleApp* project and when it is loading, it will automatically create and seed all the data neded to run this project. The database takes two minutes per year to generate, taking roughly 30 minutes on a good setup, but feel free to cancel when you have generated some data to run things with. There may be tests that will start failing, just repair or ignore them until you have time or interest to generate the entire data stack from the seed. The other small issue is the seed is generated from the live server data and so the data does change from time to time, especially when 2018 data comes into fruition. The same data can be generated from running the *Git.Domain.Owin.Api* too so if you want to bypass the console, feel free. This is was the first consumer of the project, before the *Owin.Api* version 2.0 Api was enhanced to expose this. Here is more information on an interesting blog fro a full repository and some good practises [Repository blog](http://blog.gauffin.org/2013/01/repository-pattern-done-right/). Below is a typical example of what the console states when seeding the data. If you run the Api, it will probably output this information in the Visual Studio output debug window.
+	6. **The database project** utilises entity framework code first. To setup the database run *Git.Domain.EntityFramework.ConsoleApp* project and when it is loading, it will automatically create and seed all the data neded to run this project. The database takes two minutes per year to generate, taking roughly 30 minutes on a good setup, but feel free to cancel when you have generated some data to run things with. There may be tests that will start failing, just repair or ignore them until you have time or interest to generate the entire data stack from the seed. The other small issue is the seed is generated from the live server data and so the data does change from time to time, especially when 2018 data comes into fruition. The same data can be generated from running the *Git.Domain.Owin.Api* too so if you want to bypass the console, feel free. This is was the first consumer of the project, before the *Owin.Api* version 2.0 Api was enhanced to expose this. Here is more information on an interesting blog for a full repository and some good practises [Repository blog](http://blog.gauffin.org/2013/01/repository-pattern-done-right/). Below is a typical example of what the console states when seeding the data. If you run the Api, it will probably output this information in the Visual Studio output debug window.
 	!["Git Domain EntityFramework ConsoleApp"](screenshots/BulkInsert.png)				
 	7. **The git.domain.owin.api** is a self Hosting Owin Api run in a simple console application. It simply stays up by virtue of a *console readline*, and would usually be done more robustly as a service, or using [Topshelf](http://topshelf-project.com), where you can configure the application in different modes using console arguments. The Api is self documenting with the swagger option visible in the console, but I can say that it needs love and caring and is mostly just there to show an entry. CORS is the first thing you will need if a front-end will need to call the service you can see how I included customisations to easilly configure projects. I could query any bits of data exposed in my api through simple human readbale mechanisms making it intuitive to use through a browser.
 	!["Api in chrome"](screenshots/ApiThroughTheBrowser.png)
@@ -82,26 +82,21 @@ Do not look at this if you want to solve this on your own. This is my indaba and
 
 # summary
 Enjoy doing Indabas and remember solving small issues well helps give you a spear for bigger problems.
-"Umkhonto we sizwe" and empower yourself!
+Umkhonto we sizwe a nd good luck!
 
 !["Spear of the nation"](screenshots/UmkontoWeSizwe.png)
 
 # Things to do myself and brain dump space
 This is my untidy area on the page that will just stay a mess until I move what I think is useful into the correct places. 
 
-For me this is a Playground for testing rest connections, Flurl, Bddfy and other concepts
-TODO: Owin web Api to call cached and paged client for London transport and create as simple as possible an own console application that can utilise good simple patterns to test and develop each area
-
 	Extends with swagger, pact or typemock tests
 
 	Fix RFC3986-compliant issues
 
-TODO: Create an angular 7 client to look at severity data within google map 
-
+Add in Angula README
 https://github.com/angular/angular-cli/wiki
 
 https://alligator.io/angular/testing-httpclient/
-
 
 Start coming up with ideas for lightning talks
 
@@ -110,5 +105,3 @@ TODO: Create a react client doing the same thing to compare and do it in typescr
 	Follow the instructions for generating the base typescript project https://github.com/Microsoft/TypeScript-React-Starter
 
 	https://airbnb.io/enzyme/docs/installation/index.html for setting up enzyme
-	
-	
