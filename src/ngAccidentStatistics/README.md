@@ -1,6 +1,8 @@
 # NgAccidentStatistics
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4. Most of this project was developed using standard Angular patterns.
+
+The only part I wanted to ellaborate on is my testing folder within each folder. When ever I create a component or a service, I always create a test component and test module that can be utilised by whatever consumes the artifact. This made things very simple for testing and always puts cousuming the component in your design choice. I created a simple testing mechanism for RXJS methods exposing jasmine spies for mocking the data expectations and instead of doing Jasmine Marble testing, I simply exposed simple observables from json data files which allowed easy configuration of different tests, see code for more details. This made it very easy to test data for different scenarios very simplt. I kept it simple for testing the components this strategy lends itself to complicated scenarios. Take a look at the diffent *testing* folders for a better idea of what I am talking about.
 
 ## Development server
 
