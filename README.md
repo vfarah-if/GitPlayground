@@ -83,6 +83,7 @@ Do not look at this if you want to solve this on your own. This is my indaba and
 # summary
 Enjoy doing Indabas and remember solving small issues well helps give you a spear for bigger problems.
 "Umkhonto we sizwe" and empower yourself!
+
 !["Spear of the nation"](screenshots/UmkontoWeSizwe.png)
 
 # Things to do myself and brain dump space
