@@ -1,8 +1,8 @@
 # Welcome to your first indaba
-So you may be asking what is an indaba? As a native South African, I have often used this term out of context, but appropriatly, at least in this context. Officially an indaba is an important meeting or conference held by the Zulu or Xhosa people. However we South African's overload this by saying "that is your Indaba my brew", meaning good luck and you should solve this what ever desperate way you can because you are probably in the kak.
+So you may be asking what is an indaba? As a native South African, I have often used this term out of context, but appropriatly, at least in this context. Officially an indaba is an important meeting or conference held by the Zulu or Xhosa people. However we South African's overload this by saying "that is your Indaba my bru", meaning good luck and you should solve this what ever desperate way you can.
 
 So what does this have to do with the Git Playground? This is a series of real-world Katas, or soon to become, and for you that is about chosing how you solve your indaba. An indaba is really a marathon Kata exercising a lot of real world issues.
-Essentially the gist of it is below and if you are interested in how it is solved by me, look at my indaba src within the repository. Good luck my brew or sister!
+Essentially the gist of it is below and if you are interested in how it is solved by me, look at my indaba src within the repository. Good luck my bru or sister!
 
 # Transport For London Indaba
 
@@ -63,6 +63,13 @@ Do not look at this if you want to solve this on your own. This is my indaba and
 	!["Git Domain EntityFramework ConsoleApp"](screenshots/BulkInsert.png)
 	7. **The git.domain.owin.api** is a self Hosting Owin Api run in a simple console application. It simply stays up by virtue of a *console readline*, and would usually be done more robustly as a service, or using [Topshelf](http://topshelf-project.com), where you can configure the application in different modes using console arguments. The Api is self documenting with the swagger option visible in the console, but I can say that it needs love and caring and is mostly just there to show an entry. CORS is the first thing you will need if a front-end will need to call the service you can see how I included customisations to easilly configure projects. I could query any bits of data exposed in my api through simple human readbale mechanisms making it intuitive to use through a browser.
 	!["Api in chrome"](screenshots/ApiThroughTheBrowser.png)
+		1. A few more links of interest for anyone wanting to self host, see [Owin self host](https://docs.microsoft.com/en-us/aspnet/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api).
+		2. Autofac and Owin see [integrating autofac into the Owin pipeline](https://autofaccn.readthedocs.io/en/latest/integration/owin.html).
+		3. Setting up Swagger see [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle).
+		4. Setting up Web Api 2 see [ASPNet Web Api 2 release notes](https://docs.microsoft.com/en-us/aspnet/visual-studio/overview/2013/release-notes#TOC11)
+		5. Webhosting see [Configuring Web API with ASP.NET Hosting](https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/configuring-aspnet-web-api#webhost)
+		6. More information on CORS see [Enable cross-origin requests in ASP.NET Web API 2](https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api)
+		7. The caching mechanism is very simple to implement, and here is an example of the source library I utilised. I could have developed this with my memory caching mechanism in my domain, but did not want to spend time creating attributes and testing this so I chose a library I because it is very configurable. [Source code to the library I consumed](https://github.com/filipw/Strathweb.CacheOutput)
 	8. My angular project was written using vs code and with latest Angular Cli to produce an Angular 7 ngAccidentStatistics project, but feel free to use an editor of your choice that works well with node. For setup and project details see more within [src/ngAccidentStatistics](src/ngAccidentStatistics), related to installing the latest version of Node and the Angular CLI. I use a bespoke testing mechansims that work for me, creating a testing folder to represent every component/service I will create. I think this project gives you a taste for all sorts.
 		1. The first component is a map component visualising the different dates, map settings, severity and visual configurations using the Leaf map library, which I think is fantastic and open source. I even included the Geolocation framework to set your position, but  this is only because I am doing a certification on this stuff and wanted an excuse to use it, so play hard with it like I did.
 		!["Map components"](screenshots/MapComponents.png)
@@ -78,24 +85,10 @@ This is my untidy area on the page that will just stay a mess until I move what 
 
 For me this is a Playground for testing rest connections, Flurl, Bddfy and other concepts
 TODO: Owin web Api to call cached and paged client for London transport and create as simple as possible an own console application that can utilise good simple patterns to test and develop each area
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api
 
-https://autofaccn.readthedocs.io/en/latest/integration/owin.html
-
-https://github.com/domaindrivendev/Swashbuckle
-
-https://docs.microsoft.com/en-us/aspnet/visual-studio/overview/2013/release-notes#TOC11
-
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/configuring-aspnet-web-api#webhost
-
-https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
-	Finish unit tests
-	Extend tests to test header values and other controller information
 	Extends with swagger, pact or typemock tests
-	Fix RFC3986-compliant issues
 
-Add caching in the web api 2 layer (Take a look)
-	https://github.com/filipw/Strathweb.CacheOutput
+	Fix RFC3986-compliant issues
 
 TODO: Create an angular 7 client to look at severity data within google map 
 
