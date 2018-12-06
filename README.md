@@ -80,6 +80,11 @@ Do not look at this if you want to solve this on your own. This is my indaba and
 		!["List without json"](screenshots/ListComponentActual.png)
 	9. My react project is going to be developed using vscode as a typescript project. For setup and project details see more within [src/react-accident-statistics](src/react-accident-statistics). Watch this space as it unravels.
 
+# summary
+Enjoy doing Indabas and remember solving small issues well helps give you a spear for bigger problems.
+"Umkhonto we sizwe" and empower yourself!
+!["Spear of the nation"](screenshots/UmkontoWeSizwe.png)
+
 # Things to do myself and brain dump space
 This is my untidy area on the page that will just stay a mess until I move what I think is useful into the correct places. 
 
