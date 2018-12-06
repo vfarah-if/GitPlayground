@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Xunit;
 
 using static Git.Domain.Constants.AccidentStatisticSorting;
-using static System.Environment;
 
 namespace Git.Domain.UnitTests
 {
