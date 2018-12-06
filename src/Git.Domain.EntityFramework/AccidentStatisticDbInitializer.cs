@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Git.Domain.EntityFramework.Models;
+using Git.Domain.Models.TFL;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using Git.Domain.EntityFramework.Models;
-using Git.Domain.Models.TFL;
 
 namespace Git.Domain.EntityFramework
 {
@@ -40,7 +40,7 @@ namespace Git.Domain.EntityFramework
                 Stopwatch stopwatch = Stopwatch.StartNew();
                 await GenerateDataFromLiveFeed(context);
                 stopwatch.Stop();
-                Trace.TraceWarning($"Took '{stopwatch.Elapsed.ToString()}' to seed the data from the live server");                
+                Trace.TraceWarning($"Took '{stopwatch.Elapsed.ToString()}' to seed the data from the live server");
             }
             else
             {
@@ -89,14 +89,11 @@ namespace Git.Domain.EntityFramework
             var casualties = new List<CasualtyDb>();
             foreach (var accidentStatistic in accidentStatistics)
             {
-                Trace.TraceInformation($"Generating '{accidentStatistic.Id}' record for bulk insert");
                 AccidentStatisticDb newAccidentStatistic = accidentStatistic.ConvertFrom();
                 accidents.Add(newAccidentStatistic);
                 vehicles.AddRange(newAccidentStatistic.Vehicles);
                 casualties.AddRange(newAccidentStatistic.Casualties);
             }
-
-            Trace.TraceInformation($"Inserting AccidentStatistics'{accidents.Count}' records into the database");
             await context.BulkInsertAsync(accidents);
             Trace.TraceInformation($"Inserting Vehicles '{vehicles.Count}' records into the database");
             await context.BulkInsertAsync(vehicles);
@@ -104,7 +101,7 @@ namespace Git.Domain.EntityFramework
             await context.BulkInsertAsync(casualties);
             Trace.TraceInformation("Before Save ...");
             await context.BulkSaveChangesAsync();
-            Trace.TraceInformation("After Save ...");                        
+            Trace.TraceInformation("After Save ...");
         }
     }
 }
