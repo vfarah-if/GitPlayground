@@ -13,14 +13,16 @@ namespace Git.Domain.EntityFramework
     {
         //        private const int MaxPageSize = 1000;
         private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
+        private readonly ILogger _logger;
 
-        public AccidentStatisticRepository(IAccidentStatisticDbContext accidentStatisticDbContext)
+        public AccidentStatisticRepository(IAccidentStatisticDbContext accidentStatisticDbContext, ILogger logger)
         {
             _accidentStatisticDbContext = accidentStatisticDbContext;
+            _logger = logger;
             // NOTE: This exposes the SQL and the time durations
             _accidentStatisticDbContext.Database.Log = (sql) =>
             {
-                Trace.TraceInformation(sql);
+                _logger.Debug(sql);
             };
 
         }
@@ -33,7 +35,7 @@ namespace Git.Domain.EntityFramework
         {
             if (page < 1)
             {
-                Trace.TraceWarning($"Page was {page} and will be set to the minimum page of 1");
+                _logger.Warning($"Page was {page} and will be set to the minimum page of 1");
                 page = 1;
             }
 
@@ -49,7 +51,7 @@ namespace Git.Domain.EntityFramework
 
             if (sortOption == null)
             {
-                Trace.TraceWarning($"The default date sorting descending will be assumed");
+                _logger.Warning($"The default date sorting descending will be assumed");
                 sortOption = SortOptions<AccidentStatisticDb>.OrderBy(x => x.Date);
             }
 
@@ -62,7 +64,7 @@ namespace Git.Domain.EntityFramework
 
             if (page > maxPageCount)
             {
-                Trace.TraceWarning($"The current page {page} is below the maximum page of {maxPageCount} so will be defaulted to the last page");
+                _logger.Warning($"The current page {page} is below the maximum page of {maxPageCount} so will be defaulted to the last page");
                 page = maxPageCount;
             }
 

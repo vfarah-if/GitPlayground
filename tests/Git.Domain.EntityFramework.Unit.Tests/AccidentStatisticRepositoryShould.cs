@@ -22,7 +22,7 @@ namespace Git.Domain.EntityFramework.Unit.Tests
         public AccidentStatisticRepositoryShould()
         {
             _accidentStatisticDbContext = new AccidentStatisticDbContext();
-            _subject = new AccidentStatisticRepository(_accidentStatisticDbContext);
+            _subject = new AccidentStatisticRepository(_accidentStatisticDbContext, Logger.Create());
             int actualCount = _accidentStatisticDbContext.AccidentStatistics.Count();
             if (actualCount != 0) return;            
             do
