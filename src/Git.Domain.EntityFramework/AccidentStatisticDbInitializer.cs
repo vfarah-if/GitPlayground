@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Git.Domain.EntityFramework
@@ -62,16 +63,25 @@ namespace Git.Domain.EntityFramework
             }
             for (int year = lastYear; year >= firstYear; year--)
             {
-                Trace.TraceInformation($"Getting data for year '{year}'");
-                Stopwatch stopwatch = Stopwatch.StartNew();
-                var accidentStatistics =
-                    await transportForLondonClient.GetAllAccidentStatistics(year).ConfigureAwait(false);
-                stopwatch.Stop();
-                Trace.TraceInformation($"Took '{stopwatch.Elapsed.ToString()}' to retrieve data for year '{year}'");
-                stopwatch = Stopwatch.StartNew();
-                await GeneraDataFor(context, accidentStatistics);
-                stopwatch.Stop();
-                Trace.TraceInformation($"Took '{stopwatch.Elapsed.ToString()}' to insert data for year '{year}' into the local database");
+                try
+                {
+                    Trace.TraceInformation($"Getting data for year '{year}'");
+                    Stopwatch stopwatch = Stopwatch.StartNew();
+                    var accidentStatistics =
+                        await transportForLondonClient.GetAllAccidentStatistics(year).ConfigureAwait(false);
+                    stopwatch.Stop();
+                    Trace.TraceInformation($"Took '{stopwatch.Elapsed.ToString()}' to retrieve data for year '{year}'");
+                    stopwatch = Stopwatch.StartNew();
+                    await GeneraDataFor(context, accidentStatistics);
+                    stopwatch.Stop();
+                    Trace.TraceInformation($"Took '{stopwatch.Elapsed.ToString()}' to insert data for year '{year}' into the local database");
+                    Trace.TraceInformation($"Pausing to prevent being locked out");
+                    Thread.Sleep(10000);
+                }
+                catch (Exception e)
+                {
+                    Trace.TraceError($"Failed to get data for year '{year}'", e.Message, e.InnerException?.Message);
+                }
             }
         }
 
