@@ -105,3 +105,6 @@ TODO: Create a react client doing the same thing to compare and do it in typescr
 	Follow the instructions for generating the base typescript project https://github.com/Microsoft/TypeScript-React-Starter
 
 	https://airbnb.io/enzyme/docs/installation/index.html for setting up enzyme
+
+	https://www.loggly.com/blog/benchmarking-5-popular-net-logging-libraries/
+	TODO: Remove the Trace and replace it with a proper logger library as I found that this killed performance of database import and so this will be useful to have in the core project based on the unreal performance degradation of importing data.
