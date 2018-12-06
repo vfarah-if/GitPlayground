@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using Autofac;
+using Git.Domain;
 using Git.Domain.Autofac;
 
 namespace TestConsole
@@ -9,7 +9,6 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            ConfigureTraceListener();
             CreateLifetimeScope(scope =>
                 {
 
@@ -21,18 +20,13 @@ namespace TestConsole
                     catch (Exception e)
                     {
                         var logger = scope.Resolve<ILogger>();
-                        logger.AsError(e, "Failed to get paged transport messages ...");
+                        logger.Error("Failed to get paged transport messages ...", e);
                     }
                     finally
                     {
                         Console.Read();
                     }
                 });
-        }
-
-        private static void ConfigureTraceListener()
-        {
-            Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
         }
 
         private static void CreateLifetimeScope(Action<ILifetimeScope> action)

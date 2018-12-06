@@ -17,7 +17,7 @@ namespace Git.Domain.Acceptance.Tests
 
         public TransportForLondonClientShould()
         {
-            transportForLondonClient = new TransportForLondonClient(Configuration.Create());
+            transportForLondonClient = new TransportForLondonClient(Configuration.Create(), Logger.Create());
         }
 
         [Fact]

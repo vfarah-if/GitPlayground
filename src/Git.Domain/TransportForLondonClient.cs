@@ -3,7 +3,6 @@ using Flurl.Http;
 using Git.Domain.Models.TFL;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,22 +14,24 @@ namespace Git.Domain
     {
         private const string AccidentStatsPathSegment = "AccidentStats";
 
-        private readonly string baseUrl;
-        private readonly TimeSpan CacheExpirationTimeInMinutes;
-        private readonly Cache<int, IEnumerable<AccidentStatistic>> accidentStatisticsCache;
+        private readonly string _baseUrl;
+        private readonly TimeSpan _cacheExpirationTimeInMinutes;
+        private readonly Cache<int, IEnumerable<AccidentStatistic>> _accidentStatisticsCache;
+        private readonly ILogger _logger;
 
-        public TransportForLondonClient(IConfiguration configuration)
+        public TransportForLondonClient(IConfiguration configuration, ILogger logger)
         {
-            accidentStatisticsCache = new Cache<int, IEnumerable<AccidentStatistic>>();
-            baseUrl = configuration.TransportForLondonBaseUrl;
-            CacheExpirationTimeInMinutes = configuration.CacheExpirationTimeInMinutes;
-            Trace.TraceInformation($"Base Url is {baseUrl}");
-            Trace.TraceInformation($"Cache expiration is {CacheExpirationTimeInMinutes} minutes");
+            _logger = logger;
+            _accidentStatisticsCache = new Cache<int, IEnumerable<AccidentStatistic>>();
+            _baseUrl = configuration.TransportForLondonBaseUrl;
+            _cacheExpirationTimeInMinutes = configuration.CacheExpirationTimeInMinutes;
+            _logger.Information($"Base Url is {_baseUrl}");
+            _logger.Information($"Cache expiration is {_cacheExpirationTimeInMinutes} minutes");
         }
 
         public async Task<IList<dynamic>> GetAllAccidentStatisticsAsDynamic(int year)
         {
-            var result = await baseUrl
+            var result = await _baseUrl
                 .AppendPathSegment(AccidentStatsPathSegment)
                 .AppendPathSegment(year.ToString())
                 .GetJsonListAsync()
@@ -102,7 +103,7 @@ namespace Git.Domain
 
         private async Task<IEnumerable<AccidentStatistic>> GetAccidentStatisticsByYear(int year)
         {
-            var result = await baseUrl
+            var result = await _baseUrl
                 .AppendPathSegment(AccidentStatsPathSegment)
                 .AppendPathSegment(year.ToString())
                 .GetJsonAsync<IEnumerable<AccidentStatistic>>()
@@ -110,13 +111,13 @@ namespace Git.Domain
             return result;
         }
 
-        private static IReadOnlyList<AccidentStatistic> SortAndFilterAccidentStatistics(
+        private IReadOnlyList<AccidentStatistic> SortAndFilterAccidentStatistics(
             Func<AccidentStatistic, bool> filter,
             SortOptions<AccidentStatistic> sortOptions,
             IEnumerable<AccidentStatistic> data,
             bool ignoreSorting = false)
         {
-            Trace.TraceInformation(ignoreSorting ? "Filtering data only ..." : "Filtering and sorting data ...");
+            _logger.Information(ignoreSorting ? "Filtering data only ..." : "Filtering and sorting data ...");
 
             var output = filter != null ? data.Where(filter).ToList() : data.ToList();
             if (sortOptions == null) return output.AsReadOnly();
@@ -127,7 +128,7 @@ namespace Git.Domain
             return output.AsReadOnly();
         }
 
-        private static void Sort(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> results)
+        private void Sort(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> results)
         {
             if (sortOptions == null || results == null)
             {
@@ -149,7 +150,7 @@ namespace Git.Domain
             var tempFrom = from;
             from = to;
             to = tempFrom;
-            Trace.TraceWarning($"Swapped the dates as {from} is less than or equal to {to}");
+            _logger.Warning($"Swapped the dates as {from} is less than or equal to {to}");
         }
 
         private IEnumerable<int> GetYears(DateTime from, DateTime to)
@@ -169,17 +170,17 @@ namespace Git.Domain
         {
             int cacheKey = year;
 
-            var result = accidentStatisticsCache.Get(cacheKey);
+            var result = _accidentStatisticsCache.Get(cacheKey);
             if (result != null)
             {
-                Trace.TraceInformation($"Retrieved accident data from cache by key '{cacheKey}'...");
+                _logger.Information($"Retrieved accident data from cache by key '{cacheKey}'...");
                 return SortAndFilterAccidentStatistics(filter, sortOptions, result, ignoreSorting);
             }
 
-            Trace.TraceWarning($"Retrieving accident data from the server for year {year}...");
+            _logger.Warning($"Retrieving accident data from the server for year {year}...");
             var dataByYear = await GetAccidentStatisticsByYear(year);
-            Trace.TraceInformation($"Storing cache with key '{cacheKey}'...");
-            accidentStatisticsCache.Store(cacheKey, dataByYear, CacheExpirationTimeInMinutes);
+            _logger.Information($"Storing cache with key '{cacheKey}'...");
+            _accidentStatisticsCache.Store(cacheKey, dataByYear, _cacheExpirationTimeInMinutes);
             //#if DEBUG
             //            var resultForCurrentYear = dataByYear.ToJson();
             //            System.IO.File.WriteAllText($"c:\\temp\\test{year}.json", resultForCurrentYear);
@@ -189,18 +190,18 @@ namespace Git.Domain
             return result.ToList().AsReadOnly();
         }
 
-        private static void SortData(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
+        private void SortData(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
         {
             Guard(sortOptions);
             output.Sort(sortOptions.Comparer);
-            Trace.TraceInformation("Sorting data");
+            _logger.Information("Sorting data");
         }
 
-        private static void SortDataInReverse(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
+        private void SortDataInReverse(SortOptions<AccidentStatistic> sortOptions, List<AccidentStatistic> output)
         {
             Guard(sortOptions);
             output.Sort((x, y) => sortOptions.Comparer.Compare(y, x));
-            Trace.TraceInformation("Sorting data in reverse");
+            _logger.Information("Sorting data in reverse");
         }
 
         private static void Guard(SortOptions<AccidentStatistic> sortOptions)

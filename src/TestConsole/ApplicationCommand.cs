@@ -26,13 +26,13 @@ namespace TestConsole
             do
             {
                 pagedAccidentStatistics = await GetPagedFatalAccidentStatisticsFor2014To2017(currentPage, ByDateDescending).ConfigureAwait(false);
-                _logger.AsInformation($"{pagedAccidentStatistics.Total} fatal accidents occured");
-                _logger.AsInformation($"Page '{pagedAccidentStatistics.Page}' of '{pagedAccidentStatistics.LastPage}' pages with {currentAmountOfRecordsRetrieved} records");
+                _logger.Debug($"{pagedAccidentStatistics.Total} fatal accidents occured");
+                _logger.Debug($"Page '{pagedAccidentStatistics.Page}' of '{pagedAccidentStatistics.LastPage}' pages with {currentAmountOfRecordsRetrieved} records");
                 foreach (var accidentStatistic in pagedAccidentStatistics.Data)
                 {
-                    _logger.AsData($"{Enum.GetName(typeof(Severity), accidentStatistic.Severity)} Accident occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
+                    _logger.Information($"{Enum.GetName(typeof(Severity), accidentStatistic.Severity)} Accident occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
                 }
-                _logger.AsInformation($"Next '{PageSize}' records ...");
+                _logger.Debug($"Next '{PageSize}' records ...");
                 currentPage += 1;
                 currentAmountOfRecordsRetrieved += pagedAccidentStatistics.PageSize;
             } while (pagedAccidentStatistics.NextPage.HasValue);

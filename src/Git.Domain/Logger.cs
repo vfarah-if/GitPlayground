@@ -34,7 +34,7 @@ namespace Git.Domain
             _logger.Debug(message);
         }
 
-        public static ILogger CreateLogger()
+        public static ILogger Create()
         {
             return new Logger(new LoggerConfiguration().CreateLogger());
         }
