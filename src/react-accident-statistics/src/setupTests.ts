@@ -1,4 +1,4 @@
-import 'url-search-params-polyfill';
+import './Polyfill';
 import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 

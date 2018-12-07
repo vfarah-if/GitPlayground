@@ -1,8 +1,8 @@
-import 'url-search-params-polyfill';
+import './Polyfill';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
-import './index.css';
+import './styles/css/index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(

@@ -19,6 +19,10 @@ https://sinonjs.org/
 ##Jest mocks
 https://jestjs.io/docs/en/es6-class-mocks
 
+##Sass
+Install for scss extension by typing `npm install node-sass-chokidar --save-dev`
+Install for scss extension by typing `npm install npm-run-all --save-dev` and see more information on the  [npm-run-all command](https://github.com/mysticatea/npm-run-all/blob/master/docs/npm-run-all.md)
+
 ##Loading JSON files for testing stuff
 https://www.npmjs.com/package/json-loader is what was suggested
 
