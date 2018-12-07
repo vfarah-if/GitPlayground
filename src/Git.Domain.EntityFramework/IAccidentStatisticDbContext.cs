@@ -10,5 +10,6 @@ namespace Git.Domain.EntityFramework
         DbSet<CasualtyDb> Casualties { get; set; }
         DbSet<VehicleDb> Vehicles { get; set; }
         Database Database { get; }
+        ILogger Logger { get; }
     }
 }

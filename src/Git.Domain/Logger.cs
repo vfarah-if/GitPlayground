@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Serilog;
 
 namespace Git.Domain
 {
-    [ExcludeFromCodeCoverage]
     public class Logger : ILogger
     {
         private readonly Serilog.ILogger _logger;
@@ -36,7 +34,14 @@ namespace Git.Domain
 
         public static ILogger Create()
         {
-            return new Logger(new LoggerConfiguration().CreateLogger());
+            return new Logger(new LoggerConfiguration()
+                .ReadFrom.AppSettings()
+                .CreateLogger());
+        }
+
+        public void Dispose()
+        {
+            (_logger as Serilog.Core.Logger)?.Dispose();
         }
     }
 }

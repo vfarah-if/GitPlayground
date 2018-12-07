@@ -2,7 +2,7 @@
 
 namespace Git.Domain
 {
-    public interface ILogger
+    public interface ILogger : IDisposable
     {
         void Information(string message);
         void Error(string message, Exception exception);

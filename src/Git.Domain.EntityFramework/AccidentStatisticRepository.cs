@@ -15,10 +15,10 @@ namespace Git.Domain.EntityFramework
         private readonly IAccidentStatisticDbContext _accidentStatisticDbContext;
         private readonly ILogger _logger;
 
-        public AccidentStatisticRepository(IAccidentStatisticDbContext accidentStatisticDbContext, ILogger logger)
+        public AccidentStatisticRepository(IAccidentStatisticDbContext accidentStatisticDbContext)
         {
             _accidentStatisticDbContext = accidentStatisticDbContext;
-            _logger = logger;
+            _logger = accidentStatisticDbContext.Logger;
             // NOTE: This exposes the SQL and the time durations
             _accidentStatisticDbContext.Database.Log = (sql) =>
             {
