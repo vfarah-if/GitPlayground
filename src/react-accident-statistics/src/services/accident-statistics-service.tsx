@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { PagedAccidentStatistic, AccidentStatisticsQuery } from 'src/models';
 
 export class AccidentStatisticsService {
     private basePath:string = 'http://localhost:9000'; // TODO: hook this up with environment variables
 
-    public async get(query?: AccidentStatisticsQuery): Promise<PagedAccidentStatistic> {
+    public async get(query?: AccidentStatisticsQuery): Promise<AxiosResponse<PagedAccidentStatistic>> {
         var params = new URLSearchParams();
         if (query) {
             if (query.from) {
@@ -38,6 +38,6 @@ export class AccidentStatisticsService {
             }
         }
         const url = query && query.useV1 ? `${this.basePath}/v1/AccidentStatistics` : `${this.basePath}/v2/Accidents`;
-        return await axios.get(url, { params: params, headers: headers })
+        return await axios.get(url, { params: params, headers: headers });
     }
 }

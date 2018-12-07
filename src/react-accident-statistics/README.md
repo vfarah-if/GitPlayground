@@ -3,28 +3,28 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## vscode React snippets
+**vscode-react-typescript** help generate skeleton framework for you to place logic into
 
-##Axios
+## Axios
 Axios is HTTP client I used for communicating with the Owin Api. See more information about the library documentation at [Axios setup](https://www.npmjs.com/package/axios)
 
-##Axios Mock Adapter
+## Axios Mock Adapter
 Axios adapter that allows to easily mock requests [axios-mock-adapter setup](https://github.com/ctimmerm/axios-mock-adapter)
 
-##Sinon
-I wanted to stub out stuff for the purpose of unit testing axios, investigated
+## Sinon
+I wanted to stub out stuff for the purpose of unit testing axios
 
 https://medium.com/@srph/axios-easily-test-requests-f04caf49e057
 https://sinonjs.org/
 
-##Jest mocks
+## Jest mocks
 https://jestjs.io/docs/en/es6-class-mocks
 
-##Sass
+## Sass
 Install for scss extension by typing `npm install node-sass-chokidar --save-dev`
 Install for scss extension by typing `npm install npm-run-all --save-dev` and see more information on the  [npm-run-all command](https://github.com/mysticatea/npm-run-all/blob/master/docs/npm-run-all.md)
 
-##Loading JSON files for testing stuff
-https://www.npmjs.com/package/json-loader is what was suggested
 
 ## Table of Contents
 
