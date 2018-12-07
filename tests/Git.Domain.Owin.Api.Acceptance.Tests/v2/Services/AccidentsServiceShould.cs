@@ -5,7 +5,6 @@ using Git.Domain.EntityFramework;
 using Git.Domain.Models.TFL;
 using Git.Domain.Owin.Api.Models;
 using Git.Domain.Owin.Api.v2.Services;
-using Serilog;
 using Xunit;
 
 namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.Services
@@ -18,10 +17,8 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.Services
 
         public AccidentsServiceShould()
         {
-            _dbContext = new AccidentStatisticDbContext();
-            var log = new LoggerConfiguration()
-                .CreateLogger();
-            var logger = new Logger(log);
+            var logger = Logger.Create();
+            _dbContext = new AccidentStatisticDbContext(logger);          
             _repository = new AccidentStatisticRepository(_dbContext, logger);
             _subject = new AccidentsService(_repository);
         }

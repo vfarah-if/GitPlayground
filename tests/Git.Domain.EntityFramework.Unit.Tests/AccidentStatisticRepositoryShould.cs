@@ -21,8 +21,9 @@ namespace Git.Domain.EntityFramework.Unit.Tests
 
         public AccidentStatisticRepositoryShould()
         {
-            _accidentStatisticDbContext = new AccidentStatisticDbContext();
-            _subject = new AccidentStatisticRepository(_accidentStatisticDbContext, Logger.Create());
+            var logger = Logger.Create();
+            _accidentStatisticDbContext = new AccidentStatisticDbContext(logger);
+            _subject = new AccidentStatisticRepository(_accidentStatisticDbContext, logger);
             int actualCount = _accidentStatisticDbContext.AccidentStatistics.Count();
             if (actualCount != 0) return;            
             do

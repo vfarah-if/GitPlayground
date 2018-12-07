@@ -7,9 +7,9 @@ namespace Git.Domain.EntityFramework
     [ExcludeFromCodeCoverage]
     public class AccidentStatisticDbContext : DbContext, IAccidentStatisticDbContext
     {
-        public AccidentStatisticDbContext()
+        public AccidentStatisticDbContext(ILogger logger)
         {
-            Database.SetInitializer(new AccidentStatisticDbInitializer());
+            Database.SetInitializer(new AccidentStatisticDbInitializer(logger));
         }
         public DbSet<AccidentStatisticDb> AccidentStatistics { get; set; }
         public DbSet<CasualtyDb> Casualties { get; set; }

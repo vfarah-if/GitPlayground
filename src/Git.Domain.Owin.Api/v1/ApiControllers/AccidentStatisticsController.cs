@@ -19,10 +19,12 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
         protected internal const int OneMinuteInSeconds = 60;
         protected internal const int FiveMinuteTimeSpanInSeconds = 5 * OneMinuteInSeconds;
         private readonly IAccidentStatisticsService _accidentStatisticsService;
+        private readonly ILogger _logger;
 
-        public AccidentStatisticsController(IAccidentStatisticsService accidentStatisticsService)
+        public AccidentStatisticsController(IAccidentStatisticsService accidentStatisticsService, ILogger logger)
         {
             _accidentStatisticsService = accidentStatisticsService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -52,21 +54,20 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
             {
                 try
                 {
-                    Trace.TraceInformation($"Retrieving Accident Statistics for {accidentStatisticsQuery}");
+                    _logger.Information($"Retrieving Accident Statistics for {accidentStatisticsQuery}");
                     var result = await _accidentStatisticsService.GetAccidentStatistics(accidentStatisticsQuery);
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, result);
                     return response;
                 }
                 catch (Exception e)
                 {
-                    //TODO: Create a middleware that deals with errors in a generic way
-                    Trace.TraceError("Unable to get accident statistics", e);
+                    _logger.Error("Unable to get accident statistics", e);
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, $"Unable to get Accident Statistics by {accidentStatisticsQuery}", e);
                 }
             }
 
             var httpError = new HttpError(ModelState, true);
-            Trace.TraceError($"Model state is not valid", httpError);
+            _logger.Error($"Model state is not valid", new Exception($"{httpError.Message} {httpError.MessageDetail} {httpError.ExceptionMessage}"));
             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, httpError);
         }
     }

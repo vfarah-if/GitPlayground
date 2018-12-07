@@ -14,13 +14,13 @@ namespace Git.Domain.EntityFramework.ConsoleApp
     {
         static void Main(string[] args)
         {
-            using (var accidentStatisticDbContext = new AccidentStatisticDbContext())
-            {
-                var log = new LoggerConfiguration()
-                    .MinimumLevel.Debug()
-                    .WriteTo.Console()
-                    .CreateLogger();
-                var logger = new Logger(log);
+            var log = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .CreateLogger();
+            var logger = new Logger(log);
+            using (var accidentStatisticDbContext = new AccidentStatisticDbContext(logger))
+            {                
                 var accidentStatisticRepository = new AccidentStatisticRepository(accidentStatisticDbContext, logger);
                 var accidentCount = accidentStatisticRepository.Count().GetAwaiter().GetResult();
                 logger.Information($"{accidentCount} Accident Statistic records found");
