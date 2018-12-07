@@ -13,6 +13,7 @@ namespace Git.Domain.Autofac
             builder.Register(x => Configuration.Create()).AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AccidentStatisticRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccidentStatisticDbContext>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.Register(x => Logger.Create()).AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

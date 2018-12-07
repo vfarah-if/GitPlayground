@@ -36,7 +36,8 @@ namespace TestConsole.UnitTests
                 It.IsAny<SortOptions<AccidentStatistic>>(), It.IsAny<int>(), It.IsAny<int>()))
             .ReturnsAsync(() => _pagedAccidentResponse);
             _loggerMock = _autoMocker.GetMock<ILogger>();
-            _loggerMock.Setup(x => x.AsInformation(It.IsAny<string>()));
+            _loggerMock.Setup(x => x.Debug(It.IsAny<string>()));
+            _loggerMock.Setup(x => x.Information(It.IsAny<string>()));
         }
 
         [Fact()]
@@ -58,7 +59,7 @@ namespace TestConsole.UnitTests
         {
             await _subject.Execute();
 
-            _loggerMock.Verify(x => x.AsInformation($"{_pagedAccidentResponse.Total} fatal accidents occured"));
+            _loggerMock.Verify(x => x.Debug($"{_pagedAccidentResponse.Total} fatal accidents occured"));
         }
 
         [Fact]
@@ -66,7 +67,7 @@ namespace TestConsole.UnitTests
         {
             await _subject.Execute();
 
-            _loggerMock.Verify(x => x.AsInformation($"Page '{_pagedAccidentResponse.Page}' of '{_pagedAccidentResponse.LastPage}' pages with 20 records"));
+            _loggerMock.Verify(x => x.Debug($"Page '{_pagedAccidentResponse.Page}' of '{_pagedAccidentResponse.LastPage}' pages with 20 records"));
         }
 
         private static Paged<AccidentStatistic> CreatePagedAccidentStatistic(IEnumerable<AccidentStatistic> data, int page = 1, int lastPage = 1)

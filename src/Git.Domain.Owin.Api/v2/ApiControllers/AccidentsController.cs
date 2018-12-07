@@ -19,11 +19,14 @@ namespace Git.Domain.Owin.Api.v2.ApiControllers
     {
         protected internal const int OneMinuteInSeconds = 60;
         protected internal const int FiveMinuteTimeSpanInSeconds = 5 * OneMinuteInSeconds;
-        private readonly IAccidentsService _accidentStatisticsService;
 
-        public AccidentsController(IAccidentsService accidentStatisticsService)
+        private readonly IAccidentsService _accidentStatisticsService;
+        private readonly ILogger _logger;
+
+        public AccidentsController(IAccidentsService accidentStatisticsService, ILogger logger)
         {
-            this._accidentStatisticsService = accidentStatisticsService;
+            _accidentStatisticsService = accidentStatisticsService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -44,20 +47,20 @@ namespace Git.Domain.Owin.Api.v2.ApiControllers
             if (ModelState.IsValid)
             {
                 try
-                {                    
-                    Trace.TraceInformation($"Retrieving Accident Statistics for {accidentStatisticsQuery}");
+                {
+                    _logger.Information($"Retrieving Accident Statistics for {accidentStatisticsQuery}");
                     var result = await _accidentStatisticsService.GetAccidents(accidentStatisticsQuery);
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 }
                 catch (Exception e)
                 {
-                    Trace.TraceError("Unable to get accident statistics", e);
+                    _logger.Error("Unable to get accident statistics", e);
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, $"Unable to get Accident Statistics by {accidentStatisticsQuery}", e);
                 }
             }
 
-            var httpError = new HttpError(ModelState, true);
-            Trace.TraceError($"Model state is not valid", httpError);
+            var httpError = new HttpError(ModelState, true);            
+            _logger.Error($"Model state is not valid", new Exception($"{httpError.Message} {httpError.MessageDetail} {httpError.ExceptionMessage}"));
             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, httpError);
         }
     }

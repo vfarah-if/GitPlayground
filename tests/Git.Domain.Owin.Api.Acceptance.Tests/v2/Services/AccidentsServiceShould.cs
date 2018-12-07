@@ -17,7 +17,8 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.Services
 
         public AccidentsServiceShould()
         {
-            _dbContext = new AccidentStatisticDbContext();
+            var logger = Logger.Create();
+            _dbContext = new AccidentStatisticDbContext(logger);          
             _repository = new AccidentStatisticRepository(_dbContext);
             _subject = new AccidentsService(_repository);
         }
