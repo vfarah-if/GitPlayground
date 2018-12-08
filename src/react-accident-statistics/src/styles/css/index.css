@@ -10,7 +10,7 @@ body {
   font-family: sans-serif; }
 
 time {
-  background-color: skyblue; }
+  font-weight: bold; }
 
 .hidden {
   display: none; }

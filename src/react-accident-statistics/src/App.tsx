@@ -9,12 +9,9 @@ class App extends React.Component {
       <div className="app">
         <header className="app-header">
           <img src={logo} className="app-logo" alt="logo" />
-          <h1 className="app-title">Welcome to React</h1>
+          <h1 className="app-title">Welcome to React Accident Statistics</h1>
         </header>
-        <p className="app-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Hello name="Vincent" enthusiasmLevel={10} />
+        <Hello name="Farah loves being a crafstman at heart!" enthusiasmLevel={10} />
         <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="DateDescending" showJson={true}/>        
         <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="DateAscending"/>        
         <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="LocationAscending"/>        
