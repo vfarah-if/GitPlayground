@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic } from 'src/models';
 
-export interface TitleProps {
+export interface AccidentTitleProps {
     from?: Date;
     to?: Date;
     severityOption?: SeverityOptions;
@@ -10,7 +10,7 @@ export interface TitleProps {
     pagedAccidentStatistic?: PagedAccidentStatistic;
 }
 
-export default class Title extends React.Component<TitleProps, any> {
+export default class AccidentTitle extends React.Component<AccidentTitleProps, any> {
 
     public render() {
         const { pagedAccidentStatistic, severityOption, from, to, orderByOption } = this.props;

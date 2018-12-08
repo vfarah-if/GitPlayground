@@ -1,5 +1,7 @@
 import * as React from 'react';
+// TODO: Restructure this properly
 import './styles/css/App.css';
+import './styles/css/accident-statistics-list.css';
 
 import Hello from './components/hello';
 import AccidentStatisticsList from './components/accident-statistics-list'

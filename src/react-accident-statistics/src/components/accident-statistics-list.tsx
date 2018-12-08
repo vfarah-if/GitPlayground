@@ -3,7 +3,7 @@ import * as React from 'react';
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from 'src/models';
 import { DEFAULT_FROM_DATE } from './constants';
 import { AccidentStatisticsService } from 'src/services/accident-statistics-service';
-import Title from './title';
+import AccidentTitle from './accident-title';
 import AccidentOrderedList from './accident-ordered-list';
 
 export interface AccidentStatisticsListProps {
@@ -93,8 +93,8 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
     public render() {
         const { pagedAccidentStatistic, severityOption, from, to, accidentStatistics } = this.state;
         return (
-            <section>
-                <Title from={from} to={to} pagedAccidentStatistic={pagedAccidentStatistic} severityOption={severityOption} />
+            <section className="accident-list">
+                <AccidentTitle from={from} to={to} pagedAccidentStatistic={pagedAccidentStatistic} severityOption={severityOption} />
                 <AccidentOrderedList accidentStatistics={accidentStatistics} />
             </section>
         );
