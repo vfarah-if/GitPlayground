@@ -20,6 +20,10 @@ class App extends React.Component {
         </p>
         <Hello name="Vincent" enthusiasmLevel={10} />
         <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="DateDescending" showJson={true}/>        
+        <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="DateAscending"/>        
+        <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="LocationAscending"/>        
+        <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="LocationDescending"/>        
+        <AccidentStatisticsList severityOption="Serious" fromDate="Dec 24, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM"/>        
       </div>
     );
   }

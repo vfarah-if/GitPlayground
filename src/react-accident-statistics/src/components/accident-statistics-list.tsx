@@ -91,10 +91,10 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
     }
 
     public render() {
-        const { pagedAccidentStatistic, severityOption, from, to, accidentStatistics } = this.state;
+        const { pagedAccidentStatistic, severityOption, from, to, accidentStatistics, orderByOption } = this.state;
         return (
             <section className="accident-list">
-                <AccidentTitle from={from} to={to} pagedAccidentStatistic={pagedAccidentStatistic} severityOption={severityOption} />
+                <AccidentTitle from={from} to={to} pagedAccidentStatistic={pagedAccidentStatistic} severityOption={severityOption} orderByOption={orderByOption} />
                 <AccidentOrderedList accidentStatistics={accidentStatistics} />
             </section>
         );
