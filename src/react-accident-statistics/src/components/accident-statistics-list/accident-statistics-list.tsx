@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from 'src/models';
-import { DEFAULT_FROM_DATE } from './constants';
+import { DEFAULT_FROM_DATE } from '../constants';
 import { AccidentStatisticsService } from 'src/services/accident-statistics-service';
 import AccidentTitle from './accident-title';
 import AccidentOrderedList from './accident-ordered-list';
@@ -93,7 +93,7 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
     public render() {
         const { pagedAccidentStatistic, severityOption, from, to, accidentStatistics, orderByOption } = this.state;
         return (
-            <section className="accident-list">
+            <section className="accident-statistics-list">
                 <AccidentTitle from={from} to={to} pagedAccidentStatistic={pagedAccidentStatistic} severityOption={severityOption} orderByOption={orderByOption} />
                 <AccidentOrderedList accidentStatistics={accidentStatistics} />
             </section>

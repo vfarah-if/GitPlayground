@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { AccidentStatistic } from 'src/models';
 
-
 export interface AccidentDetailProps {
     accidentStatistic: AccidentStatistic
 }
