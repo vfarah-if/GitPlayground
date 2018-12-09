@@ -2,23 +2,7 @@ import * as enzyme from 'enzyme';
 import * as React from 'react'
 import Hello from './hello';
 
-describe('hello', () => {
-    beforeEach(() => {
-       console.log("before each ... "); 
-    });
-
-    beforeAll(() => {
-        console.log("before all ... ");
-    });
-
-    afterEach(() => {
-        console.log("after each ... ");
-    });
-
-    afterAll(() => {
-        console.log("after all ... ");
-    });
-
+describe('hello', () => {    
     it('should render the correct text when no enthusiasm level is given', () => {
         const hello = enzyme.shallow(<Hello name='Vincent' />);
         expect(hello.find(".greeting").text()).toEqual('Hello Vincent!')
