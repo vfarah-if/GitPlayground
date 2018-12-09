@@ -56,5 +56,8 @@ export default Hello;
 // Helpers
 
 function getExclamationMarks(numChars: number) {
+    if (numChars < 0 ||isNaN(numChars)) {
+        numChars = 0;
+    }
     return Array(numChars + 1).join('!');
 }

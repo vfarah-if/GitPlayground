@@ -6,17 +6,14 @@ export interface AccidentListProps {
     accidentStatistics: Array<AccidentStatistic>
 }
 
-export default class AccidentOrderedList extends React.Component<AccidentListProps, any> {
-
-    public render() {
-        let { accidentStatistics } = this.props;        
-        accidentStatistics = accidentStatistics || new Array<AccidentStatistic>();
-        return (
-            <ol>
-                {accidentStatistics.map((accidentStatistic: AccidentStatistic) =>
-                    <AccidentListItem accidentStatistic={accidentStatistic} />
-                )}
-            </ol>
-        );
-    }
+export default function AccidentOrderedList(props: AccidentListProps) {
+    let { accidentStatistics } = props;
+    accidentStatistics = accidentStatistics || new Array<AccidentStatistic>();
+    return (
+        <ol>
+            {accidentStatistics.map((accidentStatistic: AccidentStatistic) =>
+                <AccidentListItem accidentStatistic={accidentStatistic} />
+            )}
+        </ol>
+    );
 }

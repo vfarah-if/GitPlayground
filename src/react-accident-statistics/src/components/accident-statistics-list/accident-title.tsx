@@ -10,21 +10,18 @@ export interface AccidentTitleProps {
     pagedAccidentStatistic?: PagedAccidentStatistic;
 }
 
-export default class AccidentTitle extends React.Component<AccidentTitleProps, any> {
-
-    public render() {
-        const { pagedAccidentStatistic, severityOption, from, to, orderByOption } = this.props;
-        return (
-            <h1>
-                <span>Loading </span><em>{pagedAccidentStatistic ? pagedAccidentStatistic.total : 0}</em>
-                <em> {severityOption ? severityOption.toLowerCase() : 'none'}</em>
-                <span> accidents list from </span>
-                <time>{from ? `${from.toDateString()} ${from.toLocaleTimeString()}` : undefined}</time>
-                <span> to </span>
-                <time>{to ? `${to.toDateString()} ${to.toLocaleTimeString()}` : undefined}</time>
-                <span>, ordered by </span>
-                <em>{orderByOption ? orderByOption.toLowerCase() : 'datedescending'}</em>
-            </h1>
-        );
-    }
+export default function AccidentTitle(props: AccidentTitleProps) {
+    const { pagedAccidentStatistic, severityOption, from, to, orderByOption } = props;
+    return (
+        <h1>
+            <span>Loading </span><em>{pagedAccidentStatistic ? pagedAccidentStatistic.total : 0}</em>
+            <em> {severityOption ? severityOption.toLowerCase() : 'none'}</em>
+            <span> accidents list from </span>
+            <time>{from ? `${from.toDateString()} ${from.toLocaleTimeString()}` : undefined}</time>
+            <span> to </span>
+            <time>{to ? `${to.toDateString()} ${to.toLocaleTimeString()}` : undefined}</time>
+            <span>, ordered by </span>
+            <em>{orderByOption ? orderByOption.toLowerCase() : 'datedescending'}</em>
+        </h1>
+    );
 }

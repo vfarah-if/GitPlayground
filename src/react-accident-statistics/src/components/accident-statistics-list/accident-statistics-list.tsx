@@ -57,8 +57,7 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
 
         this.setState((prevState) => {
             if (prevState && pagedResponse && pagedResponse.data && pagedResponse.data.data) {
-                return Object.assign(prevState,
-                    {
+                return Object.assign(prevState, {
                         pagedAccidentStatistic: pagedResponse.data,
                         accidentStatistics: prevState.accidentStatistics.concat(pagedResponse.data.data)
                     }
