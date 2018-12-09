@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
 import './styles/css/index.css';
+// import 'font-awesome/scss/font-awesome.scss'; 
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(

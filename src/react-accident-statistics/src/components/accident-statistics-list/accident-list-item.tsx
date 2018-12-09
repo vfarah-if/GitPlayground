@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { AccidentStatistic } from 'src/models';
+import CasualtyDetailList from './casualty-detail-list';
 
 export interface AccidentDetailProps {
     accidentStatistic: AccidentStatistic
@@ -24,9 +25,8 @@ export default class AccidentListItem extends React.Component<AccidentDetailProp
           <em>{accidentStatistic.vehicles?accidentStatistic.vehicles.length:0}</em>
           <span className={!accidentStatistic.vehicles || accidentStatistic.vehicles.length === 1 ? 'hidden' : ''}> vehicles of types </span>
           <span className={!accidentStatistic.vehicles || accidentStatistic.vehicles.length !== 1 ? 'hidden' : ''}> vehicle of type </span>
-          <span>{accidentStatistic.vehicles?accidentStatistic.vehicles.map(vehicle => vehicle.type).join(', ') : ''}</span>
-          {/* TODO: Vehicles and Casualties */}
-          {/* TODO: Test all of the above */}
+          <em>{accidentStatistic.vehicles?accidentStatistic.vehicles.map(vehicle => vehicle.type).join(', ') : ''}</em>
+          <CasualtyDetailList casualties={accidentStatistic.casualties}/>
       </li>   
     );
   }
