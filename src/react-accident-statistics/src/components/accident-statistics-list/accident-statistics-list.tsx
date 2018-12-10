@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from 'src/models';
-import { DEFAULT_FROM_DATE } from '../constants';
-import { AccidentStatisticsService } from 'src/services/accident-statistics-service';
+import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
+import { DEFAULT_FROM_DATE } from './../constants';
+import { AccidentStatisticsService } from './../../services';
 import AccidentTitle from './accident-title';
 import AccidentOrderedList from './accident-ordered-list';
 
@@ -15,7 +15,7 @@ export interface AccidentStatisticsListProps {
     showJson?: boolean;
 }
 
-export interface AccidentStatisticsListState {
+interface AccidentStatisticsListState {
     from?: Date;
     to?: Date;
     severityOption: SeverityOptions;
