@@ -44,8 +44,8 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
         }     
     }
 
-    componentDidMount() {
-        this.loadAccidentData();
+    async componentDidMount() {
+        await this.loadAccidentData();
     }
 
     async loadAccidentData(): Promise<void> {
