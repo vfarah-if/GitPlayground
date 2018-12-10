@@ -13,12 +13,6 @@ Axios is HTTP client I used for communicating with the Owin Api. See more inform
 Axios adapter that allows to easily mock requests [axios-mock-adapter setup](https://github.com/ctimmerm/axios-mock-adapter)
 and [React example](https://medium.com/@zach.grusznski/how-to-use-axios-mock-adapter-to-test-network-requests-in-react-475e99cda5ea)
 
-## Sinon
-I wanted to stub out stuff for the purpose of unit testing axios
-
-https://medium.com/@srph/axios-easily-test-requests-f04caf49e057
-https://sinonjs.org/
-
 ## Jest mocks
 https://jestjs.io/docs/en/es6-class-mocks
 https://medium.freecodecamp.org/components-testing-in-react-what-and-how-to-test-with-jest-and-enzyme-7c1cace99de5
