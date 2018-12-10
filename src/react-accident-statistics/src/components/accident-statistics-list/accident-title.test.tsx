@@ -11,7 +11,7 @@ describe('AccidentTitle', () => {
     let fromDate:Date, toDate: Date;
 
     beforeEach(() => {
-        pagedData = testData as PagedAccidentStatistic;
+        pagedData = ((testData as any) as PagedAccidentStatistic);
         fromDate = new Date('Dec 1, 2017, 12:00:00 AM');
         toDate = new Date('Dec 31, 2017, 11:59:00 PM');
     });
