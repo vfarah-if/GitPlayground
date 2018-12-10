@@ -20,11 +20,23 @@ describe('App', () => {
     mockAdapter.restore();
   });
 
-  it('renders without crashing', () => {    
+  it('should create component with default expectations', () => {    
     wrapper = enzyme.shallow(<App />);
     
     expect(testData).toBeTruthy();
     expect(testData.data).toBeTruthy();    
     expect(wrapper).toBeTruthy();
+  });
+
+  it('should create hello on the app', () => {    
+    wrapper = enzyme.shallow(<App />);
+    
+    expect(wrapper.find('Hello')).toBeDefined();
+  });
+
+  it('should create several accident statitic list components on the app', () => {    
+    wrapper = enzyme.shallow(<App />);
+    
+    expect(wrapper.find('AccidentStatisticsList').length).toBe(5);
   });
 });
