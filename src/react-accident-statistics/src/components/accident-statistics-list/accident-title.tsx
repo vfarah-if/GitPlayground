@@ -15,7 +15,7 @@ export default function AccidentTitle(props: AccidentTitleProps) {
     return (
         <h1>
             <span>Loading </span><em>{pagedAccidentStatistic ? pagedAccidentStatistic.total : 0}</em>
-            <em> {severityOption ? severityOption.toLowerCase() : 'none'}</em>
+            <em> {severityOption ? severityOption.toLowerCase() : undefined}</em>
             <span> accidents list from </span>
             <time>{from ? `${from.toDateString()} ${from.toLocaleTimeString()}` : undefined}</time>
             <span> to </span>
