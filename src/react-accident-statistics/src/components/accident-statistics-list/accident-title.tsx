@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SeverityOptions, SortByOptions, PagedAccidentStatistic } from 'src/models';
+import { SeverityOptions, SortByOptions, PagedAccidentStatistic } from './../../models';
 
 export interface AccidentTitleProps {
     from?: Date;

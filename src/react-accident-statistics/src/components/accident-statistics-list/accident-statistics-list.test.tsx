@@ -6,18 +6,13 @@ import MockAdapter from 'axios-mock-adapter';
 
 import * as testData from './accident-statistics-test-data.json';
 import AccidentStatisticsList from './accident-statistics-list';
-import { AccidentStatisticsService } from 'src/services/accident-statistics-service';
-
-// jest.mock('AccidentStatisticsService');
+import { AccidentStatisticsService } from './../../services';
 
 describe('AccidentStatisticsList', () => {
     let mockAdapter: MockAdapter;
     let wrapper;
 
-    // let service: AccidentStatisticsService;
     beforeEach(() => {
-        // const resolved = new Promise((response) => response({ data: testData }));
-        // (service.get as any).mockImplementation(() => Promise.resolve(resolved));
         mockAdapter = new MockAdapter(axios);
         mockAdapter.onAny().reply(200, { data: testData });        
     });

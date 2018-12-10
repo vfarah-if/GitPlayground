@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AccidentStatistic } from 'src/models';
+import { AccidentStatistic } from './../../models';
 import CasualtyDetailList from './casualty-detail-list';
 
 export interface AccidentDetailProps {
