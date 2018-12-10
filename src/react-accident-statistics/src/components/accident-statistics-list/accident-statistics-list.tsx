@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { AxiosResponse } from 'axios';
+
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
 import { DEFAULT_FROM_DATE } from './../constants';
 import { AccidentStatisticsService } from './../../services';
@@ -58,17 +60,8 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
             sortBy: orderByOption,
             page: currentPage, pageSize: pageSize
         });
+        this.updateState(pagedResponse);
 
-        this.setState((prevState) => {
-            if (prevState && pagedResponse && pagedResponse.data && pagedResponse.data.data) {
-                return Object.assign(prevState, {
-                        pagedAccidentStatistic: pagedResponse.data,
-                        accidentStatistics: prevState.accidentStatistics.concat(pagedResponse.data.data)
-                    }
-                )
-            }
-            return prevState;
-        });
         if (pagedResponse && pagedResponse.data && pagedResponse.data.nextPage) {
             while (pagedResponse.data.nextPage) {
                 pagedResponse = await this.service.get({
@@ -79,16 +72,7 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
                     page: pagedResponse.data.nextPage,
                     pageSize: pageSize
                 });
-                this.setState((prevState) => {
-                    if (prevState && prevState.accidentStatistics && pagedResponse.data && pagedResponse.data.data) {
-                        const previousAccidents = prevState.accidentStatistics;
-                        const data = pagedResponse.data.data;
-                        if (previousAccidents && data) {
-                            return Object.assign(prevState, { accidentStatistics: previousAccidents.concat(data) });
-                        }
-                    }
-                    return prevState;
-                });
+                this.updateState(pagedResponse);
             }
         }
     }
@@ -101,5 +85,18 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
                 <AccidentOrderedList accidentStatistics={accidentStatistics} showJson={showJson} />                
             </section>
         );
+    }
+
+    private updateState(pagedResponse: AxiosResponse<PagedAccidentStatistic>) {
+        this.setState((prevState) => {
+            if (prevState && prevState.accidentStatistics && pagedResponse.data && pagedResponse.data.data) {
+                const previousAccidents = prevState.accidentStatistics;
+                const data = pagedResponse.data.data;
+                if (previousAccidents && data) {
+                    return Object.assign(prevState, { accidentStatistics: previousAccidents.concat(data) });
+                }
+            }
+            return prevState;
+        });
     }
 }
