@@ -10,10 +10,19 @@
       "borough": "Kingston",
       "casualties": [
         {
-          "age": 46,
-          "class": "Driver",
+          "casualtyId": 14274,
+          "age": 2,
+          "class": "Pedestrian",
+          "severity": 1,
+          "mode": "Pedestrian",
+          "ageBand": "Child"
+        },
+        {
+          "casualtyId": 14275,
+          "age": 49,
+          "class": "Pedestrian",
           "severity": 2,
-          "mode": "PoweredTwoWheeler",
+          "mode": "Pedestrian",
           "ageBand": "Adult"
         }
       ],

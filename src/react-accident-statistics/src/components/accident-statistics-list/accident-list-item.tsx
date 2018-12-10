@@ -16,14 +16,14 @@ export default function AccidentListItem(props: AccidentDetailProps) {
       <span> at location </span><em>{accidentStatistic.location}</em>
       <span> in the borough of </span>
       <em>{accidentStatistic.borough}</em>
-      <span>, with</span>
+      <span>, with </span>
       <em>{accidentStatistic.casualties ? accidentStatistic.casualties.length : 0}</em>
-      <span className={!accidentStatistic.casualties || accidentStatistic.casualties.length === 1 ? 'hidden' : ''}> casualties</span>
-      <span className={!accidentStatistic.casualties || accidentStatistic.casualties.length !== 1 ? 'hidden' : ''}> casualty</span>
+      <span className={!accidentStatistic.casualties || accidentStatistic.casualties.length === 1 ? 'casualties hidden' : ''}> casualties</span>
+      <span className={!accidentStatistic.casualties || accidentStatistic.casualties.length !== 1 ? 'casualty hidden' : ''}> casualty</span>
       <span> and </span>
       <em>{accidentStatistic.vehicles ? accidentStatistic.vehicles.length : 0}</em>
-      <span className={!accidentStatistic.vehicles || accidentStatistic.vehicles.length === 1 ? 'hidden' : ''}> vehicles of types </span>
-      <span className={!accidentStatistic.vehicles || accidentStatistic.vehicles.length !== 1 ? 'hidden' : ''}> vehicle of type </span>
+      <span className={!accidentStatistic.vehicles || accidentStatistic.vehicles.length === 1 ? 'vehicles hidden' : ''}> vehicles of types </span>
+      <span className={!accidentStatistic.vehicles || accidentStatistic.vehicles.length !== 1 ? 'vehicle hidden' : ''}> vehicle of type </span>
       <em>{accidentStatistic.vehicles ? accidentStatistic.vehicles.map(vehicle => vehicle.type).join(', ') : ''}</em>
       <CasualtyDetailList casualties={accidentStatistic.casualties} />
       <pre className={showJson ? '' : 'hidden'}>{JSON.stringify(accidentStatistic, undefined, 2)}</pre>
