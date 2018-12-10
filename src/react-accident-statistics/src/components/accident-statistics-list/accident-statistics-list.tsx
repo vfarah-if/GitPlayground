@@ -41,10 +41,10 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
             showJson: props.showJson || false,
             pagedAccidentStatistic: undefined,
             accidentStatistics: []
-        }
+        }     
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.loadAccidentData();
     }
 
