@@ -14,7 +14,7 @@ export default function AccidentTitle(props: AccidentTitleProps) {
     const { pagedAccidentStatistic, severityOption, from, to, orderByOption } = props;
     return (
         <h1>
-            <span>Loading </span><em>{pagedAccidentStatistic ? pagedAccidentStatistic.total : 0}</em>
+            <span>Loading </span><em>{pagedAccidentStatistic && pagedAccidentStatistic.total ? pagedAccidentStatistic.total : 0}</em>
             <em> {severityOption ? severityOption.toLowerCase() : undefined}</em>
             <span> accidents list from </span>
             <time>{from ? `${from.toDateString()} ${from.toLocaleTimeString()}` : undefined}</time>
