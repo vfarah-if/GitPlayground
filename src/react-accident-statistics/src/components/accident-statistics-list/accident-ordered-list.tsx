@@ -12,8 +12,8 @@ export default function AccidentOrderedList(props: AccidentListProps) {
     accidentStatistics = accidentStatistics || new Array<AccidentStatistic>();
     return (
         <ol>
-            {accidentStatistics.map((accidentStatistic: AccidentStatistic) =>
-                <AccidentListItem accidentStatistic={accidentStatistic} showJson={showJson} />
+            {accidentStatistics.map((accidentStatistic: AccidentStatistic, i) =>
+                <AccidentListItem accidentStatistic={accidentStatistic} showJson={showJson} key={i}/>
             )}
         </ol>
     );

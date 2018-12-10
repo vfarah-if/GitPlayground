@@ -16,7 +16,7 @@ export default class CasualtyDetailList extends React.PureComponent<CasualtyDeta
         return (
             <dl>
                 {casualties.map((casualty: Casualty, index: number) =>
-                    <dt>
+                    <dt key={index}>
                         <span>
                             <FontAwesomeIcon icon="ambulance" transform="shrink-3" color="orange"/>
                             Casualty {index + 1} of {casualty.severity ? this.severityDescription(casualty.severity) : 'unknown'} severity, aged {casualty.age}

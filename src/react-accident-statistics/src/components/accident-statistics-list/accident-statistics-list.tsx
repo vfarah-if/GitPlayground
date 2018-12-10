@@ -15,7 +15,7 @@ export interface AccidentStatisticsListProps {
     showJson?: boolean;
 }
 
-interface AccidentStatisticsListState {
+export interface AccidentStatisticsListState {
     from?: Date;
     to?: Date;
     severityOption: SeverityOptions;
