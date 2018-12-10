@@ -45,6 +45,10 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
     }
 
     async componentDidMount() {
+        this.loadAccidentData();
+    }
+
+    async loadAccidentData(): Promise<void> {
         const { from, to, severityOption, orderByOption, pageSize } = this.state;
         let currentPage = 1;
         let pagedResponse = await this.service.get({
@@ -90,11 +94,11 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
     }
 
     public render() {
-        const { pagedAccidentStatistic, severityOption, from, to, accidentStatistics, orderByOption } = this.state;
+        const { pagedAccidentStatistic, severityOption, from, to, accidentStatistics, orderByOption, showJson } = this.state;
         return (
             <section className="accident-statistics-list">
                 <AccidentTitle from={from} to={to} pagedAccidentStatistic={pagedAccidentStatistic} severityOption={severityOption} orderByOption={orderByOption} />
-                <AccidentOrderedList accidentStatistics={accidentStatistics} />
+                <AccidentOrderedList accidentStatistics={accidentStatistics} showJson={showJson} />                
             </section>
         );
     }

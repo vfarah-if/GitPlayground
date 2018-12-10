@@ -3,11 +3,12 @@ import { AccidentStatistic } from 'src/models';
 import CasualtyDetailList from './casualty-detail-list';
 
 export interface AccidentDetailProps {
-  accidentStatistic: AccidentStatistic
+  accidentStatistic: AccidentStatistic;
+  showJson: boolean;
 }
 
 export default function AccidentListItem(props: AccidentDetailProps) {
-  const { accidentStatistic } = props;
+  const { accidentStatistic, showJson } = props;
   return (
     <li>
       <mark>Accident Id: {accidentStatistic.id}</mark>
@@ -25,6 +26,7 @@ export default function AccidentListItem(props: AccidentDetailProps) {
       <span className={!accidentStatistic.vehicles || accidentStatistic.vehicles.length !== 1 ? 'hidden' : ''}> vehicle of type </span>
       <em>{accidentStatistic.vehicles ? accidentStatistic.vehicles.map(vehicle => vehicle.type).join(', ') : ''}</em>
       <CasualtyDetailList casualties={accidentStatistic.casualties} />
+      <pre className={showJson ? '' : 'hidden'}>{JSON.stringify(accidentStatistic, undefined, 2)}</pre>
     </li>
   );
 }

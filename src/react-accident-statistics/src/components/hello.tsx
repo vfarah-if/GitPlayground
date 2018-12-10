@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { AccidentStatisticsService } from 'src/services/accident-statistics-service';
 
 // tslint:disable-next-line:interface-name
 export interface Props {
@@ -17,10 +16,6 @@ class Hello extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = { currentEnthusiasm: props.enthusiasmLevel || 1 };
-        const accidentService = new AccidentStatisticsService();
-        accidentService.get({ severity: 'Fatal' }).then(response => {
-            console.log('Result of the service call', response);
-        });
     }
 
     public onIncrement = () => this.updateEnthusiasm(this.state.currentEnthusiasm + 1);
@@ -56,8 +51,5 @@ export default Hello;
 // Helpers
 
 function getExclamationMarks(numChars: number) {
-    if (numChars < 0 ||isNaN(numChars)) {
-        numChars = 0;
-    }
     return Array(numChars + 1).join('!');
 }
