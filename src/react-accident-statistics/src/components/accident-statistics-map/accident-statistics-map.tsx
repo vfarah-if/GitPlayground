@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 import { AxiosResponse } from 'axios';
+import { Map, TileLayer, ZoomControl } from 'react-leaflet';
+import { LatLng } from 'leaflet';
 
 import { DEFAULT_FROM_DATE } from '../constants';
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
 import AccidentTitle from '../shared/accident-title';
 import { AccidentStatisticsService } from './../../services';
-import { number } from 'prop-types';
 
 export type ImageOptions = 'Marker' | 'Macarbe' | 'Friendly';
 
@@ -16,10 +17,10 @@ export interface AccidentStatisticsMapProps {
     severityOption?: SeverityOptions;
     orderByOption?: SortByOptions;
     pageSize?: number;
-    imageOption?:  ImageOptions;
+    imageOption?: ImageOptions;
     zoom?: number;
-    latitude? : number;
-    longitude? : number;
+    latitude?: number;
+    longitude?: number;
     maxZoom?: number;
     useGeolocationPosition?: boolean;
 }
@@ -30,12 +31,12 @@ export interface AccidentStatisticsMapState {
     severityOption: SeverityOptions;
     orderByOption: SortByOptions;
     pageSize: number;
-    imageOption:  ImageOptions;
+    imageOption: ImageOptions;
     zoom: number;
     pagedAccidentStatistic?: PagedAccidentStatistic;
     accidentStatistics: Array<AccidentStatistic>;
-    latitude : number;
-    longitude : number;
+    latitude: number;
+    longitude: number;
     maxZoom: number;
     useGeolocationPosition: boolean;
 }
@@ -58,7 +59,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             imageOption: props.imageOption || 'Macarbe',
             zoom: props.zoom || 9,
             latitude: props.latitude || 51.50608021,
-            longitude: props.longitude ||  -0.12184322,
+            longitude: props.longitude || -0.12184322,
             maxZoom: props.maxZoom || 18,
             useGeolocationPosition: props.useGeolocationPosition || false,
         }
@@ -96,11 +97,19 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
     }
 
     public render() {
-        const { pagedAccidentStatistic, severityOption, from, to, orderByOption} = this.state;
+        const { pagedAccidentStatistic, severityOption, from, to, orderByOption, longitude, latitude, zoom } = this.state;
+        const position = new LatLng(latitude, longitude);
 
         return (
-            <section>
-                <AccidentTitle from={from} to={to} total={pagedAccidentStatistic?pagedAccidentStatistic.total:0} severityOption={severityOption} orderByOption={orderByOption} />
+            <section className="map">
+                <AccidentTitle from={from} to={to} total={pagedAccidentStatistic ? pagedAccidentStatistic.total : 0} severityOption={severityOption} orderByOption={orderByOption} />
+                <Map center={position} zoom={zoom}>
+                    <TileLayer
+                        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <ZoomControl position="topright" />
+                </Map>
             </section>
         );
     }
