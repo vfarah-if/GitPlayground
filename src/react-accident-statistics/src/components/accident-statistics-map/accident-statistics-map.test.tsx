@@ -5,15 +5,17 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import * as testData from './../accident-statistics-test-data.json';
-import AccidentStatisticsList from './accident-statistics-list';
-import { AccidentStatisticsService } from './../../services';
 import { DEFAULT_FROM_DATE } from '../constants';
+import { AccidentStatisticsService } from './../../services';
+import  AccidentStatisticsMap  from '../accident-statistics-map/accident-statistics-map';
 
-describe('AccidentStatisticsList', () => {
+
+describe('AccidentStatisticsMap', () => {
     let mockAdapter: MockAdapter;
-    let wrapper;
+    let mapWrapper;
 
     describe('default settings', () => {
+
         beforeEach(() => {
             mockAdapter = new MockAdapter(axios);
             mockAdapter.onAny().reply(200, testData);
@@ -24,7 +26,7 @@ describe('AccidentStatisticsList', () => {
         });
 
         it('should create component with default expectations', async () => {
-            wrapper = enzyme.shallow(<AccidentStatisticsList />)
+            mapWrapper = enzyme.shallow(<AccidentStatisticsMap />)
             const expectedInitialState = {
                 accidentStatistics: [],
                 from: DEFAULT_FROM_DATE,
@@ -32,20 +34,21 @@ describe('AccidentStatisticsList', () => {
                 pageSize: 500,
                 pagedAccidentStatistic: undefined,
                 severityOption: 'Fatal',
-                showJson: false,
-                to: new Date('2017-12-31T12:00:00.000Z')
+                to: new Date('2017-12-31T12:00:00.000Z'),
+                imageOption: 'Macarbe',
+                zoom: 9,
             };
 
             expect(testData).toBeTruthy();
             expect(testData.data).toBeTruthy();
-            expect(wrapper).toBeTruthy();
-            const actualState = wrapper.state();
+            expect(mapWrapper).toBeTruthy();
+            const actualState = mapWrapper.state();
             expect(actualState).toMatchObject(expectedInitialState);
         });
 
         it('should call the service once with expected arguments', async () => {
             const spyOnGet = jest.spyOn(AccidentStatisticsService.prototype, 'get');
-            wrapper = enzyme.mount(<AccidentStatisticsList />)
+            mapWrapper = enzyme.mount(<AccidentStatisticsMap />)
             const expectedQueryParams = {
                 from: DEFAULT_FROM_DATE,
                 page: 1,
@@ -60,18 +63,10 @@ describe('AccidentStatisticsList', () => {
         });
 
         it('should contain an accident title component', () => {
-            wrapper = enzyme.shallow(<AccidentStatisticsList />)
-            const header = wrapper.find('section > AccidentTitle');
+            mapWrapper = enzyme.shallow(<AccidentStatisticsMap />)
+            const header = mapWrapper.find('section > AccidentTitle');
             expect(header.length).toBe(1);
             expect(header.text()).toBe('<AccidentTitle />');
         });
-
-        it('should contain an accident order list', () => {
-            wrapper = enzyme.shallow(<AccidentStatisticsList />)
-            const orderList = wrapper.find('section > AccidentOrderedList');
-            expect(orderList.length).toBe(1);
-            expect(orderList.text()).toBe('<AccidentOrderedList />');
-        });
     });
 });
-

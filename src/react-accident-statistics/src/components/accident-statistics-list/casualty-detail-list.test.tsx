@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as enzyme from 'enzyme';
 
-import * as testData from './accident-statistics-test-data.json';
+import * as testData from './../accident-statistics-test-data.json';
 import CasualtyDetailList from './casualty-detail-list';
 import { AccidentStatistic } from './../../models';
 

@@ -2,36 +2,39 @@ import * as React from 'react';
 
 import { AxiosResponse } from 'axios';
 
+import { DEFAULT_FROM_DATE } from '../constants';
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
-import { DEFAULT_FROM_DATE } from './../constants';
-import { AccidentStatisticsService } from './../../services';
 import AccidentTitle from '../shared/accident-title';
-import AccidentOrderedList from './accident-ordered-list';
+import { AccidentStatisticsService } from './../../services';
 
-export interface AccidentStatisticsListProps {
+export type ImageOptions = 'Marker' | 'Macarbe' | 'Friendly';
+
+export interface AccidentStatisticsMapProps {
     fromDate?: string;
     toDate?: string;
     severityOption?: SeverityOptions;
     orderByOption?: SortByOptions;
     pageSize?: number;
-    showJson?: boolean;
+    imageOption?:  ImageOptions;
+    zoom?: number;
 }
 
-export interface AccidentStatisticsListState {
+export interface AccidentStatisticsMapState {
     from?: Date;
     to?: Date;
     severityOption: SeverityOptions;
     orderByOption: SortByOptions;
     pageSize: number;
-    showJson: boolean;
+    imageOption:  ImageOptions;
+    zoom: number;
     pagedAccidentStatistic?: PagedAccidentStatistic;
     accidentStatistics: Array<AccidentStatistic>;
 }
 
-export default class AccidentStatisticsList extends React.Component<AccidentStatisticsListProps, AccidentStatisticsListState> {
+export default class AccidentStatisticsMap extends React.Component<AccidentStatisticsMapProps, AccidentStatisticsMapState> {
     service: AccidentStatisticsService = new AccidentStatisticsService();
-    
-    constructor(props: AccidentStatisticsListProps) {
+
+    constructor(props: AccidentStatisticsMapProps) {
         super(props);
         const now = new Date();
         const previousYear = now.getUTCFullYear() - 1;
@@ -41,9 +44,10 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
             severityOption: props.severityOption || 'Fatal',
             orderByOption: props.orderByOption || 'DateDescending',
             pageSize: props.pageSize || 500,
-            showJson: props.showJson || false,
             pagedAccidentStatistic: undefined,
-            accidentStatistics: []
+            accidentStatistics: [],
+            imageOption: props.imageOption || 'Macarbe',
+            zoom: props.zoom || 9,
         }
     }
 
@@ -79,11 +83,11 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
     }
 
     public render() {
-        const { pagedAccidentStatistic, severityOption, from, to, accidentStatistics, orderByOption, showJson } = this.state;
+        const { pagedAccidentStatistic, severityOption, from, to, orderByOption} = this.state;
+
         return (
-            <section className="accident-statistics-list">
+            <section>
                 <AccidentTitle from={from} to={to} total={pagedAccidentStatistic?pagedAccidentStatistic.total:0} severityOption={severityOption} orderByOption={orderByOption} />
-                <AccidentOrderedList accidentStatistics={accidentStatistics} showJson={showJson} />
             </section>
         );
     }

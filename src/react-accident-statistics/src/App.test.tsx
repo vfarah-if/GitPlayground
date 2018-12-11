@@ -39,4 +39,10 @@ describe('App', () => {
     
     expect(wrapper.find('AccidentStatisticsList').length).toBe(5);
   });
+
+  it('should create several accident statitic map components on the app', () => {    
+    wrapper = enzyme.shallow(<App />);
+    
+    expect(wrapper.find('AccidentStatisticsMap').length).toBe(3);
+  });
 });
