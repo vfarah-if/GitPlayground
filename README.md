@@ -39,7 +39,7 @@ Are you a back-end kind of guy, a database repository specialist who likes stori
 This is the new and improved API. Use Nancy, Node or any other API project you feel comfortable using.
 
 1. Recreate the API allowing for options to query the TFL data for the purposes of what you want the data to do. You need to use the domain to show data and so any caching or optimisations need to be configured through the Api contract. Remember this needs to be able to run through a browser or postman so allow for a simple and intuitive user experience.
-2. Create two versions possibly that use the live site data and possibly your own data, if you have done an optimised database solution.
+2. Create two versions, one that use the live site data and the second, a complete redesign using the database indaba to build out a service that does what you need efficiently. The concept behind doing two versions is firstly it starts you thinking in terms of versioning the API, secondly most times you are not able to redo something, so you create anti-corruption layers or bubble contexts to interact with other layers and if it is slow, you bolster it where you can. If you do get a chance to redo it, make sure you learn from history and do it better.
 
 ## Front-end indaba
 This is a visualisation of the data, creating business reasons for consuming this API.
@@ -80,7 +80,7 @@ Do not look at this if you want to solve this on your own. This is my indaba and
 		3. The final component is a list component describing what happened. This is also evident in the popup on maps. What is still bad, and will be resolved soon, is the strange enumerated values to represent the vehicle types and modes. I will solve this for both API's but I had more pressing things to achieve.
 		!["List component"](screenshots/ListComponent.png)
 		!["List without json"](screenshots/ListComponentActual.png)
-	9. My react project is going to be developed using VScode as a typescript project. For setup and project details see more within [src/react-accident-statistics](src/react-accident-statistics). Watch this space as it unravels.
+	9. My react project is going to be developed as a typescript project. For setup and project details see more within [src/react-accident-statistics](src/react-accident-statistics). I have started developing the first component and it went well. The architecture promotes lots of small components, the same with Angular, however Angular has such a powerful binding syntax with powerful *directives* and *pipes*, that you can easilly not break it up into smaller components as it will still be very readable and those tools are sub-components. I need to warn you, that the react typescript CLI, out of the box has issues and creates far less than the Angular CLI does. Google have spoilt us, but to be honest both have spoilt developers wrotten by giving us frameworks that allow us to focus mostly on our business needs. Not too long ago, I was creating Grunt and Gulp scripts to automate a lot of what I get for nothing these days, so Kudos to the guys who open sourced these great ideas to promote consistency and help us develop quicker.
 
 # summary
 Enjoy doing Indabas and remember solving small issues well helps give you a spear for bigger problems.

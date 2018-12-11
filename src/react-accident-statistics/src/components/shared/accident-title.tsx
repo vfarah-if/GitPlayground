@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SeverityOptions, SortByOptions, PagedAccidentStatistic } from './../../models';
+import { SeverityOptions, SortByOptions } from '../../models';
 
 export interface AccidentTitleProps {
     from?: Date;
@@ -7,15 +7,15 @@ export interface AccidentTitleProps {
     severityOption?: SeverityOptions;
     orderByOption?: SortByOptions;
     pageSize?: number;
-    pagedAccidentStatistic?: PagedAccidentStatistic;
+    total?: number;
 }
 
 export default function AccidentTitle(props: AccidentTitleProps) {
-    const { pagedAccidentStatistic, severityOption, from, to, orderByOption } = props;
+    const { total, severityOption, from, to, orderByOption } = props;
     return (
         <h1>
-            <span>Loading </span><em>{pagedAccidentStatistic && pagedAccidentStatistic.total ? pagedAccidentStatistic.total : 0}</em>
-            <em> {severityOption ? severityOption.toLowerCase() : undefined}</em>
+            <span>Loading </span><em>{total ? total : 0}</em>
+            <em> {severityOption ? severityOption.toLowerCase() : 'undefined'}</em>
             <span> accidents list from </span>
             <time>{from ? `${from.toDateString()} ${from.toLocaleTimeString()}` : undefined}</time>
             <span> to </span>

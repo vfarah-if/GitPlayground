@@ -1,2 +1,3 @@
 export * from './accident-statistics-list/accident-statistics-list';
-export * from './constants';
+export * from './accident-statistics-list/accident-statistics-list';
+export * from './shared/accident-title';

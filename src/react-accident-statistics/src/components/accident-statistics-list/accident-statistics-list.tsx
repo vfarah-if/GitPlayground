@@ -5,7 +5,7 @@ import { AxiosResponse } from 'axios';
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
 import { DEFAULT_FROM_DATE } from './../constants';
 import { AccidentStatisticsService } from './../../services';
-import AccidentTitle from './accident-title';
+import AccidentTitle from '../shared/accident-title';
 import AccidentOrderedList from './accident-ordered-list';
 
 export interface AccidentStatisticsListProps {
@@ -43,7 +43,7 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
             showJson: props.showJson || false,
             pagedAccidentStatistic: undefined,
             accidentStatistics: []
-        }     
+        }
     }
 
     async componentDidMount() {
@@ -81,8 +81,8 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
         const { pagedAccidentStatistic, severityOption, from, to, accidentStatistics, orderByOption, showJson } = this.state;
         return (
             <section className="accident-statistics-list">
-                <AccidentTitle from={from} to={to} pagedAccidentStatistic={pagedAccidentStatistic} severityOption={severityOption} orderByOption={orderByOption} />
-                <AccidentOrderedList accidentStatistics={accidentStatistics} showJson={showJson} />                
+                <AccidentTitle from={from} to={to} total={pagedAccidentStatistic?pagedAccidentStatistic.total:0} severityOption={severityOption} orderByOption={orderByOption} />
+                <AccidentOrderedList accidentStatistics={accidentStatistics} showJson={showJson} />
             </section>
         );
     }
@@ -93,9 +93,9 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
                 const previousAccidents = prevState.accidentStatistics;
                 const data = pagedResponse.data.data;
                 if (previousAccidents && data) {
-                    return Object.assign(prevState, { 
+                    return Object.assign(prevState, {
                         accidentStatistics: previousAccidents.concat(data),
-                        pagedAccidentStatistic: pagedResponse.data,  
+                        pagedAccidentStatistic: pagedResponse.data,
                     });
                 }
             }
