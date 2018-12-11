@@ -30,13 +30,13 @@ describe('AccidentTitle', () => {
     });
 
     it('should mention the from and to date of the fatal accident', () => {
-        wrapper = enzyme.shallow(<AccidentTitle total={pagedData.total} severityOption={'Fatal'} from={fromDate} to={toDate}/>)
-        expect(wrapper.find('h1').text()).toContain('from Fri Dec 01 2017 00:00:00 to Sun Dec 31 2017 23:59:00');
+        wrapper = enzyme.mount(<AccidentTitle total={pagedData.total} severityOption={'Fatal'} from={fromDate} to={toDate}/>)
+        expect(wrapper.find('h1').text()).toContain('from Fri Dec 01 2017 12:00:00 AM to Sun Dec 31 2017 11:59:00 PM');
     });
 
     it('should mention the default order by date', () => {
         wrapper = enzyme.shallow(<AccidentTitle total={pagedData.total} severityOption={'Fatal'} from={fromDate} to={toDate}/>)
-        expect(wrapper.find('h1').text()).toContain('ordered by datedescendin');
+        expect(wrapper.find('h1').text()).toContain('ordered by datedescending');
     });
 
     it('should mention the custom order by location descending', () => {
@@ -45,7 +45,7 @@ describe('AccidentTitle', () => {
     });
 
     it('should mention the custom order by location descending', () => {
-        wrapper = enzyme.shallow(<AccidentTitle total={pagedData.total} severityOption={'Serious'} from={fromDate} to={toDate} orderByOption={'BoroughAscending'}/>)
-        expect(wrapper.find('h1').text()).toContain('Loading 2 serious accidents list from Fri Dec 01 2017 00:00:00 to Sun Dec 31 2017 23:59:00, ordered by boroughascending');
+        wrapper = enzyme.mount(<AccidentTitle total={pagedData.total} severityOption={'Serious'} from={fromDate} to={toDate} orderByOption={'BoroughAscending'}/>)
+        expect(wrapper.find('h1').text()).toContain('Loading 2 serious accidents list from Fri Dec 01 2017 12:00:00 AM to Sun Dec 31 2017 11:59:00 PM, ordered by boroughascending');
     });
 });

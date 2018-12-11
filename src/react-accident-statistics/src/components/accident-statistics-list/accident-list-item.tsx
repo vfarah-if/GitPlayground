@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { AccidentStatistic } from './../../models';
 import CasualtyDetailList from './casualty-detail-list';
+import { DateTime } from '../shared/date-time';
 
 export interface AccidentDetailProps {
   accidentStatistic: AccidentStatistic;
@@ -12,7 +13,7 @@ export default function AccidentListItem(props: AccidentDetailProps) {
   return (
     <li>
       <mark>Accident Id: {accidentStatistic.id}</mark>
-      <span> on </span><b><time>{accidentStatistic.date ? `${new Date(accidentStatistic.date).toDateString()} ${new Date(accidentStatistic.date).toLocaleTimeString()}` : undefined}</time></b>
+      <span> on </span><b><DateTime date={accidentStatistic.date}/></b>
       <span> at location </span><em>{accidentStatistic.location}</em>
       <span> in the borough of </span>
       <em>{accidentStatistic.borough}</em>

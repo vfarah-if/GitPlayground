@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { SeverityOptions, SortByOptions } from '../../models';
+import { DateTime } from './date-time';
 
 export interface AccidentTitleProps {
-    from?: Date;
-    to?: Date;
+    from?: Date|string|number;
+    to?: Date|string|number;
     severityOption?: SeverityOptions;
     orderByOption?: SortByOptions;
     pageSize?: number;
@@ -17,9 +18,9 @@ export default function AccidentTitle(props: AccidentTitleProps) {
             <span>Loading </span><em>{total ? total : 0}</em>
             <em> {severityOption ? severityOption.toLowerCase() : 'undefined'}</em>
             <span> accidents list from </span>
-            <time>{from ? `${from.toDateString()} ${from.toLocaleTimeString()}` : undefined}</time>
+            <DateTime date={from}/>
             <span> to </span>
-            <time>{to ? `${to.toDateString()} ${to.toLocaleTimeString()}` : undefined}</time>
+            <DateTime date={to}/>
             <span>, ordered by </span>
             <em>{orderByOption ? orderByOption.toLowerCase() : 'datedescending'}</em>
         </h1>

@@ -27,11 +27,11 @@ describe('AccidentListItem', () => {
     it('should generate date time information', () => {
         if (firstAccidentStatistic && firstAccidentStatistic.date) {
             const expectedDate = new Date(firstAccidentStatistic.date).toDateString();
-            const expectedTime = new Date(firstAccidentStatistic.date).toLocaleTimeString()
+            const expectedTime = new Date(firstAccidentStatistic.date).toLocaleTimeString('en-US')
 
-            wrapper = enzyme.shallow(<AccidentListItem accidentStatistic={firstAccidentStatistic} showJson={true} />)
-            expect(wrapper.find('li time').text()).toContain(expectedDate);
-            expect(wrapper.find('li time').text()).toContain(expectedTime);
+            wrapper = enzyme.mount(<AccidentListItem accidentStatistic={firstAccidentStatistic} showJson={true} />)
+            expect(wrapper.find('DateTime').text()).toContain(expectedDate);
+            expect(wrapper.find('DateTime').text()).toContain(expectedTime);
         }
     });
 
