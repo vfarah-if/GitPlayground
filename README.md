@@ -81,6 +81,8 @@ Do not look at this if you want to solve this on your own. This is my indaba and
 		!["List component"](screenshots/ListComponent.png)
 		!["List without json"](screenshots/ListComponentActual.png)
 	9. My react project is going to be developed as a typescript project. For setup and project details see more within [src/react-accident-statistics](src/react-accident-statistics). I have started developing the first component and it went well, with one problem and that was relative pathing. The architecture promotes lots of small components, the same with Angular, however Angular has a more sophiticated binding mechanism with *directives* and *pipes* lending it self more to not needing smaller components, as it will still be very readable and maintainable. I need to warn you that the react typescript CLI has issues and creates far less than the Angular CLI does, like not integration e2e testing and errors without you fixing things you will need to search solutions to get it working. The Angular CLI have raised the bar for the React CLI, but to be honest both have spoilt developers wrotten by giving us frameworks that allow us to focus mostly on our business needs. Not too long ago, I was creating Grunt and Gulp scripts to automate a lot of what I get for nothing these days, so Kudos to the guys who open sourced these great ideas to promote consistency and help us develop quicker.
+	!["My list component"](screenshots/ReactListComponent.png)
+	
 
 # summary
 Enjoy doing Indabas and remember solving small issues well helps give you a spear for bigger problems.
