@@ -37,6 +37,10 @@ describe('AccidentStatisticsMap', () => {
                 to: new Date('2017-12-31T12:00:00.000Z'),
                 imageOption: 'Macarbe',
                 zoom: 9,
+                latitude: 51.50608021,
+                longitude: -0.12184322,
+                maxZoom: 18,
+                useGeolocationPosition: false,
             };
 
             expect(testData).toBeTruthy();

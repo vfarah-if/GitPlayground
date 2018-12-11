@@ -6,6 +6,7 @@ import { DEFAULT_FROM_DATE } from '../constants';
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
 import AccidentTitle from '../shared/accident-title';
 import { AccidentStatisticsService } from './../../services';
+import { number } from 'prop-types';
 
 export type ImageOptions = 'Marker' | 'Macarbe' | 'Friendly';
 
@@ -17,6 +18,10 @@ export interface AccidentStatisticsMapProps {
     pageSize?: number;
     imageOption?:  ImageOptions;
     zoom?: number;
+    latitude? : number;
+    longitude? : number;
+    maxZoom?: number;
+    useGeolocationPosition?: boolean;
 }
 
 export interface AccidentStatisticsMapState {
@@ -29,6 +34,10 @@ export interface AccidentStatisticsMapState {
     zoom: number;
     pagedAccidentStatistic?: PagedAccidentStatistic;
     accidentStatistics: Array<AccidentStatistic>;
+    latitude : number;
+    longitude : number;
+    maxZoom: number;
+    useGeolocationPosition: boolean;
 }
 
 export default class AccidentStatisticsMap extends React.Component<AccidentStatisticsMapProps, AccidentStatisticsMapState> {
@@ -48,6 +57,10 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             accidentStatistics: [],
             imageOption: props.imageOption || 'Macarbe',
             zoom: props.zoom || 9,
+            latitude: props.latitude || 51.50608021,
+            longitude: props.longitude ||  -0.12184322,
+            maxZoom: props.maxZoom || 18,
+            useGeolocationPosition: props.useGeolocationPosition || false,
         }
     }
 
