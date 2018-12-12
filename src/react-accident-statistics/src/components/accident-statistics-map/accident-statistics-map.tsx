@@ -13,14 +13,14 @@ import { DateTime } from '../shared/date-time';
 export type ImageOptions = 'Marker' | 'Macarbe' | 'Friendly';
 
 type MarkerProps = {
-    content: any,
+    content: JSX.Element,
     position: LatLng,
     icon: Icon,
 };
 
 type MarkerData = {
     key: string, 
-    content: any,
+    content: JSX.Element,
     position: LatLng,
     icon: Icon 
 };
@@ -197,7 +197,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         }
     }
 
-    private createPopupContent(accidentStatistic: AccidentStatistic): any {
+    private createPopupContent(accidentStatistic: AccidentStatistic): JSX.Element {
         const dateOfAccident = accidentStatistic.date ? new Date(accidentStatistic.date) : new Date();
         const casualtyCount = accidentStatistic && accidentStatistic.casualties ? accidentStatistic.casualties.length : 0;
         const vehicleCount = accidentStatistic && accidentStatistic.vehicles ? accidentStatistic.vehicles.length : 0;
