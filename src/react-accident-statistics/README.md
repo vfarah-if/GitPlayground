@@ -6,6 +6,10 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## vscode React snippets
 **vscode-react-typescript** help generate skeleton framework for you to place logic into
 
+## Best testing blog ever
+This is the best overall advice presented on testing in almost every scenario.
+[React testing tutorial](https://www.robinwieruch.de/react-testing-tutorial/)
+
 ## Axios
 Axios is HTTP client I used for communicating with the Owin Api. See more information about the library documentation at [Axios setup](https://www.npmjs.com/package/axios)
 
@@ -14,8 +18,9 @@ Axios adapter that allows to easily mock requests [axios-mock-adapter setup](htt
 and [React example](https://medium.com/@zach.grusznski/how-to-use-axios-mock-adapter-to-test-network-requests-in-react-475e99cda5ea)
 
 ## Jest mocks
-https://jestjs.io/docs/en/es6-class-mocks
-https://medium.freecodecamp.org/components-testing-in-react-what-and-how-to-test-with-jest-and-enzyme-7c1cace99de5
+[Jest mocking](https://jestjs.io/docs/en/es6-class-mocks)
+
+[Component testing with Jest and Enzyme](https://medium.freecodecamp.org/components-testing-in-react-what-and-how-to-test-with-jest-and-enzyme-7c1cace99de5)
 
 ## React Leaflet
 [Leaflet documentation](https://react-leaflet.js.org/)

@@ -11,5 +11,4 @@ enzyme.configure({ adapter: new Adapter() });
 global.React = React;
 global.shallow = enzyme.shallow;
 global.mount = enzyme.mount;
-
-global.flushPromises = () => new Promise(resolve => setImmediate(resolve))
+global.render = enzyme.render;

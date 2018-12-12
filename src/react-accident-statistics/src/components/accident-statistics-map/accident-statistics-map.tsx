@@ -106,6 +106,8 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             sortBy: orderByOption,
             page: currentPage, pageSize: pageSize
         });
+        // TODO: Remove when test issue resolved
+        // console.log('Paged Response with >>>>>', pagedResponse)
         this.updateState(pagedResponse);
 
         if (pagedResponse && pagedResponse.data && pagedResponse.data.nextPage) {
