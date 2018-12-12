@@ -18,8 +18,9 @@ https://jestjs.io/docs/en/es6-class-mocks
 https://medium.freecodecamp.org/components-testing-in-react-what-and-how-to-test-with-jest-and-enzyme-7c1cace99de5
 
 ## React Leaflet
-https://react-leaflet.js.org/
-https://react-leaflet.js.org/docs/en/components.html
+[Leaflet documentation](https://react-leaflet.js.org/)
+[Leaflet components](https://react-leaflet.js.org/docs/en/components.html)
+[Custom component done properly](https://github.com/PaulLeCam/react-leaflet/blob/master/example/components/custom-component.js)
 
 ## Sass
 Install for scss extension by typing `npm install node-sass-chokidar --save-dev`

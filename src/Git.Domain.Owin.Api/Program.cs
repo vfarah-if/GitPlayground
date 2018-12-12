@@ -19,7 +19,6 @@ namespace Git.Domain.Owin.Api
                 Trace.TraceInformation($"Started hosting on {baseAddress}");
                 Trace.TraceInformation($"Swagger information can be found at {baseAddress}swagger");
                 Trace.TraceInformation($"Swagger documentation can be found at {baseAddress}swagger/docs/v1");
-                Trace.TraceInformation($"Swagger documentation can be found at {baseAddress}swagger/docs/v2");
                 Console.ReadLine();
             }
         }

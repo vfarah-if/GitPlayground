@@ -6,7 +6,7 @@ import { expand, map, reduce } from 'rxjs/internal/operators';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { EMPTY } from 'rxjs/internal/observable/empty';
 
-import { Map, MapOptions, Control, tileLayer, latLng, marker, icon } from 'leaflet';
+import { Map, MapOptions, tileLayer, latLng, marker, icon } from 'leaflet';
 
 import { AccidentStatiticsService } from './../../api';
 import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './../../model';
