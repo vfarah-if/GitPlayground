@@ -147,8 +147,9 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
                 const previousMarkers = prevState.markers;
                 const data = this.getMarkers(pagedResponse.data.data);
                 if (data) {
+                    const distinctMarkers = new Set(previousMarkers.concat(data));
                     return Object.assign(prevState, {
-                        markers: previousMarkers.concat(data),
+                        markers:  Array.from(distinctMarkers),
                         pagedAccidentStatistic: pagedResponse.data,
                     });
                 }

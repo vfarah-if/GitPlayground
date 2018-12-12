@@ -11,18 +11,18 @@ import AccidentStatisticsMap from '../accident-statistics-map/accident-statistic
 import { PagedAccidentStatistic } from './../../models';
 
 describe('AccidentStatisticsMap', () => {
-    let mockAdapter: MockAdapter;
-    let wrapper: any;
 
     describe('default settings', () => {
+        let wrapper: any;
+        let mockAdapter: MockAdapter;
         beforeEach(() => {
             mockAdapter = new MockAdapter(axios);
             mockAdapter.onAny().reply(200, testData);
         });
-
+    
         afterEach(() => {
             mockAdapter.reset();
-        });
+        });        
 
         it('should create component with default expectations', () => {
             wrapper = enzyme.shallow(<AccidentStatisticsMap />)
@@ -88,15 +88,29 @@ describe('AccidentStatisticsMap', () => {
             const map = wrapper.find('section > Map');
             expect(map.length).toBe(1);
         });
-
-        // it('should contain two images representing accident information', async () => {
-        //     const mountWrapper: any = await enzyme.mount(<AccidentStatisticsMap />);
-        //     await mountWrapper.instance().componentWillMount();
-        //     const header = mountWrapper.find('section h1');
-        //     expect(header.text()).toContain('Loading 2 fatal accidents');
-        //     // const images = wrapper.find('div.leaflet-pane leaflet-marker-pane img');
-        //     // expect(images.length).toBe(2);            
-        //     //expect(wrapper.html()).toBe('Test');                                
-        // });
     });
+
+    // VVF: Removed as for some mad reason, there is no way to await an instance within the typescript version
+    // describe('mount test', () => {
+    //     let wrapper : enzyme.ReactWrapper;
+    //     let mockAdapter: MockAdapter;
+    //     beforeEach(async() => {
+    //         mockAdapter = new MockAdapter(axios);
+    //         mockAdapter.onAny().reply(200, testData);
+    //         wrapper = enzyme.mount(<AccidentStatisticsMap />);                        
+    //     });
+    
+    //     afterEach(() => {
+    //         mockAdapter.reset();
+    //     });   
+           
+    //     it('should contain two images representing accident information', async () => {            
+    //         await wrapper.instance().componentDidMount();
+    //         const header = wrapper.find('section h1');
+    //         expect(header.text()).toContain('Loading 2 fatal accidents');
+    //         // const images = wrapper.find('div.leaflet-pane leaflet-marker-pane img');
+    //         // expect(images.length).toBe(2);            
+    //         //expect(wrapper.html()).toBe('Test');                                
+    //     });
+    // });
 });
