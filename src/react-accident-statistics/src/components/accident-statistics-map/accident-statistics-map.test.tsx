@@ -93,14 +93,13 @@ describe('AccidentStatisticsMap', () => {
         fit('should contain two images representing accident information', async() => {
             wrapper = enzyme.mount(<AccidentStatisticsMap />)            
           
-            sleep(1000).then(() => {
-                const header = wrapper.find('section h1');
-                expect(header.text()).toContain('Loading 2 fatal accidents');
-                const images = wrapper.find('div.leaflet-pane.leaflet-marker-pane > img');
-                expect(images.length).toBe(1);
-                // UNCOMENT TO SEE result of HTML
-                // expect(wrapper.html()).toBe('Test');                    
-            });         
+            await sleep(1000);
+            const header = wrapper.find('section h1');
+            expect(header.text()).toContain('Loading 2 fatal accidents');
+            const images = wrapper.find('div.leaflet-pane.leaflet-marker-pane > img');
+            expect(images.length).toBe(2);
+            // UNCOMENT TO SEE result of HTML
+            // expect(wrapper.html()).toBe('Test');                    
         });
     });
 });
