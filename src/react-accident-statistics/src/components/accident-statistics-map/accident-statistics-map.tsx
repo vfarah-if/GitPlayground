@@ -82,7 +82,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             orderByOption: props.orderByOption || 'DateDescending',
             pageSize: props.pageSize || 500,
             pagedAccidentStatistic: undefined,
-            markers: [],
+            markers:  [],
             imageOption: props.imageOption || 'Macarbe',
             zoom: props.zoom || 9,
             latitude: props.latitude || 51.50608021,
@@ -106,8 +106,6 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             sortBy: orderByOption,
             page: currentPage, pageSize: pageSize
         });
-        // TODO: Remove when test issue resolved
-        // console.log('Paged Response with >>>>>', pagedResponse)
         this.updateState(pagedResponse);
 
         if (pagedResponse && pagedResponse.data && pagedResponse.data.nextPage) {
@@ -145,7 +143,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
 
     private updateState(pagedResponse: AxiosResponse<PagedAccidentStatistic>) {
         this.setState((prevState) => {
-            if (prevState && prevState.markers && pagedResponse.data && pagedResponse.data.data) {
+            if (prevState && prevState.markers && pagedResponse.data && pagedResponse.data.data) {                
                 const previousMarkers = prevState.markers;
                 const data = this.getMarkers(pagedResponse.data.data);
                 if (data) {

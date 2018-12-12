@@ -39,7 +39,7 @@ Are you a back-end kind of guy, a database repository specialist who likes stori
 This is the new and improved API. Use Nancy, Node or any other API project you feel comfortable using.
 
 1. Recreate the API allowing for options to query the TFL data for the purposes of what you want the data to do. You need to use the domain to show data and so any caching or optimisations need to be configured through the Api contract. Remember this needs to be able to run through a browser or postman so allow for a simple and intuitive user experience.
-2. Create two versions, one that use the live site data and the second, a complete redesign using the database indaba to build out a service that does what you need efficiently. The concept behind doing two versions is firstly it starts you thinking in terms of versioning the API, secondly most times you are not able to redo something, so you create anti-corruption layers or bubble contexts to interact with other layers and if it is slow, you bolster it where you can. If you do get a chance to redo it, make sure you learn from history and do it better.
+2. Create two versions, one that will use the live site data and the second, a complete redesign using the database indaba to build out a service that does what you need efficiently. The concept behind doing two versions is firstly it starts you thinking in terms of versioning the API, secondly most times you are not able to redo something, so you create anti-corruption layers or bubble contexts to interact with other layers and if it is slow, you bolster it where you can. If you do get a chance to redo it, make sure you learn from history and do it better.
 
 ## Front-end indaba
 This is a visualisation of the data, creating business reasons for consuming this API.

@@ -10,6 +10,9 @@ You can find the most recent version of this guide [here](https://github.com/fac
 This is the best overall advice presented on testing in almost every scenario.
 [React testing tutorial](https://www.robinwieruch.de/react-testing-tutorial/)
 
+## E2E tests
+[E2E Testing](https://github.com/dwyl/learn-nightwatch)
+
 ## Axios
 Axios is HTTP client I used for communicating with the Owin Api. See more information about the library documentation at [Axios setup](https://www.npmjs.com/package/axios)
 
