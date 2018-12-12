@@ -8,6 +8,7 @@ import { DEFAULT_FROM_DATE } from '../constants';
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
 import AccidentTitle from '../shared/accident-title';
 import { AccidentStatisticsService } from './../../services';
+import { DateTime } from '../shared/date-time';
 
 export type ImageOptions = 'Marker' | 'Macarbe' | 'Friendly';
 
@@ -203,7 +204,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         return (
         <span>
             <mark>{this.state.severityOption} Incident {accidentStatistic.id}</mark>
-            <span>, occured on </span><em>{dateOfAccident.toDateString()} {dateOfAccident.toTimeString()}</em>
+            <span>, occured on <DateTime date={dateOfAccident}/></span>
             <span>, involving {casualtyCount} {this.pluralOrSingleForm(accidentStatistic.casualties, 'casualties', 'casualty')}</span>
             <span> and {vehicleCount} {this.pluralOrSingleForm(accidentStatistic.vehicles, 'vehicles', 'vehicle')}</span>
             <span> in the borough of {accidentStatistic.borough}.</span>
