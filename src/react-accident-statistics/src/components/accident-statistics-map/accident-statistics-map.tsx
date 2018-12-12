@@ -200,10 +200,14 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         const dateOfAccident = accidentStatistic.date ? new Date(accidentStatistic.date) : new Date();
         const casualtyCount = accidentStatistic && accidentStatistic.casualties ? accidentStatistic.casualties.length : 0;
         const vehicleCount = accidentStatistic && accidentStatistic.vehicles ? accidentStatistic.vehicles.length : 0;
-        return (<span><mark>{this.state.severityOption} Incident {accidentStatistic.id}</mark>, occured on <em>{dateOfAccident.toDateString()} {dateOfAccident.toTimeString()}</em>,
-         involving {casualtyCount} {this.pluralOrSingleForm(accidentStatistic.casualties, 'casualties', 'casualty')} 
-         and {vehicleCount} {this.pluralOrSingleForm(accidentStatistic.vehicles, 'vehicles', 'vehicle')} 
-        in the borough of {accidentStatistic.borough}.</span>);
+        return (
+        <span>
+            <mark>{this.state.severityOption} Incident {accidentStatistic.id}</mark>
+            <span>, occured on </span><em>{dateOfAccident.toDateString()} {dateOfAccident.toTimeString()}</em>
+            <span>, involving {casualtyCount} {this.pluralOrSingleForm(accidentStatistic.casualties, 'casualties', 'casualty')}</span>
+            <span> and {vehicleCount} {this.pluralOrSingleForm(accidentStatistic.vehicles, 'vehicles', 'vehicle')}</span>
+            <span> in the borough of {accidentStatistic.borough}.</span>
+        </span>);
     }
 
     private pluralOrSingleForm(array: Array<any> | undefined, plural: string, single: string): string {
