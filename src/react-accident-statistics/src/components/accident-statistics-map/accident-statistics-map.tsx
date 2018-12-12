@@ -186,12 +186,12 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             case'Friendly': return new Icon({
                 iconSize: [40, 40],
                 iconAnchor: [13, 40],
-                iconUrl: 'https://image.flaticon.com/icons/svg/130/130163.svg'
+                iconUrl: 'https://image.flaticon.com/icons/svg/130/130163.svg',
               });  
             default : return new Icon({
                 iconSize: [35, 35],
                 iconAnchor: [13, 35],
-                iconUrl: 'https://static.thenounproject.com/png/14312-200.png'                    
+                iconUrl: 'https://static.thenounproject.com/png/14312-200.png',
               });  
         }
     }
@@ -200,7 +200,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         const dateOfAccident = accidentStatistic.date ? new Date(accidentStatistic.date) : new Date();
         const casualtyCount = accidentStatistic && accidentStatistic.casualties ? accidentStatistic.casualties.length : 0;
         const vehicleCount = accidentStatistic && accidentStatistic.vehicles ? accidentStatistic.vehicles.length : 0;
-        return (<span><mark>{this.state.severityOption} Incident {accidentStatistic.id}</mark>, occured on <em>{dateOfAccident.toDateString()} ${dateOfAccident.toTimeString()}</em>,
+        return (<span><mark>{this.state.severityOption} Incident {accidentStatistic.id}</mark>, occured on <em>{dateOfAccident.toDateString()} {dateOfAccident.toTimeString()}</em>,
          involving {casualtyCount} {this.pluralOrSingleForm(accidentStatistic.casualties, 'casualties', 'casualty')} 
          and {vehicleCount} {this.pluralOrSingleForm(accidentStatistic.vehicles, 'vehicles', 'vehicle')} 
         in the borough of {accidentStatistic.borough}.</span>);
