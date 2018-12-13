@@ -19,10 +19,10 @@ describe('AccidentStatisticsMap', () => {
             mockAdapter = new MockAdapter(axios);
             mockAdapter.onAny().reply(200, testData);
         });
-    
+
         afterEach(() => {
             mockAdapter.reset();
-        });        
+        });
 
         it('should create component with default expectations', () => {
             wrapper = enzyme.shallow(<AccidentStatisticsMap />)
@@ -90,27 +90,48 @@ describe('AccidentStatisticsMap', () => {
         });
     });
 
-    // VVF: Removed as for some mad reason, there is no way to await an instance within the typescript version
-    // describe('mount test', () => {
-    //     let wrapper : enzyme.ReactWrapper;
-    //     let mockAdapter: MockAdapter;
-    //     beforeEach(async() => {
-    //         mockAdapter = new MockAdapter(axios);
-    //         mockAdapter.onAny().reply(200, testData);
-    //         wrapper = enzyme.mount(<AccidentStatisticsMap />);                        
-    //     });
-    
-    //     afterEach(() => {
-    //         mockAdapter.reset();
-    //     });   
-           
-    //     it('should contain two images representing accident information', async () => {            
-    //         await wrapper.instance().componentDidMount();
-    //         const header = wrapper.find('section h1');
-    //         expect(header.text()).toContain('Loading 2 fatal accidents');
-    //         // const images = wrapper.find('div.leaflet-pane leaflet-marker-pane img');
-    //         // expect(images.length).toBe(2);            
-    //         //expect(wrapper.html()).toBe('Test');                                
-    //     });
-    // });
+    describe('mount component test with non-default data', () => {
+        let wrapper: enzyme.ReactWrapper;
+        let mockAdapter: MockAdapter;
+        beforeEach(async () => {
+            mockAdapter = new MockAdapter(axios);
+            mockAdapter.onAny().reply(200, testData);
+            wrapper = enzyme.mount(<AccidentStatisticsMap fromDate="Jan 1, 2010, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" severityOption="Slight" imageOption="Friendly" zoom={11} orderByOption='BoroughAscending' pageSize={100} maxZoom={17} useGeolocationPosition={true}/>);
+        });
+
+        afterEach(() => {
+            mockAdapter.reset();
+        });
+
+        it('should contain expected state data', async () => {
+            const expectedData = await axios.get<PagedAccidentStatistic>('testAxios');
+            expect(expectedData).toBeDefined();
+            const expectedInitialState = {
+                from: new Date('Jan 1, 2010, 12:00:00 AM')
+                orderByOption: 'BoroughAscending',
+                pageSize: 100,
+                pagedAccidentStatistic: expectedData.data,
+                severityOption: 'Slight',
+                to: new Date('Dec 31, 2017, 11:59:00 PM'),
+                imageOption: 'Friendly',
+                zoom: 11,
+                latitude: 51.50608021,
+                longitude: -0.12184322,
+                maxZoom: 17,
+                useGeolocationPosition: true
+            };
+            const actualState = wrapper.state();            
+
+            expect(actualState.orderByOption).toBe(expectedInitialState.orderByOption);
+            expect(actualState.pageSize).toBe(expectedInitialState.pageSize);            
+            expect(actualState.severityOption).toBe(expectedInitialState.severityOption);            
+            expect(actualState.zoom).toBe(expectedInitialState.zoom);
+            expect(actualState.latitude).toBe(expectedInitialState.latitude);
+            expect(actualState.longitude).toBe(expectedInitialState.longitude);
+            expect(actualState.maxZoom).toBe(expectedInitialState.maxZoom);
+            expect(actualState.useGeolocationPosition).toBe(expectedInitialState.useGeolocationPosition);
+            expect(actualState.markers.length).toBe(expectedInitialState.pagedAccidentStatistic.pageSize);
+            expect(actualState.pagedAccidentStatistic).toBeDefined();
+        })
+    });
 });
