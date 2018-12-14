@@ -12,14 +12,13 @@ namespace Git.Domain.UnitTests
 {
     public class GetAccidentStatisticsShould : TransportForLondonClientShould
     {
-
         [Fact]
         public async void GetFirstPageAccidentStatisticsCorrect()
         {
-            var accidentStatistics = this.AutoFixture.CreateMany<AccidentStatistic>();
-            this.HttpTest.RespondWithJson(accidentStatistics, 200);
+            var accidentStatistics = AutoFixture.CreateMany<AccidentStatistic>();
+            HttpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await this.TransportForLondonClient.GetAccidentStatistics(2016, 1, 5);
+            var actual = await TransportForLondonClient.GetAccidentStatistics(2016, 1, 5);
 
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
@@ -31,10 +30,10 @@ namespace Git.Domain.UnitTests
         [Fact]
         public async void GetFirstPageAccidentStatistics_WhenThereIsNoSecondPage()
         {
-            var accidentStatistics = this.AutoFixture.CreateMany<AccidentStatistic>();
-            this.HttpTest.RespondWithJson(accidentStatistics, 200);
+            var accidentStatistics = AutoFixture.CreateMany<AccidentStatistic>();
+            HttpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await this.TransportForLondonClient.GetAccidentStatistics(year: 2016, page: 2, pageSize: 5);
+            var actual = await TransportForLondonClient.GetAccidentStatistics(year: 2016, page: 2, pageSize: 5);
 
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
@@ -46,10 +45,10 @@ namespace Git.Domain.UnitTests
         [Fact]
         public async void GetFirstPageAccidentStatistics_WhenThePageIsLessThanOne()
         {
-            var accidentStatistics = this.AutoFixture.CreateMany<AccidentStatistic>();
-            this.HttpTest.RespondWithJson(accidentStatistics, 200);
+            var accidentStatistics = AutoFixture.CreateMany<AccidentStatistic>();
+            HttpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await this.TransportForLondonClient.GetAccidentStatistics(year: 2016, page: -1, pageSize: 5);
+            var actual = await TransportForLondonClient.GetAccidentStatistics(year: 2016, page: -1, pageSize: 5);
 
             actual.Should().NotBeNull();
             actual.Data.Should().NotBeNull();
@@ -62,9 +61,9 @@ namespace Git.Domain.UnitTests
         public async void FilterAllDataWithFatalSeverity()
         {
             var accidentStatistics = LoadAll2017AccidentTestData();
-            this.HttpTest.RespondWithJson(accidentStatistics, 200);
+            HttpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await this.TransportForLondonClient.GetAccidentStatistics(
+            var actual = await TransportForLondonClient.GetAccidentStatistics(
                  year: 2017,
                  pageSize: 300,
                  filter: filter => filter.Severity == Severity.Fatal);
@@ -81,9 +80,9 @@ namespace Git.Domain.UnitTests
         public async void FilterWithFatalSeverityAndSortAllDataByDateAscending()
         {
             var accidentStatistics = LoadAll2017AccidentTestData();
-            this.HttpTest.RespondWithJson(accidentStatistics, 200);
+            HttpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await this.TransportForLondonClient.GetAccidentStatistics(
+            var actual = await TransportForLondonClient.GetAccidentStatistics(
                              year: 2017,
                              pageSize: 300,
                              filter: filter => filter.Severity == Severity.Fatal,
@@ -98,9 +97,9 @@ namespace Git.Domain.UnitTests
         public async void FilterWithFatalSeverityAndSortAllDataByDateDescending()
         {
             var accidentStatistics = LoadAll2017AccidentTestData();
-            this.HttpTest.RespondWithJson(accidentStatistics, 200);
+            HttpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await this.TransportForLondonClient.GetAccidentStatistics(
+            var actual = await TransportForLondonClient.GetAccidentStatistics(
                              year: 2017,
                              pageSize: 300,
                              filter: filter => filter.Severity == Severity.Fatal,
@@ -115,9 +114,9 @@ namespace Git.Domain.UnitTests
         public async void FilterWithFatalSeverityAndDateRangeAndSortDataAscending()
         {
             var accidentStatistics = LoadAll2017AccidentTestData();
-            this.HttpTest.RespondWithJson(accidentStatistics, 200);
+            HttpTest.RespondWithJson(accidentStatistics, 200);
 
-            var actual = await this.TransportForLondonClient.GetAccidentStatistics(
+            var actual = await TransportForLondonClient.GetAccidentStatistics(
                              year: 2017,
                              pageSize: 300,
                              filter: filter =>
@@ -136,43 +135,43 @@ namespace Git.Domain.UnitTests
         public async void FilterWithFatalSeverityOverSeveralYearsAscending()
         {
             var accidentStatistics = Get2017AccidentData();
-            this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
-            this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
+            HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
+            HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
 
-            await this.TransportForLondonClient.GetAccidentStatistics(
+            await TransportForLondonClient.GetAccidentStatistics(
                 from: DateTime.Parse("01 January 2016 09:11:00"),
                 to: DateTime.Parse("01 December 2017 16:13:00"),
                 pageSize: 300,
                 severity: Severity.Fatal,
                 sortOptions: ByDateAscending);
 
-            this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
-            this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2017");
+            HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
+            HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2017");
         }
 
         [Fact]
         public async void SwapValuesIfFromDateGreaterThanToDate()
         {
             var accidentStatistics = Get2017AccidentData();
-            this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
-            this.HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
+            HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
+            HttpTest.ResponseQueue.Enqueue(CreateHttpResponseMessage(accidentStatistics));
 
-            await this.TransportForLondonClient.GetAccidentStatistics(
+            await TransportForLondonClient.GetAccidentStatistics(
                 from: DateTime.Parse("01 December 2017 16:13:00"),
                 to: DateTime.Parse("01 January 2016 09:11:00"),
                 pageSize: 300,
                 severity: Severity.Fatal,
                 sortOptions: ByDateAscending);
 
-            this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
-            this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2017");
+            HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
+            HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2017");
         }
 
         [Fact]
         public void ThrowNotSupportedExceptionWhenFromRangeLessThan2005()
         {
             Func<Task<Paged<AccidentStatistic>>> action = async () =>
-                await this.TransportForLondonClient.GetAccidentStatistics(
+                await TransportForLondonClient.GetAccidentStatistics(
                     from: DateTime.Parse("01 December 2004 16:13:00"),
                     to: DateTime.Parse("01 January 2016 09:11:00"),
                     severity: Severity.Fatal,
@@ -187,7 +186,7 @@ namespace Git.Domain.UnitTests
             Func<Task<Paged<AccidentStatistic>>> action = async () =>
                 {
                     var yesterday = DateTime.UtcNow.AddDays(-1);
-                    return await this.TransportForLondonClient.GetAccidentStatistics(
+                    return await TransportForLondonClient.GetAccidentStatistics(
                                from: yesterday,
                                to: DateTime.UtcNow,
                                severity: Severity.Fatal,

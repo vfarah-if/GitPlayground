@@ -12,12 +12,12 @@ namespace Git.Domain.UnitTests
             [Fact]
             public async void CallTheAccidentStatisticsUrlFor2016()
             {
-                var accidentStatistics = this.AutoFixture.CreateMany<AccidentStatistic>();
-                this.HttpTest.RespondWithJson(accidentStatistics, 200);
+                var accidentStatistics = AutoFixture.CreateMany<AccidentStatistic>();
+                HttpTest.RespondWithJson(accidentStatistics, 200);
 
-                await this.TransportForLondonClient.GetAllAccidentStatistics(2016);
+                await TransportForLondonClient.GetAllAccidentStatistics(2016);
 
-                this.HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
+                HttpTest.ShouldHaveCalled("https://fake-api.tfl.gov.uk/AccidentStats/2016");
             }
         }
     }

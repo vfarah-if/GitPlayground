@@ -10,6 +10,7 @@ import {
   getAccidentStatiticsService
 } from './../../api/testing';
 import { DEFAULT_FROM_DATE } from '../constants';
+import { DateTimeMockComponent } from './../../shared/date-time/testing';
 
 function headerElement(compiled): HTMLHeadingElement {
   return compiled.querySelector('section > header > h1');
@@ -34,7 +35,7 @@ describe('AccidentStatisticMapComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [LeafletModule],
-      declarations: [AccidentStatisticMapComponent],
+      declarations: [AccidentStatisticMapComponent, DateTimeMockComponent],
       providers: [
         ACCIDENT_STATISTIC_SERVICE_PROVIDER()
       ]
@@ -69,7 +70,7 @@ describe('AccidentStatisticMapComponent', () => {
       const header = headerElement(compiled);
       expect(header).toBeTruthy();
       // tslint:disable-next-line:max-line-length
-      const expectedHeader = `Map of fatal accidents from Feb 1, 2010, 12:00:00 AM to Dec 31, ${lastYear}, 12:00:00 PM (2 Total)`;
+      const expectedHeader = `Map of fatal accidents from Mock Date Time to Mock Date Time (2 Total)`;
       expect(header.innerText).toBe(expectedHeader);
     }));
 

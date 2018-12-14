@@ -1,6 +1,6 @@
 <section>
   <header>
-    <h1>Map of {{severityOption|lowercase}} accidents from <em>{{from|date:'medium'}}</em> to <em>{{to|date:'medium'}}</em> ({{(accidentStatisticsFirstPage$|async)?.total}} Total)</h1>
+    <h1>Map of {{severityOption|lowercase}} accidents from <app-date-time [dateTime]="from"></app-date-time> to <app-date-time [dateTime]="to"></app-date-time> ({{(accidentStatisticsFirstPage$|async)?.total}} Total)</h1>
   </header>
   <div class="map"
     leaflet

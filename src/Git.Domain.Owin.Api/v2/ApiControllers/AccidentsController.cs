@@ -3,7 +3,6 @@ using Git.Domain.Models.TFL;
 using Git.Domain.Owin.Api.Models;
 using Swashbuckle.Swagger.Annotations;
 using System;
-using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
