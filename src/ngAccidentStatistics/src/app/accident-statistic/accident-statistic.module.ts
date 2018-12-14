@@ -8,6 +8,7 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
 import { AccidentStatisticQueryComponent } from './accident-statistic-query/accident-statistic-query.component';
 import { AccidentStatisticMapComponent } from './accident-statistic-map/accident-statistic-map.component';
 import { AccidentStatisticListComponent } from './accident-statistic-list/accident-statistic-list.component';
+import { SharedModule } from './../shared';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AccidentStatisticListComponent } from './accident-statistic-list/accide
     ReactiveFormsModule,
     DateValueAccessorModule,
     LeafletModule,
+    SharedModule,
   ],
   exports: [
     AccidentStatisticQueryComponent,

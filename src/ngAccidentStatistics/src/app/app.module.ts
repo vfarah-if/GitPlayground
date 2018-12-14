@@ -9,11 +9,11 @@ import { AppComponent } from './app.component';
 import { ApiModule } from './api';
 import { AccidentStatisticModule } from './accident-statistic';
 import { DateTimeComponent } from './shared/date-time/date-time.component';
+import { SharedModule } from './shared';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DateTimeComponent
+    AppComponent
   ],
   imports: [
     FormsModule,
@@ -22,6 +22,7 @@ import { DateTimeComponent } from './shared/date-time/date-time.component';
     AppRoutingModule,
     ApiModule,
     AccidentStatisticModule,
+    SharedModule,
     LeafletModule.forRoot(),
   ],
   providers: [],

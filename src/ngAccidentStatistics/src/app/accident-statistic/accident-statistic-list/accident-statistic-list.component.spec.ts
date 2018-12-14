@@ -1,3 +1,4 @@
+import { DateTimeMockComponent } from './../../shared/date-time/testing/date-time.mock.component';
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 
 import { AccidentStatisticListComponent } from './accident-statistic-list.component';
@@ -34,7 +35,7 @@ describe('AccidentStatisticListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AccidentStatisticListComponent],
+        AccidentStatisticListComponent, DateTimeMockComponent],
       providers: [
         ACCIDENT_STATISTIC_SERVICE_PROVIDER()
       ]
@@ -68,7 +69,7 @@ describe('AccidentStatisticListComponent', () => {
       const header = headerElement(compiled);
       expect(header).toBeTruthy();
       // tslint:disable-next-line:max-line-length
-      const expectedHeader = `Loading 2 fatal accidents list from Feb 1, 2010, 12:00:00 AM to Dec 31, ${lastYear}, 12:00:00 PM, ordered by datedescending`;
+      const expectedHeader = `Loading 2 fatal accidents list from Mock Date Time to Mock Date Time, ordered by datedescending`;
       expect(header.innerText).toBe(expectedHeader);
     }));
 
@@ -97,10 +98,10 @@ describe('AccidentStatisticListComponent', () => {
       const orderedListItems = orderedListElements(compiled);
       const expectedFirstItemDescription =
         // tslint:disable-next-line:max-line-length
-        'Accident Id: 632474 on Jan 5, 2017, 9:11:00 AM at location Traps Lane junction with Coombe Lane west in the borough of Kingston, with 1 casualty and 2 vehicles of types MediumGoodsVehicle, Motorcycle_50_125cc.';
+        'Accident Id: 632474 on Mock Date Time at location Traps Lane junction with Coombe Lane west in the borough of Kingston, with 1 casualty and 2 vehicles of types MediumGoodsVehicle, Motorcycle_50_125cc.';
       const expectedSecondItemDescription =
         // tslint:disable-next-line:max-line-length
-        'Accident Id: 615289 on Dec 29, 2017, 10:58:00 AM at location Horseferry Road junction with Medway Street in the borough of City of Westminster, with 1 casualty and 1 vehicle of type Taxi.';
+        'Accident Id: 615289 on Mock Date Time at location Horseferry Road junction with Medway Street in the borough of City of Westminster, with 1 casualty and 1 vehicle of type Taxi.';
 
       expect(orderedListItems).toBeTruthy();
       expect(orderedListItems.length).toBe(2);
