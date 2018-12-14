@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { AccidentStatiticsService } from './accident-statistics.service';
 import { HttpClientModule } from '@angular/common/http';
+
+import { AccidentStatiticsService } from './accident-statistics.service';
 
 @NgModule({
   imports: [HttpClientModule],

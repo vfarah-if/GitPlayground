@@ -8,10 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiModule } from './api';
 import { AccidentStatisticModule } from './accident-statistic';
+import { DateTimeComponent } from './shared/date-time/date-time.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DateTimeComponent
   ],
   imports: [
     FormsModule,
