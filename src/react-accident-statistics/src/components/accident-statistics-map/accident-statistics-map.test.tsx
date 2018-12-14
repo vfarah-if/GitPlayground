@@ -96,7 +96,7 @@ describe('AccidentStatisticsMap', () => {
         beforeEach(async () => {
             mockAdapter = new MockAdapter(axios);
             mockAdapter.onAny().reply(200, testData);
-            wrapper = enzyme.mount(<AccidentStatisticsMap fromDate="Jan 1, 2010, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" severityOption="Slight" imageOption="Friendly" zoom={11} orderByOption='BoroughAscending' pageSize={100} maxZoom={17} useGeolocationPosition={true}/>);
+            wrapper = enzyme.mount(<AccidentStatisticsMap fromDate="Jan 1, 2010, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" severityOption="Slight" imageOption="Friendly" zoom={11} orderByOption='BoroughAscending' pageSize={100} maxZoom={17} useGeolocationPosition={true} />);
         });
 
         afterEach(() => {
@@ -107,12 +107,10 @@ describe('AccidentStatisticsMap', () => {
             const expectedData = await axios.get<PagedAccidentStatistic>('testAxios');
             expect(expectedData).toBeDefined();
             const expectedInitialState = {
-                from: new Date('Jan 1, 2010, 12:00:00 AM')
                 orderByOption: 'BoroughAscending',
                 pageSize: 100,
                 pagedAccidentStatistic: expectedData.data,
                 severityOption: 'Slight',
-                to: new Date('Dec 31, 2017, 11:59:00 PM'),
                 imageOption: 'Friendly',
                 zoom: 11,
                 latitude: 51.50608021,
@@ -120,18 +118,8 @@ describe('AccidentStatisticsMap', () => {
                 maxZoom: 17,
                 useGeolocationPosition: true
             };
-            const actualState = wrapper.state();            
-
-            expect(actualState.orderByOption).toBe(expectedInitialState.orderByOption);
-            expect(actualState.pageSize).toBe(expectedInitialState.pageSize);            
-            expect(actualState.severityOption).toBe(expectedInitialState.severityOption);            
-            expect(actualState.zoom).toBe(expectedInitialState.zoom);
-            expect(actualState.latitude).toBe(expectedInitialState.latitude);
-            expect(actualState.longitude).toBe(expectedInitialState.longitude);
-            expect(actualState.maxZoom).toBe(expectedInitialState.maxZoom);
-            expect(actualState.useGeolocationPosition).toBe(expectedInitialState.useGeolocationPosition);
-            expect(actualState.markers.length).toBe(expectedInitialState.pagedAccidentStatistic.pageSize);
-            expect(actualState.pagedAccidentStatistic).toBeDefined();
+            const actualState = wrapper.state();
+            expect(actualState).toMatchObject(expectedInitialState);
         })
     });
 });

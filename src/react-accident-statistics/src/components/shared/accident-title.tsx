@@ -9,13 +9,14 @@ export interface AccidentTitleProps {
     orderByOption?: SortByOptions;
     pageSize?: number;
     total?: number;
+    prefixMessage?: string;
 }
 
 export default function AccidentTitle(props: AccidentTitleProps) {
-    const { total, severityOption, from, to, orderByOption } = props;
+    const { total, severityOption, from, to, orderByOption, prefixMessage } = props;
     return (
         <h1>
-            <span>Loading </span><em>{total ? total : 0}</em>
+            <span>{prefixMessage ? prefixMessage : 'Loading'} </span><em>{total ? total : 0}</em>
             <em> {severityOption ? severityOption.toLowerCase() : 'undefined'}</em>
             <span> accidents list from </span>
             <DateTime date={from}/>

@@ -129,7 +129,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
 
         return (
             <section className="map">
-                <AccidentTitle from={from} to={to} total={pagedAccidentStatistic ? pagedAccidentStatistic.total : 0} severityOption={severityOption} orderByOption={orderByOption} />
+                <AccidentTitle prefixMessage="Map of" from={from} to={to} total={pagedAccidentStatistic ? pagedAccidentStatistic.total : 0} severityOption={severityOption} orderByOption={orderByOption} />
                 <Map center={position} zoom={zoom}>
                     <TileLayer
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
