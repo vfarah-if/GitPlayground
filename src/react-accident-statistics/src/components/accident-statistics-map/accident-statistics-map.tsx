@@ -101,7 +101,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         if (this.state.useGeolocationPosition) {
             window.navigator.geolocation.getCurrentPosition((position) => {
                 console.log('Attaining position from geolocation api', position);
-                this.setPosition(position.coords.latitude, position.coords.longitude);
+                this.setUserPosition(position.coords.latitude, position.coords.longitude);
             });
         }
         else {
@@ -109,7 +109,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         }
     }
 
-    setPosition(latitude: number, longitude: number): any {
+    setUserPosition(latitude: number, longitude: number): any {
         this.setState((prevState) => {
             return Object.assign(prevState, {
                 latitude: latitude,
