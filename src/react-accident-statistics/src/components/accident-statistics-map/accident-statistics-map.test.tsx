@@ -93,9 +93,23 @@ describe('AccidentStatisticsMap', () => {
     describe('mount component test with non-default data', () => {
         let wrapper: enzyme.ReactWrapper;
         let mockAdapter: MockAdapter;
+        let userPosition: Position;
+        let geolocationSpy;
         beforeEach(async () => {
             mockAdapter = new MockAdapter(axios);
             mockAdapter.onAny().reply(200, testData);
+            userPosition = {
+                coords: {
+                    latitude: 60,
+                    longitude: -1.12184322,
+                    accuracy: 0.1
+                }
+            };
+
+            geolocationSpy = jest.spyOn(window.navigator.geolocation, 'getCurrentPosition');
+            const mockCallback = jest.fn((callback) => callback(userPosition));
+            //geolocationSpy.mockImplementation((callback) => callback(userPosition));
+            geolocationSpy.mockImplementation(mockCallback);
             wrapper = enzyme.mount(<AccidentStatisticsMap fromDate="Jan 1, 2010, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" severityOption="Slight" imageOption="Friendly" zoom={11} orderByOption='BoroughAscending' pageSize={100} maxZoom={17} useGeolocationPosition={true} />);
         });
 
@@ -113,13 +127,19 @@ describe('AccidentStatisticsMap', () => {
                 severityOption: 'Slight',
                 imageOption: 'Friendly',
                 zoom: 11,
-                latitude: 51.50608021,
-                longitude: -0.12184322,
+                latitude: userPosition.coords.latitude,
+                longitude: userPosition.coords.longitude,
                 maxZoom: 17,
                 useGeolocationPosition: true
             };
             const actualState = wrapper.state();
             expect(actualState).toMatchObject(expectedInitialState);
         })
+
+        it('should call the windows navigator to get and set the current position of the user', async () => {
+            const expectedData = await axios.get<PagedAccidentStatistic>('testAxios');
+            expect(expectedData).toBeDefined();
+            expect(window.navigator.geolocation.getCurrentPosition).toHaveBeenCalled();
+        });
     });
 });

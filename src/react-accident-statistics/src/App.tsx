@@ -18,7 +18,7 @@ class App extends React.Component {
         <Hello name=", I love being a crafstman!" enthusiasmLevel={10} />
         <AccidentStatisticsMap fromDate="Jan 1, 2010, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" severityOption="Fatal" imageOption="Macarbe" zoom={11}/>
         <AccidentStatisticsMap fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" severityOption="Serious" imageOption="Friendly" zoom={9}/>
-        <AccidentStatisticsMap fromDate="Dec 15, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" severityOption="Slight" imageOption="Marker" zoom={10}/>
+        <AccidentStatisticsMap fromDate="Dec 15, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" severityOption="Slight" imageOption="Marker" zoom={10} useGeolocationPosition={true}/>
         <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="DateDescending" showJson={true}/>        
         <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="DateAscending"/>        
         <AccidentStatisticsList severityOption="Fatal" fromDate="Dec 1, 2017, 12:00:00 AM" toDate="Dec 31, 2017, 11:59:00 PM" orderByOption="LocationAscending"/>        

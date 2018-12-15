@@ -12,3 +12,10 @@ global.React = React;
 global.shallow = enzyme.shallow;
 global.mount = enzyme.mount;
 global.render = enzyme.render;
+
+const mockGeolocation = {
+    getCurrentPosition: jest.fn(),
+    watchPosition: jest.fn()
+};
+  
+global.navigator.geolocation = mockGeolocation;

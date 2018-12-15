@@ -19,14 +19,14 @@ type MarkerProps = {
 };
 
 type MarkerData = {
-    key: string, 
+    key: string,
     content: JSX.Element,
     position: LatLng,
-    icon: Icon 
+    icon: Icon
 };
 
 const CustomPopupMarker = ({ content, position, icon }: MarkerProps) => (
-    <Marker position={position} icon={icon}>                        
+    <Marker position={position} icon={icon}>
         <Popup>{content}</Popup>
     </Marker>
 );
@@ -82,7 +82,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             orderByOption: props.orderByOption || 'DateDescending',
             pageSize: props.pageSize || 500,
             pagedAccidentStatistic: undefined,
-            markers:  [],
+            markers: [],
             imageOption: props.imageOption || 'Macarbe',
             zoom: props.zoom || 9,
             latitude: props.latitude || 51.50608021,
@@ -94,6 +94,28 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
 
     async componentDidMount() {
         await this.loadAccidentData();
+        this.useGeolocation();
+    }
+
+    private useGeolocation() {
+        if (this.state.useGeolocationPosition) {
+            window.navigator.geolocation.getCurrentPosition((position) => {
+                console.log('Attaining position from geolocation api', position);
+                this.setPosition(position.coords.latitude, position.coords.longitude);
+            });
+        }
+        else {
+            console.log('Utilising default location position', this.state.latitude, this.state.longitude);
+        }
+    }
+
+    setPosition(latitude: number, longitude: number): any {
+        this.setState((prevState) => {
+            return Object.assign(prevState, {
+                latitude: latitude,
+                longitude: longitude,
+            });
+        });
     }
 
     async loadAccidentData(): Promise<void> {
@@ -143,13 +165,13 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
 
     private updateState(pagedResponse: AxiosResponse<PagedAccidentStatistic>) {
         this.setState((prevState) => {
-            if (prevState && prevState.markers && pagedResponse.data && pagedResponse.data.data) {                
+            if (prevState && prevState.markers && pagedResponse.data && pagedResponse.data.data) {
                 const previousMarkers = prevState.markers;
                 const data = this.getMarkers(pagedResponse.data.data);
                 if (data) {
                     const distinctMarkers = new Set(previousMarkers.concat(data));
                     return Object.assign(prevState, {
-                        markers:  Array.from(distinctMarkers),
+                        markers: Array.from(distinctMarkers),
                         pagedAccidentStatistic: pagedResponse.data,
                     });
                 }
@@ -176,25 +198,25 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         }
         return result;
     }
-   
-    private getIcon(): Icon {        
-        switch(this.state.imageOption){
-            case'Marker': return new Icon({
+
+    private getIcon(): Icon {
+        switch (this.state.imageOption) {
+            case 'Marker': return new Icon({
                 iconSize: [25, 41],
                 iconAnchor: [13, 40],
                 iconUrl: 'https://unpkg.com/leaflet@1.3.4/dist/images/marker-icon-2x.png',
                 shadowUrl: 'https://unpkg.com/leaflet@1.3.4/dist/images/marker-shadow.png'
-              });  
-            case'Friendly': return new Icon({
+            });
+            case 'Friendly': return new Icon({
                 iconSize: [40, 40],
                 iconAnchor: [13, 40],
                 iconUrl: 'https://image.flaticon.com/icons/svg/130/130163.svg',
-              });  
-            default : return new Icon({
+            });
+            default: return new Icon({
                 iconSize: [35, 35],
                 iconAnchor: [13, 35],
                 iconUrl: 'https://static.thenounproject.com/png/14312-200.png',
-              });  
+            });
         }
     }
 
@@ -203,13 +225,13 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         const casualtyCount = accidentStatistic && accidentStatistic.casualties ? accidentStatistic.casualties.length : 0;
         const vehicleCount = accidentStatistic && accidentStatistic.vehicles ? accidentStatistic.vehicles.length : 0;
         return (
-        <span>
-            <mark>{this.state.severityOption} Incident {accidentStatistic.id}</mark>
-            <span>, occured on <DateTime date={dateOfAccident}/></span>
-            <span>, involving {casualtyCount} {this.pluralOrSingleForm(accidentStatistic.casualties, 'casualties', 'casualty')}</span>
-            <span> and {vehicleCount} {this.pluralOrSingleForm(accidentStatistic.vehicles, 'vehicles', 'vehicle')}</span>
-            <span> in the borough of {accidentStatistic.borough}.</span>
-        </span>);
+            <span>
+                <mark>{this.state.severityOption} Incident {accidentStatistic.id}</mark>
+                <span>, occured on <DateTime date={dateOfAccident} /></span>
+                <span>, involving {casualtyCount} {this.pluralOrSingleForm(accidentStatistic.casualties, 'casualties', 'casualty')}</span>
+                <span> and {vehicleCount} {this.pluralOrSingleForm(accidentStatistic.vehicles, 'vehicles', 'vehicle')}</span>
+                <span> in the borough of {accidentStatistic.borough}.</span>
+            </span>);
     }
 
     private pluralOrSingleForm(array: Array<any> | undefined, plural: string, single: string): string {
