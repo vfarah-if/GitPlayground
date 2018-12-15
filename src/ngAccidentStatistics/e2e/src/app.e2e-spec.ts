@@ -46,11 +46,11 @@ describe('Given a user navigates to the home page', () => {
       .toEqual('These are examples of the component types based on the colour, orange being a map component, yellow being a query component and finally red being the list component.');
   });
 
-  it('should show a map of fatal accidents since January 2010 to December 2017', () => {
+  it('should show a map of fatal accidents since January 2005 to December 2017', () => {
     const mapComponent = page.getMapComponent(0);
     expect(mapComponent).toBeTruthy();
     mapComponent.getAttribute('fromDate').then(value => {
-      expect(value).toBe('Jan 1, 2010, 12:00:00 AM');
+      expect(value).toBe('Jan 1, 2005, 12:00:00 AM');
     });
     mapComponent.getAttribute('toDate').then(value => {
       expect(value).toBe('Dec 31, 2017, 11:59:00 PM');
