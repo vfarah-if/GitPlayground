@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Git.Domain.Owin.Api.Models;
+using System;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.ModelBinding;
-using Git.Domain.Owin.Api.Models;
 using IModelBinder = System.Web.Http.ModelBinding.IModelBinder;
 
 namespace Git.Domain.Owin.Api.Infrastructure.ModelBinders
@@ -35,19 +35,46 @@ namespace Git.Domain.Owin.Api.Infrastructure.ModelBinders
                 return false;
             }
 
+            if (queryDictionary["accidentStatisticsQuery.from"] != null && !DateTime.TryParse(queryDictionary["accidentStatisticsQuery.from"], out _))
+            {
+                bindingContext.ModelState.AddModelError(bindingContext.ModelName, $"'{queryDictionary["accidentStatisticsQuery.from"]}' date is invalid");
+                return false;
+            }
+
             if (queryDictionary["to"] != null && !DateTime.TryParse(queryDictionary["to"], out _))
             {
                 bindingContext.ModelState.AddModelError(bindingContext.ModelName, $"'{queryDictionary["to"]}' date is invalid");
                 return false;
             }
 
-            var from = queryDictionary["from"] != null ? DateTime.Parse(queryDictionary["from"]) : _lastYearFirstMonthAndDay;
-            var to = queryDictionary["to"] != null && DateTime.TryParse(queryDictionary["to"], out _) ? DateTime.Parse(queryDictionary["to"]) : _lastYearLastMonthAndDay;
-            var page = queryDictionary["page"] != null ? int.Parse(queryDictionary["page"]) : 1;
-            var pageSize = queryDictionary["pageSize"] != null ? int.Parse(queryDictionary["pageSize"]) : 100;
-            var severity = queryDictionary["severity"] ?? "Fatal";
-            var sortBy = queryDictionary["sortBy"] ?? "DateDescending";
-            sortBy = queryDictionary["orderBy"] ?? sortBy;
+            if (queryDictionary["accidentStatisticsQuery.to"] != null && !DateTime.TryParse(queryDictionary["accidentStatisticsQuery.to"], out _))
+            {
+                bindingContext.ModelState.AddModelError(bindingContext.ModelName, $"'{queryDictionary["accidentStatisticsQuery.to"]}' date is invalid");
+                return false;
+            }
+
+            var from = queryDictionary["from"] != null
+                ? DateTime.Parse(queryDictionary["from"]) 
+                : (queryDictionary["accidentStatisticsQuery.from"] != null
+                    ? DateTime.Parse(queryDictionary["accidentStatisticsQuery.from"]) 
+                    : _lastYearFirstMonthAndDay);
+            var to = queryDictionary["to"] != null && DateTime.TryParse(queryDictionary["to"], out _) 
+                ? DateTime.Parse(queryDictionary["to"]) 
+                : (queryDictionary["accidentStatisticsQuery.to"] != null && DateTime.TryParse(queryDictionary["accidentStatisticsQuery.to"], out _)
+                    ? DateTime.Parse(queryDictionary["accidentStatisticsQuery.to"])
+                    : _lastYearLastMonthAndDay);
+            var page = queryDictionary["page"] != null 
+                ? int.Parse(queryDictionary["page"]) 
+                : (queryDictionary["accidentStatisticsQuery.page"] != null
+                    ? int.Parse(queryDictionary["accidentStatisticsQuery.page"])
+                    : 1);
+            var pageSize = queryDictionary["pageSize"] != null 
+                ? int.Parse(queryDictionary["pageSize"]) 
+                : (queryDictionary["accidentStatisticsQuery.pageSize"] != null
+                    ? int.Parse(queryDictionary["accidentStatisticsQuery.pageSize"])
+                    : 100);
+            var severity = queryDictionary["severity"] ?? queryDictionary["accidentStatisticsQuery.severity"] ?? "Fatal";
+            var sortBy = queryDictionary["sortBy"] ?? queryDictionary["orderBy"] ?? queryDictionary["accidentStatisticsQuery.sortBy"] ?? "DateDescending";
 
             var result = new AccidentStatisticsQuery
             {
