@@ -170,7 +170,7 @@ namespace Git.Domain.UnitTests
         [Fact]
         public void ThrowNotSupportedExceptionWhenFromRangeLessThan2005()
         {
-            Func<Task<Paged<AccidentStatistic>>> action = async () =>
+            Func<Task<Paging<AccidentStatistic>>> action = async () =>
                 await TransportForLondonClient.GetAccidentStatistics(
                     from: DateTime.Parse("01 December 2004 16:13:00"),
                     to: DateTime.Parse("01 January 2016 09:11:00"),
@@ -183,7 +183,7 @@ namespace Git.Domain.UnitTests
         [Fact]
         public void ThrowNotSupportedExceptionWhenFromOrTooRangeInCurrentYear()
         {
-            Func<Task<Paged<AccidentStatistic>>> action = async () =>
+            Func<Task<Paging<AccidentStatistic>>> action = async () =>
                 {
                     var yesterday = DateTime.UtcNow.AddDays(-1);
                     return await TransportForLondonClient.GetAccidentStatistics(

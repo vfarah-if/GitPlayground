@@ -33,7 +33,7 @@ namespace Git.Domain.Owin.Api.v2.Services
             };
         }
 
-        public async Task<Paged<AccidentStatisticDb>> GetAccidents(AccidentStatisticsQuery accidentStatisticsQuery)
+        public async Task<Paging<AccidentStatisticDb>> GetAccidents(AccidentStatisticsQuery accidentStatisticsQuery)
         {
             if (accidentStatisticsQuery == null)
             {

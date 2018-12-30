@@ -20,7 +20,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Services
         private readonly Fixture _autoFixture;
         private readonly AccidentsService _subject;
         private readonly Mock<IAccidentStatisticRepository> _repositoryMock;
-        private Paged<AccidentStatisticDb> _pagedResult;
+        private Paging<AccidentStatisticDb> _pagingResult;
 
         public AccidentsServiceShould()
         {
@@ -32,13 +32,13 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Services
             _autoFixture.Behaviors.Add(new OmitOnRecursionBehavior(1));
             _subject = _mocker.CreateInstance<AccidentsService>();
             _repositoryMock = _mocker.GetMock<IAccidentStatisticRepository>();
-            _pagedResult = _autoFixture.Create<Paged<AccidentStatisticDb>>();
+            _pagingResult = _autoFixture.Create<Paging<AccidentStatisticDb>>();
             _repositoryMock.Setup(x => x.Get(
                     It.IsAny<Expression<Func<AccidentStatisticDb, bool>>>(), 
                     It.IsAny<EntityFramework.SortOptions<AccidentStatisticDb>>(), 
                     It.IsAny<int>(), 
                     It.IsAny<int>()))
-                .ReturnsAsync(() => _pagedResult);
+                .ReturnsAsync(() => _pagingResult);
         }
 
         [Fact]

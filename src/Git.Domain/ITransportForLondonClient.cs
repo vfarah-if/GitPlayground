@@ -12,14 +12,14 @@ namespace Git.Domain
             Func<AccidentStatistic, bool> filter = null,
             SortOptions<AccidentStatistic> sortOptions = null);
 
-        Task<Paged<AccidentStatistic>> GetAccidentStatistics(
+        Task<Paging<AccidentStatistic>> GetAccidentStatistics(
             int year,
             int page = 1,
             int pageSize = 100,
             Func<AccidentStatistic, bool> filter = null,
             SortOptions<AccidentStatistic> sortOptions = null);
 
-        Task<Paged<AccidentStatistic>> GetAccidentStatistics(
+        Task<Paging<AccidentStatistic>> GetAccidentStatistics(
             DateTime from,
             DateTime to,
             Severity severity,

@@ -5,11 +5,11 @@ using Newtonsoft.Json;
 
 namespace Git.Domain
 {
-    public class Paged<T>
+    public class Paging<T>
     {
         private const int MinimumPageSize = 1;
 
-        public Paged(long total, IEnumerable<T> data, int page, int pageSize, int lastPage)
+        public Paging(long total, IEnumerable<T> data, int page, int pageSize, int lastPage)
         {
             Total = total;
             Data = data;
@@ -54,12 +54,12 @@ namespace Git.Domain
         [JsonProperty(PropertyName = "total")]
         public long Total { get; }
 
-        public static Paged<T> Create(long total, IEnumerable<T> data, int page, int pageSize, int lastPage)
+        public static Paging<T> Create(long total, IEnumerable<T> data, int page, int pageSize, int lastPage)
         {
-            return new Paged<T>(total, data, page, pageSize, lastPage);
+            return new Paging<T>(total, data, page, pageSize, lastPage);
         }
 
-        public static Paged<T> Generate(IEnumerable<T> allData, int pageSize, int page)
+        public static Paging<T> Generate(IEnumerable<T> allData, int pageSize, int page)
         {
             if (allData == null)
             {
@@ -89,7 +89,7 @@ namespace Git.Domain
 
             var skip = zeroIndexedCurrentPage * pageSize;
             var data = allData.Skip(skip).Take(pageSize);
-            return Paged<T>.Create(total, data, zeroIndexedCurrentPage + 1, data.Count(), maxPageCount);
+            return Paging<T>.Create(total, data, zeroIndexedCurrentPage + 1, data.Count(), maxPageCount);
         }
 
         private static bool IsCurrentPageLessThanZero(int zeroIndexedCurrentPage)

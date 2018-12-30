@@ -24,7 +24,7 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.ApiControllers
             var result = await testServer.HttpClient.GetAsync($"v2/accidents?from=2014-01-01T00:00:00Z&to=2017-12-31T00:00:00Z&severity=Fatal&page=1&pageSize=10");
             string responseContent = await result.Content.ReadAsStringAsync();
             result.StatusCode.Should().Be(HttpStatusCode.OK);
-            var responsePaged = responseContent.To<Paged<AccidentStatistic>>();
+            var responsePaged = responseContent.To<Paging<AccidentStatistic>>();
             responsePaged.Should().NotBeNull();
             responsePaged.Data.Count().Should().Be(10, "Database may not be seeded");
             responsePaged.PageSize.Should().Be(10);
@@ -38,7 +38,7 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.ApiControllers
             var result = await testServer.HttpClient.GetAsync($"v2/accidents?from=2005-01-01T00:00:00Z&to=2017-12-31T00:00:00Z&severity=Slight&page=1&pageSize=10");
             string responseContent = await result.Content.ReadAsStringAsync();
             result.StatusCode.Should().Be(HttpStatusCode.OK);
-            var responsePaged = responseContent.To<Paged<AccidentStatistic>>();
+            var responsePaged = responseContent.To<Paging<AccidentStatistic>>();
             responsePaged.Should().NotBeNull();
             responsePaged.Data.Count().Should().Be(10, "Database may not be seeded");
             responsePaged.PageSize.Should().Be(10);
@@ -52,7 +52,7 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.ApiControllers
             var result = await testServer.HttpClient.GetAsync($"v2/accidents?accidentStatisticsQuery.from=2005-01-01T00:00:00Z&accidentStatisticsQuery.to=2017-12-31T00:00:00Z&accidentStatisticsQuery.severity=Slight&accidentStatisticsQuery.page=1&accidentStatisticsQuery.pageSize=10");
             string responseContent = await result.Content.ReadAsStringAsync();
             result.StatusCode.Should().Be(HttpStatusCode.OK);
-            var responsePaged = responseContent.To<Paged<AccidentStatistic>>();
+            var responsePaged = responseContent.To<Paging<AccidentStatistic>>();
             responsePaged.Should().NotBeNull();
             responsePaged.Data.Count().Should().Be(10, "Database may not be seeded");
             responsePaged.PageSize.Should().Be(10);
@@ -67,7 +67,7 @@ namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.ApiControllers
 
             string responseContent = await result.Content.ReadAsStringAsync();
             result.StatusCode.Should().Be(HttpStatusCode.OK);
-            var responsePaged = responseContent.To<Paged<AccidentStatistic>>();
+            var responsePaged = responseContent.To<Paging<AccidentStatistic>>();
             if (responsePaged.Total == 131)
             {
                 responsePaged.Should().NotBeNull();

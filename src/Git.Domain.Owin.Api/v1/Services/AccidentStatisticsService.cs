@@ -23,7 +23,7 @@ namespace Git.Domain.Owin.Api.v1.Services
                 { "LocationDescending", ByLocationDescending },
             };
         }
-        public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(AccidentStatisticsQuery accidentStatisticsQuery)
+        public async Task<Paging<AccidentStatistic>> GetAccidentStatistics(AccidentStatisticsQuery accidentStatisticsQuery)
         {
             return await _transportForLondonClient.GetAccidentStatistics(
                 accidentStatisticsQuery.From,

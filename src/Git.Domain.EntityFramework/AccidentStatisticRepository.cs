@@ -27,7 +27,7 @@ namespace Git.Domain.EntityFramework
 
         }
 
-        public async Task<Paged<AccidentStatisticDb>> Get(
+        public async Task<Paging<AccidentStatisticDb>> Get(
             Expression<Func<AccidentStatisticDb, bool>> filter = null,
             SortOptions<AccidentStatisticDb> sortOption = null,
             int page = 1,
@@ -95,7 +95,7 @@ namespace Git.Domain.EntityFramework
                     .ToListAsync();
             }
 
-            return Paged<AccidentStatisticDb>.Create(accidentCount, accidents, page, accidents.Count(), maxPageCount);
+            return Paging<AccidentStatisticDb>.Create(accidentCount, accidents, page, accidents.Count(), maxPageCount);
         }
 
         public async Task<int> Count(Expression<Func<AccidentStatisticDb, bool>> filter = null)

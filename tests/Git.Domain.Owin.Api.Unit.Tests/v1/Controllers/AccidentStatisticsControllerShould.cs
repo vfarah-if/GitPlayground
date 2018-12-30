@@ -21,7 +21,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v1.Controllers
         private readonly AccidentStatisticsController _subject;
         private readonly Mock<IAccidentStatisticsService> _accidentStatisticsServiceMock;
         private readonly Fixture _autoFixture;
-        private Paged<AccidentStatistic> _pagedResult;
+        private Paging<AccidentStatistic> _pagingResult;
         private AccidentStatisticsQuery _accidentStatisticsQuery;
 
         public AccidentStatisticsControllerShould()
@@ -31,10 +31,10 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v1.Controllers
             _subject.Request = new HttpRequestMessage();
             _subject.Configuration = new HttpConfiguration();
             _autoFixture = new Fixture();
-            _pagedResult = _autoFixture.Create<Paged<AccidentStatistic>>();
+            _pagingResult = _autoFixture.Create<Paging<AccidentStatistic>>();
             _accidentStatisticsServiceMock = _autoMocker.GetMock<IAccidentStatisticsService>();
             _accidentStatisticsServiceMock.Setup(x => x.GetAccidentStatistics(It.IsAny<AccidentStatisticsQuery>()))
-                .ReturnsAsync(() => _pagedResult);
+                .ReturnsAsync(() => _pagingResult);
             _accidentStatisticsQuery = _autoFixture.Create<AccidentStatisticsQuery>();
         }
 

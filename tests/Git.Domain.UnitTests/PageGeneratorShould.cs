@@ -33,7 +33,7 @@ namespace Git.Domain.UnitTests
             int[] expectedData)
         {
 
-            var sut = Paged<int>.Generate(data, pageSize, page);
+            var sut = Paging<int>.Generate(data, pageSize, page);
 
             sut.Data.Count().Should().Be(expectedData.Length);
             sut.Page.Should().Be(expectedPage);
@@ -54,7 +54,7 @@ namespace Git.Domain.UnitTests
             var expectedPage = 1;
             var emptyList = new List<int>();
 
-            var sut = Paged<int>.Generate(emptyList, pageSize, page);
+            var sut = Paging<int>.Generate(emptyList, pageSize, page);
 
             sut.Data.LongCount().Should().Be(expectDataCount);
             sut.Page.Should().Be(expectedPage);
@@ -67,7 +67,7 @@ namespace Git.Domain.UnitTests
         [Fact]
         public void ThrowArgumentNullExceptionForNullData()
         {
-            Action testAction = () => Paged<int>.Generate(null, 10, 1);
+            Action testAction = () => Paging<int>.Generate(null, 10, 1);
 
             testAction.Should().Throw<ArgumentNullException>();
         }

@@ -22,7 +22,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Controllers
         private readonly AccidentsController _subject;
         private readonly AccidentStatisticsQuery _accidentStatisticsQuery;
         private Fixture _autoFixture;
-        private Paged<AccidentStatisticDb> _pagedResult;
+        private Paging<AccidentStatisticDb> _pagingResult;
         private Mock<IAccidentsService> _accidentsServiceMock;
 
         public AccidentsControllerShould()
@@ -38,10 +38,10 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Controllers
                 .ToList().ForEach(b => _autoFixture.Behaviors.Remove(b));
             _autoFixture.Behaviors.Add(new OmitOnRecursionBehavior(1));
 
-            _pagedResult = _autoFixture.Create<Paged<AccidentStatisticDb>>();
+            _pagingResult = _autoFixture.Create<Paging<AccidentStatisticDb>>();
             _accidentsServiceMock = _autoMocker.GetMock<IAccidentsService>();
             _accidentsServiceMock.Setup(x => x.GetAccidents(It.IsAny<AccidentStatisticsQuery>()))
-                .ReturnsAsync(() => _pagedResult);
+                .ReturnsAsync(() => _pagingResult);
             _accidentStatisticsQuery = _autoFixture.Create<AccidentStatisticsQuery>();
         }
 

@@ -16,7 +16,7 @@ namespace TestConsole.UnitTests
     {
         private readonly AutoMocker _autoMocker;
         private readonly ApplicationCommand _subject;
-        private readonly Paged<AccidentStatistic> _pagedAccidentResponse;
+        private readonly Paging<AccidentStatistic> _pagingAccidentResponse;
         private readonly Mock<ITransportForLondonClient> _transportForLondonClientMock;
         private readonly Fixture _autoFixture;
         private readonly Mock<ILogger> _loggerMock;
@@ -29,12 +29,12 @@ namespace TestConsole.UnitTests
             var data = new[] { _autoFixture.Build<AccidentStatistic>()
                         .With(x => x.DateAsString, new DateTime(2017,03,03).ToString("yyyy-MM-ddTHH:mm:ssZ"))
                         .Create()};
-            _pagedAccidentResponse = CreatePagedAccidentStatistic(data, 1, 1);
+            _pagingAccidentResponse = CreatePagedAccidentStatistic(data, 1, 1);
             _transportForLondonClientMock = _autoMocker.GetMock<ITransportForLondonClient>();
             _transportForLondonClientMock.Setup(x => x.GetAccidentStatistics(
                 It.IsAny<DateTime>(), It.IsAny<DateTime>(), It.IsAny<Severity>(),
                 It.IsAny<SortOptions<AccidentStatistic>>(), It.IsAny<int>(), It.IsAny<int>()))
-            .ReturnsAsync(() => _pagedAccidentResponse);
+            .ReturnsAsync(() => _pagingAccidentResponse);
             _loggerMock = _autoMocker.GetMock<ILogger>();
             _loggerMock.Setup(x => x.Debug(It.IsAny<string>()));
             _loggerMock.Setup(x => x.Information(It.IsAny<string>()));
@@ -59,7 +59,7 @@ namespace TestConsole.UnitTests
         {
             await _subject.Execute();
 
-            _loggerMock.Verify(x => x.Debug($"{_pagedAccidentResponse.Total} fatal accidents occured"));
+            _loggerMock.Verify(x => x.Debug($"{_pagingAccidentResponse.Total} fatal accidents occured"));
         }
 
         [Fact]
@@ -67,12 +67,12 @@ namespace TestConsole.UnitTests
         {
             await _subject.Execute();
 
-            _loggerMock.Verify(x => x.Debug($"Page '{_pagedAccidentResponse.Page}' of '{_pagedAccidentResponse.LastPage}' pages with 20 records"));
+            _loggerMock.Verify(x => x.Debug($"Page '{_pagingAccidentResponse.Page}' of '{_pagingAccidentResponse.LastPage}' pages with 20 records"));
         }
 
-        private static Paged<AccidentStatistic> CreatePagedAccidentStatistic(IEnumerable<AccidentStatistic> data, int page = 1, int lastPage = 1)
+        private static Paging<AccidentStatistic> CreatePagedAccidentStatistic(IEnumerable<AccidentStatistic> data, int page = 1, int lastPage = 1)
         {
-            return Paged<AccidentStatistic>.Create(data.Count(), data, page, data.Count(), lastPage);
+            return Paging<AccidentStatistic>.Create(data.Count(), data, page, data.Count(), lastPage);
         }
     }
 }

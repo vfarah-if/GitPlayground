@@ -17,7 +17,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v1.Services
         private readonly Fixture _autoFixture;
         private readonly AccidentStatisticsService _subject;
         private readonly Mock<ITransportForLondonClient> _transportForLondonClientMock;
-        private Paged<AccidentStatistic> _pagedResult;
+        private Paging<AccidentStatistic> _pagingResult;
 
         public AccidentStatisticsServiceShould()
         {
@@ -25,7 +25,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v1.Services
             _autoFixture = new Fixture();
             _subject = _mocker.CreateInstance<AccidentStatisticsService>();
             _transportForLondonClientMock = _mocker.GetMock<ITransportForLondonClient>();
-            _pagedResult = _autoFixture.Create<Paged<AccidentStatistic>>();
+            _pagingResult = _autoFixture.Create<Paging<AccidentStatistic>>();
             _transportForLondonClientMock.Setup(x => x.GetAccidentStatistics(
                     It.IsAny<DateTime>(), 
                     It.IsAny<DateTime>(), 
@@ -33,7 +33,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v1.Services
                     It.IsAny<SortOptions<AccidentStatistic>>(), 
                     It.IsAny<int>(), 
                     It.IsAny<int>()))
-                .ReturnsAsync(() => _pagedResult);
+                .ReturnsAsync(() => _pagingResult);
         }
 
         [Fact]

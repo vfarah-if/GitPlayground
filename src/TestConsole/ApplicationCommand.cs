@@ -22,23 +22,23 @@ namespace TestConsole
         {
             int currentPage = 1;
             int currentAmountOfRecordsRetrieved = PageSize;
-            Paged<AccidentStatistic> pagedAccidentStatistics;
+            Paging<AccidentStatistic> pagingAccidentStatistics;
             do
             {
-                pagedAccidentStatistics = await GetPagedFatalAccidentStatisticsFor2014To2017(currentPage, ByDateDescending).ConfigureAwait(false);
-                _logger.Debug($"{pagedAccidentStatistics.Total} fatal accidents occured");
-                _logger.Debug($"Page '{pagedAccidentStatistics.Page}' of '{pagedAccidentStatistics.LastPage}' pages with {currentAmountOfRecordsRetrieved} records");
-                foreach (var accidentStatistic in pagedAccidentStatistics.Data)
+                pagingAccidentStatistics = await GetPagedFatalAccidentStatisticsFor2014To2017(currentPage, ByDateDescending).ConfigureAwait(false);
+                _logger.Debug($"{pagingAccidentStatistics.Total} fatal accidents occured");
+                _logger.Debug($"Page '{pagingAccidentStatistics.Page}' of '{pagingAccidentStatistics.LastPage}' pages with {currentAmountOfRecordsRetrieved} records");
+                foreach (var accidentStatistic in pagingAccidentStatistics.Data)
                 {
                     _logger.Information($"{Enum.GetName(typeof(Severity), accidentStatistic.Severity)} Accident occured on '{accidentStatistic.Date.ToLongDateString()} {accidentStatistic.Date.ToLongTimeString()}' at '{accidentStatistic.Location}' with severity '{accidentStatistic.Severity}'");
                 }
                 _logger.Debug($"Next '{PageSize}' records ...");
                 currentPage += 1;
-                currentAmountOfRecordsRetrieved += pagedAccidentStatistics.PageSize;
-            } while (pagedAccidentStatistics.NextPage.HasValue);
+                currentAmountOfRecordsRetrieved += pagingAccidentStatistics.PageSize;
+            } while (pagingAccidentStatistics.NextPage.HasValue);
         }
 
-        private async Task<Paged<AccidentStatistic>> GetPagedFatalAccidentStatisticsFor2014To2017(
+        private async Task<Paging<AccidentStatistic>> GetPagedFatalAccidentStatisticsFor2014To2017(
             int page,
             SortOptions<AccidentStatistic> sortOptions)
         {

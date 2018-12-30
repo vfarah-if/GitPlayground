@@ -33,7 +33,7 @@ namespace Git.Domain.Owin.Api.v2.ApiControllers
         /// </summary>
         [Route("")]
         [SwaggerResponseRemoveDefaults]
-        [SwaggerResponse(HttpStatusCode.OK, "Paged list of accident statistics", typeof(Paged<AccidentStatistic>))]
+        [SwaggerResponse(HttpStatusCode.OK, "Paging list of accident statistics", typeof(Paging<AccidentStatistic>))]
         [SwaggerResponse(HttpStatusCode.BadRequest, "Bad Request")]
         [CacheOutput(ClientTimeSpan = FiveMinuteTimeSpanInSeconds, ServerTimeSpan = FiveMinuteTimeSpanInSeconds)]
         public async Task<HttpResponseMessage> GetAccidents([ModelBinder] AccidentStatisticsQuery accidentStatisticsQuery)

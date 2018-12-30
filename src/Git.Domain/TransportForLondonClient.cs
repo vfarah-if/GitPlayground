@@ -47,7 +47,7 @@ namespace Git.Domain
             return SortAndFilterAccidentStatistics(filter, sortOptions, result);
         }
 
-        public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(
+        public async Task<Paging<AccidentStatistic>> GetAccidentStatistics(
             int year,
             int page = 1,
             int pageSize = 100,
@@ -56,10 +56,10 @@ namespace Git.Domain
         {
             var result = await GetOrStoreAccidentStatisticsFromCache(year, filter, sortOptions);
 
-            return Paged<AccidentStatistic>.Generate(result, pageSize, page);
+            return Paging<AccidentStatistic>.Generate(result, pageSize, page);
         }
 
-        public async Task<Paged<AccidentStatistic>> GetAccidentStatistics(
+        public async Task<Paging<AccidentStatistic>> GetAccidentStatistics(
             DateTime from,
             DateTime to,
             Severity severity,
@@ -98,7 +98,7 @@ namespace Git.Domain
 
             Sort(sortOptions, results);
 
-            return Paged<AccidentStatistic>.Generate(results, pageSize, page);
+            return Paging<AccidentStatistic>.Generate(results, pageSize, page);
         }
 
         private async Task<IEnumerable<AccidentStatistic>> GetAccidentStatisticsByYear(int year)

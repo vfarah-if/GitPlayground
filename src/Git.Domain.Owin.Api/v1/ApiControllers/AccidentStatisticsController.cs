@@ -37,10 +37,10 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
         /// <param name="accidentStatisticsQuery.sortBy">Sort by options are : DateAscending, LocationAscending, DateDescending (default if left null) or LocationDescending</param>
         /// <param name="accidentStatisticsQuery.page">Current page</param>
         /// <param name="accidentStatisticsQuery.pageSize">Current page size</param>
-        /// <returns>Paged List of Accident Statistics</returns>
+        /// <returns>Paging List of Accident Statistics</returns>
         [Route("")]
         [SwaggerResponseRemoveDefaults]
-        [SwaggerResponse(HttpStatusCode.OK, "Paged list of accident statistics", typeof(Paged<AccidentStatistic>))]
+        [SwaggerResponse(HttpStatusCode.OK, "Paging list of accident statistics", typeof(Paging<AccidentStatistic>))]
         [SwaggerResponse(HttpStatusCode.BadRequest, "Bad Request")]
         [CacheOutput(ClientTimeSpan = FiveMinuteTimeSpanInSeconds, ServerTimeSpan = FiveMinuteTimeSpanInSeconds)]
         public async Task<HttpResponseMessage> Get([ModelBinder] AccidentStatisticsQuery accidentStatisticsQuery)
