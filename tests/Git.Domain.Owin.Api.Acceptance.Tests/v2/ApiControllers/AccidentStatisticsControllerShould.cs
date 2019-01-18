@@ -4,10 +4,11 @@ using Microsoft.Owin.Testing;
 using System;
 using System.Linq;
 using System.Net;
-using Git.Domain.Owin.Api.Host;
+using Git.Domain;
+using Git.Owin.Api.Host;
 using Xunit;
 
-namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.ApiControllers
+namespace Git.Owin.Api.Acceptance.Tests.v2.ApiControllers
 {
     public class AccidentsControllerShould : IDisposable
     {

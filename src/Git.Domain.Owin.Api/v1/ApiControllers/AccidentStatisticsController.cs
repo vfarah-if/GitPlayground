@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using Git.Domain;
 using Git.Domain.Models.TFL;
-using Git.Domain.Owin.Api.Models;
-using Git.Domain.Owin.Api.v1.Services;
+using Git.Owin.Api.Models;
+using Git.Owin.Api.v1.Services;
 using Swashbuckle.Swagger.Annotations;
 using WebApi.OutputCache.V2;
 
-namespace Git.Domain.Owin.Api.v1.ApiControllers
+namespace Git.Owin.Api.v1.ApiControllers
 {
     [RoutePrefix("v1/accidentstatistics")]
     public class AccidentStatisticsController : ApiController

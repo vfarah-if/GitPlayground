@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using Git.Domain.Owin.Api.Infrastructure.ModelBinders;
+using Git.Owin.Api.Infrastructure.ModelBinders;
 using System;
 using System.Net.Http;
 using System.Web.Http;
@@ -9,10 +9,10 @@ using System.Web.Http.Metadata.Providers;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.Routing;
 using FluentAssertions;
-using Git.Domain.Owin.Api.Models;
+using Git.Owin.Api.Models;
 using Xunit;
 
-namespace Git.Domain.Owin.Api.Unit.Tests.Host.ModelBinders
+namespace Git.Owin.Api.Unit.Tests.Host.ModelBinders
 {
     public class AccidentStatisticsQueryModelBinderShould
     {

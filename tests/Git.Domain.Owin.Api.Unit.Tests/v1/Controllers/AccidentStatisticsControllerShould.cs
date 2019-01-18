@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using AutoFixture;
 using FluentAssertions;
+using Git.Domain;
 using Git.Domain.Models.TFL;
-using Git.Domain.Owin.Api.Models;
-using Git.Domain.Owin.Api.v1.ApiControllers;
-using Git.Domain.Owin.Api.v1.Services;
+using Git.Owin.Api.Models;
+using Git.Owin.Api.v1.ApiControllers;
+using Git.Owin.Api.v1.Services;
 using Moq;
 using Moq.AutoMock;
 using Xunit;
 
-namespace Git.Domain.Owin.Api.Unit.Tests.v1.Controllers
+namespace Git.Owin.Api.Unit.Tests.v1.Controllers
 {
     public class AccidentStatisticsControllerShould
     {

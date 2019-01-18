@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Git.Domain;
 using Git.Domain.EntityFramework;
 using Git.Domain.Models.TFL;
-using Git.Domain.Owin.Api.Models;
-using Git.Domain.Owin.Api.v2.Services;
+using Git.Owin.Api.Models;
+using Git.Owin.Api.v2.Services;
 using Xunit;
 
-namespace Git.Domain.Owin.Api.Acceptance.Tests.v2.Services
+namespace Git.Owin.Api.Acceptance.Tests.v2.Services
 {
     public class AccidentsServiceShould: IDisposable
     {

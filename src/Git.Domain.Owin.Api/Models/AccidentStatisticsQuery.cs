@@ -2,7 +2,7 @@
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Git.Domain.Owin.Api.Models
+namespace Git.Owin.Api.Models
 {
     public class AccidentStatisticsQuery
     {

@@ -1,12 +1,8 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Web.Hosting;
 using System.Web.Http;
-using System.Xml.XPath;
 using Swashbuckle.Application;
 
-namespace Git.Domain.Owin.Api
+namespace Git.Owin.Api
 {
     [ExcludeFromCodeCoverage]
     public class SwaggerConfig
@@ -34,7 +30,7 @@ namespace Git.Domain.Owin.Api
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "Git.Domain.Owin.Api");
+                        c.SingleApiVersion("v1", "Git.Owin.Api");
 
                         // If you want the output Swagger docs to be indented properly, enable the "PrettyPrint" option.
                         //

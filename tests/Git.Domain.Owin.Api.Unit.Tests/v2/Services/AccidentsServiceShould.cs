@@ -4,15 +4,16 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoFixture;
 using FluentAssertions;
+using Git.Domain;
 using Git.Domain.EntityFramework;
 using Git.Domain.EntityFramework.Models;
-using Git.Domain.Owin.Api.Models;
-using Git.Domain.Owin.Api.v2.Services;
+using Git.Owin.Api.Models;
+using Git.Owin.Api.v2.Services;
 using Moq;
 using Moq.AutoMock;
 using Xunit;
 
-namespace Git.Domain.Owin.Api.Unit.Tests.v2.Services
+namespace Git.Owin.Api.Unit.Tests.v2.Services
 {
     public class AccidentsServiceShould
     {
@@ -35,7 +36,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Services
             _pagingResult = _autoFixture.Create<Paging<AccidentStatisticDb>>();
             _repositoryMock.Setup(x => x.Get(
                     It.IsAny<Expression<Func<AccidentStatisticDb, bool>>>(), 
-                    It.IsAny<EntityFramework.SortOptions<AccidentStatisticDb>>(), 
+                    It.IsAny<Domain.EntityFramework.SortOptions<AccidentStatisticDb>>(), 
                     It.IsAny<int>(), 
                     It.IsAny<int>()))
                 .ReturnsAsync(() => _pagingResult);
@@ -64,7 +65,7 @@ namespace Git.Domain.Owin.Api.Unit.Tests.v2.Services
 
             _repositoryMock.Verify(x => x.Get(
                 It.Is<Expression<Func<AccidentStatisticDb, bool>>>(y => IsFilterAsExpected(accidentStatisticsQuery, y)),
-                It.IsAny<EntityFramework.SortOptions<AccidentStatisticDb>>(),
+                It.IsAny<Domain.EntityFramework.SortOptions<AccidentStatisticDb>>(),
                 accidentStatisticsQuery.Page,
                 accidentStatisticsQuery.PageSize));
         }

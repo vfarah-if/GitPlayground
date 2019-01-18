@@ -1,20 +1,21 @@
 ﻿using System.Linq;
-using Git.Domain.Owin.Api.v2.ApiControllers;
+using Git.Owin.Api.v2.ApiControllers;
 using System.Net.Http;
 using System.Web.Http;
 using AutoFixture;
 using Moq.AutoMock;
 using Git.Domain.EntityFramework.Models;
-using Git.Domain.Owin.Api.Models;
-using Git.Domain.Owin.Api.v2.Services;
+using Git.Owin.Api.Models;
+using Git.Owin.Api.v2.Services;
 using Moq;
 using Xunit;
 using System.Threading.Tasks;
 using FluentAssertions;
 using System;
 using System.Net;
+using Git.Domain;
 
-namespace Git.Domain.Owin.Api.Unit.Tests.v2.Controllers
+namespace Git.Owin.Api.Unit.Tests.v2.Controllers
 {
     public class AccidentsControllerShould
     {

@@ -18,11 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Autofac", "src\Git.Domain.Autofac\Git.Domain.Autofac.csproj", "{E0884E8A-3493-4AA7-B515-EEF7B378984F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api", "src\Git.Domain.Owin.Api\Git.Domain.Owin.Api.csproj", "{AF1BD7A4-DA05-49FE-A003-093BC73D4F3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Owin.Api", "src\Git.Domain.Owin.Api\Git.Owin.Api.csproj", "{AF1BD7A4-DA05-49FE-A003-093BC73D4F3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Acceptance.Tests", "tests\Git.Domain.Owin.Api.Acceptance.Tests\Git.Domain.Owin.Api.Acceptance.Tests.csproj", "{946D542B-BF0B-48B3-868A-F52FB456CBA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Owin.Api.Acceptance.Tests", "tests\Git.Domain.Owin.Api.Acceptance.Tests\Git.Owin.Api.Acceptance.Tests.csproj", "{946D542B-BF0B-48B3-868A-F52FB456CBA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Domain.Owin.Api.Unit.Tests", "tests\Git.Domain.Owin.Api.Unit.Tests\Git.Domain.Owin.Api.Unit.Tests.csproj", "{34A29E45-8B62-45E0-899A-C9B1404BBB80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Git.Owin.Api.Unit.Tests", "tests\Git.Domain.Owin.Api.Unit.Tests\Git.Owin.Api.Unit.Tests.csproj", "{34A29E45-8B62-45E0-899A-C9B1404BBB80}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole.UnitTests", "tests\TestConsole.UnitTests\TestConsole.UnitTests.csproj", "{50AD50F2-FCCF-4FA6-A42A-DB1F3DA2A7C7}"
 EndProject

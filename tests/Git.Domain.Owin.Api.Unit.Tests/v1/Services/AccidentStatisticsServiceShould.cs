@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoFixture;
+using Git.Domain;
 using Git.Domain.Models.TFL;
-using Git.Domain.Owin.Api.Models;
-using Git.Domain.Owin.Api.v1.Services;
+using Git.Owin.Api.Models;
+using Git.Owin.Api.v1.Services;
 using Moq;
 using Moq.AutoMock;
 using Xunit;
 using static Git.Domain.Constants.AccidentStatisticSorting;
 
-namespace Git.Domain.Owin.Api.Unit.Tests.v1.Services
+namespace Git.Owin.Api.Unit.Tests.v1.Services
 {
     public class AccidentStatisticsServiceShould
     {

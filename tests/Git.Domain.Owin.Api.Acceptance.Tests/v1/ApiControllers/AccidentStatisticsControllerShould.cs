@@ -4,10 +4,11 @@ using Microsoft.Owin.Testing;
 using System;
 using System.Linq;
 using System.Net;
-using Git.Domain.Owin.Api.Host;
+using Git.Domain;
+using Git.Owin.Api.Host;
 using Xunit;
 
-namespace Git.Domain.Owin.Api.Acceptance.Tests.v1.ApiControllers
+namespace Git.Owin.Api.Acceptance.Tests.v1.ApiControllers
 {
     // http://www.diwebsity.com/2016/04/14/webapi-integration-tests/
     public class AccidentStatisticsControllerShould : IDisposable

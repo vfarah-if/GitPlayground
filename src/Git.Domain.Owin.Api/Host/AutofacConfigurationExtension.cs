@@ -4,10 +4,10 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Git.Domain.Autofac;
-using Git.Domain.Owin.Api.Host.Modules;
+using Git.Owin.Api.Host.Modules;
 using Owin;
 
-namespace Git.Domain.Owin.Api.Host
+namespace Git.Owin.Api.Host
 {
     // Reference https://github.com/autofac/Examples/blob/master/src/WebApiExample.OwinSelfHost/Startup.cs
     [ExcludeFromCodeCoverage]

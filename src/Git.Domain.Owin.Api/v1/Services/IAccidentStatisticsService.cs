@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Git.Domain;
 using Git.Domain.Models.TFL;
-using Git.Domain.Owin.Api.Models;
+using Git.Owin.Api.Models;
 
-namespace Git.Domain.Owin.Api.v1.Services
+namespace Git.Owin.Api.v1.Services
 {
     public interface IAccidentStatisticsService
     {
