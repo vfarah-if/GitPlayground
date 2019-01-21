@@ -1,6 +1,6 @@
 ﻿
 using AutoFixture;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Xunit;
 
 namespace Git.Domain.UnitTests

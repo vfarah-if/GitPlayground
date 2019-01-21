@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using Git.Domain;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Git.Owin.Api.Models;
 using Git.Owin.Api.v1.Services;
 using Swashbuckle.Swagger.Annotations;

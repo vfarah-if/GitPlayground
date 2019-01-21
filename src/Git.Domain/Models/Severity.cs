@@ -1,4 +1,4 @@
-﻿namespace Git.Domain.Models.TFL
+﻿namespace Git.Domain.Models
 {
     public enum Severity
     {

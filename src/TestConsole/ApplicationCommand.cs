@@ -1,5 +1,5 @@
 ﻿using Git.Domain;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using System;
 using System.Threading.Tasks;
 using static Git.Domain.Constants.AccidentStatisticSorting;

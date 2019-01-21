@@ -1,6 +1,6 @@
 ﻿using AutoFixture;
 using FluentAssertions;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -193,7 +193,7 @@ namespace Git.Domain.UnitTests
                                sortOptions: ByDateAscending);
                 };
 
-            action.Should().Throw<NotSupportedException>().WithMessage(ErrorMessages.DatesFromCurrentYearNotSupported);
+            action.Should().Throw<NotSupportedException>().WithMessage(string.Format(ErrorMessages.DatesFromMaxYearNotSupported, 2017));
         }
     }
 }

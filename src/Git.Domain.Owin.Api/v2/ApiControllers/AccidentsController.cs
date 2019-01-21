@@ -1,5 +1,5 @@
 ﻿
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Git.Owin.Api.Models;
 using Swashbuckle.Swagger.Annotations;
 using System;

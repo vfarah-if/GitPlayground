@@ -1,6 +1,6 @@
 ﻿using Git.Domain.EntityFramework;
 using Git.Domain.EntityFramework.Models;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Git.Owin.Api.Models;
 using System;
 using System.Collections.Generic;

@@ -70,11 +70,11 @@ namespace Git.Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No data for this year or greater.
+        ///   Looks up a localized string similar to No data for after {0}.
         /// </summary>
-        public static string DatesFromCurrentYearNotSupported {
+        public static string DatesFromMaxYearNotSupported {
             get {
-                return ResourceManager.GetString("DatesFromCurrentYearNotSupported", resourceCulture);
+                return ResourceManager.GetString("DatesFromMaxYearNotSupported", resourceCulture);
             }
         }
     }

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using AutoFixture;
 using Git.Domain;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Git.Owin.Api.Models;
 using Git.Owin.Api.v1.Services;
 using Moq;

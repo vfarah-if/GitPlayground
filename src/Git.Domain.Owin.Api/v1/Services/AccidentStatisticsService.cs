@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Git.Domain;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Git.Owin.Api.Models;
 using static Git.Domain.Constants.AccidentStatisticSorting;
 

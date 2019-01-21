@@ -1,6 +1,6 @@
 ﻿using System;
 using Git.Domain.EntityFramework.Models;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 
 namespace Git.Domain.EntityFramework
 {

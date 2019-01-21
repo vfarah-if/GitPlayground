@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Microsoft.Owin.Testing;
 using System;
 using System.Linq;

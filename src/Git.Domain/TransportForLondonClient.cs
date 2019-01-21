@@ -1,6 +1,6 @@
 ﻿using Flurl;
 using Flurl.Http;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace Git.Domain
         private const string AccidentStatsPathSegment = "AccidentStats";
 
         private readonly string _baseUrl;
+        private readonly int _maximumYear;
         private readonly TimeSpan _cacheExpirationTimeInMinutes;
         private readonly Cache<int, IEnumerable<AccidentStatistic>> _accidentStatisticsCache;
         private readonly ILogger _logger;
@@ -24,6 +25,7 @@ namespace Git.Domain
             _logger = logger;
             _accidentStatisticsCache = new Cache<int, IEnumerable<AccidentStatistic>>();
             _baseUrl = configuration.TransportForLondonBaseUrl;
+            _maximumYear = configuration.MaximumYear;
             _cacheExpirationTimeInMinutes = configuration.CacheExpirationTimeInMinutes;
             _logger.Information($"Base Url is {_baseUrl}");
             _logger.Information($"Cache expiration is {_cacheExpirationTimeInMinutes} minutes");
@@ -78,9 +80,10 @@ namespace Git.Domain
                 throw new NotSupportedException(DatesBelow2005NotSupported);
             }
 
-            if (from.Year >= DateTime.UtcNow.Year || to.Year >= DateTime.UtcNow.Year)
+            if (from.Year > _maximumYear || to.Year > _maximumYear)
             {
-                throw new NotSupportedException(DatesFromCurrentYearNotSupported);
+                var errorMessage = string.Format(DatesFromMaxYearNotSupported, _maximumYear);
+                throw new NotSupportedException(errorMessage);
             }
 
             var years = this.GetYears(from, to).ToList();

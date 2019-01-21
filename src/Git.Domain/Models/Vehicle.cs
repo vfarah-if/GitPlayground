@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Git.Domain.Models.TFL
+namespace Git.Domain.Models
 {
     public class Vehicle   
     {

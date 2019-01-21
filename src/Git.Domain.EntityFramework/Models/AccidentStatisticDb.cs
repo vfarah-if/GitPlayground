@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Newtonsoft.Json;
 
 namespace Git.Domain.EntityFramework.Models

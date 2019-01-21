@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Flurl.Http;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using TestStack.BDDfy;
 using Xunit;
 

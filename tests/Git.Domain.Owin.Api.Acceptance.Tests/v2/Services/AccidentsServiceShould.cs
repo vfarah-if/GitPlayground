@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Git.Domain;
 using Git.Domain.EntityFramework;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Git.Owin.Api.Models;
 using Git.Owin.Api.v2.Services;
 using Xunit;
