@@ -38,7 +38,8 @@ namespace Git.Owin.Api.Host
             appBuilder.UseAutofac(config);
 
             var provider = new SimpleModelBinderProvider(
-                typeof(AccidentStatisticsQuery), new AccidentStatisticsQueryModelBinder());
+                typeof(AccidentStatisticsQuery), 
+                new AccidentStatisticsQueryModelBinder(Domain.Configuration.Create()));
             config.Services.Insert(typeof(ModelBinderProvider), 0, provider);
 
             ConfigureSwagger(config);

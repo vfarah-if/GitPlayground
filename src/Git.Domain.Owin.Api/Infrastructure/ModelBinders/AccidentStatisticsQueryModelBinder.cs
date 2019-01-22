@@ -3,6 +3,7 @@ using System;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.ModelBinding;
+using Git.Domain;
 using IModelBinder = System.Web.Http.ModelBinding.IModelBinder;
 
 namespace Git.Owin.Api.Infrastructure.ModelBinders
@@ -10,8 +11,16 @@ namespace Git.Owin.Api.Infrastructure.ModelBinders
     [ModelBinder(typeof(AccidentStatisticsQueryModelBinder))]
     public class AccidentStatisticsQueryModelBinder : IModelBinder
     {
-        private readonly DateTime _lastYearFirstMonthAndDay = new DateTime(DateTime.Now.Year - 1, 01, 01);
-        private readonly DateTime _lastYearLastMonthAndDay = new DateTime(DateTime.Now.Year - 1, 12, 31);
+        private readonly IConfiguration _configuration;
+        private readonly DateTime _maxYearFirstMonthAndDay;
+        private readonly DateTime _maxYearLastMonthAndDay;
+
+        public AccidentStatisticsQueryModelBinder(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _maxYearFirstMonthAndDay = new DateTime(_configuration.MaximumYear, 01, 01);
+            _maxYearLastMonthAndDay = new DateTime(_configuration.MaximumYear, 12, 31);
+        }
 
         public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
         {
@@ -57,12 +66,12 @@ namespace Git.Owin.Api.Infrastructure.ModelBinders
                 ? DateTime.Parse(queryDictionary["from"]) 
                 : (queryDictionary["accidentStatisticsQuery.from"] != null
                     ? DateTime.Parse(queryDictionary["accidentStatisticsQuery.from"]) 
-                    : _lastYearFirstMonthAndDay);
+                    : _maxYearFirstMonthAndDay);
             var to = queryDictionary["to"] != null && DateTime.TryParse(queryDictionary["to"], out _) 
                 ? DateTime.Parse(queryDictionary["to"]) 
                 : (queryDictionary["accidentStatisticsQuery.to"] != null && DateTime.TryParse(queryDictionary["accidentStatisticsQuery.to"], out _)
                     ? DateTime.Parse(queryDictionary["accidentStatisticsQuery.to"])
-                    : _lastYearLastMonthAndDay);
+                    : _maxYearLastMonthAndDay);
             var page = queryDictionary["page"] != null 
                 ? int.Parse(queryDictionary["page"]) 
                 : (queryDictionary["accidentStatisticsQuery.page"] != null

@@ -13,5 +13,5 @@ namespace Git.Owin.Api.Host.Modules
             builder.RegisterType<AccidentStatisticsService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AccidentsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
-}
+    }
 }
