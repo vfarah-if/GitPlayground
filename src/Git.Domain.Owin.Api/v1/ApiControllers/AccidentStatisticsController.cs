@@ -13,7 +13,7 @@ using WebApi.OutputCache.V2;
 
 namespace Git.Owin.Api.v1.ApiControllers
 {
-    [RoutePrefix("v1/accidentstatistics")]
+    [RoutePrefix("v1/accidents")]
     public class AccidentStatisticsController : ApiController
     {
         protected internal const int OneMinuteInSeconds = 60;
@@ -30,7 +30,7 @@ namespace Git.Owin.Api.v1.ApiControllers
         /// <summary>
         /// Get Accident Statistics by
         /// </summary>
-        /// <example>http://localhost:9000/v1/accidentstatistics?from=01/01/2014&page=11</example>
+        /// <example>http://localhost:9000/v1/accidents?from=01/01/2014&page=11</example>
         /// <param name="accidentStatisticsQuery.from">Start Date and if left null will default to the start of last year</param>
         /// <param name="accidentStatisticsQuery.to">End Date and if left null will default to the end of last year</param>
         /// <param name="accidentStatisticsQuery.severity">Serious, Slight or Fatal, and if left null will default to Fatal</param>

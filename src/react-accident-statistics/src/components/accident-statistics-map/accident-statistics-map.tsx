@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { LatLng, Icon } from 'leaflet';
 
-import { DEFAULT_FROM_DATE } from '../constants';
+import { DEFAULT_FROM_DATE, MAXIMUM_YEAR } from '../constants';
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
 import AccidentTitle from '../shared/accident-title';
 import { AccidentStatisticsService } from './../../services';
@@ -73,11 +73,9 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
 
     constructor(props: AccidentStatisticsMapProps) {
         super(props);
-        const now = new Date();
-        const previousYear = now.getUTCFullYear() - 1;
         this.state = {
             from: props.fromDate ? new Date(props.fromDate) : DEFAULT_FROM_DATE,
-            to: props.toDate ? new Date(props.toDate) : new Date(`${previousYear}-12-31T12:00:00`),
+            to: props.toDate ? new Date(props.toDate) : new Date(`${MAXIMUM_YEAR}-12-31T12:00:00`),
             severityOption: props.severityOption || 'Fatal',
             orderByOption: props.orderByOption || 'DateDescending',
             pageSize: props.pageSize || 500,

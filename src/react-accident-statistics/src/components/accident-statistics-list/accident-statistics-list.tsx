@@ -3,7 +3,7 @@ import * as React from 'react';
 import { AxiosResponse } from 'axios';
 
 import { SeverityOptions, SortByOptions, PagedAccidentStatistic, AccidentStatistic } from './../../models';
-import { DEFAULT_FROM_DATE } from './../constants';
+import { DEFAULT_FROM_DATE, MAXIMUM_YEAR } from './../constants';
 import { AccidentStatisticsService } from './../../services';
 import AccidentTitle from '../shared/accident-title';
 import AccidentOrderedList from './accident-ordered-list';
@@ -33,11 +33,9 @@ export default class AccidentStatisticsList extends React.Component<AccidentStat
     
     constructor(props: AccidentStatisticsListProps) {
         super(props);
-        const now = new Date();
-        const previousYear = now.getUTCFullYear() - 1;
         this.state = {
             from: props.fromDate ? new Date(props.fromDate) : DEFAULT_FROM_DATE,
-            to: props.toDate ? new Date(props.toDate) : new Date(`${previousYear}-12-31T12:00:00`),
+            to: props.toDate ? new Date(props.toDate) : new Date(`${MAXIMUM_YEAR}-12-31T12:00:00`),
             severityOption: props.severityOption || 'Fatal',
             orderByOption: props.orderByOption || 'DateDescending',
             pageSize: props.pageSize || 500,

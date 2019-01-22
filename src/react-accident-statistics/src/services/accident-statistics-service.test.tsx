@@ -84,7 +84,7 @@ describe('AccidentStatisticsService', () => {
 
         expect(response).toBeTruthy();
         expect(axios.get).toHaveBeenCalled();
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:9000/v1/AccidentStatistics",
+        expect(axios.get).toHaveBeenCalledWith("http://localhost:9000/v1/Accidents",
             {
                 "headers": {
                     "headers": {

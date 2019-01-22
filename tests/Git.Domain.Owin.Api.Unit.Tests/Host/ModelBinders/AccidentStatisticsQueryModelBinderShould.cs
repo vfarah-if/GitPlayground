@@ -21,7 +21,7 @@ namespace Git.Owin.Api.Unit.Tests.Host.ModelBinders
         private readonly IConfiguration _configuration;
         private HttpActionContext _actionContext;
         private ModelBindingContext _modelBindingContext;
-        private AccidentStatisticsQueryModelBinder _subject;
+        private readonly AccidentStatisticsQueryModelBinder _subject;
 
         public AccidentStatisticsQueryModelBinderShould()
         {
@@ -39,7 +39,7 @@ namespace Git.Owin.Api.Unit.Tests.Host.ModelBinders
             var expectedSortBy = "ByLocationDescending";
             int expectedPage = _autoFixture.Create<int>();
             int expectedPageSize = _autoFixture.Create<int>();
-            var url = $"http://localhost:9000/v1/accidentstatistics?from={expectedFromDate.ToString("O")}&to={expectedToDate.ToString("O")}&severity={expectedSeverity}&sortBy={expectedSortBy}&page={expectedPage}&pageSize={expectedPageSize}";
+            var url = $"http://localhost:9000/v1/accidents?from={expectedFromDate.ToString("O")}&to={expectedToDate.ToString("O")}&severity={expectedSeverity}&sortBy={expectedSortBy}&page={expectedPage}&pageSize={expectedPageSize}";
             CreateActionAndBindingContextWith(url);
 
             var actual = _subject.BindModel(_actionContext, _modelBindingContext);
@@ -65,7 +65,7 @@ namespace Git.Owin.Api.Unit.Tests.Host.ModelBinders
             var expectedSortBy = "DateDescending";
             int expectedPage = 1;
             int expectedPageSize = 100;
-            var url = $"http://localhost:9000/v1/accidentstatistics";
+            var url = $"http://localhost:9000/v1/accidents";
             CreateActionAndBindingContextWith(url);
 
             var actual = _subject.BindModel(_actionContext, _modelBindingContext);
@@ -86,7 +86,7 @@ namespace Git.Owin.Api.Unit.Tests.Host.ModelBinders
         public void CreateInvalidModelStateWhenFromDateIsInIncorrectFormat()
         {
             var invalidDate = "BadFormat";
-            var url = $"http://localhost:9000/v1/accidentstatistics?from={invalidDate}";
+            var url = $"http://localhost:9000/v1/accidents?from={invalidDate}";
             CreateActionAndBindingContextWith(url);
 
             var actual = _subject.BindModel(_actionContext, _modelBindingContext);
@@ -104,7 +104,7 @@ namespace Git.Owin.Api.Unit.Tests.Host.ModelBinders
         public void CreateInvalidModelStateWhenToDateIsInIncorrectFormat()
         {
             var invalidDate = "BadFormat";
-            var url = $"http://localhost:9000/v1/accidentstatistics?to={invalidDate}";
+            var url = $"http://localhost:9000/v1/accidents?to={invalidDate}";
             CreateActionAndBindingContextWith(url);
 
             var actual = _subject.BindModel(_actionContext, _modelBindingContext);

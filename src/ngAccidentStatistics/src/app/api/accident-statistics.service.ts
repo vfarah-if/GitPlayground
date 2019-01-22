@@ -48,7 +48,7 @@ export class AccidentStatiticsService {
     }
 
     headers = headers.set('Accept', 'application/json');
-    const url = query && query.useV1 ? `${this.basePath}/v1/AccidentStatistics` : `${this.basePath}/v2/Accidents`;
+    const url = query && query.useV1 ? `${this.basePath}/v1/Accidents` : `${this.basePath}/v2/Accidents`;
     return this.httpClient.get<PagedAccidentStatistic>(url,
       {
         params: queryParams,

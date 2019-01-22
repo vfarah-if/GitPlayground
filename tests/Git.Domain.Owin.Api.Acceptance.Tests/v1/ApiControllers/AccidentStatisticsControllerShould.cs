@@ -23,7 +23,7 @@ namespace Git.Owin.Api.Acceptance.Tests.v1.ApiControllers
         [Fact]
         public async void GetTheFirstPageOfTenFatalAccidentStatisticsFor2014ToNow()
         {
-            var result = await testServer.HttpClient.GetAsync($"v1/AccidentStatistics?from=2014-01-01T00:00:00Z&to=2017-12-31T00:00:00Z&severity=Fatal&page=1&pageSize=10");
+            var result = await testServer.HttpClient.GetAsync($"v1/accidents?from=2014-01-01T00:00:00Z&to=2017-12-31T00:00:00Z&severity=Fatal&page=1&pageSize=10");
             string responseContent = await result.Content.ReadAsStringAsync();
             result.StatusCode.Should().Be(HttpStatusCode.OK);
             var responsePaged = responseContent.To<Paging<AccidentStatistic>>();
@@ -36,7 +36,7 @@ namespace Git.Owin.Api.Acceptance.Tests.v1.ApiControllers
         [Fact]
         public async void GetLastYearsAccidentStatisticsByDefault()
         {
-            var result = await testServer.HttpClient.GetAsync($"v1/AccidentStatistics");
+            var result = await testServer.HttpClient.GetAsync($"v1/accidents");
 
             string responseContent = await result.Content.ReadAsStringAsync();
             result.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -51,7 +51,7 @@ namespace Git.Owin.Api.Acceptance.Tests.v1.ApiControllers
         [Fact]
         public async void GetBadRequestWhenInvalidDateIsPassedWithAnErrorOccured()
         {
-            var result = await testServer.HttpClient.GetAsync($"v1/AccidentStatistics?from=InvalidDate");
+            var result = await testServer.HttpClient.GetAsync($"v1/accidents?from=InvalidDate");
 
             string responseContent = await result.Content.ReadAsStringAsync();
             result.StatusCode.Should().Be(HttpStatusCode.BadRequest);

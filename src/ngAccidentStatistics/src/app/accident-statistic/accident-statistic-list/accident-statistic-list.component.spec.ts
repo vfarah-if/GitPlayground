@@ -7,7 +7,7 @@ import {
   AccidentStatiticsServiceMock,
   getAccidentStatiticsService
 } from './../../api/testing';
-import { DEFAULT_FROM_DATE } from '../constants';
+import { DEFAULT_FROM_DATE, MAXIMUM_YEAR } from '../constants';
 
 function headerElement(compiled): HTMLHeadingElement {
   return compiled.querySelector('section > header > h1');
@@ -30,7 +30,6 @@ describe('AccidentStatisticListComponent', () => {
   let fixture: ComponentFixture<AccidentStatisticListComponent>;
   let apiService: AccidentStatiticsServiceMock;
   let compiled;
-  let lastYear: number;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -48,7 +47,6 @@ describe('AccidentStatisticListComponent', () => {
       component = fixture.componentInstance;
       apiService = getAccidentStatiticsService();
       apiService.spy_get.and.returnValues(apiService.simplePageOneOfTwoResponseSubject, apiService.simplePageTwoOfTwoResponseSubject);
-      lastYear = new Date().getFullYear() - 1;
       fixture.detectChanges();
       compiled = fixture.debugElement.nativeElement;
     });
@@ -57,7 +55,7 @@ describe('AccidentStatisticListComponent', () => {
       expect(component).toBeTruthy();
       expect(compiled).toBeTruthy();
       expect(component.from).toBe(DEFAULT_FROM_DATE);
-      expect(component.to.toISOString()).toBe(`${lastYear}-12-31T12:00:00.000Z`);
+      expect(component.to.toISOString()).toBe(`${MAXIMUM_YEAR}-12-31T12:00:00.000Z`);
       expect(component.orderByOption).toBe('DateDescending');
       expect(component.pageSize).toBe(500);
       expect(component.showJson).toBe(false);
