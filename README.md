@@ -1,13 +1,13 @@
 # Welcome to your first indaba
 So, you may be asking what is an indaba? As a native South African, I have often used this term out of context, but appropriately, at least in this context. Officially an indaba is an important meeting or conference held by the Zulu or Xhosa people. However, we South African's overload this by saying "that is your Indaba my bru", meaning good luck and you should solve this whatever desperate way you can.
 
-You may be asking yourself what does this have to do with the Git Playground? This will soon be a series of real-world Katas, and for you that is about choosing how you solve your indaba. An indaba is really a kata type of your choice exercising a lot of real world issues.Essentially the gist of it is below and if you are interested in how it is solved by me, look at my indaba src within the repository. Good luck my bru or sister!
+You may be asking yourself what does this have to do with the Git Playground? This will soon be a series of real world Katas, and for you that is about choosing how you solve your indaba. An indaba is really a kata type of your choice exercising a lot of real world issues. Essentially the gist of it is below and if you are interested in how it is solved by me, look at my indaba src within the repository. Good luck my bru or sister!
 
-Full stack indaba is a *Marathon Indaba* making you a *Shaka Zulu*. Solving the front-end using my backend solution, or the data part only, or the domain logic is more a 5 km run to half a Comrades marathon, making you a *Senzangakona* or the father of something great. If you just want to learn about how I solved it, academic or to understand a gist, you will just have to be a *Voortrekker* or "forward walker". There is also a business aspect of coming up with good business cases for new and interesting features within each problem domain, trying to think of other things to do outside of the given requirments, making you a *Tito Mboweni*. Finally it would be great to do a *gist* about what you observed from the solution, what unique value you offered whether it is speed, elegance, visual design or feature rich business value, this is your creative writing space to comment on.
+Full stack indaba is a *Marathon Indaba* making you a *Shaka Zulu*. Solving the front-end using my backend solution, or the data part only, or the domain logic is more a 5 km run to half a Comrades marathon, making you a *Senzangakona* or the father of something great. If you just want to learn about how I solved it, academic or to understand the gist of what this is about, you will just have to be a *Voortrekker* or "forward walker". There is also a business aspect of coming up with good business cases for new and interesting features within each problem domain, trying to think of other things to do outside of the given requirements, making you a *Tito Mboweni*. Finally it would be great to do a *gist* about what you observed from the solution, what unique value you offered whether it is speed, elegance, visual design or feature rich business value, this is your creative writing space to comment on.
 
-The structure of a typical indaba should start with some real-world issue that needs an obvious solution. The solution can then be extended with creative ideas to facilitate a topic or simply by necessity making up the simplest requirments on a topic of interest like *security*, *caching*, *coding practises* or anything else you can add to this topic to make it complete. For anyone trying to do a part of the problem, look at the business or technical requirments to make sure you develop the part of the puzzle to fit in with the existing other components.
+The structure of a typical indaba should start with some real world issue that needs an obvious solution. The solution can then be extended with creative ideas to facilitate a topic or simply by necessity making up the simplest requirements on a topic of interest like *security*, *caching*, *coding practises* or anything else you can add to this topic to make it complete. For anyone trying to do a part of the problem, look at the business or technical requirements to make sure you develop the part of the puzzle to fit in with the existing other components.
 
-Why the Git Playground? Originally I tried to utilise the Git API as a starter. In actual fact I abandoned the idea and kept the name only. As it is hosted on Git, that is probably the only Git thing related to this Real-world kata play ground.
+Why the Git Playground? Originally I tried to utilise the Git API as a starter. In actual fact I abandoned the idea and kept the name only. As it is hosted on Git, that is probably the only Git thing related to this real world kata play ground.
 
 # Transport for London Indaba
 
@@ -17,11 +17,11 @@ My original reason for stumbling across this API was to find some statistics abo
 
 !["TFL Unified API"](screenshots/TFLUnifiedApi.png)
 
-This API is a great way to exercise the first real-world solution, for not only creating a better API, but also to exercise different skills in solving real world API problems.
-Remember to test drive your solution and if you are going to follow anything, make sure it is the KISS principle to make this better than it is.
+This API is a great way to exercise the first real world solution, for not only creating a better API, but also to exercise different skills in solving real world API problems.
+Remember to test drive your solution and if you are going to follow anything, make sure it is the KISS principle to make this better than it is without being as "simple" as it is.
 
 ## Client or Domain indaba
-This is essentially the heart of the project or the core of your domain. This will contain the model to marshal data into, if this is needed, and a client to connect the the TFL API. Any other strategies to help bolster the functionality, should be done within this library.
+This is essentially the heart of the project or the core of your domain. This will contain the model to marshal data into, if you think this is needed, and a client to connect the the TFL API. Any other strategies to help bolster the functionality, should be done within this library.
 
 ### Business Requirements
 
@@ -80,15 +80,15 @@ This is an opportunity to redesign the data store with data persistance of your 
 
 ### Functional Requirments
 
-1. Create schema's to persist the data, if using a schema based storage, by representing *AccidentStatistics* 1-1 or more on *Casualties* and *VehicleDb*. You can extend the schema to include a *TransportTypes* that will help describe the *"vehicle type"* and "casualties mode type" enum values that get returned from the live data, but will only be possible when you understand the distinct values supported and if all values are mandatory or supplied. The descriptions of these values can be discretionary and can be literally a humanised version of the enumeration.
-2. The database must have some automation layer for seeding the data on the first run of the system from the live site. Add a *README* to help describe what needs to be done.
-3. Create a *readonly repository* responsible for reading the data.
-	1. The ability to count the full amount of data being returned
+* Create schema's to persist the data, if using a schema based storage, by representing *AccidentStatistics* 1-1 or more on *Casualties* and *VehicleDb*. You can extend the schema to include a *TransportTypes* that will help describe the *"vehicle type"* and *"casualties mode type"* enumeration values that get returned from the live data, but will only be possible when you understand the distinct values supported at the time and if all values are mandatory or supplied. The descriptions of these values can be discretionary and can be literally a humanised version of the enumeration.
+* The database must have some automation layer for seeding the data on the first run of the system from the live site. Add a *README* to help describe what needs to be done.
+* Create a *readonly repository* responsible for reading the data.
+	* The ability to count the full amount of data being returned
 		```csharp
 		// example
 		Task<int> Count(Expression<Func<AccidentStatisticDb, bool>> filter = null);
 		```
-	2. The ability to return actual paginated data with options to filter and sort the data accordingly.
+	* The ability to return actual paginated data with options to filter and sort the data accordingly.
 		```csharp
 		// example
 		Task<Paging<AccidentStatisticDb>> Get(
@@ -97,10 +97,11 @@ This is an opportunity to redesign the data store with data persistance of your 
             int page = 1,
             int pageSize = 100);
 		```
-4. This is not necessarilly a crud based repository but as the data needs to be seeded from the live site, there is no issues in creating the repository as *CRUD based* for the purpose of reading and writing the data.
-5. Represent the final consumption of the repository within a console based application that can demonstrate:
-	1. The entire count of *AccidentStatistics*, *Vehicles* and *Casualties* within the database, to seed and generate the database if non exists.
-	2. The show paginated cycling fatal accidents from the *1st of January 2005* to the *31st of December 2017* displaying the *borough* the accident occured in, the *long date and time* it occured at, some summary information about the pagination a data severity in any format you think will help show to the user what you have achieved through this repository.
+* This is not necessarilly a CRUD based repository, but as the data needs to be seeded from the live site, there is no issues in creating the repository as *CRUD based* for the purpose of reading and writing the data.
+* Represent the final consumption of the repository within a console based application that can demonstrate:
+	* Seed and generate the database if non exists.
+	* Show a count of *AccidentStatistics*, *Vehicles* and *Casualties* within the database.
+	* The show paginated fatal fatal accidents from the *1st of January 2005* to the *31st of December 2017* displaying the *borough* where the accident occured, the *long date and time* it occured on, some summary information about the pagination and data severity in any format you think will help show to the user what you have achieved through this repository.
 
 ## API indaba
 
@@ -108,9 +109,9 @@ This will be used to host a REST based API, if you plan to integrate this with m
 
 ### Business Requirements
 
-1. V1 API needs to work with the live TFL accident statistics *domain indaba* to host the data as a paginated queryable solution.
-2. V2 API, the architect has given you reign to optmise the existing API by hosting it with your own durable layer, see *Database indaba* for more information.`
-3. Caching should be in place to optimise user experience.
+* V1 API needs to work with the live TFL accident statistics *domain indaba* to host the data as a paginated queryable solution.
+* V2 API, the architect has given you reign to optmise the existing API by hosting it with your own durable layer, see the *database indaba* for more information.`
+* Caching should be in place to optimise the user experience through API mechanisms a browser can support like Browser Caching.
 
 ### Functional Requirments for V1
 
