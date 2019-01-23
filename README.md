@@ -69,7 +69,7 @@ This is essentially the heart of the project or the core of your domain. This wi
 
 ## Database indaba
 
-This is an opportunity to redesign the data store with data persistance of your choice. You will need to realise that
+This is an opportunity to redesign the data store with data persistance of your choice.
 
 ### Business Requirements
 
@@ -186,30 +186,8 @@ Do not look at this if you want to solve this on your own. This is my indaba and
 	
 
 # summary
+
 Enjoy doing Indabas and remember solving small issues well helps give you a spear for bigger problems.
 Umkhonto we sizwe and good luck!
 
 !["Spear of the nation"](screenshots/UmkontoWeSizwe.png)
-
-# Things to do myself and brain dump space
-This is my untidy area on the page that will just stay a mess until I move what I think is useful into the correct places. 
-
-	Extends with swagger, pact or typemock tests
-
-	Fix RFC3986-compliant issues
-
-Add in Angula README
-https://github.com/angular/angular-cli/wiki
-
-https://alligator.io/angular/testing-httpclient/
-
-Start coming up with ideas for lightning talks
-
-TODO: Create a react client doing the same thing to compare and do it in typescript
-	
-	Follow the instructions for generating the base typescript project https://github.com/Microsoft/TypeScript-React-Starter
-
-	https://airbnb.io/enzyme/docs/installation/index.html for setting up enzyme
-
-	https://www.loggly.com/blog/benchmarking-5-popular-net-logging-libraries/
-	TODO: Remove the Trace and replace it with a proper logger library as I found that this killed performance of database import and so this will be useful to have in the core project based on the unreal performance degradation of importing data.
