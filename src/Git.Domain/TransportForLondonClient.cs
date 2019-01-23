@@ -31,17 +31,7 @@ namespace Git.Domain
             _logger.Information($"Cache expiration is {_cacheExpirationTimeInMinutes} minutes");
         }
 
-        public async Task<IList<dynamic>> GetAllAccidentStatisticsAsDynamic(int year)
-        {
-            var result = await _baseUrl
-                .AppendPathSegment(AccidentStatsPathSegment)
-                .AppendPathSegment(year.ToString())
-                .GetJsonListAsync()
-                .ConfigureAwait(false);
-            return result;
-        }
-
-        public async Task<IReadOnlyList<AccidentStatistic>> GetAllAccidentStatistics(int year,
+       public async Task<IReadOnlyList<AccidentStatistic>> GetAllAccidentStatistics(int year,
             Func<AccidentStatistic, bool> filter = null,
             SortOptions<AccidentStatistic> sortOptions = null)
         {

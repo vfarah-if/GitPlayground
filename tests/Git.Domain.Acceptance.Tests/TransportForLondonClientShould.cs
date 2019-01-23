@@ -23,14 +23,6 @@ namespace Git.Domain.Acceptance.Tests
         }
 
         [Fact]
-        public async void GetAccidentStatisticsDynamicFor2017()
-        {
-            var actual = await transportForLondonClient.GetAllAccidentStatisticsAsDynamic(2017);
-
-            actual.Should().NotBeNullOrEmpty();
-        }
-
-        [Fact]
         public async void GetAccidentStatisticsFor2017()
         {
             var actual = await transportForLondonClient.GetAllAccidentStatistics(2017);
