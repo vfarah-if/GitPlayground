@@ -1,8 +1,8 @@
 # NgAccidentStatistics
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4. Most of this project was developed using standard Angular patterns.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4. Most of this project was developed using standard Angular patterns which can be understood further down with references to the CLI and very good Angular documentation.
 
-The only part I wanted to ellaborate on is my testing folder within each folder. When ever I create a component or a service, I always create a test component and test module that can be utilised by whatever consumes the artifact. This made things very simple for testing and always puts cousuming the component in your design choice. I created a simple testing mechanism for RXJS methods exposing jasmine spies for mocking the data expectations and instead of doing Jasmine Marble testing, I simply exposed simple observables from json data files which allowed easy configuration of different tests, see code for more details. This made it very easy to test data for different scenarios very simple. I kept it simple for testing the components and this strategy lends itself to more complicated scenarios. Take a look at the diffent *testing* folders for a better idea of what I am talking about.
+The only part I wanted to ellaborate on is my testing folder within each folder. When creating a component or a service, I always create a test component and test module that can be utilised by whatever consumes the artifact. This made things very simple for testing and always puts consuming the component in your design choice. I created a simple testing mechanism for RXJS methods exposing Jasmine Spies for mocking the data expectations and instead of doing Jasmine Marble testing, I exposed simple observables from json data files which allowed easy configuration of different tests, see code for more details. This made it very easy to test data for different scenarios. I kept it simple for testing the components and this strategy lends itself to more complicated scenarios. Take a look at the diffent *testing* folders for a better idea of what I am talking about.
 
 ## Development server
 
@@ -58,7 +58,6 @@ This is a fairly complex area, but for more information check out the
 
 ## Map libraries
 
-Take a look at utilising this with [openlayers map documentation](https://openlayers.org/en/latest/apidoc/) and the api if you wanted to use this map is [here](https://github.com/openlayers/openlayers)
+Take a look at utilising this with [openlayers map documentation](https://openlayers.org/en/latest/apidoc/) and the API if you wanted to use this map is [here](https://github.com/openlayers/openlayers)
 
-I developed my map component with this lovely component [https://leafletjs.com/](https://leafletjs.com/) for information about the map utility
-Angular version and typings, look at [https://openlayers.org/en/latest/apidoc/](https://openlayers.org/en/latest/apidoc/).
+Developed the map component with Leaflet JS, a fantastic open source map library in conjunction with the team of guys who exposed the Angular and Typescript wrappers to help within the Angular eco system [https://leafletjs.com/](https://leafletjs.com/).
