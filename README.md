@@ -5,17 +5,19 @@ You may be asking yourself what does this have to do with the Git Playground? Th
 
 Full stack indaba is a *Marathon Indaba* making you a *Shaka Zulu*. Solving the front-end using my backend solution, or the data part only, or the domain logic is more a 5 km run to half a Comrades marathon, making you a *Senzangakona* or the father of something great. If you just want to learn about how I solved it, academic or to understand a gist, you will just have to be a *Voortrekker* or "forward walker". There is also a business aspect of coming up with good business cases for new and interesting features within each problem domain, trying to think of other things to do outside of the given requirments, making you a *Tito Mboweni*. Finally it would be great to do a *gist* about what you observed from the solution, what unique value you offered whether it is speed, elegance, visual design or feature rich business value, this is your creative writing space to comment on.
 
-The structure of a typical indaba should start with some real world issue that needs an obvious solution. The solution can then be extended with creative ideas to facilitate a topic or simply by necessity making up the simplest requirments on a topic of interest like *security*, *caching*, *coding practises* or anything else you can add to this topic to make it complete. For anyone trying to do a part of the problem, look at the business or technical requirments to make sure you develop the part of the puzzle to fit in with the existing other components.
+The structure of a typical indaba should start with some real-world issue that needs an obvious solution. The solution can then be extended with creative ideas to facilitate a topic or simply by necessity making up the simplest requirments on a topic of interest like *security*, *caching*, *coding practises* or anything else you can add to this topic to make it complete. For anyone trying to do a part of the problem, look at the business or technical requirments to make sure you develop the part of the puzzle to fit in with the existing other components.
+
+Why the Git Playground? Originally I tried to utilise the Git API as a starter. In actual fact I abandoned the idea and kept the name only. As it is hosted on Git, that is probably the only Git thing related to this Real-world kata play ground.
 
 # Transport for London Indaba
 
 Transport for London have created an endpoint that returns an abundance of data without options to paginate, filter, sort or cache data. You can see more about this API here within the [api.tfl.gov.uk](https://api.tfl.gov.uk/swagger/ui/index.html?url=/swagger/docs/v1#!/AccidentStats/AccidentStats_Get). Thank you London TFL for hosting this huge API to help us have our first Indaba to make it better for you.
 
-My original reason for stumbling across this API was to find some statistics about my menacing cycle route through London city traffic, to resolve where I should cycle safely and what roads I should avoid. This API was a little tricky in helping me safe-up my route and returned, on average more than fifty thousand records per year, with no option to filter or return the data in some other useful order. I thought this is a good opportunity to create a full stack, partial or minimal solution depending on which Indaba you decide to endure down.
+My original reason for stumbling across this API was to find some statistics about my menacing cycle route through London city traffic, to resolve where I should cycle safely and what roads I should avoid. This API was a little tricky in helping me safe-up my route and returned, on average, more than fifty thousand records per year, with no option to filter or return the data in some other useful order. I thought this is a good opportunity to create a full stack, partial or minimal solution depending on which Indaba you decide to endure down.
 
 !["TFL Unified API"](screenshots/TFLUnifiedApi.png)
 
-This API is a great way to exercise the first real world solution, for not only creating a better API, but also to exercise different skills in solving real world API problems.
+This API is a great way to exercise the first real-world solution, for not only creating a better API, but also to exercise different skills in solving real world API problems.
 Remember to test drive your solution and if you are going to follow anything, make sure it is the KISS principle to make this better than it is.
 
 ## Client or Domain indaba
@@ -23,15 +25,15 @@ This is essentially the heart of the project or the core of your domain. This wi
 
 ### Business Requirements
 
-1. Allow data to be easily queried and filtered with the *api.tfl.gov.uk* *AccidentStats* API.
+* Allow data to be easily queried and filtered with the *api.tfl.gov.uk* *AccidentStats* API.
 
 ### Functional Requirments
 
-1. Allow for a severity filter for filtering from *serious* to *fatal*.
-2. Allow for a date range, *from* and *to*, if not supplied, use 2017-01/01 to 2017/12/31 as the default.
-3. Date range validation should be applied with no earlier than 2005 and no later than a configured maximum year, 2017 at the moment but this may change soon.
-4. Create a console application that will demonstrate the consumption of your client as a simple user interface, where you will demonstrate paged data with a page size of twenty, data from the *1st of January 2014* to the *31st of December 2017*, with a severity of fatal. The final result should be sorted by *date descending* so cater for ways of sorting by several options, but at least by date descending and see the JSON below for all the sorting options.
-5. Look at the TFL web API to understand the schema, data and single API point
+* Allow for a severity filter for filtering from *serious* to *fatal*.
+* Allow for a date range, *from* and *to*, if not supplied, use 2017-01/01 to 2017/12/31 as the default.
+* Date range validation should be applied with no earlier than 2005 and no later than a configured maximum year, 2017 at the moment but this may change soon.
+* Create a console application that will demonstrate the consumption of your client as a simple user interface, where you will demonstrate paged data with a page size of twenty, data from the *1st of January 2014* to the *31st of December 2017*, with a severity of fatal. The final result should be sorted by *date descending* so cater for ways of sorting by several options, but at least by date descending and see the JSON below for all the sorting options.
+* Look at the TFL web API to understand the schema, data and single API point
 ```json
 {
 	"id": 0,
@@ -53,19 +55,20 @@ This is essentially the heart of the project or the core of your domain. This wi
 	}]
 }
 ```
+* Create a caching mechanism so that a range of years can be queuried efficiently, reducing round trips to the server and the inherent latency that comes with retrieving data over a network.
+* Paginate the data, with the default page size set to 100, restrict the amount of data being returned, with no more than 1000 and the default current page set to 1.
+* Represent *Severity* as an enumeration with values of Serious = 0, Slight = 1 and Fatal = 2.
 
 ### Non-functional Requirments
 
-1. All methods should be asynchronous.
-2. Create a caching mechanism so that multiple years have the ability to be queuried but also to reduce round trips to the server.
-3. Data needs to be outputted ideally as JSON or the same as the original content, which is JSON.
-4. Paginate the data, with the default page size being set to 100, restrict the amount of data being returned, with no more than 1000 and default page set to be 1.
-5. Represent *Severity* as an enumeration with values of Serious = 0, Slight = 1 and Fatal = 2.
+* Ideally should be able to run on any operating system.
+* All methods should be asynchronous.
+* Data needs to be outputted ideally as JSON or the same as the original content, which is JSON.
+
 
 ### Implementation/Transition Requirments
 
-1. Ideally should be able to run on any operating system.
-2. Where possible follow a traditional test pyramid and keep the acceptance/integration test to a minimum, ideally driving outside-in with tests until you have a final solution.
+* Where possible follow a traditional test pyramid and keep the acceptance/integration test to a minimum, ideally driving outside-in with tests until you have a final solution.
 
 ## Database indaba
 
@@ -73,11 +76,12 @@ This is an opportunity to redesign the data store with data persistance of your 
 
 ### Business Requirements
 
-1. Persist the data to a local durable storage of choice optimising any shortcomings from the original design.
+* Persist the data to a local durable storage of choice optimising any shortcomings from the original design.
 
 ### Functional Requirments
-1. Create schema's to persist the data, if using a schema based storage, by representing *AccidentStatistics* 1-1 or more on *Casualties* and *VehicleDb*. You can extend the schema to include a *TransportTypes* that will help describe the *"vehicle type"* and "casualties mode type" enum values that get returned from the data, but will only be possible when you understand the distinct values supported. The descriptions of these values can be discretionary.
-2. The database must have some automation layer for setting up dynamically as well as seeding the data on the first run of the system from the live site. Add a *README* to help describe what needs to be done.
+
+1. Create schema's to persist the data, if using a schema based storage, by representing *AccidentStatistics* 1-1 or more on *Casualties* and *VehicleDb*. You can extend the schema to include a *TransportTypes* that will help describe the *"vehicle type"* and "casualties mode type" enum values that get returned from the live data, but will only be possible when you understand the distinct values supported and if all values are mandatory or supplied. The descriptions of these values can be discretionary and can be literally a humanised version of the enumeration.
+2. The database must have some automation layer for seeding the data on the first run of the system from the live site. Add a *README* to help describe what needs to be done.
 3. Create a *readonly repository* responsible for reading the data.
 	1. The ability to count the full amount of data being returned
 		```csharp
@@ -95,61 +99,71 @@ This is an opportunity to redesign the data store with data persistance of your 
 		```
 4. This is not necessarilly a crud based repository but as the data needs to be seeded from the live site, there is no issues in creating the repository as *CRUD based* for the purpose of reading and writing the data.
 5. Represent the final consumption of the repository within a console based application that can demonstrate:
-	1. The entire count of *AccidentStatistics*, *Vehicles* and *Casualties* within the database.
-	2. The actual paginated cycling accidents from the *1st of January*.
+	1. The entire count of *AccidentStatistics*, *Vehicles* and *Casualties* within the database, to seed and generate the database if non exists.
+	2. The show paginated cycling fatal accidents from the *1st of January 2005* to the *31st of December 2017* displaying the *borough* the accident occured in, the *long date and time* it occured at, some summary information about the pagination a data severity in any format you think will help show to the user what you have achieved through this repository.
 
 ## API indaba
-This will be used to host a REST based API, if you plan to integrate this with the frontend project. If you have the desire to work on other API types, like *GraphQL*, please feel free to do so and remember if you are trying to work with an existing stack, you will need to alter the front end project to work with this alteration.
+
+This will be used to host a REST based API, if you plan to integrate this with my existing frontend project, you will need to get information from the frontend section about what needs to be set, like CORS and other details. If you have the desire to work on other API types, like *GraphQL*, feel free to do so and remember if you are trying to work with an existing stack, you will need to alter the frontend project to work with this aletration.
 
 ### Business Requirements
 
 1. V1 API needs to work with the live TFL accident statistics *domain indaba* to host the data as a paginated queryable solution.
-2. V2 API, the architect has given you reign to optmise the existing API by hosting it within your own durable layer, see *Database indaba* for more information.`
-3. Browser caching or any other caching strategy should be in place to optimise user experience.
+2. V2 API, the architect has given you reign to optmise the existing API by hosting it with your own durable layer, see *Database indaba* for more information.`
+3. Caching should be in place to optimise user experience.
 
-### Technical Requirments for V1
+### Functional Requirments for V1
 
-1. The base url should be *"http://localhost:9000/"*.
-2. The sub url should be *v1/accidents*.
-3. Assuming you are producing a REST API, you should support the *GET* verb.
-4. The URL should support several query params from the URL and none, see defaults for more information:
-	1. **accidentStatisticsQuery.from** or **from**: Start Date and if left null will default to the configured maximum year.
-	2. **accidentStatisticsQuery.to** or **to**: End Date and if left null will default to the end of the configured maximum year.
-	3. **accidentStatisticsQuery.sortBy** or **sortBy** or **orderBy**: Sort by options are : *DateAscending, LocationAscending, DateDescending (default if left null) or LocationDescending*.
-	4. **accidentStatisticsQuery.page** or **page**: Current page from 1 to (n-1) where validation needs to be added for less than 1 and greater than max.
-	5. **accidentStatisticsQuery.pageSize** or **pageSize**: Current page size defaulted to 100 and no greater than a 1000.
+* The base URL should be *"http://localhost:9000/"*.
+* The path segment should be *v1/accidents*.
+* Assuming you are producing a REST API, you should support the *GET* verb.
+* The URL should support several query params from the URL and none, see defaults for more information:
+	* **accidentStatisticsQuery.from** or **from**: Start Date and if left null will default to the configured maximum year.
+	* **accidentStatisticsQuery.to** or **to**: End Date and if left null will default to the end of the configured maximum year.
+	* **accidentStatisticsQuery.sortBy** or **sortBy** or **orderBy**: Sort by options are : *DateAscending, LocationAscending, DateDescending (default if left null) or LocationDescending*.
+	* **accidentStatisticsQuery.page** or **page**: Current page from 1 to (n-1) where validation needs to be added for less than 1 and greater than max.
+	* **accidentStatisticsQuery.pageSize** or **pageSize**: Current page size defaulted to 100 and no greater than a 1000.
 	```
 	http://localhost:9000/v1/accidents?severity=Fatal&orderBy=LocationDescending&page=1&pageSize=3
 	```
-5. Validate for null filters or any values that should not be assigned
+* Validate for null filters or any values that should not be assigned
 
-### Technical Requirments for V2
+### Functional Requirments for V2
 
-1. The base url should be *"http://localhost:9000/"*.
-2. The sub url should be *v2/accidents*.
-3. Assuming you are producing a REST API, you should support the *GET* verb.
-4. The URL should support several query params from the URL and none, see defaults for more information:
-	1. **accidentStatisticsQuery.from** or **from**: Start Date and if left null will default to the configured maximum year.
-	2. **accidentStatisticsQuery.to** or **to**: End Date and if left null will default to the end of the configured maximum year.
-	3. **accidentStatisticsQuery.sortBy** or **sortBy** or **orderBy**: Sort by options are : *DateAscending, LocationAscending, BoroughAscending, AccidentStatisticIdAscending, TflIdAscending, DateDescending (default if left null), LocationDescending, BoroughDescending, AccidentStatisticIdDescending,TflIdDescending*.
-	4. **accidentStatisticsQuery.page** or **page**: Current page from 1 to (n-1) where validation needs to be added for less than 1 and greater than max.
-	5. **accidentStatisticsQuery.pageSize** or **pageSize**: Current page size defaulted to 100 and no greater than a 1000.
+* The base URL should be *"http://localhost:9000/"*.
+* The path segment should be *v2/accidents*.
+* Assuming you are producing a REST API, you should support the *GET* verb.
+* The URL should support several query params from the URL and none, see defaults for more information:
+	* **accidentStatisticsQuery.from** or **from**: Start Date and if left null will default to the configured maximum year.
+	* **accidentStatisticsQuery.to** or **to**: End Date and if left null will default to the end of the configured maximum year.
+	* **accidentStatisticsQuery.sortBy** or **sortBy** or **orderBy**: Sort by options are : *DateAscending, LocationAscending, BoroughAscending, AccidentStatisticIdAscending, TflIdAscending, DateDescending (default if left null), LocationDescending, BoroughDescending, AccidentStatisticIdDescending,TflIdDescending*.
+	* **accidentStatisticsQuery.page** or **page**: Current page from 1 to (n-1) where validation needs to be added for less than 1 and greater than max.
+	* **accidentStatisticsQuery.pageSize** or **pageSize**: Current page size defaulted to 100 and no greater than a 1000.
 	```
 	http://localhost:9000/v2/accidents?severity=Fatal&orderBy=BoroughDescending&page=1&pageSize=3
 	```
-5. Validate for null filters or any values that should not be assigned
+* Validate for null filters or any values that should not be assigned
 
-1. Recreate the API allowing for options to query the TFL data for the purposes of what you want the data to do. You need to use the domain to show data and so any caching or optimisations need to be configured through the Api contract. Remember this needs to be able to run through a browser or postman so allow for a simple and intuitive user experience.
-2. Create two versions, one that will use the live site data and the second, a complete redesign using the database indaba to build out a service that does what you need efficiently. The concept behind doing two versions is firstly it starts you thinking in terms of versioning the API, secondly most times you are not able to redo something, so you create anti-corruption layers or bubble contexts to interact with other layers and if it is slow, you bolster it where you can. If you do get a chance to redo it, make sure you learn from history and do it better.
+### Implementation/Transition Requirments
+* Recreate the API allowing for options to query the TFL data for the purposes of what you want the data to do. You need to use the domain to show data and so any caching or optimisations need to be configured through the API contract. Remember this needs to be able to run through a browser or postman so allow for a simple and intuitive user experience.
+* Create two versions of the API with the intention of having one use the live site data and the second, a complete redesign using the database indaba to build out a service that does what you need efficiently. The concept behind doing two versions is firstly it starts you thinking in terms of versioning the API, secondly most times you are not able to redo something, so you create anti-corruption layers or bubble context to interact with legacy or third party services and if it is slow, you bolster it where you can.
 
 ## Front-end indaba
-This is a visualisation of the data, creating business reasons for consuming this API.
 
-1. You may need to create an API to host the query mechanism, see the API indaba for more information.
-2. Create several components allowing different views on the data, like a query component, or a map component or a list component describing the accidents between a certain data by a certain severity.
+* This is a visualisation of the data, creating business reasons for consuming this API. 
+* Web solution to be hosted with a browser.  
+* This requires all the indabas's above, and if this is the case, you may want to do this outside in starting from the web client and then building each bit of the puzzle as you need it.
+* Create components based on a set of features you feel would help to represent the data in each of the indaba's above.
 
-## Study indaba
-Do not look at this if you want to solve this on your own. This is my indaba and will explain roughly how I chose to solve my problem.
+### Business Requirements
+
+* Create a london based map component where a user will be able to see data based on severity, a range of dates and some summary information about the accident visually on the map.
+* Create a list component that describes the accident information in human readable format allowing a user to quickly assimilate what happened.
+* Create a statistical component that allows you to group on multiple bits of information to present general accident statistics possibly using vehicle types, location stats, or any other information you feel will be useful for analysis purposes.
+* Create a query component that will allow both versions to be used side by side exposing ways of seeing visual metrics and data being returned.
+
+## Study, Business or Gist indaba
+Do not look at this if you want to solve this on your own but if you are interested in understanding or writing about something related to the above scenarios then carry on. This is my indaba and will explain roughly how I chose to solve my problem. Some of the requirments are missing that may have been applied above and some ideas where exploritory in my code to help me come up with the ideas. My naming convention is related to the technology stack rather than the actual domain.
 
 ### Set up development environments
 
