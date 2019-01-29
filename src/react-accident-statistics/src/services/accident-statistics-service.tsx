@@ -37,7 +37,7 @@ export class AccidentStatisticsService {
                 'Accept': 'application/json'
             }
         }
-        const url = query && query.useV1 ? `${this.basePath}/v1/AccidentStatistics` : `${this.basePath}/v2/Accidents`;
+        const url = query && query.useV1 ? `${this.basePath}/v1/Accidents` : `${this.basePath}/v2/Accidents`;
         return await axios.get(url, { params: params, headers: headers });
     }
 }

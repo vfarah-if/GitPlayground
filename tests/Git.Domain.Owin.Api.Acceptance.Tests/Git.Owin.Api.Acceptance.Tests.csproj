@@ -9,8 +9,8 @@
     <ProjectGuid>{946D542B-BF0B-48B3-868A-F52FB456CBA0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Git.Domain.Owin.Api.Acceptance.Tests</RootNamespace>
-    <AssemblyName>Git.Domain.Owin.Api.Acceptance.Tests</AssemblyName>
+    <RootNamespace>Git.Owin.Api.Acceptance.Tests</RootNamespace>
+    <AssemblyName>Git.Owin.Api.Acceptance.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -98,9 +98,9 @@
       <Project>{870242CA-E5F2-4A17-B21E-A6B4D2833FC9}</Project>
       <Name>Git.Domain.EntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Git.Domain.Owin.Api\Git.Domain.Owin.Api.csproj">
+    <ProjectReference Include="..\..\src\Git.Domain.Owin.Api\Git.Owin.Api.csproj">
       <Project>{af1bd7a4-da05-49fe-a003-093bc73d4f3a}</Project>
-      <Name>Git.Domain.Owin.Api</Name>
+      <Name>Git.Owin.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Git.Domain\Git.Domain.csproj">
       <Project>{AABC3AD0-37C7-4E2F-B420-419AC1DEA321}</Project>

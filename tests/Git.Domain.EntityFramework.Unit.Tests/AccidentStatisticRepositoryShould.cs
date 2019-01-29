@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ApprovalTests;
 using ApprovalTests.Reporters;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Xunit;
 
 using static Git.Domain.EntityFramework.SortOptions<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;

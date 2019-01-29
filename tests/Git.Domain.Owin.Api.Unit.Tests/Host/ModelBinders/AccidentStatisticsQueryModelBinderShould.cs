@@ -1,5 +1,5 @@
 ﻿using AutoFixture;
-using Git.Domain.Owin.Api.Infrastructure.ModelBinders;
+using Git.Owin.Api.Infrastructure.ModelBinders;
 using System;
 using System.Net.Http;
 using System.Web.Http;
@@ -9,36 +9,40 @@ using System.Web.Http.Metadata.Providers;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.Routing;
 using FluentAssertions;
-using Git.Domain.Owin.Api.Models;
+using Git.Owin.Api.Models;
 using Xunit;
+using Git.Domain;
 
-namespace Git.Domain.Owin.Api.Unit.Tests.Host.ModelBinders
+namespace Git.Owin.Api.Unit.Tests.Host.ModelBinders
 {
     public class AccidentStatisticsQueryModelBinderShould
     {
         private readonly Fixture _autoFixture;
+        private readonly IConfiguration _configuration;
         private HttpActionContext _actionContext;
         private ModelBindingContext _modelBindingContext;
+        private readonly AccidentStatisticsQueryModelBinder _subject;
 
         public AccidentStatisticsQueryModelBinderShould()
         {
             _autoFixture = new Fixture();
+            _configuration = Domain.Configuration.Create();
+            _subject = new AccidentStatisticsQueryModelBinder(_configuration);
         }
 
         [Fact]
         public void BindModelWithSuccessfullyWithAllExpectedValues()
-        {
-            AccidentStatisticsQueryModelBinder subject = new AccidentStatisticsQueryModelBinder();
-            var expectedFromDate = new DateTime(2017,01,01);
-            var expectedToDate = new DateTime(2017, 12, 31);
+        {             
+            var expectedFromDate = new DateTime(_configuration.MaximumYear, 01,01);
+            var expectedToDate = new DateTime(_configuration.MaximumYear, 12, 31);
             var expectedSeverity = "Fatal";
             var expectedSortBy = "ByLocationDescending";
             int expectedPage = _autoFixture.Create<int>();
             int expectedPageSize = _autoFixture.Create<int>();
-            var url = $"http://localhost:9000/v1/accidentstatistics?from={expectedFromDate.ToString("O")}&to={expectedToDate.ToString("O")}&severity={expectedSeverity}&sortBy={expectedSortBy}&page={expectedPage}&pageSize={expectedPageSize}";
+            var url = $"http://localhost:9000/v1/accidents?from={expectedFromDate.ToString("O")}&to={expectedToDate.ToString("O")}&severity={expectedSeverity}&sortBy={expectedSortBy}&page={expectedPage}&pageSize={expectedPageSize}";
             CreateActionAndBindingContextWith(url);
 
-            var actual = subject.BindModel(_actionContext, _modelBindingContext);
+            var actual = _subject.BindModel(_actionContext, _modelBindingContext);
 
             actual.Should().BeTrue();
             _modelBindingContext.Model.Should().NotBeNull();
@@ -55,17 +59,16 @@ namespace Git.Domain.Owin.Api.Unit.Tests.Host.ModelBinders
         [Fact]
         public void BindModelWithDefaultValuesWhenNoQueryValuesAreSupplied()
         {
-            AccidentStatisticsQueryModelBinder subject = new AccidentStatisticsQueryModelBinder();
-            var expectedFromDate = new DateTime(2017, 01, 01);
-            var expectedToDate = new DateTime(2017, 12, 31);
+            var expectedFromDate = new DateTime(_configuration.MaximumYear, 01, 01);
+            var expectedToDate = new DateTime(_configuration.MaximumYear, 12, 31);
             var expectedSeverity = "Fatal";
             var expectedSortBy = "DateDescending";
             int expectedPage = 1;
             int expectedPageSize = 100;
-            var url = $"http://localhost:9000/v1/accidentstatistics";
+            var url = $"http://localhost:9000/v1/accidents";
             CreateActionAndBindingContextWith(url);
 
-            var actual = subject.BindModel(_actionContext, _modelBindingContext);
+            var actual = _subject.BindModel(_actionContext, _modelBindingContext);
 
             actual.Should().BeTrue();
             _modelBindingContext.Model.Should().NotBeNull();
@@ -82,12 +85,11 @@ namespace Git.Domain.Owin.Api.Unit.Tests.Host.ModelBinders
         [Fact]
         public void CreateInvalidModelStateWhenFromDateIsInIncorrectFormat()
         {
-            AccidentStatisticsQueryModelBinder subject = new AccidentStatisticsQueryModelBinder();
             var invalidDate = "BadFormat";
-            var url = $"http://localhost:9000/v1/accidentstatistics?from={invalidDate}";
+            var url = $"http://localhost:9000/v1/accidents?from={invalidDate}";
             CreateActionAndBindingContextWith(url);
 
-            var actual = subject.BindModel(_actionContext, _modelBindingContext);
+            var actual = _subject.BindModel(_actionContext, _modelBindingContext);
 
             actual.Should().BeFalse();
             _modelBindingContext.ModelState.IsValid.Should().BeFalse();
@@ -101,12 +103,11 @@ namespace Git.Domain.Owin.Api.Unit.Tests.Host.ModelBinders
         [Fact]
         public void CreateInvalidModelStateWhenToDateIsInIncorrectFormat()
         {
-            AccidentStatisticsQueryModelBinder subject = new AccidentStatisticsQueryModelBinder();
             var invalidDate = "BadFormat";
-            var url = $"http://localhost:9000/v1/accidentstatistics?to={invalidDate}";
+            var url = $"http://localhost:9000/v1/accidents?to={invalidDate}";
             CreateActionAndBindingContextWith(url);
 
-            var actual = subject.BindModel(_actionContext, _modelBindingContext);
+            var actual = _subject.BindModel(_actionContext, _modelBindingContext);
 
             actual.Should().BeFalse();
             _modelBindingContext.ModelState.IsValid.Should().BeFalse();

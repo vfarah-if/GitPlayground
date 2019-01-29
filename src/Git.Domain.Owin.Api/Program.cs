@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Web.Configuration;
-using Git.Domain.Owin.Api.Host;
+using Git.Owin.Api.Host;
 using Microsoft.Owin.Hosting;
 
-namespace Git.Domain.Owin.Api
+namespace Git.Owin.Api
 {
     [ExcludeFromCodeCoverage]
     class Program

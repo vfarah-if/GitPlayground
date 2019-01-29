@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Git.Domain.Owin.Api.Acceptance.Tests")]
+[assembly: AssemblyTitle("Git.Owin.Api.Acceptance.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Git.Domain.Owin.Api.Acceptance.Tests")]
+[assembly: AssemblyProduct("Git.Owin.Api.Acceptance.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

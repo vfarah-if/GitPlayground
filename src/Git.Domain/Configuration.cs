@@ -9,9 +9,9 @@ namespace Git.Domain
         {
         }
 
-        public string TransportForLondonBaseUrl => ConfigurationManager.AppSettings["TFLApiBaseUrl"];
-
+        public string TransportForLondonBaseUrl => ConfigurationManager.AppSettings["TFLApiBaseUrl"] ?? "https://api.tfl.gov.uk";
         public TimeSpan CacheExpirationTimeInMinutes => TimeSpan.FromMinutes(ConfigurationManager.AppSettings["CacheTimeInMinutes"].ToMinutes());
+        public int MaximumYear => Convert.ToInt32(ConfigurationManager.AppSettings["MaximumYear"] ?? "2017");
 
         public static Configuration Create()
         {

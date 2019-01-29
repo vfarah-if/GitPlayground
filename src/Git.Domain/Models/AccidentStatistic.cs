@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using Newtonsoft.Json;
 
-namespace Git.Domain.Models.TFL
+namespace Git.Domain.Models
 {
     /// <example>
     /// {

@@ -1,5 +1,5 @@
 ﻿using Git.Domain.EntityFramework.Models;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

@@ -1,23 +1,24 @@
 ﻿using Git.Domain.EntityFramework;
 using Git.Domain.EntityFramework.Models;
-using Git.Domain.Models.TFL;
-using Git.Domain.Owin.Api.Models;
+using Git.Domain.Models;
+using Git.Owin.Api.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Git.Domain;
 using static Git.Domain.EntityFramework.SortOptions<Git.Domain.EntityFramework.Models.AccidentStatisticDb>;
 
-namespace Git.Domain.Owin.Api.v2.Services
+namespace Git.Owin.Api.v2.Services
 {
     public class AccidentsService : IAccidentsService
     {
         private readonly IAccidentStatisticRepository accidentStatisticRepository;
-        private readonly Dictionary<string, EntityFramework.SortOptions<AccidentStatisticDb>> _sortOptions;
+        private readonly Dictionary<string, Domain.EntityFramework.SortOptions<AccidentStatisticDb>> _sortOptions;
 
         public AccidentsService(IAccidentStatisticRepository accidentStatisticRepository)
         {
             this.accidentStatisticRepository = accidentStatisticRepository;
-            _sortOptions = new Dictionary<string, EntityFramework.SortOptions<AccidentStatisticDb>>(StringComparer.InvariantCultureIgnoreCase)
+            _sortOptions = new Dictionary<string, Domain.EntityFramework.SortOptions<AccidentStatisticDb>>(StringComparer.InvariantCultureIgnoreCase)
             {
                 { "DateAscending", OrderBy(sortBy:x => x.Date, ascending:true)},
                 { "LocationAscending", OrderBy(x => x.Location, true)},
@@ -51,7 +52,7 @@ namespace Git.Domain.Owin.Api.v2.Services
             return result;
         }
 
-        private EntityFramework.SortOptions<AccidentStatisticDb> ParseSortBy(string sortBy)
+        private Domain.EntityFramework.SortOptions<AccidentStatisticDb> ParseSortBy(string sortBy)
         {
             return string.IsNullOrEmpty(sortBy) 
                 ? OrderBy(x => x.Date) 

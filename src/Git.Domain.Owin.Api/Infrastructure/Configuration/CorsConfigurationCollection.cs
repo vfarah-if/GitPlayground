@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Git.Domain.Owin.Api.Infrastructure.Configuration
+namespace Git.Owin.Api.Infrastructure.Configuration
 {
     [ExcludeFromCodeCoverage]
     [ConfigurationCollection(typeof(CorsConfigurationElement))]

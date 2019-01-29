@@ -88,7 +88,7 @@ describe('AccidentStatiticsService', () => {
       };
       service.get(query).subscribe();
 
-      const expectedUrl = `${environment.accidentStatisticsBaseUrl}/v1/AccidentStatistics` +
+      const expectedUrl = `${environment.accidentStatisticsBaseUrl}/v1/Accidents` +
         `?from=${fromDate.toISOString()}` +
         `&to=${toDate.toISOString()}` +
         `&severity=${severity}` +
@@ -97,7 +97,7 @@ describe('AccidentStatiticsService', () => {
         `&pageSize=${pageSize}`;
       const req: TestRequest = httpMock.expectOne(expectedUrl);
       expect(req.request.method).toBe('GET');
-      expect(req.request.url).toBe(`${environment.accidentStatisticsBaseUrl}/v1/AccidentStatistics`);
+      expect(req.request.url).toBe(`${environment.accidentStatisticsBaseUrl}/v1/Accidents`);
       expect(req.request.urlWithParams).toBe(expectedUrl);
     });
   });

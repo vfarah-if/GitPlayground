@@ -1,4 +1,4 @@
-﻿using Git.Domain.Models.TFL;
+﻿using Git.Domain.Models;
 
 namespace Git.Domain
 {

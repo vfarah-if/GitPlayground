@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Text;
+using Git.Domain;
 using Newtonsoft.Json;
 
-namespace Git.Domain.Owin.Api.Models
+namespace Git.Owin.Api.Models
 {
     public class AccidentStatisticsQuery
     {
@@ -42,10 +43,11 @@ namespace Git.Domain.Owin.Api.Models
 
         internal static AccidentStatisticsQuery CreateDefault()
         {
+            var configuration = Configuration.Create();
             return new AccidentStatisticsQuery
             {
-                From = new DateTime(DateTime.Now.Year - 1, 01, 01),
-                To = new DateTime(DateTime.Now.Year - 1, 12, 31),
+                From = new DateTime(configuration.MaximumYear, 01, 01),
+                To = new DateTime(configuration.MaximumYear, 12, 31),
                 Severity = "Fatal",
                 SortBy = "DateDescending"
             };

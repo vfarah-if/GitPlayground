@@ -10,7 +10,7 @@ import { Map, MapOptions, tileLayer, latLng, marker, icon } from 'leaflet';
 
 import { AccidentStatiticsService } from './../../api';
 import { AccidentStatistic, PagedAccidentStatistic, SeverityOptions } from './../../model';
-import { DEFAULT_FROM_DATE } from '../constants';
+import { DEFAULT_FROM_DATE, MAXIMUM_YEAR } from '../constants';
 
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
@@ -76,9 +76,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     if (this.toDate) {
       this.to = new Date(this.toDate);
     } else {
-      const now = new Date();
-      const previousYear = now.getUTCFullYear() - 1;
-      this.to = new Date(`${previousYear}-12-31T12:00:00`);
+      this.to = new Date(`${MAXIMUM_YEAR}-12-31T12:00:00`);
     }
 
     if (!this.imageOption) {

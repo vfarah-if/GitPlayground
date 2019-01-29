@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Flurl.Http;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using TestStack.BDDfy;
 using Xunit;
 
@@ -20,14 +20,6 @@ namespace Git.Domain.Acceptance.Tests
             transportForLondonClient = new TransportForLondonClient(
                 Configuration.Create(), 
                 Logger.Create());
-        }
-
-        [Fact]
-        public async void GetAccidentStatisticsDynamicFor2017()
-        {
-            var actual = await transportForLondonClient.GetAllAccidentStatisticsAsDynamic(2017);
-
-            actual.Should().NotBeNullOrEmpty();
         }
 
         [Fact]

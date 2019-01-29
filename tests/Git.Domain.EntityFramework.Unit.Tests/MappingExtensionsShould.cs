@@ -2,7 +2,7 @@
 using System.Linq;
 using AutoFixture;
 using FluentAssertions;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Xunit;
 
 namespace Git.Domain.EntityFramework.Unit.Tests

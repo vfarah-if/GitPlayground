@@ -7,10 +7,10 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.ModelBinding.Binders;
-using Git.Domain.Owin.Api.Host;
-using Git.Domain.Owin.Api.Infrastructure.ModelBinders;
-using Git.Domain.Owin.Api.Infrastructure.Configuration;
-using Git.Domain.Owin.Api.Models;
+using Git.Owin.Api.Host;
+using Git.Owin.Api.Infrastructure.ModelBinders;
+using Git.Owin.Api.Infrastructure.Configuration;
+using Git.Owin.Api.Models;
 using Microsoft.Owin;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -20,7 +20,7 @@ using System.Net.Http.Formatting;
 
 [assembly: OwinStartup(typeof(ApiStartup))]
 
-namespace Git.Domain.Owin.Api.Host
+namespace Git.Owin.Api.Host
 {
     [ExcludeFromCodeCoverage]
     public class ApiStartup
@@ -38,7 +38,8 @@ namespace Git.Domain.Owin.Api.Host
             appBuilder.UseAutofac(config);
 
             var provider = new SimpleModelBinderProvider(
-                typeof(AccidentStatisticsQuery), new AccidentStatisticsQueryModelBinder());
+                typeof(AccidentStatisticsQuery), 
+                new AccidentStatisticsQueryModelBinder(Domain.Configuration.Create()));
             config.Services.Insert(typeof(ModelBinderProvider), 0, provider);
 
             ConfigureSwagger(config);

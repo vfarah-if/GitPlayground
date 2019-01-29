@@ -120,7 +120,8 @@
   <data name="DatesBelow2005NotSupported" xml:space="preserve">
     <value>No data from below 2005</value>
   </data>
-  <data name="DatesFromCurrentYearNotSupported" xml:space="preserve">
-    <value>No data for this year or greater</value>
+  <data name="DatesFromMaxYearNotSupported" xml:space="preserve">
+    <value>No data for after {0}</value>
+    <comment>'{0}' is the maximum year configured for the system to support</comment>
   </data>
 </root>

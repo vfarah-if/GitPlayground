@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
 using Git.Domain;
-using Git.Domain.Models.TFL;
+using Git.Domain.Models;
 using Moq;
 using Moq.AutoMock;
 using Xunit;

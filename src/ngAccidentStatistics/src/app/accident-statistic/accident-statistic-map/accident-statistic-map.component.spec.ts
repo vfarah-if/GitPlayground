@@ -9,7 +9,7 @@ import {
   AccidentStatiticsServiceMock,
   getAccidentStatiticsService
 } from './../../api/testing';
-import { DEFAULT_FROM_DATE } from '../constants';
+import { DEFAULT_FROM_DATE, MAXIMUM_YEAR } from '../constants';
 import { DateTimeMockComponent } from './../../shared/date-time/testing';
 
 function headerElement(compiled): HTMLHeadingElement {
@@ -29,7 +29,6 @@ describe('AccidentStatisticMapComponent', () => {
   let component: AccidentStatisticMapComponent;
   let fixture: ComponentFixture<AccidentStatisticMapComponent>;
   let apiService: AccidentStatiticsServiceMock;
-  let lastYear: number;
   let compiled: any;
 
   beforeEach(async(() => {
@@ -48,7 +47,6 @@ describe('AccidentStatisticMapComponent', () => {
       component = fixture.componentInstance;
       apiService = getAccidentStatiticsService();
       apiService.spy_get.and.returnValues(apiService.simplePageOneOfTwoResponseSubject, apiService.simplePageTwoOfTwoResponseSubject);
-      lastYear = new Date().getFullYear() - 1;
       fixture.detectChanges();
       compiled = fixture.debugElement.nativeElement;
     });
@@ -56,7 +54,7 @@ describe('AccidentStatisticMapComponent', () => {
     it('should create with default expectations', () => {
       expect(component).toBeTruthy();
       expect(component.from).toBe(DEFAULT_FROM_DATE);
-      expect(component.to.toISOString()).toBe(`${lastYear}-12-31T12:00:00.000Z`);
+      expect(component.to.toISOString()).toBe(`${MAXIMUM_YEAR}-12-31T12:00:00.000Z`);
       expect(component.pageSize).toBe(500);
       expect(component.severityOption).toBe('Fatal');
       expect(component.imageOption).toBe('Macarbe');
@@ -143,7 +141,7 @@ describe('AccidentStatisticMapComponent', () => {
 
     it('should create exactly two friendly image markers on the map', async(() => {
       const images = imageMarkerElements(compiled);
-      const expectedHeatmapImageUrl = 'http://localhost:9876/marker-icon-2x.png';
+      const expectedHeatmapImageUrl = 'http://localhost:9876/marker-icon.png';
 
       expect(images).toBeTruthy();
       expect(images.length).toBe(2);

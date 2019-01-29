@@ -74,10 +74,10 @@
     <Compile Include="ILogger.cs" />
     <Compile Include="ITransportForLondonClient.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Models\TFL\AccidentStatistic.cs" />
-    <Compile Include="Models\TFL\Casualty.cs" />
-    <Compile Include="Models\TFL\Severity.cs" />
-    <Compile Include="Models\TFL\Vehicle.cs" />
+    <Compile Include="Models\AccidentStatistic.cs" />
+    <Compile Include="Models\Casualty.cs" />
+    <Compile Include="Models\Severity.cs" />
+    <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Paging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializationExtension.cs" />

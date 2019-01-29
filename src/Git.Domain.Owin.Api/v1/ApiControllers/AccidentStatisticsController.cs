@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
-using Git.Domain.Models.TFL;
-using Git.Domain.Owin.Api.Models;
-using Git.Domain.Owin.Api.v1.Services;
+using Git.Domain;
+using Git.Domain.Models;
+using Git.Owin.Api.Models;
+using Git.Owin.Api.v1.Services;
 using Swashbuckle.Swagger.Annotations;
 using WebApi.OutputCache.V2;
 
-namespace Git.Domain.Owin.Api.v1.ApiControllers
+namespace Git.Owin.Api.v1.ApiControllers
 {
-    [RoutePrefix("v1/accidentstatistics")]
+    [RoutePrefix("v1/accidents")]
     public class AccidentStatisticsController : ApiController
     {
         protected internal const int OneMinuteInSeconds = 60;
@@ -30,9 +30,9 @@ namespace Git.Domain.Owin.Api.v1.ApiControllers
         /// <summary>
         /// Get Accident Statistics by
         /// </summary>
-        /// <example>http://localhost:9000/v1/accidentstatistics?from=01/01/2014&page=11</example>
-        /// <param name="accidentStatisticsQuery.from">Start Date and if left null will default to the start of last year</param>
-        /// <param name="accidentStatisticsQuery.to">End Date and if left null will default to the end of last year</param>
+        /// <example>http://localhost:9000/v1/accidents?from=01/01/2014&page=11</example>
+        /// <param name="accidentStatisticsQuery.from">Start Date and if left null will default to the start of the configured maximum year</param>
+        /// <param name="accidentStatisticsQuery.to">End Date and if left null will default to the end of the configured maximum year</param>
         /// <param name="accidentStatisticsQuery.severity">Serious, Slight or Fatal, and if left null will default to Fatal</param>
         /// <param name="accidentStatisticsQuery.sortBy">Sort by options are : DateAscending, LocationAscending, DateDescending (default if left null) or LocationDescending</param>
         /// <param name="accidentStatisticsQuery.page">Current page</param>

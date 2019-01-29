@@ -7,5 +7,7 @@
         string TransportForLondonBaseUrl { get; }
 
         TimeSpan CacheExpirationTimeInMinutes { get; }
+        
+        int MaximumYear { get; }
     }
 }

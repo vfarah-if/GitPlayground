@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Autofac;
-using Git.Domain.Owin.Api.v1.Services;
-using Git.Domain.Owin.Api.v2.Services;
+using Git.Owin.Api.v1.Services;
+using Git.Owin.Api.v2.Services;
 
-namespace Git.Domain.Owin.Api.Host.Modules
+namespace Git.Owin.Api.Host.Modules
 {
     [ExcludeFromCodeCoverage]
     public class ApiModule : Module
@@ -13,5 +13,5 @@ namespace Git.Domain.Owin.Api.Host.Modules
             builder.RegisterType<AccidentStatisticsService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<AccidentsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
-}
+    }
 }
