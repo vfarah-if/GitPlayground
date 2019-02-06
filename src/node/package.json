@@ -1,0 +1,26 @@
+{
+  "name": "accident-statistics",
+  "version": "1.0.0",
+  "description": "Accident Statitics Node API",
+  "main": "app.js",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\""
+  },
+  "keywords": [
+    "TFL",
+    "Accidents",
+    "Accident Statistics"
+  ],
+  "author": "Vincent Farah",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "light-server": "^2.6.0",
+    "lite-server": "^2.4.0",
+    "typescript": "^3.3.1"
+  },
+  "dependencies": {}
+}
