@@ -1,3 +1,8 @@
+# compiled output
+/dist
+/tmp
+/out-tsc
+
 # Logs
 logs
 *.log
@@ -78,3 +83,20 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
