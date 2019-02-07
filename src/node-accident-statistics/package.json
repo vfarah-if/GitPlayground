@@ -24,7 +24,9 @@
   "devDependencies": {
     "@types/dotenv": "^6.1.0",
     "@types/express": "^4.16.1",
+    "@types/express-session": "^1.15.11",
     "@types/fs-extra": "^5.0.4",
+    "@types/mssql": "^4.0.12",
     "@types/shelljs": "^0.8.2",
     "fs-extra": "^7.0.1",
     "nodemon": "^1.18.9",
@@ -38,6 +40,8 @@
   "dependencies": {
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mssql": "^4.3.1"
   }
 }
