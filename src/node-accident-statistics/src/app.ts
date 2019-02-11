@@ -22,8 +22,4 @@ app.set("view engine", "ejs");
 app.get("/", homeController.index);
 app.get("/accidentsAPI", accidentsAPIController.accidentsAPI);
 
-// app.use("/v1/accidents", legacyAccident.middleware;
-
-// app.use("/v2/accidents", newAccident.middleware);
-
 export default app;

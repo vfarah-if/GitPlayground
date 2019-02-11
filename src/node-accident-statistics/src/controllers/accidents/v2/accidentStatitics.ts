@@ -1,13 +1,15 @@
-import express from "express";
+import { Request, Response } from "express";
 // import * as mssql from "mssql";
 
-const app = express();
-
-app.get("/v2/accidents", (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  // tslint:disable-next-line:no-console
-  console.log("new accidents");
-  res.send(req.query);
-});
+/**
+ * GET /v2/accidents
+ * Accidents through a new mechanism page.
+ */
+export let accidents = (req: Request, res: Response) => {
+    // tslint:disable-next-line:no-console
+    console.log("new accidents");
+    res.send(req.query);
+};
 
 // app.get("/v2/accidents", (req: express.Request, res: express.Response) => {
 //   let sql = mssql;
@@ -26,5 +28,3 @@ app.get("/v2/accidents", (req: express.Request, res: express.Response, next: exp
 //     });
 //   };
 // });
-
-module.exports = app;
