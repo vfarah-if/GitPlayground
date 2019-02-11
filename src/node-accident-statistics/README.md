@@ -1,5 +1,6 @@
 ## Creating a Typescript Node project
 
+* Recomend following https://github.com/Microsoft/TypeScript-Node-Starter#typescript-node-starter to learn typescript basics and configuration basics
 * Install latest **NPM** and **VSCode**
 * Create Empty Folder and from within the folder
 * In terminal run
@@ -71,3 +72,11 @@
         npm install --save mssql
         npm install --save-dev @types/mssql
         ```
+* Debug in Node by attaching a debugger, rather than console.log https://nodejs.org/en/docs/guides/debugging-getting-started/
+* Utilising Express Middlewares https://expressjs.com/en/guide/using-middleware.html
+* Node imports and require and mapping to typescript caused a bit of confusion for me in the beginning, when I should use on or the other and how the mappings should occur. Installing the types node cleared confusions, vscode gave me the mapping through syntax. For more information look at https://blog.angular-university.io/typescript-2-type-system-how-do-type-definitions-work-in-npm-when-to-use-types-and-why-what-are-compiler-opt-in-types/ 
+    ```
+    const express = require('express')
+    ```
+* Cors and enabling Cors should be better understood with https://github.com/expressjs/cors
+* Testing through [JEST](https://jestjs.io/) based on very initial topic of README and [Supertest](https://www.npmjs.com/package/supertest)
