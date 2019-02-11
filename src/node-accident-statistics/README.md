@@ -1,6 +1,6 @@
 ## Creating a Typescript Node project
 
-* Recomend following https://github.com/Microsoft/TypeScript-Node-Starter#typescript-node-starter to learn typescript basics and configuration basics
+* Recomend following https://github.com/Microsoft/TypeScript-Node-Starter#typescript-node-starter to learn typescript basics and configuration basics as well as node concepts translated to typescript
 * Install latest **NPM** and **VSCode**
 * Create Empty Folder and from within the folder
 * In terminal run
