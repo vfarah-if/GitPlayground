@@ -1,17 +1,16 @@
 import {AccidentsQuery} from "../../src/models/accidentsQuery";
 
 describe("AccidentStatisticsQuery", () => {
-    // let accidentStatisticsQuery: AccidentsQuery;
+    let accidentStatisticsQuery: AccidentsQuery;
 
     beforeEach(() => {
-        // accidentStatisticsQuery = new AccidentsQuery();
+        accidentStatisticsQuery = new AccidentsQuery();
         process.env.MAX_YEAR = "2017";
     });
 
     it("should create a query object with all the expected default values", () => {
-        const accidentStatisticsQuery = new AccidentsQuery();
         // tslint:disable-next-line:no-console
-        console.log("Query => ", accidentStatisticsQuery.from);
+        // console.log("Query => ", accidentStatisticsQuery.from);
 
         expect(accidentStatisticsQuery).toBeTruthy();
         expect(accidentStatisticsQuery.from).toBeTruthy();
@@ -21,8 +20,7 @@ describe("AccidentStatisticsQuery", () => {
     });
 
     it("should allow sortBy to be overriden with property orderBy", () => {
-        const accidentStatisticsQuery = new AccidentsQuery();
-        accidentStatisticsQuery.orderBy = "AccidentStatisticIdDescending";
+        // accidentStatisticsQuery.orderBy = "AccidentStatisticIdDescending";
         // tslint:disable-next-line:no-console
         // console.log("Query => ", accidentStatisticsQuery);
 
