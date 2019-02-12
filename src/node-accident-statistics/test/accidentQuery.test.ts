@@ -1,10 +1,17 @@
 import { AccidentsQuery } from "../src/models/accidentsQuery";
 
 describe("AccidentStatisticsQuery", () => {
+    let accidentStatisticsQuery: AccidentsQuery;
+
+    beforeEach(() => {
+        accidentStatisticsQuery = new AccidentsQuery();
+    });
+
     it("should create a query object with all the expected default values", () => {
-        const accidentStatisticsQuery = new AccidentsQuery();
+        // const accidentStatisticsQuery = new AccidentsQuery();
         // tslint:disable-next-line:no-console
         // console.log("Query => ", accidentStatisticsQuery);
+
         expect(accidentStatisticsQuery).toBeTruthy();
         expect(accidentStatisticsQuery.from).toBeTruthy();
         expect(accidentStatisticsQuery.to).toBeTruthy();
@@ -13,12 +20,12 @@ describe("AccidentStatisticsQuery", () => {
     });
 
     it("should allow sortBy to be overriden with property orderBy", () => {
-        const accidentStatisticsQuery = new AccidentsQuery();
-
+        // const accidentStatisticsQuery = new AccidentsQuery();
         accidentStatisticsQuery.orderBy = "AccidentStatisticIdDescending";
         // tslint:disable-next-line:no-console
-        console.log("Query => ", accidentStatisticsQuery);
+        // console.log("Query => ", accidentStatisticsQuery);
 
-        expect(accidentStatisticsQuery.sortBy).toBe("AccidentStatisticIdDescending");
+        expect(accidentStatisticsQuery).toBeTruthy();
+        expect(accidentStatisticsQuery.sortBy).toBe(accidentStatisticsQuery.orderBy);
     });
 });
