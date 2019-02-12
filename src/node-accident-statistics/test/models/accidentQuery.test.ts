@@ -1,7 +1,7 @@
 import {AccidentsQuery} from "../../src/models/accidentsQuery";
 
 describe("AccidentStatisticsQuery", () => {
-    let accidentStatisticsQuery: AccidentsQuery;
+    let accidentStatisticsQuery: AccidentsQuery = new AccidentsQuery();
 
     beforeEach(() => {
         accidentStatisticsQuery = new AccidentsQuery();
@@ -20,7 +20,7 @@ describe("AccidentStatisticsQuery", () => {
     });
 
     it("should allow sortBy to be overriden with property orderBy", () => {
-        // accidentStatisticsQuery.orderBy = "AccidentStatisticIdDescending";
+        accidentStatisticsQuery.orderBy = "AccidentStatisticIdDescending";
         // tslint:disable-next-line:no-console
         // console.log("Query => ", accidentStatisticsQuery);
 
