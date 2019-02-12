@@ -39,6 +39,7 @@
     "@types/supertest": "^2.0.7",
     "fs-extra": "^7.0.1",
     "jest": "^24.1.0",
+    "nock": "^10.0.6",
     "nodemon": "^1.18.9",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.3",
@@ -55,7 +56,21 @@
     "errorhandler": "^1.5.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "moment": "^2.24.0",
     "mssql": "^4.3.1",
     "supertest": "^3.4.2"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "test",
+      "beforeEach",
+      "afterEach",
+      "typeformEmbed",
+      "jest",
+      "expect",
+      "XMLHttpRequest"
+    ]
   }
 }
