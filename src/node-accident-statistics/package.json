@@ -15,8 +15,8 @@
     "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
     "start": "npm run serve",
     "debug": "nodemon --inspect dist/src/server.js",
-    "test": "jest --forceExit --coverage --verbose",
-    "watch-test": "npm run test -- --watchAll"
+    "test": "jest --forceExit --coverage --verbose --detectOpenHandles",
+    "test-watch": "npm run test -- --watchAll"
   },
   "keywords": [
     "TFL",

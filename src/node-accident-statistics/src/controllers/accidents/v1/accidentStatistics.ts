@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AccidentsQuery } from "../../../models/accidentsQuery";
 
 /**
  * GET /v1/accidents
@@ -7,5 +8,7 @@ import { Request, Response } from "express";
 export let accidents = (req: Request, res: Response) => {
     // tslint:disable-next-line:no-console
     console.log("legacy accidents");
-    res.send(req.query);
+    let query = new AccidentsQuery();
+    query = Object.assign(query, req.query);
+    res.send(query);
 };

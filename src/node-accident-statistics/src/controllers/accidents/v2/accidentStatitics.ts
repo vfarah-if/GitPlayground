@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AccidentsQuery } from "../../../models/accidentsQuery";
 // import * as mssql from "mssql";
 
 /**
@@ -8,7 +9,9 @@ import { Request, Response } from "express";
 export let accidents = (req: Request, res: Response) => {
     // tslint:disable-next-line:no-console
     console.log("new accidents");
-    res.send(req.query);
+    let query = new AccidentsQuery();
+    query = Object.assign(query, req.query);
+    res.send(query);
 };
 
 // app.get("/v2/accidents", (req: express.Request, res: express.Response) => {
