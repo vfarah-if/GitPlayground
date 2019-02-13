@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 
-import * as accidentsAPIController from "./controllers/accidentsAPI";
-import * as homeController from "./controllers/home";
+import * as accidentsAPISummary from "./accidents/apiSummaryRenderer";
+import * as home from "./home/homeRenderer";
 
 // initialize configuration
 dotenv.config();
@@ -19,7 +19,7 @@ app.use(cors());
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "ejs");
 
-app.get("/", homeController.index);
-app.get("/accidentsAPI", accidentsAPIController.accidentsAPI);
+app.get("/", home.renderer);
+app.get("/accidentsAPISummary", accidentsAPISummary.renderer);
 
 export default app;

@@ -4,6 +4,6 @@ import { Request, Response } from "express";
  * GET /
  * Home page.
  */
-export let index = (req: Request, res: Response) => {
+export let renderer = (req: Request, res: Response) => {
     res.render("index");
 };

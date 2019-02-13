@@ -1,8 +1,8 @@
 import errorHandler from "errorhandler";
 import app from "./app";
 
-import * as legacyAccidentsController from "./controllers/accidents/v1/accidentStatistics";
-import * as newAccidentsController from "./controllers/accidents/v2/accidentStatitics";
+import * as v1AccidentsController from "./accidents/v1/controllers/accidentStatistics";
+import * as v2AccidentsController from "./accidents/v2/controllers/accidentStatitics";
 
 /**
  * Error Handler. Provides full stack - remove for production
@@ -12,8 +12,8 @@ app.use(errorHandler());
 /**
  * Accidents API.
  */
-app.get("/v1/accidents", legacyAccidentsController.accidents);
-app.get("/v2/accidents", newAccidentsController.accidents);
+app.get("/v1/accidents", v1AccidentsController.accidents);
+app.get("/v2/accidents", v2AccidentsController.accidents);
 
 /**
  * Start Express server.
