@@ -15,8 +15,7 @@
     "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
     "start": "npm run serve",
     "debug": "nodemon --inspect dist/src/server.js",
-    "jest-it": "jest --forceExit --coverage --verbose --detectOpenHandles",
-    "test": "npm run jest-it -- --runInBand",
+    "test": "jest --forceExit --coverage --verbose --detectOpenHandles",
     "test-watch": "npm run test -- --watchAll"
   },
   "keywords": [

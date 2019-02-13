@@ -18,15 +18,18 @@ app.get("/v2/accidents", v2AccidentsController.accidents);
 /**
  * Start Express server.
  */
-const server = app.listen(app.get("port"), () => {
-  // tslint:disable-next-line:no-console
-  console.log(
-    "  App is running at http://localhost:%d in %s mode",
-    app.get("port"),
-    app.get("env")
-  );
-  // tslint:disable-next-line:no-console
-  console.log("  Press CTRL-C to stop\n");
-});
+// Hack: https://blog.campvanilla.com/jest-expressjs-and-the-eaddrinuse-error-bac39356c33a
+if (process.env.NODE_ENV !== "test") {
+  app.listen(app.get("port"), () => {
+    // tslint:disable-next-line:no-console
+    console.log(
+      "  App is running at http://localhost:%d in %s mode",
+      app.get("port"),
+      app.get("env")
+    );
+    // tslint:disable-next-line:no-console
+    console.log("  Press CTRL-C to stop\n");
+  });
+}
 
-export default server;
+export default app;
