@@ -81,3 +81,4 @@
 * Cors and enabling Cors should be better understood with https://github.com/expressjs/cors
 * Testing through [JEST](https://jestjs.io/) based on very initial topic of README and [Supertest](https://www.npmjs.com/package/supertest)
 * NOTE: I suffered from this when I used JEST and wrote several tests expecting values from express. https://blog.campvanilla.com/jest-expressjs-and-the-eaddrinuse-error-bac39356c33a is the solution to running the tests sequentially
+* Debugging JEST stuff can be done with the following https://github.com/Microsoft/vscode-recipes/tree/master/debugging-jest-tests

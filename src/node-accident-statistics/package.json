@@ -50,12 +50,14 @@
     "typescript": "^3.3.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "errorhandler": "^1.5.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "mssql": "^4.3.1",
     "supertest": "^3.4.2"
@@ -72,5 +74,8 @@
       "expect",
       "XMLHttpRequest"
     ]
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
