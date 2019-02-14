@@ -20,8 +20,7 @@ export class TransportForLondonClient {
         if (!query) {
             query = new AccidentsQuery();
         }
-        // tslint:disable-next-line:no-console
-        console.log("Filtering => ", query);
+        this.log("Filtering => ", query);
         return await this.getAccidentStatistics(
             new Date(query.from),
             new Date(query.to),
@@ -65,15 +64,12 @@ export class TransportForLondonClient {
         for (let year = from.getFullYear(); year <= to.getFullYear(); year++) {
             let dataByYear = this.cache.find((item) => item.year === year);
             if (!dataByYear) {
-                // tslint:disable-next-line:no-console
-                console.log("Retrieving year data from cache or TFL live site");
                 const response = await this.getAccidentStatisticsByYear(year);
                 const cacheItem = { year, data: response.data };
                 this.cache.push(cacheItem);
                 dataByYear = cacheItem;
             } else {
-                // tslint:disable-next-line:no-console
-                console.log(`Retrieved data from cache for year ${year}`);
+                this.log(`Retrieved data from cache for year ${year}`);
             }
             if (dataByYear) {
                 dataByYear.data.forEach((item) => {
@@ -84,17 +80,12 @@ export class TransportForLondonClient {
 
         const fromAsISOString = from.toISOString();
         const toAsISOString = to.toISOString();
-        // tslint:disable-next-line:no-console
-        console.log(`Data length before filtering =>`, allAccidentStatistics.length);
+        this.log(`Data length before filtering =>`, allAccidentStatistics.length);
         const filteredAccidentStatistics = allAccidentStatistics
             .filter((item) => item.severity && item.severity === severity &&
                 item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
-        // tslint:disable-next-line:no-console
-        console.log(`Data length after filtering =>`, filteredAccidentStatistics.length);
-        // TODO: Sort the data by configured setting
-        filteredAccidentStatistics.sort((a: AccidentStatistic, b: AccidentStatistic) =>
-            compareBy(descending, (orderBy: AccidentStatistic) => orderBy.borough, a, b));
-
+        this.log(`Data length after filtering =>`, filteredAccidentStatistics.length);
+        this.sortFilteredData(filteredAccidentStatistics, sortBy);
         const result = new Paging<AccidentStatistic>();
         result.data = filteredAccidentStatistics;
         return Promise.resolve<Paging<AccidentStatistic>>(result);
@@ -117,8 +108,54 @@ export class TransportForLondonClient {
             }
         };
         const url = `${process.env.TFL_ACCIDENTS_URL}/${year}`;
-        // tslint:disable-next-line:no-console
-        console.log(`Retrieving data from '${process.env.TFL_ACCIDENTS_URL}/${year}'`);
+        this.log(`Retrieving data from live url '${process.env.TFL_ACCIDENTS_URL}/${year}'`);
         return axios.get(url, { headers });
+    }
+
+    private sortFilteredData(data: AccidentStatistic[], sortBy: SortByOptions): void {
+        this.log("Sorting data by ...");
+        switch (sortBy.toLowerCase()) {
+            case "dateascending":
+                this.log("    Sorting Date Ascending");
+                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
+                    compareBy((orderBy: AccidentStatistic) => orderBy.date, ascending, a, b));
+                break;
+            case "locationascending":
+                this.log("Location Ascending");
+                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
+                    compareBy((orderBy: AccidentStatistic) => orderBy.location, ascending, a, b));
+                break;
+            case "boroughascending":
+                this.log("    Borough Ascending");
+                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
+                    compareBy((orderBy: AccidentStatistic) => orderBy.borough, ascending, a, b));
+                break;
+            case "locationdescending":
+                this.log("    Location Descending");
+                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
+                    compareBy((orderBy: AccidentStatistic) => orderBy.location, descending, a, b));
+                break;
+            case "boroughdescending":
+                this.log("    Borough Descending");
+                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
+                    compareBy((orderBy: AccidentStatistic) => orderBy.borough, descending, a, b));
+                break;
+            case "datedescending":
+            default:
+                this.log("    Date Descending (Default)");
+                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
+                    compareBy((orderBy: AccidentStatistic) => orderBy.date, descending, a, b));
+                break;
+        }
+    }
+
+    private log(message: string, ...argument: any): void {
+        if (argument && argument.length > 0) {
+            // tslint:disable-next-line:no-console
+            console.log(message, argument);
+        } else {
+            // tslint:disable-next-line:no-console
+            console.log(message);
+        }
     }
 }

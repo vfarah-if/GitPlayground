@@ -10,6 +10,6 @@ export const compare = (direction: sortDirection, a: any, b: any): number => {
     return direction;
 };
 
-export const compareBy = (direction: sortDirection, sortBy: any, a: any, b: any): number => {
+export const compareBy = (sortBy: any, direction: sortDirection, a: any, b: any): number => {
     return compare(direction, sortBy(a), sortBy(b));
 };
