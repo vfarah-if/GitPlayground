@@ -81,14 +81,14 @@ export class TransportForLondonClient {
         const fromAsISOString = from.toISOString();
         const toAsISOString = to.toISOString();
         this.log(`Data length before filtering =>`, allAccidentStatistics.length);
-        const filteredAccidentStatistics = allAccidentStatistics
+        const filteredAccidentStatistics = new ExtendedArray<AccidentStatistic>(allAccidentStatistics
             .filter((item) =>
                 item.severity && item.severity.toLowerCase() === severity.toLowerCase() &&
-                item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
+                item.date && item.date >= fromAsISOString && item.date <= toAsISOString));
         this.log(`Data length after filtering =>`, filteredAccidentStatistics.length);
         this.sortFilteredData(filteredAccidentStatistics, sortBy);
         let result = new Paging<AccidentStatistic>();
-        result = result.generate(new ExtendedArray<AccidentStatistic>(filteredAccidentStatistics), page, pageSize);
+        result = result.generate(filteredAccidentStatistics, page, pageSize);
         return Promise.resolve<Paging<AccidentStatistic>>(result);
     }
 
