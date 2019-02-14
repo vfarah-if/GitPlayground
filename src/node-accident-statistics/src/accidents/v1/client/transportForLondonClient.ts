@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { ExtendedArray } from "./../../../arrays/extendedArray";
 import {
     AccidentsQuery,
     AccidentStatistic,
@@ -60,7 +61,6 @@ export class TransportForLondonClient {
         }
 
         const allAccidentStatistics = Array<AccidentStatistic>();
-
         for (let year = from.getFullYear(); year <= to.getFullYear(); year++) {
             let dataByYear = this.cache.find((item) => item.year === year);
             if (!dataByYear) {
@@ -82,12 +82,13 @@ export class TransportForLondonClient {
         const toAsISOString = to.toISOString();
         this.log(`Data length before filtering =>`, allAccidentStatistics.length);
         const filteredAccidentStatistics = allAccidentStatistics
-            .filter((item) => item.severity && item.severity === severity &&
+            .filter((item) =>
+                item.severity && item.severity.toLowerCase() === severity.toLowerCase() &&
                 item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
         this.log(`Data length after filtering =>`, filteredAccidentStatistics.length);
         this.sortFilteredData(filteredAccidentStatistics, sortBy);
-        const result = new Paging<AccidentStatistic>();
-        result.data = filteredAccidentStatistics;
+        let result = new Paging<AccidentStatistic>();
+        result = result.generate(new ExtendedArray<AccidentStatistic>(filteredAccidentStatistics), page, pageSize);
         return Promise.resolve<Paging<AccidentStatistic>>(result);
     }
 

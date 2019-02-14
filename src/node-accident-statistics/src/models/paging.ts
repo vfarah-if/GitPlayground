@@ -1,7 +1,7 @@
-import _ from "lodash";
+import { ExtendedArray } from "./../arrays/extendedArray";
 
-// tslint:disable-next-line:interface-name
 export class Paging<T> {
+
     public data?: T[];
     public lastPage?: number;
     public nextPage?: number;
@@ -10,23 +10,36 @@ export class Paging<T> {
     public pageSize?: number;
     public total?: number;
 
-    // public static generate(allData: T[], pageSize: number, page: number): Paging<T> {
-    //     // TODO: Validate the data being passed in
-    //     const total = allData.length;
-    //     const maxPageCount = total % pageSize != 0
-    //         ? total / pageSize + 1
-    //         : total / pageSize;
-    //     let zeroIndexedCurrentPage = page - 1;
+    public generate(allData: ExtendedArray<T>, page: number, pageSize: number): Paging<T> {
+        // TODO: Validate the data being passed in
+        const total = allData.length;
+        const maxPageCount = total % pageSize !== 0
+            ? Math.round(total / pageSize + 1)
+            : Math.round(total / pageSize);
+        let zeroIndexedCurrentPage = page - 1;
 
-    //     if (zeroIndexedCurrentPage < 0) {
-    //         zeroIndexedCurrentPage = 0;
-    //     }
+        if (zeroIndexedCurrentPage < 0) {
+            zeroIndexedCurrentPage = 0;
+        }
 
-    //     if (maxPageCount > 0 && page >= maxPageCount) {
-    //         zeroIndexedCurrentPage = maxPageCount - 1;
-    //     }
+        if (maxPageCount > 0 && page >= maxPageCount) {
+            zeroIndexedCurrentPage = maxPageCount - 1;
+        }
 
-    //     const skip = zeroIndexedCurrentPage * pageSize;
-    //     const data = allData.Skip(skip).Take(pageSize);
-    // }
+        const skip = zeroIndexedCurrentPage * pageSize;
+        const data = allData.skip(skip).take(pageSize);
+        const result = new Paging<T>();
+        result.data = data;
+        result.page = zeroIndexedCurrentPage + 1;
+        result.total = total;
+        result.pageSize = data.length;
+        result.lastPage = maxPageCount;
+        if (result.page && result.lastPage && result.page < result.lastPage) {
+            result.nextPage = result.page + 1;
+        }
+        if (result.page && result.page > 1) {
+            result.previousPage = result.page - 1;
+        }
+        return result;
+    }
 }
