@@ -1,3 +1,5 @@
+import { ascending, compareBy, descending } from "./../sort";
+
 // Remarks : Create the ability to skip and take on a normal array as a fluent extension
 export class ExtendedArray<T> extends Array<T> {
     public constructor(items?: T[]) {
@@ -23,5 +25,13 @@ export class ExtendedArray<T> extends Array<T> {
                 return true;
             }
         }));
+    }
+
+    public ascending(sortBy: any): ExtendedArray<T> {
+        return new ExtendedArray<T>(this.sort((a, b) => compareBy(sortBy, ascending, a, b)));
+    }
+
+    public descending(sortBy: any): ExtendedArray<T> {
+        return new ExtendedArray<T>(this.sort((a, b) => compareBy(sortBy, descending, a, b)));
     }
 }

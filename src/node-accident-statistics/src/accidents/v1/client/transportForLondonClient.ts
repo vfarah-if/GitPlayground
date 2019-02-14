@@ -113,39 +113,33 @@ export class TransportForLondonClient {
         return axios.get(url, { headers });
     }
 
-    private sortFilteredData(data: AccidentStatistic[], sortBy: SortByOptions): void {
+    private sortFilteredData(data: ExtendedArray<AccidentStatistic>, sortBy: SortByOptions): void {
         this.log("Sorting data by ...");
         switch (sortBy.toLowerCase()) {
             case "dateascending":
                 this.log("    Sorting Date Ascending");
-                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
-                    compareBy((orderBy: AccidentStatistic) => orderBy.date, ascending, a, b));
+                data.ascending((orderBy: AccidentStatistic) => orderBy.date);
                 break;
             case "locationascending":
                 this.log("Location Ascending");
-                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
-                    compareBy((orderBy: AccidentStatistic) => orderBy.location, ascending, a, b));
+                data.ascending((orderBy: AccidentStatistic) => orderBy.location);
                 break;
             case "boroughascending":
                 this.log("    Borough Ascending");
-                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
-                    compareBy((orderBy: AccidentStatistic) => orderBy.borough, ascending, a, b));
+                data.ascending((orderBy: AccidentStatistic) => orderBy.borough);
                 break;
             case "locationdescending":
                 this.log("    Location Descending");
-                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
-                    compareBy((orderBy: AccidentStatistic) => orderBy.location, descending, a, b));
+                data.descending((orderBy: AccidentStatistic) => orderBy.location);
                 break;
             case "boroughdescending":
                 this.log("    Borough Descending");
-                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
-                    compareBy((orderBy: AccidentStatistic) => orderBy.borough, descending, a, b));
+                data.descending((orderBy: AccidentStatistic) => orderBy.borough);
                 break;
             case "datedescending":
             default:
                 this.log("    Date Descending (Default)");
-                data.sort((a: AccidentStatistic, b: AccidentStatistic) =>
-                    compareBy((orderBy: AccidentStatistic) => orderBy.date, descending, a, b));
+                data.descending((orderBy: AccidentStatistic) => orderBy.date);
                 break;
         }
     }
