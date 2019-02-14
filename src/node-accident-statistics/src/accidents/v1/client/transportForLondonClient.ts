@@ -58,8 +58,4 @@ export class TransportForLondonClient {
     private raiseMaxYearNotSupported(maxYear: number) {
         throw new Error(`No data greater than '${maxYear}'`);
     }
-
-    private raiseRequired(field: string) {
-        throw new Error(`'${field}' must have a value`);
-    }
 }
