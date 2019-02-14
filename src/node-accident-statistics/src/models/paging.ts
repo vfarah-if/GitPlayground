@@ -11,7 +11,13 @@ export class Paging<T> {
     public total?: number;
 
     public generate(allData: ExtendedArray<T>, page: number, pageSize: number): Paging<T> {
-        // TODO: Validate the data being passed in
+        if (!allData) {
+            throw new Error("Data is required for pagination");
+        }
+
+        if (pageSize <= 0) {
+            throw new Error("Page size can not be less than or equal to zero");
+        }
         const total = allData.length;
         const maxPageCount = total % pageSize !== 0
             ? Math.round(total / pageSize + 1)

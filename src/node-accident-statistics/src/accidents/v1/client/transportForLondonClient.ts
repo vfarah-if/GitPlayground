@@ -60,7 +60,7 @@ export class TransportForLondonClient {
             to = temp;
         }
 
-        const allAccidentStatistics = Array<AccidentStatistic>();
+        const allAccidentStatistics = new ExtendedArray<AccidentStatistic>();
         for (let year = from.getFullYear(); year <= to.getFullYear(); year++) {
             let dataByYear = this.cache.find((item) => item.year === year);
             if (!dataByYear) {
@@ -81,10 +81,9 @@ export class TransportForLondonClient {
         const fromAsISOString = from.toISOString();
         const toAsISOString = to.toISOString();
         this.log(`Data length before filtering =>`, allAccidentStatistics.length);
-        const filteredAccidentStatistics = new ExtendedArray<AccidentStatistic>(allAccidentStatistics
-            .filter((item) =>
+        const filteredAccidentStatistics = allAccidentStatistics.query((item) =>
                 item.severity && item.severity.toLowerCase() === severity.toLowerCase() &&
-                item.date && item.date >= fromAsISOString && item.date <= toAsISOString));
+                item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
         this.log(`Data length after filtering =>`, filteredAccidentStatistics.length);
         this.sortFilteredData(filteredAccidentStatistics, sortBy);
         let result = new Paging<AccidentStatistic>();
@@ -140,7 +139,6 @@ export class TransportForLondonClient {
             default:
                 this.log("    Date Descending (Default)");
                 data.descending((orderBy: AccidentStatistic) => orderBy.date);
-                break;
         }
     }
 

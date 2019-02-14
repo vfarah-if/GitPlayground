@@ -11,27 +11,31 @@ export class ExtendedArray<T> extends Array<T> {
         }
     }
 
+    public query(callbackfn: (value: T, index: number, array: T[]) => any, thisArg?: any): ExtendedArray<T> {
+        return new ExtendedArray<T>(this.filter(callbackfn));
+    }
+
     public take(amount: number): ExtendedArray<T> {
-        return new ExtendedArray<T>(this.filter((x, i) => {
+        return this.query((x, i) => {
             if (i <= (amount - 1)) {
                 return true;
             }
-        }));
+        });
     }
 
     public skip(amount: number): ExtendedArray<T> {
-        return new ExtendedArray<T>(this.filter((x, i) => {
+        return this.query((x, i) => {
             if (i > (amount - 1)) {
                 return true;
             }
-        }));
+        });
     }
 
-    public ascending(sortBy: any): ExtendedArray<T> {
-        return new ExtendedArray<T>(this.sort((a, b) => compareBy(sortBy, ascending, a, b)));
+    public ascending(sortBy: any): void {
+        this.sort((a, b) => compareBy(sortBy, ascending, a, b));
     }
 
-    public descending(sortBy: any): ExtendedArray<T> {
-        return new ExtendedArray<T>(this.sort((a, b) => compareBy(sortBy, descending, a, b)));
+    public descending(sortBy: any): void  {
+        this.sort((a, b) => compareBy(sortBy, descending, a, b));
     }
 }
