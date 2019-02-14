@@ -3,32 +3,19 @@ import app from "../../../src/server";
 
 describe("GET /v1/accidents", () => {
     it("should return 200 with default query", async (done) => {
-        const response = await request(app).get("/v1/accidents").set("Accept", "application/json");
+        const response = await request(app).get("/v1/accidents");
         // tslint:disable-next-line:no-console
         // console.log("/v1/accidents Responded with => ", response);
-
-        expect(response.body.page).toBe(1);
-        expect(response.body.pageSize).toBe(100);
-        expect(response.body.sortBy).toBe("DateDescending");
-        expect(response.body.from).toBe("2017-01-01T00:00:00.000Z");
-        expect(response.body.to).toBe("2017-12-31T00:00:00.000Z");
-        expect(response.body.severity).toBe("Fatal");
+        expect(response.status).toBe(200);
         done();
     });
 
     it("should return 200 with query parameters", async (done) => {
         const response = await request(app)
-        .get("/v1/accidents?page=2&pageSize=90&orderBy=BoroughDescending&severity=Slight")
-        .set("Accept", "application/json");
+            .get("/v1/accidents?page=2&pageSize=90&orderBy=BoroughDescending&severity=Slight");
         // tslint:disable-next-line:no-console
         // console.log("/v1/accidents Responded with => ", response);
-
-        expect(response.body.page).toBe("2");
-        expect(response.body.pageSize).toBe("90");
-        expect(response.body.sortBy).toBe("BoroughDescending");
-        expect(response.body.from).toBe("2017-01-01T00:00:00.000Z");
-        expect(response.body.to).toBe("2017-12-31T00:00:00.000Z");
-        expect(response.body.severity).toBe("Slight");
+        expect(response.status).toBe(200);
         done();
     });
 });
