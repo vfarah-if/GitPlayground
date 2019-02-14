@@ -8,7 +8,7 @@ export interface AccidentStatistic {
   lon?: string;
   location?: string;
   date?: string;
-  severity?: 0 | 1 | 2;
+  severity?: string;
   borough?: string;
   casualties?: Casualty[];
   vehicles?: Vehicle[];
