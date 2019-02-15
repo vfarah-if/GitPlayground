@@ -25,7 +25,7 @@
     ```
 * Understand the [Typscript compiler options](https://www.typescriptlang.org/docs/handbook/compiler-options.html), I defaulted to the same settings I use in Angular projects but feel free to alter it anyway you feel.
 
-* [Understanding server light](https://medium.freecodecamp.org/how-you-can-use-lite-server-for-a-simple-development-web-server-33ea527013c9) for simply hosting my server untilmoving on.
+* [Understanding server light](https://medium.freecodecamp.org/how-you-can-use-lite-server-for-a-simple-development-web-server-33ea527013c9) for simply hosting my server until moving on.
 
 * Do a typescript with https://blog.risingstack.com/building-a-node-js-app-with-typescript-tutorial/
 
