@@ -16,6 +16,7 @@
     "start": "npm run serve",
     "debug": "nodemon --inspect dist/src/server.js",
     "test": "jest --forceExit --coverage --verbose --detectOpenHandles",
+    "build-test": "npm-run-all build test",
     "test-watch": "npm run test -- --watchAll"
   },
   "keywords": [

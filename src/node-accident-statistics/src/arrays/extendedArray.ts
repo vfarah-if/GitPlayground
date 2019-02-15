@@ -1,6 +1,10 @@
-import { ascending, compareBy, descending } from "./../sort";
+import { ascending, compare, compareBy, descending } from "./../sort";
 
-// Remarks : Create the ability to skip and take on a normal array as a fluent extension
+/* Remarks : Create the ability to skip, take, query and sort on a normal array as a fluent extension,
+**     faster than lodash utilising the internal sort function with a comparer, taking it closer to
+**     the native JS speed
+*/
+
 export class ExtendedArray<T> extends Array<T> {
     public constructor(items?: T[]) {
         super();
@@ -31,11 +35,29 @@ export class ExtendedArray<T> extends Array<T> {
         });
     }
 
-    public ascending(sortBy: any): void {
-        this.sort((a, b) => compareBy(sortBy, ascending, a, b));
+    public ascending(sortBy?: any): void {
+        if (sortBy) {
+            this.sort((a, b) => compareBy(sortBy, ascending, a, b));
+        } else {
+            this.sort((a, b) => compare(ascending, a, b));
+        }
     }
 
-    public descending(sortBy: any): void  {
-        this.sort((a, b) => compareBy(sortBy, descending, a, b));
+    public asc(sortBy?: any): ExtendedArray<T> {
+        this.ascending(sortBy);
+        return new ExtendedArray<T>(this);
+    }
+
+    public descending(sortBy?: any): void {
+        if (sortBy) {
+            this.sort((a, b) => compareBy(sortBy, descending, a, b));
+        } else {
+            this.sort((a, b) => compare(descending, a, b));
+        }
+    }
+
+    public desc(sortBy?: any): ExtendedArray<T> {
+        this.descending(sortBy);
+        return new ExtendedArray<T>(this);
     }
 }
