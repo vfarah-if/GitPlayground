@@ -19,9 +19,7 @@ export class Paging<T> {
             throw new Error("Page size can not be less than or equal to zero");
         }
         const total = allData.length;
-        const maxPageCount = total % pageSize !== 0
-            ? Math.round(total / pageSize + 1)
-            : Math.round(total / pageSize);
+        const maxPageCount = Math.ceil(total / pageSize);
         let zeroIndexedCurrentPage = page - 1;
 
         if (zeroIndexedCurrentPage < 0) {

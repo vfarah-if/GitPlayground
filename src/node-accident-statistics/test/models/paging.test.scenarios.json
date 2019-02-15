@@ -1,0 +1,149 @@
+[
+    {
+        "scenario": "should paginate to the first page when a negative page is assigned",
+        "data": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "pageSize": 3,
+        "page": -1,
+        "expectedPage": 1,
+        "expectedNextPage": 2,
+        "expectedLastPage": 4,
+        "expectedData": [
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "scenario": "should paginate the first page when page 1 correctly set",
+        "data": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "pageSize": 3,
+        "page": 1,
+        "expectedPage": 1,
+        "expectedNextPage": 2,
+        "expectedLastPage": 4,
+        "expectedData": [
+            1,
+            2,
+            3
+        ]
+    },
+    {
+        "scenario": "should paginate the third page when page 3 correctly set",
+        "data": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "pageSize": 3,
+        "page": 3,
+        "expectedPage": 3,
+        "expectedPreviousPage": 2,
+        "expectedNextPage": 4,
+        "expectedLastPage": 4,
+        "expectedData": [
+            7,
+            8,
+            9
+        ]
+    },
+    {
+        "scenario": "should paginate the last page when page 4 correctly set",
+        "data": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "pageSize": 3,
+        "page": 4,
+        "expectedPage": 4,
+        "expectedPreviousPage": 3,
+        "expectedLastPage": 4,
+        "expectedData": [
+            10
+        ]
+    },
+    {
+        "scenario": "should paginate to the last page when assigned a bigger page size",
+        "data": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "pageSize": 4,
+        "page": 3,
+        "expectedPage": 3,
+        "expectedPreviousPage": 2,
+        "expectedLastPage": 3,
+        "expectedData": [
+            9,
+            10
+        ]
+    },
+    {
+        "scenario": "should paginate to the last page when assigned a page greater than the last page",
+        "data": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ],
+        "pageSize": 4,
+        "page": 4,
+        "expectedPage": 3,
+        "expectedPreviousPage": 2,
+        "expectedLastPage": 3,
+        "expectedData": [
+            9,
+            10
+        ]
+    }    
+]
