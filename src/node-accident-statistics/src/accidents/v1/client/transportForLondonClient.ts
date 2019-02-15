@@ -21,7 +21,9 @@ export class TransportForLondonClient {
         if (!query) {
             query = new AccidentsQuery();
         }
+
         this.log("Filtering => ", query);
+
         return await this.getAccidentStatistics(
             new Date(query.from),
             new Date(query.to),
@@ -41,26 +43,41 @@ export class TransportForLondonClient {
         pageSize: number): Promise<Paging<AccidentStatistic>> {
 
         const maxYear = Number(process.env.MAX_YEAR);
-
-        if (from && from.getFullYear() < 2005) {
-            this.raiseDataBelow2005();
-        }
-
-        if (from && from.getFullYear() > maxYear) {
-            this.raiseMaxYearNotSupported(maxYear);
-        }
-
-        if (to && to.getFullYear() > maxYear) {
-            this.raiseMaxYearNotSupported(maxYear);
-        }
-
+        this.guardFromDate(from, maxYear);
+        this.guardToDate(to, maxYear);
         if (from > to) {
             const temp = from;
             from = to;
             to = temp;
         }
 
-        const allAccidentStatistics = new ExtendedArray<AccidentStatistic>();
+        const accidentStatistics = await this.loadAccidentStatisticsBetween(from, to);
+
+        const filteredAccidentStatistics =
+            this.filterData(accidentStatistics, severity, from.toISOString(), to.toISOString());
+
+        this.sortData(filteredAccidentStatistics, sortBy);
+        let result = new Paging<AccidentStatistic>();
+        result = result.generate(filteredAccidentStatistics, page, pageSize);
+        return Promise.resolve<Paging<AccidentStatistic>>(result);
+    }
+
+    private filterData(
+        accidentStatistics: ExtendedArray<AccidentStatistic>,
+        severity: string,
+        fromAsISOString: string,
+        toAsISOString: string): ExtendedArray<AccidentStatistic> {
+        this.log(`Data length before filtering =>`, accidentStatistics.length);
+        const result = accidentStatistics.query((item) =>
+            item.severity && item.severity.toLowerCase() === severity.toLowerCase() &&
+            item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
+        this.log(`Data length after filtering =>`, result.length);
+        return result;
+    }
+
+    private async loadAccidentStatisticsBetween(from: Date, to: Date)
+        : Promise<ExtendedArray<AccidentStatistic>> {
+        const accidentStatistics = new ExtendedArray<AccidentStatistic>();
         for (let year = from.getFullYear(); year <= to.getFullYear(); year++) {
             let dataByYear = this.cache.find((item) => item.year === year);
             if (!dataByYear) {
@@ -71,24 +88,29 @@ export class TransportForLondonClient {
             } else {
                 this.log(`Retrieved data from cache for year ${year}`);
             }
-            if (dataByYear) {
-                dataByYear.data.forEach((item) => {
-                    allAccidentStatistics.push(item);
-                });
-            }
+            dataByYear.data.forEach((item) => {
+                accidentStatistics.push(item);
+            });
         }
+        return Promise.resolve(accidentStatistics);
+    }
 
-        const fromAsISOString = from.toISOString();
-        const toAsISOString = to.toISOString();
-        this.log(`Data length before filtering =>`, allAccidentStatistics.length);
-        const filteredAccidentStatistics = allAccidentStatistics.query((item) =>
-                item.severity && item.severity.toLowerCase() === severity.toLowerCase() &&
-                item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
-        this.log(`Data length after filtering =>`, filteredAccidentStatistics.length);
-        this.sortFilteredData(filteredAccidentStatistics, sortBy);
-        let result = new Paging<AccidentStatistic>();
-        result = result.generate(filteredAccidentStatistics, page, pageSize);
-        return Promise.resolve<Paging<AccidentStatistic>>(result);
+    private guardToDate(to: Date, maxYear: number) {
+        if (to && to.getFullYear() < 2005) {
+            this.raiseDataBelow2005();
+        }
+        if (to && to.getFullYear() > maxYear) {
+            this.raiseMaxYearNotSupported(maxYear);
+        }
+    }
+
+    private guardFromDate(from: Date, maxYear: number) {
+        if (from && from.getFullYear() < 2005) {
+            this.raiseDataBelow2005();
+        }
+        if (from && from.getFullYear() > maxYear) {
+            this.raiseMaxYearNotSupported(maxYear);
+        }
     }
 
     private raiseDataBelow2005() {
@@ -112,7 +134,7 @@ export class TransportForLondonClient {
         return axios.get(url, { headers });
     }
 
-    private sortFilteredData(data: ExtendedArray<AccidentStatistic>, sortBy: SortByOptions): void {
+    private sortData(data: ExtendedArray<AccidentStatistic>, sortBy: SortByOptions): void {
         this.log("Sorting data by ...");
         switch (sortBy.toLowerCase()) {
             case "dateascending":
