@@ -11,10 +11,6 @@ export class Paging<T> {
     public total?: number;
 
     public generate(allData: ExtendedArray<T>, page: number, pageSize: number): Paging<T> {
-        if (!allData) {
-            throw new Error("Data is required for pagination");
-        }
-
         if (pageSize <= 0) {
             throw new Error("Page size can not be less than or equal to zero");
         }
@@ -32,9 +28,14 @@ export class Paging<T> {
 
         const skip = zeroIndexedCurrentPage * pageSize;
         const data = allData.skip(skip).take(pageSize);
+        const result = this.create(data, zeroIndexedCurrentPage + 1, total, maxPageCount);
+        return result;
+    }
+
+    private create(data: ExtendedArray<T>, page: number, total: number, maxPageCount: number): Paging<T> {
         const result = new Paging<T>();
         result.data = data;
-        result.page = zeroIndexedCurrentPage + 1;
+        result.page = page;
         result.total = total;
         result.pageSize = data.length;
         result.lastPage = maxPageCount;

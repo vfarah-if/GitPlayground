@@ -17,7 +17,8 @@ describe("Paging", () => {
     });
 
     it("should throw an error if pagesize of zero is assigned", () => {
-        expect(paginator.generate(new ExtendedArray([1, 2]), 1, 0))
+        const testData = new ExtendedArray([1, 2]);
+        expect(() => paginator.generate(testData, 1, 0))
             .toThrow("Page size can not be less than or equal to zero");
     });
 

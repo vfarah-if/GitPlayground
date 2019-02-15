@@ -68,11 +68,9 @@
       "it",
       "test",
       "beforeEach",
-      "afterEach",
-      "typeformEmbed",
+      "afterEach",      
       "jest",
-      "expect",
-      "XMLHttpRequest"
+      "expect"
     ]
   },
   "jest": {

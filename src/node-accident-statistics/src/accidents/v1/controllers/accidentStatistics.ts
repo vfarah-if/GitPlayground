@@ -18,7 +18,6 @@ export let accidents = (req: Request, res: Response, next: NextFunction) => {
         }).catch((error) => {
             // tslint:disable-next-line:no-console
             console.error("Unable to get statistics data from the Service", error);
-            // res.sendStatus(400);
             next(error);
         });
 };
