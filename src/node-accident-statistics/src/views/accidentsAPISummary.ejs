@@ -6,9 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Accidents Supported API</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
+    <link rel = "stylesheet"href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>         
+    <script>
+        function showToast(message, duration) {
+           Materialize.toast(message, duration);
+        }
+        
+        function showToast1(message, duration) {
+           Materialize.toast('<i>'+ message + '</i>', duration);
+        }
+        
+        function showToast2(message, duration) {
+           Materialize.toast(message, duration, 'rounded');
+        }
+        
+        function showToast3(message, duration) {
+           Materialize.toast('Hello World!', duration, '', function toastCompleted() {
+              alert('Toast dismissed!');
+           });
+        }
+     </script>    
+ </head>
 
 <body>
     <nav>
@@ -19,7 +41,8 @@
             </div>
         </div>
     </nav>
-    <div class="container">
+    
+    <div class="container">           
         <h1 class="header">Accidents Supported API List</h1>
         <p>Your future list of accidents!</p>
         <div class="section">
@@ -700,7 +723,7 @@
                         <label for = "comments">Comments</label>
                     </div>
                 </div>
-                
+               
                 <div class = "row">
                     <div class = "input-field col s12">
                         <p>
@@ -739,6 +762,245 @@
                     </div>
                 </div>           
             </form>       
+        </div>
+
+        <div class="row">
+            <div class = "row" style = "width:560px;">
+                <div class = "col s12 m12 l12" >
+                   <h5>Materialize Pagination</h5>
+                   <ul class = "pagination">
+                      <li class = "disabled"><a href = "#!">
+                         <i class = "material-icons">chevron_left</i></a></li>
+                      <li class = "active"><a href = "#!">1</a></li>
+                      <li class = "waves-effect"><a href = "#!">2</a></li>
+                      <li class = "waves-effect"><a href = "#!">3</a></li>
+                      <li class = "waves-effect"><a href = "#!">4</a></li>
+                      <li class = "waves-effect"><a href = "#!">5</a></li>
+                      <li class = "waves-effect"><a href = "#!">
+                         <i class = "material-icons">chevron_right</i></a></li>
+                   </ul>
+                </div>
+             </div>      
+        </div>
+
+        <div class="row">
+            <h4>Default Preloader</h4>
+            <div class = "progress">
+               <div class = "determinate" style = "width: 50%"></div>
+            </div>
+            
+            <h4>Indeterminate Preloader</h4>
+            <div class = "progress">
+               <div class = "indeterminate"></div>
+            </div>
+            
+            <h4>Circular Preloader</h4>
+            <div class = "preloader-wrapper big active">
+               <div class = "spinner-layer spinner-blue-only">
+                  <div class = "circle-clipper left">
+                     <div class = "circle"></div>
+                  </div>
+                  
+                  <div class = "gap-patch">
+                     <div class = "circle"></div>
+                  </div>
+                  
+                  <div class = "circle-clipper right">
+                     <div class = "circle"></div>
+                  </div>
+               </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>Simple Accordion</h4>
+            <ul class = "collapsible" data-collapsible = "accordion">
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">filter_drama</i>First Section</div>
+                  <div class = "collapsible-body"><p>This is first section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">place</i>Second Section</div>
+                  <div class = "collapsible-body"><p>This is second section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">whatshot</i>Third Section</div>
+                  <div class = "collapsible-body"><p>This is third section.</p></div>
+               </li>
+            </ul>
+            
+            <h4>Popout Accordion</h4>
+            <ul class = "collapsible popout" data-collapsible = "accordion">
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">filter_drama</i>First Section</div>
+                  <div class = "collapsible-body"><p>This is first section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">place</i>Second Section</div>
+                  <div class = "collapsible-body"><p>This is second section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">whatshot</i>Third Section</div>
+                  <div class = "collapsible-body"><p>This is third section.</p></div>
+               </li>
+            </ul>
+            
+            <h4>Accordion with Preselected Section</h4>
+            <ul class = "collapsible" data-collapsible = "accordion">
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">filter_drama</i>First Section</div>
+                  <div class = "collapsible-body"><p>This is first section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header active">
+                     <i class = "material-icons">place</i>Second Section</div>
+                  <div class = "collapsible-body"><p>This is second section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">whatshot</i>Third Section</div>
+                  <div class = "collapsible-body"><p>This is third section.</p></div>
+               </li>
+            </ul>
+            
+            <h4>Expandables</h4>
+            <ul class = "collapsible" data-collapsible = "expandable">
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">filter_drama</i>First Section</div>
+                  <div class = "collapsible-body"><p>This is first section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">place</i>Second Section</div>
+                  <div class = "collapsible-body"><p>This is second section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">whatshot</i>Third Section</div>
+                  <div class = "collapsible-body"><p>This is third section.</p></div>
+               </li>
+            </ul>	            
+        </div>
+
+        <div class="row">
+            <h3>Drop Down Demo</h3>
+            <ul id = "dropdown" class = "dropdown-content">
+                <li><a href = "#">Inbox<span class = "badge">12</span></a></li>
+                <li><a href = "#!">Unread<span class = "new badge">4</span></a></li>
+                <li><a href = "#">Sent</a></li>
+                <li class = "divider"></li>
+                <li><a href = "#">Outbox<span class = "badge">14</span></a></li>
+            </ul>
+            
+            <a class = "btn dropdown-button" href = "#" data-activates = "dropdown">Mail Box
+                <i class = "mdi-navigation-arrow-drop-down right"></i></a>	            
+        </div>
+
+        <h3>Tabs Demo</h3>
+        <div class = "row">
+            <div class = "col s12">
+                <ul class = "tabs">
+                    <li class = "tab col s3"><a href = "#inbox">Inbox</a></li>
+                    <li class = "tab col s3"><a class = "active" href = "#unread">
+                    Unread</a></li>
+                    <li class = "tab col s3 disabled"><a href = "#outbox">
+                    Outbox (Disabled)</a></li>
+                    <li class = "tab col s3"><a href = "#sent">Sent</a></li>
+                </ul>
+            </div>
+            
+            <div id = "inbox" class = "col s12">Inbox</div>
+            <div id = "unread" class = "col s12">Unread</div>
+            <div id = "outbox" class = "col s12">Outbox (Disabled)</div>
+            <div id = "sent" class = "col s12">Sent</div>
+        </div>             
+        
+        <div class="row">
+            <h3>Waves Effects Demo</h3>
+            <div class = "collection waves-color-demo">
+                <div class = "collection-item">
+                    <code class = " language-markup">Default</code>
+                    <a href = "#!" class = "waves-effect btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-light</code>
+                    <a href = "#!" class = "waves-effect waves-light btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-red</code>
+                    <a href = "#!" class = "waves-effect waves-red btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-yellow</code>
+                    <a href = "#!" class = "waves-effect waves-yellow btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-orange</code>
+                    <a href = "#!" class = "waves-effect waves-orange btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-purple</code>
+                    <a href = "#!" class = "waves-effect waves-purple btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-green</code>
+                    <a href = "#!" class = "waves-effect waves-green btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-teal</code>
+                    <a href = "#!" class = "waves-effect waves-teal btn secondary-content">
+                        Click Me!</a>
+                </div>
+            </div>            
+        </div>
+
+        <div class="row">
+            <h4>Toasts</h4>
+            <a class = "btn" onclick = "showToast('Hello World!', 3000)">Normal Alert!</a>
+            <a class = "btn" onclick = "showToast1('Hello World!', 3000)">Italic Alert!</a>
+            <a class = "btn" onclick = "showToast2('Hello World!', 3000)">Rounded Alert!</a>
+            <br/><br/>
+            <a class = "btn" onclick = "showToast3('Hello World!', 3000)">Callback Alert!</a>	  
+            
+            <h4>Tooltips</h4>
+            <a class = "btn tooltipped" data-position = "bottom" data-delay = "50"
+                data-tooltip = "I am on the bottom!">Bottom</a>
+            <a class = "btn tooltipped" data-position = "left" data-delay = "50"
+                data-tooltip = "I am on the left!">Left</a>
+            <a class = "btn tooltipped" data-position = "right" data-delay = "50"
+                data-tooltip = "I am on the right!">Right</a>
+            <a class = "btn tooltipped" data-position = "top" data-delay = "50"
+                data-tooltip = "I am on the top!">Top</a>            
         </div>
 
         <div class="row">
@@ -792,5 +1054,4 @@
         </div>         
     </footer>
 </body>
-
 </html>
