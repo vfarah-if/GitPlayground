@@ -18,6 +18,7 @@ app.use(cors());
 // Configure Express to use EJS
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "../assets")));
 
 app.get("/", home.renderer);
 app.get("/accidentsAPISummary", accidentsAPISummary.renderer);
