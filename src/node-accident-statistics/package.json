@@ -1,0 +1,80 @@
+{
+  "name": "accident-statistics",
+  "version": "1.0.0",
+  "description": "Accident Statitics Node API",
+  "main": "dist/src/server.js",
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "copy-assets": "ts-node tools/copyAssets",
+    "build": "npm-run-all clean lint tsc copy-assets",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "serve": "node dist/src/server.js",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "dev:start": "npm-run-all build start",
+    "dev": "nodemon --watch src -e ts,ejs --exec npm run dev:start",
+    "start": "npm run serve",
+    "debug": "nodemon --inspect dist/src/server.js",
+    "test": "jest --forceExit --coverage --verbose --detectOpenHandles",
+    "build-test": "npm-run-all build test",
+    "test-watch": "npm run test -- --watchAll"
+  },
+  "keywords": [
+    "TFL",
+    "Accidents",
+    "Accident Statistics"
+  ],
+  "author": "Vincent Farah",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.4",
+    "@types/dotenv": "^6.1.0",
+    "@types/errorhandler": "0.0.32",
+    "@types/express": "^4.16.1",
+    "@types/express-session": "^1.15.11",
+    "@types/fs-extra": "^5.0.4",
+    "@types/jest": "^24.0.0",
+    "@types/mssql": "^4.0.12",
+    "@types/nock": "^9.3.1",
+    "@types/node": "^10.12.24",
+    "@types/shelljs": "^0.8.2",
+    "@types/supertest": "^2.0.7",
+    "fs-extra": "^7.0.1",
+    "jest": "^24.1.0",
+    "nock": "^10.0.6",
+    "nodemon": "^1.18.9",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^2.6.3",
+    "shelljs": "^0.8.3",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
+    "errorhandler": "^1.5.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "moment": "^2.24.0",
+    "mssql": "^4.3.1",
+    "supertest": "^3.4.2"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "test",
+      "beforeEach",
+      "afterEach",
+      "jest",
+      "expect"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

@@ -1,0 +1,586 @@
+[
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 627068,
+    "lat": 51.592224,
+    "lon": 0.0224,
+    "location": "Woodford Road 30 metres north of junction with The Drive",
+    "date": "2017-11-05T18:30:00Z",
+    "severity": "Fatal",
+    "borough": "Redbridge",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 78,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Car"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 306878,
+    "lat": 51.592224,
+    "lon": 0.0224,
+    "location": "Woodford Road 30 metres north of junction with The Drive",
+    "date": "2017-11-05T18:30:00Z",
+    "severity": "Fatal",
+    "borough": "Redbridge",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 78,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Car"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 315430,
+    "lat": 51.500428,
+    "lon": -0.350423,
+    "location": "Windmill Lane 305 metres south of Worsley Close",
+    "date": "2017-09-15T11:15:00Z",
+    "severity": "Fatal",
+    "borough": "Ealing",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 36,
+        "class": "Driver",
+        "severity": "Fatal",
+        "mode": "Car",
+        "ageBand": "Adult"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 56,
+        "class": "Driver",
+        "severity": "Slight",
+        "mode": "GoodsVehicle",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "MediumGoodsVehicle"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Car"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 635620,
+    "lat": 51.500428,
+    "lon": -0.350423,
+    "location": "Windmill Lane 305 metres south of Worsley Close",
+    "date": "2017-09-15T11:15:00Z",
+    "severity": "Fatal",
+    "borough": "Ealing",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 36,
+        "class": "Driver",
+        "severity": "Fatal",
+        "mode": "Car",
+        "ageBand": "Adult"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 56,
+        "class": "Driver",
+        "severity": "Slight",
+        "mode": "GoodsVehicle",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "MediumGoodsVehicle"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Car"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 315107,
+    "lat": 51.553538,
+    "lon": -0.33402,
+    "location": "Whitton Avenue east 34 metres west of junction with Ridding Lane",
+    "date": "2017-05-27T16:08:00Z",
+    "severity": "Fatal",
+    "borough": "Ealing",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 21,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "LightGoodsVehicle"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 635297,
+    "lat": 51.553538,
+    "lon": -0.33402,
+    "location": "Whitton Avenue east 34 metres west of junction with Ridding Lane",
+    "date": "2017-05-27T16:08:00Z",
+    "severity": "Fatal",
+    "borough": "Ealing",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 21,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "LightGoodsVehicle"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 618967,
+    "lat": 51.519069,
+    "lon": -0.060119,
+    "location": "Whitechapel Road 10 metres east of junction with Fullbourne Street",
+    "date": "2017-10-12T01:00:00Z",
+    "severity": "Fatal",
+    "borough": "Tower Hamlets",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 36,
+        "class": "Driver",
+        "severity": "Serious",
+        "mode": "PoweredTwoWheeler",
+        "ageBand": "Adult"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 34,
+        "class": "Passenger",
+        "severity": "Fatal",
+        "mode": "PoweredTwoWheeler",
+        "ageBand": "Adult"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 19,
+        "class": "Pedestrian",
+        "severity": "Serious",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Motorcycle_500cc_Plus"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 298777,
+    "lat": 51.519069,
+    "lon": -0.060119,
+    "location": "Whitechapel Road 10 metres east of junction with Fullbourne Street",
+    "date": "2017-10-12T01:00:00Z",
+    "severity": "Fatal",
+    "borough": "Tower Hamlets",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 36,
+        "class": "Driver",
+        "severity": "Serious",
+        "mode": "PoweredTwoWheeler",
+        "ageBand": "Adult"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 34,
+        "class": "Passenger",
+        "severity": "Fatal",
+        "mode": "PoweredTwoWheeler",
+        "ageBand": "Adult"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 19,
+        "class": "Pedestrian",
+        "severity": "Serious",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Motorcycle_500cc_Plus"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 297972,
+    "lat": 51.516166,
+    "lon": -0.069496,
+    "location": "White Church Lane junction with Whitechapel Road",
+    "date": "2017-02-06T08:55:00Z",
+    "severity": "Fatal",
+    "borough": "Tower Hamlets",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 32,
+        "class": "Driver",
+        "severity": "Fatal",
+        "mode": "PedalCycle",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "BusOrCoach"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "PedalCycle"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 618162,
+    "lat": 51.516166,
+    "lon": -0.069496,
+    "location": "White Church Lane junction with Whitechapel Road",
+    "date": "2017-02-06T08:55:00Z",
+    "severity": "Fatal",
+    "borough": "Tower Hamlets",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 32,
+        "class": "Driver",
+        "severity": "Fatal",
+        "mode": "PedalCycle",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "BusOrCoach"
+      },
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "PedalCycle"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 627907,
+    "lat": 51.594055,
+    "lon": 0.142173,
+    "location": "Whalebone Lane north 100 metres north of junction with Collier Row Road",
+    "date": "2017-03-18T01:50:00Z",
+    "severity": "Fatal",
+    "borough": "Barking and Dagenham",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 47,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Car"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 307717,
+    "lat": 51.594055,
+    "lon": 0.142173,
+    "location": "Whalebone Lane north 100 metres north of junction with Collier Row Road",
+    "date": "2017-03-18T01:50:00Z",
+    "severity": "Fatal",
+    "borough": "Barking and Dagenham",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 47,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Car"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 315703,
+    "lat": 51.53212,
+    "lon": -0.310869,
+    "location": "Western Avenue junction with Alperton Lane",
+    "date": "2017-12-08T04:05:00Z",
+    "severity": "Fatal",
+    "borough": "Ealing",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 25,
+        "class": "Driver",
+        "severity": "Fatal",
+        "mode": "PoweredTwoWheeler",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Motorcycle_50_125cc"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 635893,
+    "lat": 51.53212,
+    "lon": -0.310869,
+    "location": "Western Avenue junction with Alperton Lane",
+    "date": "2017-12-08T04:05:00Z",
+    "severity": "Fatal",
+    "borough": "Ealing",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 25,
+        "class": "Driver",
+        "severity": "Fatal",
+        "mode": "PoweredTwoWheeler",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Motorcycle_50_125cc"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 315782,
+    "lat": 51.559342,
+    "lon": -0.290529,
+    "location": "Wembley Hill Road junction with Park Lane",
+    "date": "2017-01-10T14:15:00Z",
+    "severity": "Fatal",
+    "borough": "Brent",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 73,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "HeavyGoodsVehicle"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 635972,
+    "lat": 51.559342,
+    "lon": -0.290529,
+    "location": "Wembley Hill Road junction with Park Lane",
+    "date": "2017-01-10T14:15:00Z",
+    "severity": "Fatal",
+    "borough": "Brent",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 73,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "HeavyGoodsVehicle"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 317636,
+    "lat": 51.587927,
+    "lon": -0.235179,
+    "location": "Watford Way 20 metres south of junction with Colindeep Road",
+    "date": "2017-06-14T17:41:00Z",
+    "severity": "Fatal",
+    "borough": "Barnet",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 17,
+        "class": "Driver",
+        "severity": "Fatal",
+        "mode": "PoweredTwoWheeler",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Motorcycle_50_125cc"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 637826,
+    "lat": 51.587927,
+    "lon": -0.235179,
+    "location": "Watford Way 20 metres south of junction with Colindeep Road",
+    "date": "2017-06-14T17:41:00Z",
+    "severity": "Fatal",
+    "borough": "Barnet",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 17,
+        "class": "Driver",
+        "severity": "Fatal",
+        "mode": "PoweredTwoWheeler",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Motorcycle_50_125cc"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 317739,
+    "lat": 51.622076,
+    "lon": -0.263903,
+    "location": "Watford By-Pass 150 metres east of junction with Kenilworth Road",
+    "date": "2017-07-15T04:20:00Z",
+    "severity": "Fatal",
+    "borough": "Barnet",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 38,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Taxi"
+      }
+    ]
+  },
+  {
+    "$type": "Tfl.Api.Presentation.Entities.AccidentStats.AccidentDetail, Tfl.Api.Presentation.Entities",
+    "id": 637929,
+    "lat": 51.622076,
+    "lon": -0.263903,
+    "location": "Watford By-Pass 150 metres east of junction with Kenilworth Road",
+    "date": "2017-07-15T04:20:00Z",
+    "severity": "Fatal",
+    "borough": "Barnet",
+    "casualties": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Casualty, Tfl.Api.Presentation.Entities",
+        "age": 38,
+        "class": "Pedestrian",
+        "severity": "Fatal",
+        "mode": "Pedestrian",
+        "ageBand": "Adult"
+      }
+    ],
+    "vehicles": [
+      {
+        "$type": "Tfl.Api.Presentation.Entities.AccidentStats.Vehicle, Tfl.Api.Presentation.Entities",
+        "type": "Taxi"
+      }
+    ]
+  }
+]

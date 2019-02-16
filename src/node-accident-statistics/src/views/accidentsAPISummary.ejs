@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Accidents Supported API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel = "stylesheet"href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>         
+    <script>
+        function showToast(message, duration) {
+           Materialize.toast(message, duration);
+        }
+        
+        function showToast1(message, duration) {
+           Materialize.toast('<i>'+ message + '</i>', duration);
+        }
+        
+        function showToast2(message, duration) {
+           Materialize.toast(message, duration, 'rounded');
+        }
+        
+        function showToast3(message, duration) {
+           Materialize.toast('Hello World!', duration, '', function toastCompleted() {
+              alert('Toast dismissed!');
+           });
+        }
+     </script>    
+ </head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper grey">
+            <div class="col s12">
+                <a href="/" class="breadcrumb">Home</a>
+                <a href="#" class="breadcrumb">API Summary and Material Tutorial</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">           
+        <h1 class="header">Accidents Supported API List</h1>
+        <p>Your future list of accidents!</p>
+        <div class="section">
+            <div class="row">
+                <a class="btn" href="/v1/accidents"><i class="material-icons right">featured_play_list</i>Default Live
+                    API</a>
+                <a class="btn"
+                    href="/v1/accidents?from=2014-01-01&page=2&pageSize=20&sortBy=locationdescending&severity=Fatal"><i
+                        class="material-icons right">featured_play_list</i>Fatal accidents from 2014 to the maximum
+                    date</a>
+            </div>
+            <div class="row">
+                <a class="btn" href="/v2/accidents"><i class="material-icons right">new_releases</i>New API</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card-panel">
+            <h5>Raised Buttons</h5>
+            <button class="btn waves-effect waves-teal">Add</button></td>
+            <button class="btn waves-effect waves-teal">
+                <i class="material-icons left">add</i>Add</button></td>
+            <button class="btn waves-effect waves-teal">
+                <i class="material-icons right">add</i>Add</button></td>
+            <button class="btn waves-effect waves-teal disabled">Add</button></td>
+        </div>
+
+        <div class="card-panel">
+            <h5>Flat Buttons</h5>
+            <button class="btn-flat waves-effect waves-teal">Add</button></td>
+            <button class="btn-flat waves-effect waves-teal disabled">
+                <i class="material-icons left">add</i>Add</button></td>
+        </div>
+
+        <div class="card-panel">
+            <h5>Floating Buttons</h5>
+            <a class="btn-floating waves-effect waves-light red">
+                <i class="material-icons">add</i></a>
+            <a class="btn-floating waves-effect waves-light red disabled">
+                <i class="material-icons">add</i></a>
+        </div>
+
+        <div class="card-panel">
+            <h5>Primary Buttons</h5>
+            <button class="btn waves-effect waves-light red" type="submit">Send
+                <i class="material-icons right">send</i></button>
+            <button class="btn waves-effect waves-light red disabled" type="submit">Cancel
+                <i class="material-icons right">cancel</i></button>
+        </div>
+
+        <div class="card-panel">
+            <h5>Large Buttons</h5>
+            <a class="btn-floating btn-large waves-effect waves-light red">
+                <i class="material-icons">add</i></a>
+            <a class="btn-floating btn-large waves-effect waves-light red disabled">
+                <i class="material-icons">add</i></a>
+        </div>
+
+        <ul>
+            <li class="red lighten-5">
+                <p>Using red lighten-5</p>
+            </li>
+            <li class="red lighten-4">
+                <p>Using red lighten-4</p>
+            </li>
+            <li class="red lighten-3">
+                <p>Using red lighten-3</p>
+            </li>
+            <li class="red lighten-2">
+                <p>Using red lighten-2</p>
+            </li>
+            <li class="red lighten-1">
+                <p>Using red lighten-1</p>
+            </li>
+            <li class="red">
+                <p>Using red</p>
+            </li>
+            <li class="red darken-1">
+                <p>Using red darken-1</p>
+            </li>
+            <li class="red darken-2">
+                <p>Using red darken-2</p>
+            </li>
+            <li class="red darken-3">
+                <p>Using red darken-3</p>
+            </li>
+            <li class="red darken-4">
+                <p>Using red darken-4</p>
+            </li>
+            <li class="red accent-1">
+                <p>Using red accent-1</p>
+            </li>
+            <li class="red accent-2">
+                <p>Using red accent-2</p>
+            </li>
+            <li class="red accent-3">
+                <p>Using red accent-3</p>
+            </li>
+            <li class="red accent-4">
+                <p>Using red accent-4</p>
+            </li>
+        </ul>
+
+        <div class="teal">
+            <h2>Mobile First Design Demo</h2>
+            <p>Resize the window to see the effect!</p>
+        </div>
+
+        <hr />
+        <div class="row">
+            <div class="col m1 grey center">1</div>
+            <div class="col m1 center">2</div>
+            <div class="col m1 grey center">3</div>
+            <div class="col m1 center">4</div>
+            <div class="col m1 grey center">5</div>
+            <div class="col m1 center">6</div>
+            <div class="col m1 center grey">7</div>
+            <div class="col m1 center">8</div>
+            <div class="col m1 center grey">9</div>
+            <div class="col m1 center">10</div>
+            <div class="col m1 center grey">11</div>
+            <div class="col m1 center">12</div>
+        </div>
+
+        <div class="row">
+            <div class="col m4 l3 yellow">
+                <p>This text will use 12 columns on a small screen, 4 on a medium screen (m4),
+                    and 3 on a large screen (l3).</p>
+            </div>
+
+            <div class="col s4 m8 l9 grey">
+                <p>This text will use 4 columns on a small screen (s4), 8 on a medium screen
+                    (m8), and 9 on a large screen (l9).</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>Materialize Utilities</h2>
+
+            <hr />
+            <h3>Color Utilities Demo</h3>
+            <div class="red">
+                <p>The latest versions of Apple Safari, Google Chrome, Mozilla Firefox, and Opera
+                    all support many HTML5 features and Internet Explorer 9.0 will also have
+                    support for some HTML5 functionality.</p>
+            </div>
+
+            <div class="green">
+                <p>The mobile web browsers that come pre-installed on iPhones, iPads, and Android
+                    phones all have excellent support for HTML5.</p>
+            </div>
+
+            <h3>Alignment Utilities Demo</h3>
+            <div class="card-panel valign-wrapper">
+                <p class="valign">Vertically Aligned Text</p>
+            </div>
+
+            <div class="card-panel">
+                <div>
+                    <p class="left-align">Left Aligned Text</p>
+                </div>
+                <div>
+                    <p class="right-align">Right Aligned Text</p>
+                </div>
+                <div>
+                    <p class="center-align">Center Aligned Text</p>
+                </div>
+            </div>
+
+            <h3>Hide Utilities Demo</h3>
+            <div class="hide">
+                <p>Hidden on all devices</p>
+            </div>
+
+            <div class="hide-on-small-only">
+                <p>Hidden on mobile devices</p>
+            </div>
+
+            <h3>Formatting Utilities Demo</h3>
+            <div class="card-panel">
+                <p class="truncate">The latest versions of Apple Safari, Google Chrome,
+                    Mozilla Firefox, and Opera all support many HTML5 features and Internet
+                    Explorer 9.0 will also have support for some HTML5 functionality.</p>
+            </div>
+
+            <div class="card-panel hoverable">
+                <p>The mobile web browsers that come pre-installed on iPhones, iPads, and
+                    Android phones all have excellent support for HTML5.</p>
+            </div>
+
+            <h3>Center Utility Demo</h3>
+            <div class="card-panel center">
+                <img src="images/html5-mini-logo.jpg" alt="html5">
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>Materialize Shadow Examples</h2>
+
+            <hr />
+            <div class="card-panel">
+                <p><b>TODO:</b> Learn HTML5</p>
+            </div>
+
+            <div class="z-depth-1">
+                <p><b>TODO:</b> Learn HTML5</p>
+            </div>
+
+            <div class="z-depth-2">
+                <p><b>TODO:</b> Learn HTML5</p>
+            </div>
+
+            <div class="z-depth-3">
+                <p><b>TODO:</b> Learn HTML5</p>
+            </div>
+
+            <div class="z-depth-4">
+                <p><b>TODO:</b> Learn HTML5</p>
+            </div>
+
+            <div class="z-depth-5">
+                <p><b>TODO:</b> Learn HTML5</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>Tables Demo</h2>
+
+            <hr />
+            <h3>Simple Table</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Class</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Mahesh Parashar</td>
+                        <td>VI</td>
+                        <td>A</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rahul Sharma</td>
+                        <td>VI</td>
+                        <td>B</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mohan Sood</td>
+                        <td>VI</td>
+                        <td>A</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Stripped Table with borders</h3>
+            <table class="striped bordered">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Class</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Mahesh Parashar</td>
+                        <td>VI</td>
+                        <td>A</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rahul Sharma</td>
+                        <td>VI</td>
+                        <td>B</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mohan Sood</td>
+                        <td>VI</td>
+                        <td>A</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+            <h3>Centered Table</h3>
+            <table class="centered">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Class</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Mahesh Parashar</td>
+                        <td>VI</td>
+                        <td>A</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rahul Sharma</td>
+                        <td>VI</td>
+                        <td>B</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mohan Sood</td>
+                        <td>VI</td>
+                        <td>A</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Responsive table</h3>
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Class</th>
+                        <th>Data #1</th>
+                        <th>Data #2</th>
+                        <th>Data #3</th>
+                        <th>Data #4</th>
+                        <th>Data #5</th>
+                        <th>Data #6</th>
+                        <th>Data #7</th>
+                        <th>Data #8</th>
+                        <th>Data #9</th>
+                        <th>Data #10</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mahesh Parashar</td>
+                        <td>VI</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>19</td>
+                        <td>20</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rahul Sharma</td>
+                        <td>VI</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>19</td>
+                        <td>20</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mohan Sood</td>
+                        <td>VI</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>19</td>
+                        <td>20</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <h2>Typography Demo</h2>
+            <hr />
+
+            <h3>Headings</h3>
+            <div class="card-panel">
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+                <h5>Heading 5</h5>
+                <h6>Heading 6</h6>
+            </div>
+
+            <h3>Block Quotes</h3>
+            <div class="card-panel">
+                <blockquote>
+                    The latest versions of Apple Safari, Google Chrome, Mozilla Firefox, and Opera
+                    all support many HTML5 features and Internet Explorer 9.0 will also have
+                    support for some HTML5 functionality.
+                </blockquote>
+            </div>
+
+            <h3>Responsive free-flow text</h3>
+            <div class="card-panel">
+                <p class="flow-text">
+                    The latest versions of Apple Safari, Google Chrome, Mozilla Firefox, and Opera
+                    all support many HTML5 features and Internet Explorer 9.0 will also have
+                    support for some HTML5 functionality.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>Badges Demo</h2>
+            <hr />
+
+            <h3>Badges in List</h3>
+            <div class="collection">
+                <a href="#" class="collection-item">Inbox<span class="badge">12</span></a>
+                <a href="#" class="collection-item">Unread<span class="new badge">4</span></a>
+                <a href="#" class="collection-item">Sent</a>
+                <a href="#" class="collection-item">Outbox<span class="badge">14</span></a>
+            </div>
+
+            <h3>Badges in dropdowns</h3>
+            <ul id="dropdown" class="dropdown-content">
+                <li><a href="#">Inbox<span class="badge">12</span></a></li>
+                <li><a href="#!">Unread<span class="new badge">4</span></a></li>
+                <li><a href="#">Sent</a></li>
+                <li><a href="#">Outbox<span class="badge">14</span></a></li>
+            </ul>
+
+            <a class="btn dropdown-button" href="#" data-activates="dropdown">
+                Dropdown<i class="mdi-navigation-arrow-drop-down right"></i></a>
+            <h3>Badges in Navigation</h3>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="" class="brand-logo">TutorialsPoint</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="">Inbox</a></li>
+                        <li><a href="">Unread<span class="new badge">4</span></a></li>
+                        <li><a href="#">Sent</a></li>
+                        <li><a href="#">Outbox</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card blue-grey lighten-4">
+                        <div class="card-content">
+                            <span class="card-title">
+                                <h3>Learn HTML5</h3>
+                            </span>
+                            <p>HTML5 is the next major revision of the HTML standard superseding
+                                HTML 4.01, XHTML 1.0, and XHTML 1.1. HTML5 is a standard for
+                                structuring and presenting content on the World Wide Web.</p>
+                        </div>
+
+                        <div class="card-action">
+                            <button class="btn waves-effect waves-light blue-grey">
+                                <i class="material-icons">share</i></button>
+                            <a class="right blue-grey-text" href="http://www.tutorialspoint.com">
+                                www.tutorialspoint.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="card blue-grey lighten-4">
+                        <div class="card-image">
+                            <img src="images/html5-mini-logo.jpg">
+                        </div>
+
+                        <div class="card-content">
+                            <p>HTML5 is the next major revision of the HTML standard superseding
+                                HTML 4.01, XHTML 1.0, and XHTML 1.1. HTML5 is a standard for
+                                structuring and presenting content on the World Wide Web.</p>
+                        </div>
+
+                        <div class="card-action">
+                            <button class="btn waves-effect waves-light blue-grey">
+                                <i class="material-icons">share</i></button>
+                            <a class="right blue-grey-text" href="http://www.tutorialspoint.com">
+                                www.tutorialspoint.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card blue-grey lighten-4">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="images/html5-mini-logo.jpg">
+                        </div>
+
+                        <div class="card-content activator">
+                            <p>Click the image to reveal more information.</p>
+                        </div>
+
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">HTML5
+                                <i class="material-icons right">close</i></span>
+                            <p>HTML5 is the next major revision of the HTML standard superseding
+                                HTML 4.01, XHTML 1.0, and XHTML 1.1. HTML5 is a standard for
+                                structuring and presenting content on the World Wide Web.</p>
+                        </div>
+
+                        <div class="card-action">
+                            <button class="btn waves-effect waves-light blue-grey">
+                                <i class="material-icons">share</i></button>
+                            <a class="right blue-grey-text" href="http://www.tutorialspoint.com">
+                                www.tutorialspoint.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m3">
+                    <div class="card-panel teal">
+                        <span class="white-text">Simple Card</span>
+                    </div>
+                </div>
+
+                <div class="col s12 m3">
+                    <div class="card small teal">
+                        <span class="white-text">Small Card</span>
+                    </div>
+                </div>
+
+                <div class="col s12 m3">
+                    <div class="card medium teal">
+                        <span class="white-text">Medium Card</span>
+                    </div>
+                </div>
+
+                <div class="col s12 m3">
+                    <div class="card large teal">
+                        <span class="white-text">Large Card</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3>Chips Demo</h3>
+            <div class="chip">
+                <img alt="HTML5" src="images/html5-mini-logo.jpg">HTML 5
+            </div>
+
+            <div class="chip">HTML 5<i class="material-icons">close</i></div>
+        </div>
+
+        <div class="row">
+            <h3>Simple Collection</h3><hr/>
+            <ul class = "collection">
+                <li class = "collection-item">HTML 5</li>
+                <li class = "collection-item">JQuery</li>
+                <li class = "collection-item">JavaScript</li>
+                <li class = "collection-item">CSS</li>
+            </ul>
+            
+            <h3>Collection of Links</h3><hr/>
+            <div class = "collection">
+                <a href = "#" class = "collection-item">HTML 5</a>
+                <a href = "#!" class = "collection-item active">JQuery</a>
+                <a href = "#!" class = "collection-item">JavaScript</a>
+                <a href = "#!" class = "collection-item">CSS</a>
+            </div>
+            
+            <h3>Collection with Header</h3><hr/>
+            <ul class = "collection with-header">
+                <li class = "collection-header"><h3>Front End Technologies</h3></li>
+                <li class = "collection-item">HTML 5</li>
+                <li class = "collection-item">JQuery</li>
+                <li class = "collection-item">JavaScript</li>
+                <li class = "collection-item">CSS</li>
+            </ul>
+            
+            <h3>Collection with Secondary Content</h3><hr/>
+            <ul class = "collection">         
+                <li class = "collection-item">
+                    <div>HTML 5<a href = "#!" class = "secondary-content">
+                        <i class = "material-icons">cloud</i></a></div></li>
+                <li class = "collection-item">
+                    <div>JQuery<a href = "#!" class = "secondary-content">
+                        <i class = "material-icons">cloud</i></a></div></li>
+                <li class = "collection-item">
+                    <div>JavaScript<a href = "#!" class = "secondary-content">
+                        <i class = "material-icons">cloud</i></a></div></li>
+                <li class = "collection-item">
+                    <div>CSS<a href = "#!" class = "secondary-content">
+                        <i class = "material-icons">cloud</i></a></div></li>
+            </ul>
+            
+            <h3>Collection with Avatar</h3><hr/>
+            <ul class = "collection">         
+                <li class = "collection-item avatar">
+                    <img alt = "HTML5" src = "images/html5-mini-logo.jpg" class = "circle">
+                    <span class = "title">HTML5</span>
+                    <p>HTML5 is the next major revision of the HTML standard superseding
+                        HTML 4.01, XHTML 1.0, and XHTML 1.1.<br/> HTML5 is a standard for
+                        structuring and presenting content on the World Wide Web.</p>
+                    <a href = "#!" class = "secondary-content"><i class = "material-icons">
+                        grade</i></a>
+                </li>
+                
+                <li class = "collection-item avatar">
+                    <i class = "material-icons circle green">insert_chart</i>
+                    <span class = "title">HighCharts</span>
+                    <p></p>
+                    <a href = "#!" class = "secondary-content"><i class = "material-icons">
+                        grade</i></a>
+                </li>
+            </ul>
+            
+            <h3>Collection with dismissible content</h3><hr/>
+            <ul class = "collection">
+                <li class = "collection-item dismissable">HTML 5</li>
+                <li class = "collection-item dismissable">JQuery</li>
+                <li class = "collection-item dismissable">JavaScript</li>
+                <li class = "collection-item dismissable">CSS</li>
+            </ul>
+        </div>
+
+        <div class = "row">
+            <h3>Forms</h3><hr/>
+            <form class = "col s12">
+                <div class = "row">
+                    <div class = "input-field col s6">
+                        <i class = "material-icons prefix">account_circle</i>
+                        <input placeholder = "Username" value = "Mahesh" id = "name"
+                        type = "text" class = "active validate" required />
+                        <label for = "name">Username</label>
+                    </div>
+                    
+                    <div class = "input-field col s6">      
+                        <label for = "password">Password</label>
+                        <input id = "password" type = "password" placeholder = "Password"
+                        class = "validate" required />          
+                    </div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <input placeholder = "Email" id = "email" type = "email"
+                        class = "validate">
+                        <label for = "email">Email</label>
+                    </div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <i class = "material-icons prefix">mode_edit</i>
+                        <textarea id = "address" class = "materialize-textarea"></textarea>
+                        <label for = "address">Address</label>
+                    </div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <input placeholder = "Comments (Disabled)" id = "comments" type = "text" disabled />
+                        <label for = "comments">Comments</label>
+                    </div>
+                </div>
+               
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <p>
+                            <input id = "married" type = "checkbox" checked = "checked" />
+                            <label for = "married">Married</label>
+                        </p>
+                        
+                        <p>
+                            <input id = "single" type = "checkbox" class = "filled-in" />
+                            <label for = "single">Single</label>
+                        </p>
+                        
+                        <p>
+                            <input id = "dontknow" type = "checkbox" disabled = "disabled" />              
+                            <label for = "dontknow">Don't know (Disabled)</label>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <p>
+                            <input id = "male" type = "radio" name = "gender" value = "male" checked />
+                            <label for = "male">Male</label>
+                        </p>
+                        
+                        <p>
+                            <input id = "female" type = "radio" name = "gender" value = "female" checked />
+                            <label for = "female">Female</label>
+                        </p>
+                        
+                        <p>
+                            <input id = "dontknow1" type = "radio" name = "gender" value = "female" disabled />
+                            <label for = "dontknow1">Don't know (Disabled)</label>
+                        </p>
+                    </div>
+                </div>           
+            </form>       
+        </div>
+
+        <div class="row">
+            <div class = "row" style = "width:560px;">
+                <div class = "col s12 m12 l12" >
+                   <h5>Materialize Pagination</h5>
+                   <ul class = "pagination">
+                      <li class = "disabled"><a href = "#!">
+                         <i class = "material-icons">chevron_left</i></a></li>
+                      <li class = "active"><a href = "#!">1</a></li>
+                      <li class = "waves-effect"><a href = "#!">2</a></li>
+                      <li class = "waves-effect"><a href = "#!">3</a></li>
+                      <li class = "waves-effect"><a href = "#!">4</a></li>
+                      <li class = "waves-effect"><a href = "#!">5</a></li>
+                      <li class = "waves-effect"><a href = "#!">
+                         <i class = "material-icons">chevron_right</i></a></li>
+                   </ul>
+                </div>
+             </div>      
+        </div>
+
+        <div class="row">
+            <h4>Default Preloader</h4>
+            <div class = "progress">
+               <div class = "determinate" style = "width: 50%"></div>
+            </div>
+            
+            <h4>Indeterminate Preloader</h4>
+            <div class = "progress">
+               <div class = "indeterminate"></div>
+            </div>
+            
+            <h4>Circular Preloader</h4>
+            <div class = "preloader-wrapper big active">
+               <div class = "spinner-layer spinner-blue-only">
+                  <div class = "circle-clipper left">
+                     <div class = "circle"></div>
+                  </div>
+                  
+                  <div class = "gap-patch">
+                     <div class = "circle"></div>
+                  </div>
+                  
+                  <div class = "circle-clipper right">
+                     <div class = "circle"></div>
+                  </div>
+               </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>Simple Accordion</h4>
+            <ul class = "collapsible" data-collapsible = "accordion">
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">filter_drama</i>First Section</div>
+                  <div class = "collapsible-body"><p>This is first section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">place</i>Second Section</div>
+                  <div class = "collapsible-body"><p>This is second section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">whatshot</i>Third Section</div>
+                  <div class = "collapsible-body"><p>This is third section.</p></div>
+               </li>
+            </ul>
+            
+            <h4>Popout Accordion</h4>
+            <ul class = "collapsible popout" data-collapsible = "accordion">
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">filter_drama</i>First Section</div>
+                  <div class = "collapsible-body"><p>This is first section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">place</i>Second Section</div>
+                  <div class = "collapsible-body"><p>This is second section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">whatshot</i>Third Section</div>
+                  <div class = "collapsible-body"><p>This is third section.</p></div>
+               </li>
+            </ul>
+            
+            <h4>Accordion with Preselected Section</h4>
+            <ul class = "collapsible" data-collapsible = "accordion">
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">filter_drama</i>First Section</div>
+                  <div class = "collapsible-body"><p>This is first section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header active">
+                     <i class = "material-icons">place</i>Second Section</div>
+                  <div class = "collapsible-body"><p>This is second section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">whatshot</i>Third Section</div>
+                  <div class = "collapsible-body"><p>This is third section.</p></div>
+               </li>
+            </ul>
+            
+            <h4>Expandables</h4>
+            <ul class = "collapsible" data-collapsible = "expandable">
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">filter_drama</i>First Section</div>
+                  <div class = "collapsible-body"><p>This is first section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">place</i>Second Section</div>
+                  <div class = "collapsible-body"><p>This is second section.</p></div>
+               </li>
+               
+               <li>
+                  <div class = "collapsible-header">
+                     <i class = "material-icons">whatshot</i>Third Section</div>
+                  <div class = "collapsible-body"><p>This is third section.</p></div>
+               </li>
+            </ul>	            
+        </div>
+
+        <div class="row">
+            <h3>Drop Down Demo</h3>
+            <ul id = "dropdown" class = "dropdown-content">
+                <li><a href = "#">Inbox<span class = "badge">12</span></a></li>
+                <li><a href = "#!">Unread<span class = "new badge">4</span></a></li>
+                <li><a href = "#">Sent</a></li>
+                <li class = "divider"></li>
+                <li><a href = "#">Outbox<span class = "badge">14</span></a></li>
+            </ul>
+            
+            <a class = "btn dropdown-button" href = "#" data-activates = "dropdown">Mail Box
+                <i class = "mdi-navigation-arrow-drop-down right"></i></a>	            
+        </div>
+
+        <h3>Tabs Demo</h3>
+        <div class = "row">
+            <div class = "col s12">
+                <ul class = "tabs">
+                    <li class = "tab col s3"><a href = "#inbox">Inbox</a></li>
+                    <li class = "tab col s3"><a class = "active" href = "#unread">
+                    Unread</a></li>
+                    <li class = "tab col s3 disabled"><a href = "#outbox">
+                    Outbox (Disabled)</a></li>
+                    <li class = "tab col s3"><a href = "#sent">Sent</a></li>
+                </ul>
+            </div>
+            
+            <div id = "inbox" class = "col s12">Inbox</div>
+            <div id = "unread" class = "col s12">Unread</div>
+            <div id = "outbox" class = "col s12">Outbox (Disabled)</div>
+            <div id = "sent" class = "col s12">Sent</div>
+        </div>             
+        
+        <div class="row">
+            <h3>Waves Effects Demo</h3>
+            <div class = "collection waves-color-demo">
+                <div class = "collection-item">
+                    <code class = " language-markup">Default</code>
+                    <a href = "#!" class = "waves-effect btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-light</code>
+                    <a href = "#!" class = "waves-effect waves-light btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-red</code>
+                    <a href = "#!" class = "waves-effect waves-red btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-yellow</code>
+                    <a href = "#!" class = "waves-effect waves-yellow btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-orange</code>
+                    <a href = "#!" class = "waves-effect waves-orange btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-purple</code>
+                    <a href = "#!" class = "waves-effect waves-purple btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-green</code>
+                    <a href = "#!" class = "waves-effect waves-green btn secondary-content">
+                        Click Me!</a>
+                </div>
+                
+                <div class = "collection-item">
+                    <code class = " language-markup">waves-teal</code>
+                    <a href = "#!" class = "waves-effect waves-teal btn secondary-content">
+                        Click Me!</a>
+                </div>
+            </div>            
+        </div>
+
+        <div class="row">
+            <h4>Toasts</h4>
+            <a class = "btn" onclick = "showToast('Hello World!', 3000)">Normal Alert!</a>
+            <a class = "btn" onclick = "showToast1('Hello World!', 3000)">Italic Alert!</a>
+            <a class = "btn" onclick = "showToast2('Hello World!', 3000)">Rounded Alert!</a>
+            <br/><br/>
+            <a class = "btn" onclick = "showToast3('Hello World!', 3000)">Callback Alert!</a>	  
+            
+            <h4>Tooltips</h4>
+            <a class = "btn tooltipped" data-position = "bottom" data-delay = "50"
+                data-tooltip = "I am on the bottom!">Bottom</a>
+            <a class = "btn tooltipped" data-position = "left" data-delay = "50"
+                data-tooltip = "I am on the left!">Left</a>
+            <a class = "btn tooltipped" data-position = "right" data-delay = "50"
+                data-tooltip = "I am on the right!">Right</a>
+            <a class = "btn tooltipped" data-position = "top" data-delay = "50"
+                data-tooltip = "I am on the top!">Top</a>            
+        </div>
+
+        <div class="row">
+            <h3>Images Demo</h3>
+            <div class="card-panel">
+                <img src="images/html5-mini-logo.jpg" alt="" class="responsive-img">
+            </div>
+
+            <div class="card-panel">
+                <img src="images/html5-mini-logo.jpg" alt="" class="circle responsive-img">
+            </div>
+
+            <h3>Responsive Embeded Video Demo</h3>
+            <div class="video-container">
+                <iframe width="540" height="200" src="https://www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0"
+                    allowfullscreen></iframe>
+            </div>
+
+            <div class="video-container">
+                <video width="300" height="200" controls autoplay>
+                    <source src="http://www.tutorialspoint.com/html5/foo.ogg" type="video/ogg" />
+                    <source src="http://www.tutorialspoint.com/html5/foo.mp4" type="video/mp4" />
+                    Your browser does not support the video element.
+                </video>
+            </div>
+        </div>
+    </div>
+    <footer class = "page-footer grey">
+        <div class = "row">
+            <div class = "col s12 m6 l6">
+                <h5 class = "white-text">Footer Content</h5>
+            </div>
+            
+            <div class = "col">
+                <ul>
+                    <li><a href = "#" class = "grey-text text-lighten-4 right">
+                    Help</a></li>
+                    <li><a href = "#" class = "grey-text text-lighten-4 right">
+                    Privacy and Terms</a></li>
+                    <li><a href = "#" class = "grey-text text-lighten-4 right">
+                    User Agreement</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class = "footer-copyright">
+            <div class = "container">
+                © 2016 Copyright Information
+                <a class = "grey-text text-lighten-4 right" href = "#!">Links</a>
+            </div>
+        </div>         
+    </footer>
+</body>
+</html>
