@@ -34,6 +34,26 @@ export class TransportForLondonClient {
         );
     }
 
+    public async loadAccidentStatisticsBetween(from: Date, to: Date)
+        : Promise<ExtendedArray<AccidentStatistic>> {
+        const accidentStatistics = new ExtendedArray<AccidentStatistic>();
+        for (let year = from.getFullYear(); year <= to.getFullYear(); year++) {
+            let dataByYear = this.cache.find((item) => item.year === year);
+            if (!dataByYear) {
+                const response = await this.getAccidentStatisticsByYear(year);
+                const cacheItem = { year, data: response.data };
+                this.cache.push(cacheItem);
+                dataByYear = cacheItem;
+            } else {
+                this.log(`Retrieved data from cache for year ${year}`);
+            }
+            dataByYear.data.forEach((item) => {
+                accidentStatistics.push(item);
+            });
+        }
+        return Promise.resolve(accidentStatistics);
+    }
+
     private async getAccidentStatistics(
         from: Date,
         to: Date,
@@ -73,26 +93,6 @@ export class TransportForLondonClient {
             item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
         this.log(`Data length after filtering =>`, result.length);
         return result;
-    }
-
-    private async loadAccidentStatisticsBetween(from: Date, to: Date)
-        : Promise<ExtendedArray<AccidentStatistic>> {
-        const accidentStatistics = new ExtendedArray<AccidentStatistic>();
-        for (let year = from.getFullYear(); year <= to.getFullYear(); year++) {
-            let dataByYear = this.cache.find((item) => item.year === year);
-            if (!dataByYear) {
-                const response = await this.getAccidentStatisticsByYear(year);
-                const cacheItem = { year, data: response.data };
-                this.cache.push(cacheItem);
-                dataByYear = cacheItem;
-            } else {
-                this.log(`Retrieved data from cache for year ${year}`);
-            }
-            dataByYear.data.forEach((item) => {
-                accidentStatistics.push(item);
-            });
-        }
-        return Promise.resolve(accidentStatistics);
     }
 
     private guardToDate(to: Date, maxYear: number) {

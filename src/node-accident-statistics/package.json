@@ -34,7 +34,7 @@
     "@types/express-session": "^1.15.11",
     "@types/fs-extra": "^5.0.4",
     "@types/jest": "^24.0.0",
-    "@types/mssql": "^4.0.12",
+    "@types/mongodb": "^3.1.19",
     "@types/nock": "^9.3.1",
     "@types/node": "^10.12.24",
     "@types/shelljs": "^0.8.2",
@@ -60,7 +60,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "moment": "^2.24.0",
-    "mssql": "^4.3.1",
+    "mongodb": "^3.1.13",
     "supertest": "^3.4.2"
   },
   "standard": {

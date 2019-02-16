@@ -84,3 +84,11 @@
 * Testing through [JEST](https://jestjs.io/) based on very initial topic of README and [Supertest](https://www.npmjs.com/package/supertest)
 * NOTE: I suffered from this when I used JEST and wrote several tests expecting values from express. https://blog.campvanilla.com/jest-expressjs-and-the-eaddrinuse-error-bac39356c33a is the solution to running the tests sequentially. TODO at https://github.com/visionmedia/supertest/blob/master/lib/test.js#L59 for solving this more elegantly
 * Debugging JEST stuff can be done with the following https://github.com/Microsoft/vscode-recipes/tree/master/debugging-jest-tests
+* MongoDB is my database of choice as SQL in node seemed clunky. Decided to extend my NOSQL to MongoDB as I have extensive Couchbase expertise and hopefully some skills will transfer. https://www.tutorialspoint.com/mongodb/index.htm
+    * https://www.w3schools.com/nodejs/nodejs_mongodb.asp for Node js
+    * Install mongodb into node
+        ```
+            npm install mongodb --save
+            npm install @types/mongodb --save-dev
+        ```         
+    *  
