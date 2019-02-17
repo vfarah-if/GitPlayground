@@ -40,11 +40,11 @@ export let accidentsDataSeeder = (req: Request, res: Response, next: NextFunctio
                 if (collection) {
                     log(`Collection '${collection.collectionName}' exists`);
                 } else {
-                    createCollection(db, next);
-                    collection = collections.find((item) => item.collectionName === process.env.MONGO_COLLECTION);
+                    collection = await createCollection(db, next);
+                    log(`Collection '${process.env.MONGO_COLLECTION}' created!`);
                 }
                 if (collection) {
-                    const docCount = await collection.count();
+                    const docCount = await collection.countDocuments();
                     if (docCount === 0) {
                         const maxYear = Number(process.env.MAX_YEAR);
                         for (let year = 2005; year <= maxYear; year++) {
@@ -107,12 +107,6 @@ async function getData(year: number): Promise<ExtendedArray<AccidentStatistic>> 
     return result;
 }
 
-function createCollection(db: Db, next: NextFunction): void {
-    db.createCollection(process.env.MONGO_COLLECTION as string)
-        .then((newCollection) => {
-            log(`Collection '${process.env.MONGO_COLLECTION}' created!`);
-        })
-        .catch((error: MongoError) => {
-            next(error);
-        });
+async function createCollection(db: Db, next: NextFunction): Promise<Collection<any>> {
+    return await db.createCollection(process.env.MONGO_COLLECTION as string);
 }
