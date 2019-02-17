@@ -12,4 +12,5 @@ export interface AccidentStatistic {
   borough?: string;
   casualties?: Casualty[];
   vehicles?: Vehicle[];
+  $type?: string;
 }

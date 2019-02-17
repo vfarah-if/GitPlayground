@@ -14,7 +14,7 @@ app.use(errorHandler());
  */
 app.get("/v1/accidents", v1AccidentsController.accidents);
 app.get("/v2/accidents", v2AccidentsController.accidents);
-app.get("/v2/accidents/dataseed", v2AccidentsController.accidentsDataSeeder);
+app.get("/v2/accidents/seedData", v2AccidentsController.accidentsDataSeeder);
 
 /**
  * Start Express server.
