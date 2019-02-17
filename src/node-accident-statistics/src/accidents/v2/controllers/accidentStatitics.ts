@@ -44,12 +44,16 @@ export let accidentsDataSeeder = (req: Request, res: Response, next: NextFunctio
                     collection = collections.find((item) => item.collectionName === process.env.MONGO_COLLECTION);
                 }
                 if (collection) {
-                    // TODO: Check if there are no documents before doing this
-                    const maxYear = Number(process.env.MAX_YEAR);
-                    for (let year = 2005; year <= maxYear; year++) {
-                        const data = await getData(year);
-                        cleanDataOf$Type(data);
-                        insertMany(data, year, collection, next);
+                    const docCount = await collection.count();
+                    if (docCount === 0) {
+                        const maxYear = Number(process.env.MAX_YEAR);
+                        for (let year = 2005; year <= maxYear; year++) {
+                            const data = await getData(year);
+                            cleanDataOf$Type(data);
+                            insertMany(data, year, collection, next);
+                        }
+                    } else {
+                        log(`'${docCount}' documents already exist`);
                     }
                 } else {
                     next(new Error("Unable to create collection"));
