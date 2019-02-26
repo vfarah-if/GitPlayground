@@ -44,7 +44,6 @@
     
     <div class="container">           
         <h1 class="header">Accidents Supported API List</h1>
-        <p>Your future list of accidents!</p>
         <div class="section">
             <div class="row">
                 <a class="btn" href="/v1/accidents"><i class="material-icons right">featured_play_list</i>Default Live
@@ -55,11 +54,19 @@
                     date</a>
             </div>
             <div class="row">
-                <a class="btn" href="/v2/accidents"><i class="material-icons right">new_releases</i>New API</a>
+                <a class="btn" href="/v2/accidents"><i class="material-icons right">new_releases</i>Default New API</a>
+                <a class="btn" href="/v2/accidents?from=2005-01-01&page=2&pageSize=20&sortBy=locationdescending&severity=Fatal"><i class="material-icons right">new_releases</i>Fatal Accidents from 2004</a>
+                <div class="card-panel teal">
+                    <p class="left-align white-text">NOTE: RPC rest verbs are just for ease of generating and dropping data and viewing the result in the browser as DEMO friendly. This is not recommended in a production site and is a bad REST pattern!</p>
+                </div>                
+                <a class="btn waves-effect waves-light red" href="/v2/accidents/seedData"><i class="material-icons right">new_releases</i>Seed data from live site from 2005</a>
+                <a class="btn waves-effect waves-light red" href="/v2/accidents/seedData?from=2017"><i class="material-icons right">new_releases</i>Seed data from live site for only 2017</a>
+                <a class="btn waves-effect waves-light red" href="/v2/accidents/dropdb"><i class="material-icons right">new_releases</i>Drop dev or test database</a>
             </div>
         </div>
     </div>
     <div class="container">
+        <h2 class="header">Material Demo</h2>
         <div class="card-panel">
             <h5>Raised Buttons</h5>
             <button class="btn waves-effect waves-teal">Add</button></td>

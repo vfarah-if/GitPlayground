@@ -23,13 +23,10 @@ export let accidents = (req: Request, res: Response) => {
 
 /**
  * GET /v2/accidents/dataseed
- * Accidents through a new mechanism page.
+ * Seed data from the live site from a query parameter or
  */
 export let accidentsDataSeeder = (req: Request, res: Response, next: NextFunction) => {
-    const url = `${process.env.MONGO_URL}/${process.env.MONGO_DB}`;
-    log("Seeding data for ", url);
-    const connectionOptions = { poolSize: 10, reconnectTries: Number.MAX_VALUE, reconnectInterval: 1000 };
-    const client = new MongoClient(url, connectionOptions);
+    const client = createClient();
     client.connect()
         .then(async () => {
             if (client.isConnected()) {
@@ -47,7 +44,8 @@ export let accidentsDataSeeder = (req: Request, res: Response, next: NextFunctio
                     const docCount = await collection.countDocuments();
                     if (docCount === 0) {
                         const maxYear = Number(process.env.MAX_YEAR);
-                        for (let year = 2005; year <= maxYear; year++) {
+                        const fromYear = req.query.from || 2005;
+                        for (let year = Number(fromYear); year <= maxYear; year++) {
                             const data = await getData(year);
                             cleanDataOf$Type(data);
                             insertMany(data, year, collection, next);
@@ -62,10 +60,47 @@ export let accidentsDataSeeder = (req: Request, res: Response, next: NextFunctio
             res.sendStatus(200);
         })
         .catch((error: MongoError) => {
-            log(`Failed to connect to '${url}'. Please read README for using MongoDb`);
+            log(`Failed to connect. Please read README for using MongoDb`);
             next(error);
         });
 };
+
+/**
+ * GET /v2/accidents/dropdb
+ * Accidents through a new mechanism page.
+ */
+export let accidentsDeleteDb = (req: Request, res: Response, next: NextFunction) => {
+    const client = createClient();
+    client.connect()
+        .then(async () => {
+            if (client.isConnected()) {
+                log("Connected and ready to to connect to collection");
+                const db: Db = client.db(process.env.MONGO_DB);
+                await db.dropDatabase();
+                log("Successfullly dropped db", db.databaseName);
+                res.sendStatus(200);
+            } else {
+                next(new Error("Unable to drop the database"));
+            }
+        })
+        .catch((error: MongoError) => {
+            log(`Failed to drop the database`);
+            next(error);
+        });
+};
+
+function createClient(): MongoClient {
+    const url = `${process.env.MONGO_URL}/${process.env.MONGO_DB}`;
+    log("Connecting to", url);
+    const connectionOptions = {
+        poolSize: 10,
+        reconnectInterval: 1000,
+        reconnectTries: Number.MAX_VALUE,
+        useNewUrlParser: true
+    };
+    const client = new MongoClient(url, connectionOptions);
+    return client;
+}
 
 function insertMany(
     data: ExtendedArray<AccidentStatistic>,
@@ -86,6 +121,10 @@ function cleanDataOf$Type(data: ExtendedArray<AccidentStatistic>) {
     log(`Cleaning ${data.length} records of $ type... `);
     data.forEach((item) => {
         delete item.$type;
+        if (item.date) {
+            item.date = new Date(item.date);
+        }
+
         if (item.vehicles) {
             item.vehicles.forEach((vehicle) => {
                 delete vehicle.$type;
@@ -107,6 +146,6 @@ async function getData(year: number): Promise<ExtendedArray<AccidentStatistic>> 
     return result;
 }
 
-async function createCollection(db: Db, next: NextFunction): Promise<Collection<any>> {
-    return await db.createCollection(process.env.MONGO_COLLECTION as string);
+function createCollection(db: Db, next: NextFunction): Promise<Collection<any>> {
+    return db.createCollection(process.env.MONGO_COLLECTION as string);
 }
