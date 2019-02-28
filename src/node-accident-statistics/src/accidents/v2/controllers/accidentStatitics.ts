@@ -14,23 +14,24 @@ export const log = (message: string, ...args: any[]) => {
  * GET /v2/accidents
  * Accidents through a new mechanism page.
  */
-export let accidents = async (req: Request, res: Response) => {
-    log("new accidents");
+export let accidents = async (req: Request, res: Response, next: NextFunction) => {
     let query = new AccidentsQuery();
     query = Object.assign(query, req.query);
+    log("Accidents filtered by => ", query);
     const collection = await getAccidentStatisticsCollection();
     if (collection) {
         const repository = new AccidentsRepository(collection);
-        const count = await repository.count(
+        const get = await repository.get(
             new Date(query.from),
             new Date(query.to),
             query.severity,
             query.sortBy,
             Number(query.page),
             Number(query.pageSize));
-        log("how many", count);
+        res.send(get);
+    } else {
+        next(new Error("Collection could not be found"));
     }
-    res.send(query);
 };
 
 /**

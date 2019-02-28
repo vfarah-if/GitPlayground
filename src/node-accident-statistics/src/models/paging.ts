@@ -32,7 +32,7 @@ export class Paging<T> {
         return result;
     }
 
-    private create(data: ExtendedArray<T>, page: number, total: number, maxPageCount: number): Paging<T> {
+    public create(data: ExtendedArray<T> | T[], page: number, total: number, maxPageCount: number): Paging<T> {
         const result = new Paging<T>();
         result.data = data;
         result.page = page;
