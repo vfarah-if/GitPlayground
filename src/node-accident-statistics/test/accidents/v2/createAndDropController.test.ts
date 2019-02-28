@@ -22,6 +22,13 @@ describe("GET /v2/accidents/", () => {
         done();
     });
 
+    it("should return 200 if the database has already been created", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents/seedData?from=2017");
+        expect(response.status).toBe(200);
+        done();
+    });
+
     it("should return data from the generated test database and then drop", async (done) => {
         const response = await request(app)
             .get("/v2/accidents?pageSize=1");
