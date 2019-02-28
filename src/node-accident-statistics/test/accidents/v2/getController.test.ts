@@ -2,7 +2,7 @@ import request from "supertest";
 import app from "../../../src/server";
 
 describe("GET /v2/accidents", () => {
-    it("should return 200 with default query with expected values", async (done) => {
+    it("should return 200 with default query with expected values and date descending", async (done) => {
         const response = await request(app)
         .get("/v2/accidents")
         .set("Accept", "application/json");
@@ -23,6 +23,22 @@ describe("GET /v2/accidents", () => {
     it("should return 200 with date ascending", async (done) => {
         const response = await request(app)
             .get("/v2/accidents?page=2&pageSize=10&orderBy=DateAscending&severity=Fatal");
+        expect(response.status).toBe(200);
+        expect(response.body).toMatchSnapshot();
+        done();
+    });
+
+    it("should return 200 with location ascending", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?page=2&pageSize=10&orderBy=locationascending&severity=Fatal");
+        expect(response.status).toBe(200);
+        expect(response.body).toMatchSnapshot();
+        done();
+    });
+
+    it("should return 200 with location descending", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?page=2&pageSize=10&orderBy=locationdescending&severity=Fatal");
         expect(response.status).toBe(200);
         expect(response.body).toMatchSnapshot();
         done();

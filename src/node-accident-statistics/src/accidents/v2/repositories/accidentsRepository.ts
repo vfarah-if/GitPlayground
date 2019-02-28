@@ -6,6 +6,12 @@ import {
 } from "../../../models";
 import { ExtendedArray } from "./../../../arrays/extendedArray";
 
+// tslint:disable-next-line:interface-name
+interface MongoSortOption {
+    keyOrList: string | Array<{}> | {};
+    direction?: number;
+}
+
 export class AccidentsRepository {
 
     constructor(private collection: Collection<AccidentStatistic>) { }
@@ -44,8 +50,7 @@ export class AccidentsRepository {
             ],
             severity
         })
-            // TODO: Sort
-            .sort(sort)
+            .sort(sort.keyOrList, sort.direction)
             .skip(skip)
             .limit(pageSize);
 
@@ -68,11 +73,17 @@ export class AccidentsRepository {
         });
     }
 
-    private getMongoSort(sortBy: SortByOptions): any {
-        let result = { date: -1 };
+    private getMongoSort(sortBy: SortByOptions): MongoSortOption {
+        let result: MongoSortOption = { keyOrList: "date", direction: -1 };
         switch (sortBy.toLowerCase()) {
             case "dateascending":
-                result = { date: 1 };
+                result = { keyOrList: "date", direction: 1 };
+                break;
+            case "locationascending":
+                result = { keyOrList: "location", direction: 1 };
+                break;
+            case "locationdescending":
+                result = { keyOrList: "location", direction: -1 };
                 break;
             case "datedescending":
             default:
