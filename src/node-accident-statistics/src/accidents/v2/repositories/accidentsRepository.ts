@@ -85,6 +85,12 @@ export class AccidentsRepository {
             case "locationdescending":
                 result = { keyOrList: "location", direction: -1 };
                 break;
+            case "boroughascending":
+                result = { keyOrList: "borough", direction: 1 };
+                break;
+            case "boroughdescending":
+                result = { keyOrList: "borough", direction: -1 };
+                break;
             case "datedescending":
             default:
                 break;

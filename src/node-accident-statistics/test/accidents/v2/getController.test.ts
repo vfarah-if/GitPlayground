@@ -43,4 +43,20 @@ describe("GET /v2/accidents", () => {
         expect(response.body).toMatchSnapshot();
         done();
     });
+
+    it("should return 200 with borough ascending", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?page=2&pageSize=10&orderBy=boroughAscending&severity=Fatal");
+        expect(response.status).toBe(200);
+        expect(response.body).toMatchSnapshot();
+        done();
+    });
+
+    it("should return 200 with borough descending", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?page=2&pageSize=10&orderBy=boroughDescending&severity=Fatal");
+        expect(response.status).toBe(200);
+        expect(response.body).toMatchSnapshot();
+        done();
+    });
 });
