@@ -8,7 +8,7 @@ import { ExtendedArray } from "./../../../arrays/extendedArray";
 
 export class AccidentsRepository {
 
-    constructor(private collection: Collection<AccidentStatistic>) {}
+    constructor(private collection: Collection<AccidentStatistic>) { }
 
     public async get(from: Date,
                      to: Date,
@@ -21,7 +21,7 @@ export class AccidentsRepository {
             new Date(from),
             new Date(to),
             severity);
-        const     maxPageCount = Math.ceil(total / pageSize);
+        const maxPageCount = Math.ceil(total / pageSize);
         // tslint:disable-next-line:no-console
         console.log("Max Page Count ", maxPageCount);
         let zeroIndexedCurrentPage = page - 1;
@@ -35,6 +35,7 @@ export class AccidentsRepository {
         }
 
         const skip = zeroIndexedCurrentPage * pageSize;
+        const sort = this.getMongoSort(sortBy);
 
         const data = await this.collection.find({
             $and: [
@@ -43,10 +44,10 @@ export class AccidentsRepository {
             ],
             severity
         })
-        // TODO: Sort
-        .sort({date: -1})
-        .skip(skip)
-        .limit(pageSize);
+            // TODO: Sort
+            .sort(sort)
+            .skip(skip)
+            .limit(pageSize);
 
         const result = new Paging();
         const asArray = await data.toArray();
@@ -65,5 +66,18 @@ export class AccidentsRepository {
             ],
             severity
         });
+    }
+
+    private getMongoSort(sortBy: SortByOptions): any {
+        let result = { date: -1 };
+        switch (sortBy.toLowerCase()) {
+            case "dateascending":
+                result = { date: 1 };
+                break;
+            case "datedescending":
+            default:
+                break;
+        }
+        return result;
     }
 }
