@@ -1,14 +1,20 @@
+import nock from "nock";
 import request from "supertest";
 import app from "../../../src/server";
+import { default as testData } from "./createAndDropController.test.data.json";
 
 describe("GET /v2/accidents/", () => {
     beforeAll(async (done) => {
-        jest.setTimeout(10000);
-        // set the global variables needed for the test
+      // set the global variables needed for the test
         process.env.NODE_ENV = "test";
         process.env.MONGO_URL = "mongodb://localhost:27017";
         process.env.MONGO_DB = "AccidentStatisticsTestDb";
         process.env.MONGO_COLLECTION = "AccidentStatisticsTest";
+
+        nock("https://api.tfl.gov.uk")
+            .get("/AccidentStats/2017")
+            .reply(200, testData);
+
         await dropDatabase();
         const response = await request(app)
             .get("/v2/accidents/seedData?from=2017");
@@ -37,6 +43,7 @@ describe("GET /v2/accidents/", () => {
         expect(response.body.data).toBeTruthy();
         expect(response.body.data.length).toBe(1);
         expect(response.body.pageSize).toBe(1);
+        expect(response.body.total).toBe(20);
         done();
     });
 
