@@ -76,9 +76,6 @@ export class AccidentsRepository {
     private getMongoSort(sortBy: SortByOptions): MongoSortOption {
         let result: MongoSortOption = { keyOrList: "date", direction: -1 };
         switch (sortBy.toLowerCase()) {
-            case "dateascending":
-                result = { keyOrList: "date", direction: 1 };
-                break;
             case "locationascending":
                 result = { keyOrList: "location", direction: 1 };
                 break;
@@ -94,8 +91,17 @@ export class AccidentsRepository {
             case "tflidascending":
                 result = { keyOrList: "id", direction: 1 };
                 break;
-            case "tfliddescending":
+            case "AccidentStatisticIdAscending":
                 result = { keyOrList: "id", direction: -1 };
+                break;
+                case "accidentstatisticidascending":
+                result = { keyOrList: "_id", direction: 1 };
+                break;
+            case "accidentstatisticiddescending":
+                result = { keyOrList: "_id", direction: -1 };
+                break;
+            case "dateascending":
+                result = { keyOrList: "date", direction: 1 };
                 break;
             case "datedescending":
             default:

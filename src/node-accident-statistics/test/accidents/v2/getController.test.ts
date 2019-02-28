@@ -75,4 +75,20 @@ describe("GET /v2/accidents", () => {
         expect(response.body).toMatchSnapshot();
         done();
     });
+
+    it("should return 200 with accidentstatisticid ascending", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?page=2&pageSize=10&orderBy=accidentstatisticidascending&severity=Fatal");
+        expect(response.status).toBe(200);
+        expect(response.body).toMatchSnapshot();
+        done();
+    });
+
+    it("should return 200 with accidentstatisticid descending", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?page=2&pageSize=10&orderBy=accidentstatisticiddescending&severity=Fatal");
+        expect(response.status).toBe(200);
+        expect(response.body).toMatchSnapshot();
+        done();
+    });
 });
