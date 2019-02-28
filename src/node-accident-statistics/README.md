@@ -91,4 +91,4 @@
             npm install mongodb --save
             npm install @types/mongodb --save-dev
         ```         
-    *  
+    *  Here is a cheatsheet reference for Mongo query and SQL equivalent examples https://info-mongodb-com.s3.amazonaws.com/ReferenceCards15-PDF.pdf 

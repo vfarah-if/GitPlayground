@@ -8,8 +8,7 @@ import { ExtendedArray } from "./../../../arrays/extendedArray";
 
 export class AccidentsRepository {
 
-    constructor(private collection: Collection<AccidentStatistic>) {
-    }
+    constructor(private collection: Collection<AccidentStatistic>) {}
 
     public async get(from: Date,
                      to: Date,
