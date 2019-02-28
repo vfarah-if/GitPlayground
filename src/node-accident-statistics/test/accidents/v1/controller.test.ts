@@ -21,7 +21,7 @@ describe("GET /v1/accidents", () => {
         // tslint:disable-next-line:no-console
         // console.log("/v1/accidents Responded with => ", response);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
@@ -29,7 +29,7 @@ describe("GET /v1/accidents", () => {
         const response = await request(app)
             .get("/v1/accidents?page=2&pageSize=10&orderBy=BoroughDescending&severity=Fatal");
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
@@ -39,7 +39,7 @@ describe("GET /v1/accidents", () => {
         // tslint:disable-next-line:no-console
         // console.log("/v1/accidents Responded with => ", response);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
@@ -49,7 +49,7 @@ describe("GET /v1/accidents", () => {
         // tslint:disable-next-line:no-console
         // console.log("/v1/accidents Responded with => ", response);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
@@ -59,7 +59,7 @@ describe("GET /v1/accidents", () => {
         // tslint:disable-next-line:no-console
         // console.log("/v1/accidents Responded with => ", response);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
@@ -69,7 +69,7 @@ describe("GET /v1/accidents", () => {
         // tslint:disable-next-line:no-console
         // console.log("/v1/accidents Responded with => ", response.body);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 });
