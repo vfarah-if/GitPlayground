@@ -40,6 +40,7 @@ export let accidents = async (req: Request, res: Response, next: NextFunction) =
  */
 export let accidentsDataSeeder = (req: Request, res: Response, next: NextFunction) => {
     const client = createClient();
+    let collectionCreated = false;
     client.connect()
         .then(async () => {
             if (client.isConnected()) {
@@ -52,6 +53,7 @@ export let accidentsDataSeeder = (req: Request, res: Response, next: NextFunctio
                 } else {
                     collection = await createCollection(db, next);
                     log(`Collection '${process.env.MONGO_COLLECTION}' created!`);
+                    collectionCreated = true;
                 }
                 if (collection) {
                     const docCount = await collection.countDocuments();
@@ -70,7 +72,11 @@ export let accidentsDataSeeder = (req: Request, res: Response, next: NextFunctio
                     next(new Error("Unable to create collection"));
                 }
             }
-            res.sendStatus(200);
+            if (collectionCreated) {
+                res.sendStatus(201);
+            } else {
+                res.sendStatus(200);
+            }
         })
         .catch((error: MongoError) => {
             log(`Failed to connect. Please read README for using MongoDb`);
@@ -91,7 +97,9 @@ export let accidentsDeleteDb = (req: Request, res: Response, next: NextFunction)
                 const db: Db = client.db(process.env.MONGO_DB);
                 await db.dropDatabase();
                 log("Successfullly dropped db", db.databaseName);
-                res.sendStatus(200);
+                res.sendStatus(202);
+                // NOTE: Should be 204 but the UI does not respond to no content, so accepted it is
+                // res.sendStatus(204);
             } else {
                 next(new Error("Unable to drop the database"));
             }
