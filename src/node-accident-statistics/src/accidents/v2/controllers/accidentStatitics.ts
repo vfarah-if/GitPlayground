@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { Collection, Db, MongoClient, MongoError } from "mongodb";
-import { AccidentsQuery } from "../../../models/accidentsQuery";
+import { AccidentsQuery, AccidentStatistic } from "../../../models";
 import { ExtendedArray } from "./../../../arrays/extendedArray";
-import { AccidentStatistic } from "./../../../models/accidentStatistic";
 import { TransportForLondonClient } from "./../../v1/client/transportForLondonClient";
+import { AccidentsRepository } from "./../repositories/accidentsRepository";
 
 export const log = (message: string, ...args: any[]) => {
     // tslint:disable-next-line:no-console
@@ -14,10 +14,22 @@ export const log = (message: string, ...args: any[]) => {
  * GET /v2/accidents
  * Accidents through a new mechanism page.
  */
-export let accidents = (req: Request, res: Response) => {
+export let accidents = async (req: Request, res: Response) => {
     log("new accidents");
     let query = new AccidentsQuery();
     query = Object.assign(query, req.query);
+    const collection = await getAccidentStatisticsCollection();
+    if (collection) {
+        const repository = new AccidentsRepository(collection);
+        const count = await repository.count(
+            new Date(query.from),
+            new Date(query.to),
+            query.severity,
+            query.sortBy,
+            Number(query.page),
+            Number(query.pageSize));
+        log("how many", count);
+    }
     res.send(query);
 };
 
@@ -100,6 +112,19 @@ function createClient(): MongoClient {
     };
     const client = new MongoClient(url, connectionOptions);
     return client;
+}
+
+async function getAccidentStatisticsCollection(): Promise<Collection<AccidentStatistic> | undefined> {
+    let client = createClient();
+    client = await client.connect();
+    if (client.isConnected) {
+        const db: Db = client.db(process.env.MONGO_DB);
+        const collections = await db.collections();
+        return collections.find((item) => {
+            return item.collectionName === process.env.MONGO_COLLECTION;
+        });
+    }
+    return undefined;
 }
 
 function insertMany(
