@@ -91,10 +91,18 @@ export class AccidentsRepository {
             case "boroughdescending":
                 result = { keyOrList: "borough", direction: -1 };
                 break;
+            case "tflidascending":
+                result = { keyOrList: "id", direction: 1 };
+                break;
+            case "tfliddescending":
+                result = { keyOrList: "id", direction: -1 };
+                break;
             case "datedescending":
             default:
                 break;
         }
+        // tslint:disable-next-line:no-console
+        console.log("Sorting => ", result);
         return result;
     }
 }
