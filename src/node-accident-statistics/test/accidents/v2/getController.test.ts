@@ -13,7 +13,6 @@ describe("GET /v2/accidents", () => {
         expect(response.body.pageSize).toBe(100);
         expect(response.body.data).toBeTruthy();
         expect(response.body.data.length).toBe(100);
-        expect(response.body.pageSize).toBe(100);
         expect(response.body.lastPage).toBe(3);
         expect(response.body.nextPage).toBe(2);
         expect(response.body).toMatchSnapshot();

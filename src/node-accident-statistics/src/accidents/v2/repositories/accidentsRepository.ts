@@ -1,10 +1,10 @@
-import { Collection, Db, MongoClient, MongoError } from "mongodb";
+import { Collection } from "mongodb";
 import {
     AccidentStatistic,
     Paging,
     SortByOptions
 } from "../../../models";
-import { ExtendedArray } from "./../../../arrays/extendedArray";
+import { ascending, descending } from "./../../../sort";
 
 // tslint:disable-next-line:interface-name
 interface MongoSortOption {
@@ -74,34 +74,34 @@ export class AccidentsRepository {
     }
 
     private getMongoSort(sortBy: SortByOptions): MongoSortOption {
-        let result: MongoSortOption = { keyOrList: "date", direction: -1 };
+        let result: MongoSortOption = { keyOrList: "date", direction: descending };
         switch (sortBy.toLowerCase()) {
             case "locationascending":
-                result = { keyOrList: "location", direction: 1 };
+                result = { keyOrList: "location", direction: ascending };
                 break;
             case "locationdescending":
-                result = { keyOrList: "location", direction: -1 };
+                result = { keyOrList: "location", direction: descending };
                 break;
             case "boroughascending":
-                result = { keyOrList: "borough", direction: 1 };
+                result = { keyOrList: "borough", direction: ascending };
                 break;
             case "boroughdescending":
-                result = { keyOrList: "borough", direction: -1 };
+                result = { keyOrList: "borough", direction: descending };
                 break;
             case "tflidascending":
-                result = { keyOrList: "id", direction: 1 };
+                result = { keyOrList: "id", direction: ascending };
                 break;
             case "AccidentStatisticIdAscending":
-                result = { keyOrList: "id", direction: -1 };
+                result = { keyOrList: "id", direction: descending };
                 break;
-                case "accidentstatisticidascending":
-                result = { keyOrList: "_id", direction: 1 };
+            case "accidentstatisticidascending":
+                result = { keyOrList: "_id", direction: ascending };
                 break;
             case "accidentstatisticiddescending":
-                result = { keyOrList: "_id", direction: -1 };
+                result = { keyOrList: "_id", direction: descending };
                 break;
             case "dateascending":
-                result = { keyOrList: "date", direction: 1 };
+                result = { keyOrList: "date", direction: ascending };
                 break;
             case "datedescending":
             default:
