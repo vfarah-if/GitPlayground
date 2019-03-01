@@ -4,8 +4,8 @@ import app from "../../../src/server";
 describe("GET /v2/accidents", () => {
     it("should return 200 with default query with expected values and date descending", async (done) => {
         const response = await request(app)
-        .get("/v2/accidents")
-        .set("Accept", "application/json");
+            .get("/v2/accidents")
+            .set("Accept", "application/json");
         // tslint:disable-next-line:no-console
         // console.log("/v2/accidents Responded with => ", response);
 
@@ -102,6 +102,28 @@ describe("GET /v2/accidents", () => {
     it("should return 200 with severity serious", async (done) => {
         const response = await request(app)
             .get("/v2/accidents?page=2&pageSize=10&severity=Serious");
+        expect(response.status).toBe(200);
+        expect(response.body).toMatchSnapshot();
+        done();
+    });
+
+    it("should return No data below 2005 when from date out of range", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?from=2004-01-01");
+        expect(response.status).toBe(500);
+        done();
+    });
+
+    it("should return No data greater than '2017' when to date out of range", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?from=2019-01-01");
+        expect(response.status).toBe(500);
+        done();
+    });
+
+    it("should swap the dates when from is greater than to date", async (done) => {
+        const response = await request(app)
+            .get("/v2/accidents?from=2017-12-31&to=2017-01-01");
         expect(response.status).toBe(200);
         expect(response.body).toMatchSnapshot();
         done();

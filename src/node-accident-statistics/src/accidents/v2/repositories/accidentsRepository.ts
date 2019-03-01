@@ -5,6 +5,7 @@ import {
     SortByOptions
 } from "../../../models";
 import { ascending, descending } from "./../../../sort";
+import { guardFromDate, guardToDate } from "./../../shared/validation";
 
 // tslint:disable-next-line:interface-name
 interface MongoSortOption {
@@ -22,6 +23,15 @@ export class AccidentsRepository {
                      sortBy: SortByOptions,
                      page: number,
                      pageSize: number): Promise<Paging<AccidentStatistic>> {
+
+        const maxYear = Number(process.env.MAX_YEAR);
+        guardFromDate(from, maxYear);
+        guardToDate(to, maxYear);
+        if (from > to) {
+            const temp = from;
+            from = to;
+            to = temp;
+        }
 
         const total = await this.count(
             new Date(from),
@@ -91,7 +101,7 @@ export class AccidentsRepository {
             case "tflidascending":
                 result = { keyOrList: "id", direction: ascending };
                 break;
-            case "AccidentStatisticIdAscending":
+            case "tfliddescending":
                 result = { keyOrList: "id", direction: descending };
                 break;
             case "accidentstatisticidascending":

@@ -21,14 +21,15 @@ export let accidents = async (req: Request, res: Response, next: NextFunction) =
     const collection = await getAccidentStatisticsCollection();
     if (collection) {
         const repository = new AccidentsRepository(collection);
-        const get = await repository.get(
+        repository.get(
             new Date(query.from),
             new Date(query.to),
             query.severity,
             query.sortBy,
             Number(query.page),
-            Number(query.pageSize));
-        res.send(get);
+            Number(query.pageSize))
+            .then((data) => res.send(data))
+            .catch((error) => next(error));
     } else {
         next(new Error("Collection could not be found"));
     }

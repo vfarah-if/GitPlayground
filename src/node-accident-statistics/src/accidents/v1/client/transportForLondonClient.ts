@@ -6,8 +6,7 @@ import {
     Paging,
     SortByOptions
 } from "./../../../models";
-import { ascending, compareBy, descending } from "./../../../sort";
-import { accidents } from "./../../v2/controllers/accidentStatitics";
+import { guardFromDate, guardToDate } from "./../../shared/validation";
 
 // tslint:disable-next-line:interface-name
 interface DataByYear {
@@ -63,8 +62,8 @@ export class TransportForLondonClient {
         pageSize: number): Promise<Paging<AccidentStatistic>> {
 
         const maxYear = Number(process.env.MAX_YEAR);
-        this.guardFromDate(from, maxYear);
-        this.guardToDate(to, maxYear);
+        guardFromDate(from, maxYear);
+        guardToDate(to, maxYear);
         if (from > to) {
             const temp = from;
             from = to;
@@ -93,32 +92,6 @@ export class TransportForLondonClient {
             item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
         this.log(`Data length after filtering =>`, result.length);
         return result;
-    }
-
-    private guardToDate(to: Date, maxYear: number) {
-        if (to && to.getFullYear() < 2005) {
-            this.raiseDataBelow2005();
-        }
-        if (to && to.getFullYear() > maxYear) {
-            this.raiseMaxYearNotSupported(maxYear);
-        }
-    }
-
-    private guardFromDate(from: Date, maxYear: number) {
-        if (from && from.getFullYear() < 2005) {
-            this.raiseDataBelow2005();
-        }
-        if (from && from.getFullYear() > maxYear) {
-            this.raiseMaxYearNotSupported(maxYear);
-        }
-    }
-
-    private raiseDataBelow2005() {
-        throw new Error("No data below 2005");
-    }
-
-    private raiseMaxYearNotSupported(maxYear: number) {
-        throw new Error(`No data greater than '${maxYear}'`);
     }
 
     private async getAccidentStatisticsByYear(year: number): Promise<AxiosResponse<AccidentStatistic[]>> {
