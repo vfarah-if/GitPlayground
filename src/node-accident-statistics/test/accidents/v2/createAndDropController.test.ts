@@ -1,7 +1,7 @@
 import nock from "nock";
 import request from "supertest";
 import app from "../../../src/server";
-import { default as testData } from "./createAndDropController.test.data.json";
+import { default as testData } from "./controller.test.data.json";
 
 describe("GET /v2/accidents/", () => {
     beforeAll(async (done) => {

@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { AccidentsQuery } from "../../../models/accidentsQuery";
-import { AccidentStatisticsService } from "./../services/accidentStatisticsService";
+import { TransportForLondonClient } from "../client/transportForLondonClient";
 
-const ACCIDENTS_STATISTICS_SERVICE = new AccidentStatisticsService();
+const transportForLondonClient = new TransportForLondonClient();
+
 /**
  * GET /v1/accidents
  * Accidents through the live tfl page.
@@ -12,7 +13,7 @@ export let accidents = (req: Request, res: Response, next: NextFunction) => {
     console.log("legacy accidents");
     let query = new AccidentsQuery();
     query = Object.assign(query, req.query);
-    ACCIDENTS_STATISTICS_SERVICE.get(query)
+    transportForLondonClient.getAccidentStatisticsByQuery(query)
         .then((result) => {
             res.send(result);
         }).catch((error) => {
