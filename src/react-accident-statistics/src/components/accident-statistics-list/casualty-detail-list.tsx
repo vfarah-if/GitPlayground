@@ -32,8 +32,10 @@ export default class CasualtyDetailList extends React.PureComponent<CasualtyDeta
             return 'serious';
         } else if (severity === 1) {
             return 'slight';
-        } else {
+        } else if (severity === 2) {
             return 'fatal';
-        }
+          } else {
+            return severity.toString();
+          }
     }
 }

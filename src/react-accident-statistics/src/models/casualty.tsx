@@ -1,4 +1,4 @@
-export type SeverityOptionValues = 0 | 1 | 2;
+import { SeverityOptionValues } from './accident-statistic';
 
 export interface Casualty {
     age?: number;
