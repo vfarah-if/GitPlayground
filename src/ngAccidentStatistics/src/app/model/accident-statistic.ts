@@ -7,7 +7,7 @@ export interface AccidentStatistic {
   lon?: string;
   location?: string;
   date?: string;
-  severity?: 0 | 1 | 2;
+  severity?: (0 | 1 | 2) | string;
   borough?: string;
   casualties?: Array<Casualty>;
   vehicles?: Array<Vehicle>;
