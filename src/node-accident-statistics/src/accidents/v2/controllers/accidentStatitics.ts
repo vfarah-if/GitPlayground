@@ -1,14 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { Collection, Db, MongoClient, MongoError } from "mongodb";
+import { log } from "../../../logger";
 import { AccidentsQuery, AccidentStatistic } from "../../../models";
 import { ExtendedArray } from "./../../../arrays/extendedArray";
 import { TransportForLondonClient } from "./../../v1/client/transportForLondonClient";
 import { AccidentsRepository } from "./../repositories/accidentsRepository";
-
-export const log = (message: string, ...args: any[]) => {
-    // tslint:disable-next-line:no-console
-    console.log(message, args);
-};
 
 /**
  * GET /v2/accidents

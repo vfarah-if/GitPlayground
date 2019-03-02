@@ -9,9 +9,6 @@ describe("AccidentStatisticsQuery", () => {
     });
 
     it("should create a query object with all the expected default values", () => {
-        // tslint:disable-next-line:no-console
-        // console.log("Query => ", accidentStatisticsQuery.from);
-
         expect(accidentStatisticsQuery).toBeTruthy();
         expect(accidentStatisticsQuery.from).toBeTruthy();
         expect(accidentStatisticsQuery.to).toBeTruthy();
@@ -21,9 +18,6 @@ describe("AccidentStatisticsQuery", () => {
 
     it("should allow sortBy to be overriden with property orderBy", () => {
         accidentStatisticsQuery.orderBy = "AccidentStatisticIdDescending";
-        // tslint:disable-next-line:no-console
-        // console.log("Query => ", accidentStatisticsQuery);
-
         expect(accidentStatisticsQuery).toBeTruthy();
         expect(accidentStatisticsQuery.sortBy).toBe(accidentStatisticsQuery.orderBy);
     });

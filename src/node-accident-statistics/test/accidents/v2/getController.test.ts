@@ -6,8 +6,6 @@ describe("GET /v2/accidents", () => {
         const response = await request(app)
             .get("/v2/accidents")
             .set("Accept", "application/json");
-        // tslint:disable-next-line:no-console
-        // console.log("/v2/accidents Responded with => ", response);
 
         expect(response.body.page).toBe(1);
         expect(response.body.pageSize).toBe(100);

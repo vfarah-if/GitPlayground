@@ -4,6 +4,7 @@ import {
     Paging,
     SortByOptions
 } from "../../../models";
+import { log } from "./../../../logger";
 import { ascending, descending } from "./../../../sort";
 import { guardFromDate, guardToDate } from "./../../shared/validation";
 
@@ -38,8 +39,7 @@ export class AccidentsRepository {
             new Date(to),
             severity);
         const maxPageCount = Math.ceil(total / pageSize);
-        // tslint:disable-next-line:no-console
-        console.log("Max Page Count ", maxPageCount);
+        log("Max Page Count ", maxPageCount);
         let zeroIndexedCurrentPage = page - 1;
 
         if (zeroIndexedCurrentPage < 0) {
@@ -117,8 +117,7 @@ export class AccidentsRepository {
             default:
                 break;
         }
-        // tslint:disable-next-line:no-console
-        console.log("Sorting => ", result);
+        log("Sorting => ", result);
         return result;
     }
 }

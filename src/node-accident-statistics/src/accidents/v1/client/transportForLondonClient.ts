@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { log } from "../../../logger";
 import { ExtendedArray } from "./../../../arrays/extendedArray";
 import {
     AccidentsQuery,
@@ -21,7 +22,7 @@ export class TransportForLondonClient {
             query = new AccidentsQuery();
         }
 
-        this.log("Filtering => ", query);
+        log("Filtering => ", query);
 
         return await this.getAccidentStatistics(
             new Date(query.from),
@@ -44,7 +45,7 @@ export class TransportForLondonClient {
                 this.cache.push(cacheItem);
                 dataByYear = cacheItem;
             } else {
-                this.log(`Retrieved data from cache for year ${year}`);
+                log(`Retrieved data from cache for year ${year}`);
             }
             dataByYear.data.forEach((item) => {
                 accidentStatistics.push(item);
@@ -86,11 +87,11 @@ export class TransportForLondonClient {
         severity: string,
         fromAsISOString: string,
         toAsISOString: string): ExtendedArray<AccidentStatistic> {
-        this.log(`Data length before filtering =>`, accidentStatistics.length);
+        log(`Data length before filtering =>`, accidentStatistics.length);
         const result = accidentStatistics.query((item) =>
             item.severity && item.severity.toLowerCase() === severity.toLowerCase() &&
             item.date && item.date >= fromAsISOString && item.date <= toAsISOString);
-        this.log(`Data length after filtering =>`, result.length);
+        log(`Data length after filtering =>`, result.length);
         return result;
     }
 
@@ -103,47 +104,37 @@ export class TransportForLondonClient {
             }
         };
         const url = `${process.env.TFL_ACCIDENTS_URL}/${year}`;
-        this.log(`Retrieving data from live url '${process.env.TFL_ACCIDENTS_URL}/${year}'`);
+        log(`Retrieving data from live url '${process.env.TFL_ACCIDENTS_URL}/${year}'`);
         return axios.get(url, { headers });
     }
 
     private sortData(data: ExtendedArray<AccidentStatistic>, sortBy: SortByOptions): void {
-        this.log("Sorting data by ...");
+        log("Sorting data by ...");
         switch (sortBy.toLowerCase()) {
             case "dateascending":
-                this.log("    Sorting Date Ascending");
+                log("    Sorting Date Ascending");
                 data.ascending((orderBy: AccidentStatistic) => orderBy.date);
                 break;
             case "locationascending":
-                this.log("Location Ascending");
+                log("Location Ascending");
                 data.ascending((orderBy: AccidentStatistic) => orderBy.location);
                 break;
             case "boroughascending":
-                this.log("    Borough Ascending");
+                log("    Borough Ascending");
                 data.ascending((orderBy: AccidentStatistic) => orderBy.borough);
                 break;
             case "locationdescending":
-                this.log("    Location Descending");
+                log("    Location Descending");
                 data.descending((orderBy: AccidentStatistic) => orderBy.location);
                 break;
             case "boroughdescending":
-                this.log("    Borough Descending");
+                log("    Borough Descending");
                 data.descending((orderBy: AccidentStatistic) => orderBy.borough);
                 break;
             case "datedescending":
             default:
-                this.log("    Date Descending (Default)");
+                log("    Date Descending (Default)");
                 data.descending((orderBy: AccidentStatistic) => orderBy.date);
-        }
-    }
-
-    private log(message: string, ...argument: any): void {
-        if (argument && argument.length > 0) {
-            // tslint:disable-next-line:no-console
-            console.log(message, argument);
-        } else {
-            // tslint:disable-next-line:no-console
-            console.log(message);
         }
     }
 }
