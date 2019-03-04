@@ -91,5 +91,11 @@
         ```
             npm install mongodb --save
             npm install @types/mongodb --save-dev
-        ```         
+        ```
     *  Here is a cheatsheet reference for Mongo query and SQL equivalent examples https://info-mongodb-com.s3.amazonaws.com/ReferenceCards15-PDF.pdf 
+* TODO Add caching
+    * Investigation is https://www.npmjs.com/package/express-cache-controller
+        ```
+            npm i express-cache-controller  --save
+        ```
+    * 
