@@ -93,9 +93,4 @@
             npm install @types/mongodb --save-dev
         ```
     *  Here is a cheatsheet reference for Mongo query and SQL equivalent examples https://info-mongodb-com.s3.amazonaws.com/ReferenceCards15-PDF.pdf 
-* TODO Add caching
-    * Investigation is https://www.npmjs.com/package/express-cache-controller
-        ```
-            npm i express-cache-controller  --save
-        ```
-    * 
+* Utilised a well written API caching library, which worked well for Typescript too and could easily extend to utilising REDIS,[apicache](https://github.com/kwhitley/apicache);
