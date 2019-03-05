@@ -108,7 +108,7 @@
     NPM RUN "<Command>" ...
     
     <Commands>
-    "clean": To dist folder and fikes,
+    "clean": To dist folder and files,
     "copy-assets": To copy custome files to a folder,
     "build": Build project to dist folder,
     "lint": lint and fix TS and JS issues,
