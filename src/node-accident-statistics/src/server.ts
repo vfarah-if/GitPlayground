@@ -29,11 +29,7 @@ app.get("/v2/accidents/dropdb", v2AccidentsController.accidentsDeleteDb);
 // Hack: https://blog.campvanilla.com/jest-expressjs-and-the-eaddrinuse-error-bac39356c33a
 if (process.env.NODE_ENV !== "test") {
   app.listen(app.get("port"), () => {
-    log(
-      "  App is running at http://localhost:%d in %s mode",
-      app.get("port"),
-      app.get("env")
-    );
+    log(`  App is running at http://localhost:${app.get("port")} in ${app.get("env")} mode`);
     log("  Press CTRL-C to stop\n");
   });
 }
