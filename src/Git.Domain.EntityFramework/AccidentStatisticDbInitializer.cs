@@ -61,8 +61,10 @@ namespace Git.Domain.EntityFramework
         private async Task GenerateDataFromLiveFeed(AccidentStatisticDbContext context)
         {
             _logger.Debug("About to generate data from the TFL live feed");
-            ITransportForLondonClient transportForLondonClient = new TransportForLondonClient(Configuration.Create(), Logger.Create());
-            var lastYear = DateTime.Now.Year - 1;
+            var configuration = Configuration.Create();
+            var logger = Logger.Create();
+            ITransportForLondonClient transportForLondonClient = new TransportForLondonClient(configuration, logger);
+            var lastYear = configuration.MaximumYear;
             var firstYear = 2005;
             if (IsTestDatabase(context))
             {

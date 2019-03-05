@@ -7,9 +7,10 @@ export interface AccidentStatistic {
   lat?: string;
   lon?: string;
   location?: string;
-  date?: string;
+  date?: string | Date;
   severity?: string;
   borough?: string;
   casualties?: Casualty[];
   vehicles?: Vehicle[];
+  $type?: string;
 }

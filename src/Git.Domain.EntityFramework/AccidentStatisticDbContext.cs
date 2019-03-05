@@ -7,7 +7,10 @@ namespace Git.Domain.EntityFramework
     [ExcludeFromCodeCoverage]
     public class AccidentStatisticDbContext : DbContext, IAccidentStatisticDbContext
     {
-        
+        public AccidentStatisticDbContext()
+            : this(Domain.Logger.Create())
+        {
+        }
 
         public AccidentStatisticDbContext(ILogger logger)
         {

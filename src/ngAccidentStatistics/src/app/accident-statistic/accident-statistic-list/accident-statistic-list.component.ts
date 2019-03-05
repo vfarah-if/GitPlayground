@@ -54,7 +54,7 @@ export class AccidentStatisticListComponent implements OnInit {
         expand(({ nextPage }) => {
           // debugger;
           return nextPage
-          ? this.accidentStatisticService.get({
+            ? this.accidentStatisticService.get({
               pageSize: this.pageSize,
               from: this.from,
               to: this.to,
@@ -62,7 +62,7 @@ export class AccidentStatisticListComponent implements OnInit {
               severity: this.severityOption,
               sortBy: this.orderByOption,
             })
-          : EMPTY;
+            : EMPTY;
         }),
         map(({ data }) => data),
         reduce((acc, data) => acc.concat(data), [])
@@ -75,13 +75,15 @@ export class AccidentStatisticListComponent implements OnInit {
       );
   }
 
-  severityDescription(severity: number): string {
+  severityDescription(severity: number|string): string {
     if (severity === 0) {
       return 'serious';
     } else if (severity === 1) {
       return 'slight';
-    } else {
+    } else if (severity === 2) {
       return 'fatal';
+    } else {
+      return severity.toString();
     }
   }
 }

@@ -18,10 +18,8 @@ describe("GET /v1/accidents", () => {
 
     it("should return 200 with default query", async (done) => {
         const response = await request(app).get("/v1/accidents");
-        // tslint:disable-next-line:no-console
-        // console.log("/v1/accidents Responded with => ", response);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
@@ -29,47 +27,61 @@ describe("GET /v1/accidents", () => {
         const response = await request(app)
             .get("/v1/accidents?page=2&pageSize=10&orderBy=BoroughDescending&severity=Fatal");
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
     it("should return 200 with borough ascending", async (done) => {
         const response = await request(app)
             .get("/v1/accidents?page=1&pageSize=10&orderBy=BoroughAscending&severity=Fatal");
-        // tslint:disable-next-line:no-console
-        // console.log("/v1/accidents Responded with => ", response);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
     it("should return 200 with location ascending", async (done) => {
         const response = await request(app)
             .get("/v1/accidents?page=1&pageSize=10&orderBy=LocationAscending&severity=Fatal");
-        // tslint:disable-next-line:no-console
-        // console.log("/v1/accidents Responded with => ", response);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
     it("should return 200 with location descending", async (done) => {
         const response = await request(app)
             .get("/v1/accidents?page=1&pageSize=10&orderBy=LocationDescending&severity=Fatal");
-        // tslint:disable-next-line:no-console
-        // console.log("/v1/accidents Responded with => ", response);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
         done();
     });
 
     it("should return 200 with date ascending", async (done) => {
         const response = await request(app)
             .get("/v1/accidents?page=1&pageSize=10&orderBy=DateAscending&severity=Fatal");
-        // tslint:disable-next-line:no-console
-        // console.log("/v1/accidents Responded with => ", response.body);
         expect(response.status).toBe(200);
-        expect(response).toMatchSnapshot();
+        expect(response.body).toMatchSnapshot();
+        done();
+    });
+
+    it("should return No data below 2005 when from date out of range", async (done) => {
+        const response = await request(app)
+            .get("/v1/accidents?from=2004-01-01");
+        expect(response.status).toBe(500);
+        done();
+    });
+
+    it("should return No data greater than '2017' when to date out of range", async (done) => {
+        const response = await request(app)
+            .get("/v1/accidents?from=2019-01-01");
+        expect(response.status).toBe(500);
+        done();
+    });
+
+    it("should swap the dates when from is greater than to date", async (done) => {
+        const response = await request(app)
+            .get("/v1/accidents?from=2017-12-31&to=2017-01-01");
+        expect(response.status).toBe(200);
+        expect(response.body).toMatchSnapshot();
         done();
     });
 });

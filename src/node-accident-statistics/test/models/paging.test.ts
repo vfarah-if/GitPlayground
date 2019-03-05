@@ -27,8 +27,6 @@ describe("Paging", () => {
             data = new ExtendedArray(theory.data);
 
             const sut = paginator.generate(data, theory.page, theory.pageSize);
-            // // tslint:disable-next-line:no-console
-            // console.log("Paginated data => ", sut);
 
             expect(sut.data).toBeTruthy();
             if (sut.data) {

@@ -141,7 +141,7 @@ describe('AccidentStatisticMapComponent', () => {
 
     it('should create exactly two friendly image markers on the map', async(() => {
       const images = imageMarkerElements(compiled);
-      const expectedHeatmapImageUrl = 'http://localhost:9876/marker-icon.png';
+      const expectedHeatmapImageUrl = 'http://localhost:9876/marker-icon-2x.png';
 
       expect(images).toBeTruthy();
       expect(images.length).toBe(2);

@@ -7,4 +7,5 @@ export interface Casualty {
     severity?: SeverityOptionValues;
     mode?: string;
     ageBand?: string;
+    $type: string | undefined;
 }

@@ -12,6 +12,7 @@ dotenv.config();
 const app = express();
 
 app.set("port", process.env.PORT || 9000);
+app.set("env", process.env.NODE_ENV);
 
 app.use(cors());
 

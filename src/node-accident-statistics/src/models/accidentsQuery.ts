@@ -4,7 +4,7 @@ export type SortByOptions = "DateAscending" | "LocationAscending" | "DateDescend
 export type SeverityOptions = "Serious" | "Slight" | "Fatal";
 
 export class AccidentsQuery {
-    public from: Date|string;
+    public from: Date | string;
     public get orderBy(): SortByOptions {
         return this.sortBy as SortByOptions;
     }
@@ -13,11 +13,11 @@ export class AccidentsQuery {
         this.sortBy = sortBy;
     }
 
-    public page: number|string;
-    public pageSize: number|string;
+    public page: number | string;
+    public pageSize: number | string;
     public sortBy: SortByOptions;
     public severity: SeverityOptions;
-    public to: Date|string;
+    public to: Date | string;
     constructor() {
         this.severity = "Fatal";
         this.sortBy = "DateDescending";

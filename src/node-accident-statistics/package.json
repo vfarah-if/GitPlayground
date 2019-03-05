@@ -16,7 +16,7 @@
     "start": "npm run serve",
     "debug": "nodemon --inspect dist/src/server.js",
     "test": "jest --forceExit --coverage --verbose --detectOpenHandles",
-    "build-test": "npm-run-all build test",
+    "test-build": "npm-run-all build test",
     "test-watch": "npm run test -- --watchAll"
   },
   "keywords": [
@@ -27,6 +27,7 @@
   "author": "Vincent Farah",
   "license": "ISC",
   "devDependencies": {
+    "@types/apicache": "^1.2.0",
     "@types/cors": "^2.8.4",
     "@types/dotenv": "^6.1.0",
     "@types/errorhandler": "0.0.32",
@@ -34,7 +35,7 @@
     "@types/express-session": "^1.15.11",
     "@types/fs-extra": "^5.0.4",
     "@types/jest": "^24.0.0",
-    "@types/mssql": "^4.0.12",
+    "@types/mongodb": "^3.1.19",
     "@types/nock": "^9.3.1",
     "@types/node": "^10.12.24",
     "@types/shelljs": "^0.8.2",
@@ -52,6 +53,7 @@
     "typescript": "^3.3.1"
   },
   "dependencies": {
+    "apicache": "^1.4.0",
     "axios": "^0.18.0",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
@@ -60,7 +62,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "moment": "^2.24.0",
-    "mssql": "^4.3.1",
+    "mongodb": "^3.1.13",
     "supertest": "^3.4.2"
   },
   "standard": {
