@@ -84,8 +84,6 @@ namespace Git.Domain.EntityFramework
                     await GeneraDataFor(context, accidentStatistics);
                     stopwatch.Stop();
                     _logger.Debug($"Took '{stopwatch.Elapsed.ToString()}' to insert data for year '{year}' into the local database");
-                    _logger.Debug($"Pausing to prevent being locked out");
-                    Thread.Sleep(10000);
                 }
                 catch (Exception e)
                 {
