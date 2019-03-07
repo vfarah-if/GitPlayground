@@ -42,10 +42,10 @@ describe('AccidentStatisticsService', () => {
             useV1: useV1
         };        
         const expectedUrl = "http://localhost:9000/v2/Accidents";              
-        const params = RequestConfigFactory.createSearchParams(query);
+        const expectedParams = RequestConfigFactory.createSearchParams(query);
         const expectedConfig = {
             "headers": expectedHeaders,
-            "params": params
+            "params": expectedParams
         };  
 
         const resolved = new Promise((response) => response({ data: testData }));
@@ -75,10 +75,10 @@ describe('AccidentStatisticsService', () => {
             useV1: useV1
         };        
         const expectedUrl = "http://localhost:9000/v1/Accidents";
-        const params = RequestConfigFactory.createSearchParams(query);
+        const expectedParams = RequestConfigFactory.createSearchParams(query);
         const expectedConfig = {
             "headers": expectedHeaders,
-            "params": params
+            "params": expectedParams
         };
 
         const resolved = new Promise((response) => response({ data: testData }));
