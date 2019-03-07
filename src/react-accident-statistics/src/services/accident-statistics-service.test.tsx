@@ -3,12 +3,20 @@ import axios from 'axios';
 import * as testData from './accident-statistics-service.json';
 import { AccidentStatisticsService } from './accident-statistics-service';
 import { SeverityOptions, SortByOptions, AccidentStatisticsQuery } from 'src/models';
+import { RequestConfigFactory } from './request-config-factory';
 jest.mock('axios');
 
 describe('AccidentStatisticsService', () => {
     let service: AccidentStatisticsService;
+    const expectedHeaders = {
+        "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        }
+    };
+
     beforeEach(() => {
-        service = new AccidentStatisticsService();        
+        service = new AccidentStatisticsService();
     });
 
     it('should create test with all expectations', () => {
@@ -32,7 +40,13 @@ describe('AccidentStatisticsService', () => {
             page: currentPage,
             pageSize: pageSize,
             useV1: useV1
-        };
+        };        
+        const expectedUrl = "http://localhost:9000/v2/Accidents";              
+        const params = RequestConfigFactory.createSearchParams(query);
+        const expectedConfig = {
+            "headers": expectedHeaders,
+            "params": params
+        };  
 
         const resolved = new Promise((response) => response({ data: testData }));
         (axios.get as any).mockImplementation(() => Promise.resolve(resolved));
@@ -40,24 +54,7 @@ describe('AccidentStatisticsService', () => {
 
         expect(response).toBeTruthy();
         expect(axios.get).toHaveBeenCalled();
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:9000/v2/Accidents",
-            {
-                "headers": {
-                    "headers": {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json"
-                    }
-                }, "params": {
-                    "__URLSearchParams__": {
-                        "from": ["2014-02-01T00:00:00.000Z"],
-                        "page": ["2"],
-                        "pageSize": ["200"],
-                        "severity": ["Serious"],
-                        "sortBy": ["DateAscending"],
-                        "to": ["2019-01-31T00:00:00.000Z"]
-                    }
-                }
-            });
+        expect(axios.get).toHaveBeenCalledWith(expectedUrl, expectedConfig);
     });
 
     it('should call axios with the v1 accidents path and parameters', async () => {
@@ -76,31 +73,20 @@ describe('AccidentStatisticsService', () => {
             page: currentPage,
             pageSize: pageSize,
             useV1: useV1
+        };        
+        const expectedUrl = "http://localhost:9000/v1/Accidents";
+        const params = RequestConfigFactory.createSearchParams(query);
+        const expectedConfig = {
+            "headers": expectedHeaders,
+            "params": params
         };
-                
+
         const resolved = new Promise((response) => response({ data: testData }));
-        (axios.get as any).mockImplementation(() => Promise.resolve(resolved));        
+        (axios.get as any).mockImplementation(() => Promise.resolve(resolved));
         const response = await service.get(query);
 
         expect(response).toBeTruthy();
         expect(axios.get).toHaveBeenCalled();
-        expect(axios.get).toHaveBeenCalledWith("http://localhost:9000/v1/Accidents",
-            {
-                "headers": {
-                    "headers": {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json"
-                    }
-                }, "params": {
-                    "__URLSearchParams__": {
-                        "from": ["2014-02-01T00:00:00.000Z"],
-                        "page": ["2"],
-                        "pageSize": ["200"],
-                        "severity": ["Serious"],
-                        "sortBy": ["DateAscending"],
-                        "to": ["2019-01-31T00:00:00.000Z"]
-                    }
-                }
-            });
+        expect(axios.get).toHaveBeenCalledWith(expectedUrl, expectedConfig);
     });
 });

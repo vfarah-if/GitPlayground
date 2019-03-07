@@ -1,36 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { PagedAccidentStatistic, AccidentStatisticsQuery } from 'src/models';
+import { PagedAccidentStatistic, AccidentStatisticsQuery } from './../models';
+import { RequestConfigFactory } from './request-config-factory';
 
 export class AccidentStatisticsService {
     private basePath:string = 'http://localhost:9000'; // TODO: hook this up with environment variables
 
     public async get(query?: AccidentStatisticsQuery): Promise<AxiosResponse<PagedAccidentStatistic>> {
-        var params = new URLSearchParams();
-        if (query) {
-            if (query.from) {
-                params.append('from', query.from.toISOString());
-            }
-            if (query.to) {
-                params.append('to', query.to.toISOString());
-            }
-
-            if (query.severity) {
-                params.append('severity', query.severity);
-            }
-
-            if (query.sortBy) {
-                params.append('sortBy', query.sortBy);
-            }
-
-            if (query.page) {
-                params.append('page', query.page.toString());
-            }
-
-            if (query.pageSize) {
-                params.append('pageSize', query.pageSize.toString());
-            }
-        }
+        const params = RequestConfigFactory.createSearchParams(query);
         const headers = {
             headers: {
                 'Content-Type': 'application/json',
