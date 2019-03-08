@@ -35,7 +35,16 @@
     docker-compose down 
 
     # building the Dockerfile
-    docker build .
+    docker-compose build  
+
+    # Select the docker image to run and bind the port 9000 to a local port 9000
+    docker images
+    
+    # Once you get the hack run
+    docker run -p 9000:9000  <f16175c32f62>
+
+    #Check running docker containers
+    docker ps
     ```
 * Here are the images related to Node [Node Images](https://hub.docker.com/_/node)
 * 
