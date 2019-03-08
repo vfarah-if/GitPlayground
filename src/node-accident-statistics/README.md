@@ -22,6 +22,20 @@
     "test-watch": Watch for test changes
     ```
 
+## Docker Dev
+* Download docker and install it on your local operation system
+* https://docs.docker.com/get-started/part2/ documentation 
+* Run to start docker compose
+
+    ```shell
+    # to start
+    docker-compose up
+
+    # to stop
+    docker-compose down 
+    ```
+
+
 ## Creating a Typescript Node project
 
 * Recomend the following https://github.com/Microsoft/TypeScript-Node-Starter#typescript-node-starter for learning typescript basics and configuration basics as well as node concepts translated to typescript
