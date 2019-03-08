@@ -33,8 +33,12 @@
 
     # to stop
     docker-compose down 
-    ```
 
+    # building the Dockerfile
+    docker build .
+    ```
+* Here are the images related to Node [Node Images](https://hub.docker.com/_/node)
+* 
 
 ## Creating a Typescript Node project
 
