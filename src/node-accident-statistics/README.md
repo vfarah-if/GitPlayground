@@ -1,3 +1,27 @@
+## Compiling and running the project
+
+    ```
+    NPM/YARN INSTALL: Initialise all the node modules
+    NPM RUN "<Command>" ...
+    YARN <Command> ...
+    
+    <Commands>
+    "clean": To dist folder and files,
+    "copy-assets": To copy custome files to a folder,
+    "build": Build project to dist folder,
+    "lint": lint and fix TS and JS issues,
+    "serve": run the project,
+    "tsc": Typescript compiler,
+    "tsc:w": Watch and compile anything that changes,
+    "dev:start": Start and debug,
+    "dev": Develop and watch for file changes restarting node,
+    "start": "npm run serve",
+    "debug": Debug application through CHROME plugins,
+    "test": Jest test with coverage,
+    "test-build": Deploy just tests,
+    "test-watch": Watch for test changes
+    ```
+
 ## Creating a Typescript Node project
 
 * Recomend the following https://github.com/Microsoft/TypeScript-Node-Starter#typescript-node-starter for learning typescript basics and configuration basics as well as node concepts translated to typescript
@@ -101,28 +125,6 @@
 * Utilised a well written API caching library, which worked well for Typescript too and could easily extend to utilising REDIS,[apicache](https://github.com/kwhitley/apicache);
 
 !["V2 Mongo driven API"](screenshots/V2API.png)
-
-## Compiling and running the project
-
-    ```
-    NPM RUN "<Command>" ...
-    
-    <Commands>
-    "clean": To dist folder and files,
-    "copy-assets": To copy custome files to a folder,
-    "build": Build project to dist folder,
-    "lint": lint and fix TS and JS issues,
-    "serve": run the project,
-    "tsc": Typescript compiler,
-    "tsc:w": Watch and compile anything that changes,
-    "dev:start": Start and debug,
-    "dev": Develop and watch for file changes restarting node,
-    "start": "npm run serve",
-    "debug": Debug application through CHROME plugins,
-    "test": Jest test with coverage,
-    "test-build": Deploy just tests,
-    "test-watch": Watch for test changes
-    ```
 
 !["Code coverage output"](screenshots/CodeCoverage.png)
 
