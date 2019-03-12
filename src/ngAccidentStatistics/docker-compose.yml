@@ -1,0 +1,6 @@
+version: '3.1'
+services:
+  angular_accident_statistics:
+    build: .
+    ports:
+    - "4200:4200"

@@ -1,7 +1,8 @@
 
 import { Component, Input } from '@angular/core';
 
-import { Observable } from 'rxjs/internal/Observable';
+// import { Observable } from 'rxjs/internal/observable';
+import { Observable } from 'rxjs'; // TODO Remove when issue resolved
 
 import { MapOptions, tileLayer, latLng } from 'leaflet';
 

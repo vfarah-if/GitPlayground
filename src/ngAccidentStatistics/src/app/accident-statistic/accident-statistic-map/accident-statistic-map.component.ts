@@ -1,10 +1,11 @@
 
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
-import { Observable } from 'rxjs/internal/Observable';
+// import { Observable } from 'rxjs/internal/observable';
+// import { empty } from 'rxjs/internal/observable/empty';
+import { Observable, empty } from 'rxjs'; // TODO Remove when issue resolved
 import { expand, map, reduce } from 'rxjs/internal/operators';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { EMPTY } from 'rxjs/internal/observable/empty';
 
 import { Map, MapOptions, tileLayer, latLng, marker, icon } from 'leaflet';
 
@@ -117,7 +118,7 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
               to: this.to,
               severity: this.severityOption,
               page: nextPage })
-            : EMPTY;
+            : empty();
         }),
         map(({ data }) => data),
         reduce((acc, data) => acc.concat(data), [])
