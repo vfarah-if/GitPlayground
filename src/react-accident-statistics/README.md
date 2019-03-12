@@ -10,6 +10,9 @@ You can find the most recent version of this guide [here](https://github.com/fac
 This is the best overall advice presented on testing in almost every scenario.
 [React testing tutorial](https://www.robinwieruch.de/react-testing-tutorial/)
 
+## Docker
+The application can be started up in a docker image using `docker-compose up`
+
 ## E2E tests
 [E2E Testing](https://github.com/dwyl/learn-nightwatch)
 
