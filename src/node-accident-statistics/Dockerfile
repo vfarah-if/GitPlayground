@@ -4,7 +4,7 @@ WORKDIR /accident_statistics
 
 COPY . /accident_statistics
 
-RUN npm install -g typescript && \
+RUN npm install -g typescript@3.2 && \
     npm install ts-node && \
     npm install npm-run-all && \
     npm install && \
