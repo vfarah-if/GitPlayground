@@ -3,4 +3,7 @@ services:
   angular_accident_statistics:
     build: .
     ports:
-    - "4200:4200"
+    #Previous before multi-stage docker
+    # - "4200:4200"
+    - "4200:80"
+
