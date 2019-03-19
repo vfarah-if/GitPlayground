@@ -106,6 +106,7 @@
     * Your Node.js application is off to a great start, but perhaps not the best looking, yet. This step adds [Materialize](https://materializecss.com/), a modern CSS framework based on Google’s Material Design, and [Embedded JavaScript Templates](https://www.npmjs.com/package/ejs) (EJS), an HTML template language for Express. Materialize and EJS are a good foundation for a much better UI.
         * [Tutorials](https://www.tutorialspoint.com/materialize/)
         * [Material Icons](https://material.io/tools/icons/?icon=featured_play_list&style=baseline)
+        
         !["Materialize"](screenshots/MaterialTutorial.png)
     * This is not necessary, inactual fact I did not get it to work for various good or bad reasons, but interesting in the name of experimentation, securing your Node.js application is to configure Express to use the Okta OpenId Connect (OIDC) middleware and to see how the router would work under that context.
         ```
