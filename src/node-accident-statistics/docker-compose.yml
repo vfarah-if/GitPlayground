@@ -4,9 +4,15 @@ services:
     image: mongo
     ports:
     - "27018:27017"
+    # Manually need to create the "data" folder and share this in docker 
+    # REMARKS: Needed only for making sure that the data is not lost in production
+    volumes:
+    - "./data:/data/db"
 
   node_accident_api:
     build: .
+    depends_on:
+      - mongo
     ports:
     -  "9000:9000"
     volumes: 
