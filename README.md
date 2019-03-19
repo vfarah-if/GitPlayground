@@ -205,6 +205,7 @@ Do not look at this if you want to solve this on your own but if you are interes
 	!["POWER BI Map"](screenshots/PowerBI.png)
 	The actual graphs supported drill down and many options for interacting with the graph data dynamically. I could also generate reports and various other things simply. Each page is a tab that can support different types of web clients. This could be a cheap way to produce the same project without needing to maintain any code or have any technical expertise, to give a business user some powerful tools to achieve what I wanted all along, to work out which Boroughs are the worst for my perilous cycling activity. The city of Westminster takes the trophy, but I think its a Brexit thing ...
 	!["POWER BI Graph"](screenshots/PowerBIGraph.png)
+	12. TODO: Document all findings on Docker and AWS deployment, Azure, Heroku and possibly one other. 
 
 # summary
 

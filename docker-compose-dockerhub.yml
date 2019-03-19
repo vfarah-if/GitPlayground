@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27018:27017"
+
+  # TODO: Create the image on docker hub
+  node_accident_api:
+    image: vfarah/node_accident_api
+    depends_on:
+      - mongo
+    ports:
+    -  "9000:9000"
+
+  ng_accident_statistics:
+    image: vfarah/ng_accident_statistics
+    ports: 
+      - "4200:80"
+    depends_on:
+      - node_accident_api
+
+  mongo_express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+    depends_on:
+      - mongo
