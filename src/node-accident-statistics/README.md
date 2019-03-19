@@ -33,21 +33,11 @@
 
     # to stop
     docker-compose down 
-
-    # building the Dockerfile
-    docker-compose build  
-
-    # Select the docker image to run and bind the port 9000 to a local port 9000
-    docker images
-    
-    # Once you get the hack run
-    docker run -p 9000:9000  <f16175c32f62>
-
-    #Check running docker containers
-    docker ps
     ```
 * Here are the images related to Node [Node Images](https://hub.docker.com/_/node)
-* 
+* In a production deployment of docker, there would be a requirement to preserve the data on subsequent deployments. Within the docker compose file, you will need to uncomment the data section, see *docker-compose.yml* for more comments in the file and create an empty `data` folder in the root, if it does not already exist. **NOTE** trying this on Windows or Mac is not supported as there is a bug mapping to the vbox or hyperv within these environments and as a result the data is not able to be bound together to the outside. 
+* Finally if there is no Mongo Compass installed locally, there is an option to see the Mongo data using *Mongo Express* on *localhost:8081* as below.
+!["Mongo-express"](screenshots/Mongo-express.png) 
 
 ## Creating a Typescript Node project
 
