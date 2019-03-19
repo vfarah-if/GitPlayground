@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-// import { Observable } from 'rxjs/internal/observable';
-// import { empty } from 'rxjs/internal/observable/empty';
-import { Observable, empty } from 'rxjs'; // TODO Remove when issue resolved
+import { Observable, empty } from 'rxjs';
 import { map, expand, reduce, tap } from 'rxjs/internal/operators';
 
 import { AccidentStatiticsService } from './../../api';

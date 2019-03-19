@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-// import { Observable } from 'rxjs/internal/observable';
-import { Observable } from 'rxjs'; // TODO Remove when issue resolved
+import { Observable } from 'rxjs';
 
 import { AccidentStatisticsQuery, PagedAccidentStatistic } from '../model';
 import { environment } from '../../environments/environment';
+
 
 
 @Injectable({

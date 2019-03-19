@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 
-// import { Observable } from 'rxjs/internal/observable';
-// import { of } from 'rxjs/internal/observable/of';
 import { Observable, of } from 'rxjs'; // TODO Remove when issue resolved
 
 import { AccidentStatisticsQuery, PagedAccidentStatistic } from '../../model';

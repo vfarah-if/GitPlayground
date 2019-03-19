@@ -1,9 +1,7 @@
 
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
-// import { Observable } from 'rxjs/internal/observable';
-// import { empty } from 'rxjs/internal/observable/empty';
-import { Observable, empty } from 'rxjs'; // TODO Remove when issue resolved
+import { Observable, empty } from 'rxjs';
 import { expand, map, reduce } from 'rxjs/internal/operators';
 import { Subscription } from 'rxjs/internal/Subscription';
 

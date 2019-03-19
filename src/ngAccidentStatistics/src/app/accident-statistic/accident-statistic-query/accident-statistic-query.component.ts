@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-// import { Observable } from 'rxjs/internal/observable';
-// import { empty } from 'rxjs/internal/observable/empty';
-import { Observable, empty } from 'rxjs'; // TODO Remove when issue resolved
+import { Observable, empty } from 'rxjs';
 import { switchMap, catchError, tap } from 'rxjs/internal/operators';
 
 import { SeverityOptions, PagedAccidentStatistic, SortByOptions } from '../../model';

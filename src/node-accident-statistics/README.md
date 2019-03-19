@@ -25,6 +25,7 @@
 ## Docker Dev
 * Download docker and install it on your local operation system
 * https://docs.docker.com/get-started/part2/ documentation 
+* Within the local *.env* file, make sure you comment out the `MONGO_URL=mongodb://localhost:27017` and uncomment the `MONGO_URL=mongodb://mongo:27017` for mongo to run through dockthe mongo container, otherwise this file will be packaged with the wrong environment settings.
 * Run to start docker compose
 
     ```shell

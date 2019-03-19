@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { Observable } from 'rxjs/internal/observable';
-import { Observable } from 'rxjs'; // TODO Remove when issue resolved
+import { Observable } from 'rxjs';
 import { SeverityOptions, PagedAccidentStatistic } from '../../../model';
 
 @Component({
