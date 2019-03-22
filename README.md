@@ -167,7 +167,7 @@ This will be used to host a REST based API, if you plan to integrate this with m
 Do not look at this if you want to solve this on your own but if you are interested in understanding or writing about something related to the above scenarios then carry on. This is my indaba and will explain roughly how I chose to solve my problem. Some of the requirments are missing that may have been applied above and some ideas where exploritory in my code to help me come up with the ideas. My naming convention is related to the technology stack rather than the actual domain.
 
 ### Skills covered
-Doing the following you will learn TDD, Dotnet in c#, Web Api, ORM and Entity Framework, Node client and server side, Angular, React, Docker, SQL and NoSql, basic CSS and learning caching strategies, CORRS as well as lots of little things not mentioned.   
+Doing the following you will learn TDD, Dotnet in c#, Web Api, ORM and Entity Framework, Node client and server side, Angular, React, Docker, SQL and NoSql, basic CSS and learning caching strategies, CORS, Microsoft Power BI and lots of small things not mentioned.   
 
 ### Set up development environments
 
