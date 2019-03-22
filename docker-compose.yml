@@ -7,20 +7,25 @@ services:
 
   # NOTE: Need to change the .env in the root folder of src/node-accident-statistics to use mongo url through docker
   node_accident_api:
-    image: src/node-accident-statistics
+    build: src/node-accident-statistics
     depends_on:
       - mongo
     ports:
     -  "9000:9000"
 
   ng_accident_statistics:
-    image: src/ngAccidentStatistics
+    build: src/ngAccidentStatistics
     ports: 
       - "4200:80"
     depends_on:
       - node_accident_api
 
-  # TODO: Add the REACT client here and reduce the size
+  react_accident_statistics:
+    build: src/react-accident-statistics
+    ports: 
+      - "3000:80"
+    depends_on:
+      - node_accident_api
 
   mongo_express:
     image: mongo-express

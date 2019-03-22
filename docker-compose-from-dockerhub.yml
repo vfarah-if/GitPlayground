@@ -5,7 +5,6 @@ services:
     ports:
       - "27018:27017"
 
-  # TODO: Create the image on docker hub
   node_accident_api:
     image: vfarah/node_accident_api
     depends_on:
@@ -17,6 +16,13 @@ services:
     image: vfarah/ng_accident_statistics
     ports: 
       - "4200:80"
+    depends_on:
+      - node_accident_api
+  
+  react_accident_statistics:
+    image: vfarah/react_accident_statistics
+    ports: 
+      - "3000:80"
     depends_on:
       - node_accident_api
 

@@ -3,4 +3,6 @@ services:
   react_accident_statistics:
     build: .
     ports:
-    - "3000:3000"
+    # Use this when not utilising multi stage
+    # - "3000:3000"
+    - 3000:80
