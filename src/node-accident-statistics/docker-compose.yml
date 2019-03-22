@@ -1,0 +1,29 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    ports:
+    - "27018:27017"
+    # Manually need to create the "data" folder and share this in docker 
+    # REMARKS: Needed only for making sure that the data is not lost in production and only works on linux/ubunto, issue on windows mac because of vbox hyperv issues
+    # Uncommment the following lines to work on linux in production if you dont want to lose the data
+    # volumes:
+    # - "./data:/data/db"
+
+  node_accident_api:
+    build: .
+    depends_on:
+      - mongo
+    ports:
+    -  "9000:9000"
+    # volumes: 
+    # -  "./accident_statistics"
+
+  mongo_express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+    depends_on:
+      - mongo

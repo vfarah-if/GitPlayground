@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable, of } from 'rxjs'; // TODO Remove when issue resolved
 
 import { AccidentStatisticsQuery, PagedAccidentStatistic } from '../../model';
 import { AccidentStatiticsService } from '../accident-statistics.service';
@@ -10,7 +10,7 @@ import { AccidentStatiticsService } from '../accident-statistics.service';
 import { default as pageSizeOfOnePageOneOfTwoTestData } from './response-with-total2-pagesize1-page1.json';
 import { default as pageSizeOfOnePageTwoOfTwoTestData } from './response-with-total2-pageSize1-page2.json';
 import { default as pageSizeOfTwoWithTotalOfTwoTestData } from './response-with-total2-pagesize2.json';
-import { of } from 'rxjs/internal/observable/of';
+
 
 // NOTE: Had to exclude mock from the compiler because it does not understand JASMINE and hence the testing folder being excluded
 

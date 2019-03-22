@@ -1,0 +1,8 @@
+version: '3.1'
+services:
+  react_accident_statistics:
+    build: .
+    ports:
+    # Use this when not utilising multi stage
+    # - "3000:3000"
+    - 3000:80

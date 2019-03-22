@@ -1,0 +1,37 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27018:27017"
+
+  # NOTE: Need to change the .env in the root folder of src/node-accident-statistics to use mongo url through docker
+  node_accident_api:
+    build: src/node-accident-statistics
+    depends_on:
+      - mongo
+    ports:
+    -  "9000:9000"
+
+  ng_accident_statistics:
+    build: src/ngAccidentStatistics
+    ports: 
+      - "4200:80"
+    depends_on:
+      - node_accident_api
+
+  react_accident_statistics:
+    build: src/react-accident-statistics
+    ports: 
+      - "3000:80"
+    depends_on:
+      - node_accident_api
+
+  mongo_express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+    depends_on:
+      - mongo

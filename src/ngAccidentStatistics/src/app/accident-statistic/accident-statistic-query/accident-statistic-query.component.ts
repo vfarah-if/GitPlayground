@@ -1,8 +1,7 @@
-import { EMPTY } from 'rxjs/internal/observable/EMPTY';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable, empty } from 'rxjs';
 import { switchMap, catchError, tap } from 'rxjs/internal/operators';
 
 import { SeverityOptions, PagedAccidentStatistic, SortByOptions } from '../../model';
@@ -55,7 +54,7 @@ export class AccidentStatisticQueryComponent implements OnInit {
             sortBy: data.sortBy
           });
         } else {
-          return EMPTY;
+          return empty();
         }
       }),
       catchError(fail => {

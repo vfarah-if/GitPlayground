@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Observable } from 'rxjs/internal/observable';
-import { EMPTY } from 'rxjs/internal/observable/EMPTY';
+import { Observable, empty } from 'rxjs';
 import { map, expand, reduce, tap } from 'rxjs/internal/operators';
 
 import { AccidentStatiticsService } from './../../api';
@@ -62,7 +61,7 @@ export class AccidentStatisticListComponent implements OnInit {
               severity: this.severityOption,
               sortBy: this.orderByOption,
             })
-            : EMPTY;
+            : empty();
         }),
         map(({ data }) => data),
         reduce((acc, data) => acc.concat(data), [])
@@ -75,7 +74,7 @@ export class AccidentStatisticListComponent implements OnInit {
       );
   }
 
-  severityDescription(severity: number|string): string {
+  severityDescription(severity: number | string): string {
     if (severity === 0) {
       return 'serious';
     } else if (severity === 1) {

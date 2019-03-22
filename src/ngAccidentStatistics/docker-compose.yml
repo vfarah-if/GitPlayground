@@ -1,0 +1,9 @@
+version: '3.1'
+services:
+  angular_accident_statistics:
+    build: .
+    ports:
+    #Previous before multi-stage docker
+    # - "4200:4200"
+    - "4200:80"
+

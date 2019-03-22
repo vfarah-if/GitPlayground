@@ -1,3 +1,45 @@
+## Compiling and running the project
+
+    ```
+    NPM/YARN INSTALL: Initialise all the node modules
+    NPM RUN "<Command>" ...
+    YARN <Command> ...
+    
+    <Commands>
+    "clean": To dist folder and files,
+    "copy-assets": To copy custome files to a folder,
+    "build": Build project to dist folder,
+    "lint": lint and fix TS and JS issues,
+    "serve": run the project,
+    "tsc": Typescript compiler,
+    "tsc:w": Watch and compile anything that changes,
+    "dev:start": Start and debug,
+    "dev": Develop and watch for file changes restarting node,
+    "start": "npm run serve",
+    "debug": Debug application through CHROME plugins,
+    "test": Jest test with coverage,
+    "test-build": Deploy just tests,
+    "test-watch": Watch for test changes
+    ```
+
+## Docker Dev
+* Download docker and install it on your local operation system
+* https://docs.docker.com/get-started/part2/ documentation 
+* Within the local *.env* file, make sure you comment out the `MONGO_URL=mongodb://localhost:27017` and uncomment the `MONGO_URL=mongodb://mongo:27017` for mongo to be run through the docker container, otherwise this file will be packaged with the wrong environment settings and not be able to share data out of the container.
+* Run to start docker compose
+
+    ```shell
+    # to start
+    docker-compose up
+
+    # to stop
+    docker-compose down 
+    ```
+* Here are the images related to Node [Node Images](https://hub.docker.com/_/node)
+* In a production deployment of docker, there would be a requirement to preserve the data on subsequent deployments. Within the docker compose file, you will need to uncomment the data section, see *docker-compose.yml* for more comments in the file and create an empty `data` folder in the root, if it does not already exist. **NOTE** trying this on Windows or Mac is not supported as there is a bug mapping to the vbox or hyperv within these environments and as a result the data is not able to be bound together to the outside. 
+* Finally if there is no Mongo Compass installed locally, there is an option to see the Mongo data using *Mongo Express* on *localhost:8081* as below.
+!["Mongo-express"](screenshots/Mongo-express.png) 
+
 ## Creating a Typescript Node project
 
 * Recomend the following https://github.com/Microsoft/TypeScript-Node-Starter#typescript-node-starter for learning typescript basics and configuration basics as well as node concepts translated to typescript
@@ -65,6 +107,7 @@
     * Your Node.js application is off to a great start, but perhaps not the best looking, yet. This step adds [Materialize](https://materializecss.com/), a modern CSS framework based on Google’s Material Design, and [Embedded JavaScript Templates](https://www.npmjs.com/package/ejs) (EJS), an HTML template language for Express. Materialize and EJS are a good foundation for a much better UI.
         * [Tutorials](https://www.tutorialspoint.com/materialize/)
         * [Material Icons](https://material.io/tools/icons/?icon=featured_play_list&style=baseline)
+        
         !["Materialize"](screenshots/MaterialTutorial.png)
     * This is not necessary, inactual fact I did not get it to work for various good or bad reasons, but interesting in the name of experimentation, securing your Node.js application is to configure Express to use the Okta OpenId Connect (OIDC) middleware and to see how the router would work under that context.
         ```
@@ -101,28 +144,6 @@
 * Utilised a well written API caching library, which worked well for Typescript too and could easily extend to utilising REDIS,[apicache](https://github.com/kwhitley/apicache);
 
 !["V2 Mongo driven API"](screenshots/V2API.png)
-
-## Compiling and running the project
-
-    ```
-    NPM RUN "<Command>" ...
-    
-    <Commands>
-    "clean": To dist folder and files,
-    "copy-assets": To copy custome files to a folder,
-    "build": Build project to dist folder,
-    "lint": lint and fix TS and JS issues,
-    "serve": run the project,
-    "tsc": Typescript compiler,
-    "tsc:w": Watch and compile anything that changes,
-    "dev:start": Start and debug,
-    "dev": Develop and watch for file changes restarting node,
-    "start": "npm run serve",
-    "debug": Debug application through CHROME plugins,
-    "test": Jest test with coverage,
-    "test-build": Deploy just tests,
-    "test-watch": Watch for test changes
-    ```
 
 !["Code coverage output"](screenshots/CodeCoverage.png)
 

@@ -1,12 +1,23 @@
 # NgAccidentStatistics
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4. Most of this project was developed using standard Angular patterns which can be understood further down with references to the CLI and very good Angular documentation.
+This project was generated with [Angular CLI](https://cli.angular.io/) version 7.0.4. Most of this project was developed using standard Angular patterns which can be understood further down with references to the CLI and very good Angular documentation.
 
 The only part I wanted to ellaborate on is my testing folder within each folder. When creating a component or a service, I always create a test component and test module that can be utilised by whatever consumes the artifact. This made things very simple for testing and always puts consuming the component in your design choice. I created a simple testing mechanism for RXJS methods exposing Jasmine Spies for mocking the data expectations and instead of doing Jasmine Marble testing, I exposed simple observables from json data files which allowed easy configuration of different tests, see code for more details. This made it very easy to test data for different scenarios. I kept it simple for testing the components and this strategy lends itself to more complicated scenarios. Take a look at the diffent *testing* folders for a better idea of what I am talking about.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. A specific docker start was prepared to facilitate the host binding onto the local machine, but seemed a little excessive. I think there may be better ways of implmenting  
+
+## Run code on Docker
+
+Run `docker-compose up` in the root of the project and this will generate a working docker image with all the code released in production mode.  
+
+### Issue raised on 12th March 2019
+I have a small problem I was forced to introduce until the fix is officially resolved, knowing full well what side effect I would be introducing, and felt that it raised an interesting conversation point. 
+
+The initial problem was, I was forced to upgrade the CLI and various dependencies because of security reasons raised from NPM and Git. Happy that I am being notified about security issues, upgrading my project led me down a rabbit holes of typical JavaScript development issues like dependency discrepancies, lock file discrepancies, more security warnings, with the option to fix automatically. In the end my final issue was related to *RXJS* and the reference to *rxjs/internal*. No matter what path I used, loading a docker image failed. My final solution was to reference the `rxjs` file as opposed to the specific file `rxjs/internal/Observable` and so the result is I can build a docker file, however I have also included a lot of other rxjs files that I did not want to include. This utility `$ ng build --prod --stats-json` and the actual viewer ` $ npx webpack-bundle-analyzer dist/stats.json`, which I have exposed as npm/yarn commands, shows visually what are the biggest files generated, even after bundling. Beware of these things as bloating a project unnecessarily has massive impact on performance, and when I first started developing web applications, I would use the base file so I could reference one thing rather than several little things. It made my development life easy at the detriment of performance, but I was not aware that specific paths could reduce the memory, so I thought I would pass this gem on to you. You can see the leaf map library is the biggest library in the project, a library that is one single file and so has a huge footprint.
+
+!["Webpack Analyser"](screenshots/StatisticsAnalysis.png)
 
 ## Code scaffolding
 
