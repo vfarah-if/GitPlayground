@@ -9,6 +9,7 @@
     "build-stats": "ng build --prod --stats-json",
     "analyse-stats": "npx webpack-bundle-analyzer dist/ngAccidentStatistics/stats.json",
     "test": "ng test",
+    "coverage": "ng test --no-watch --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
