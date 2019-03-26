@@ -29,7 +29,7 @@ describe('AccidentStatisticsMap', () => {
             const expectedInitialState = {
                 from: DEFAULT_FROM_DATE,
                 orderByOption: 'DateDescending',
-                pageSize: 500,
+                pageSize: 100,
                 pagedAccidentStatistic: undefined,
                 severityOption: 'Fatal',
                 to: new Date('2017-12-31T12:00:00.000Z'),
@@ -55,7 +55,7 @@ describe('AccidentStatisticsMap', () => {
             const expectedQueryParams = {
                 from: DEFAULT_FROM_DATE,
                 page: 1,
-                pageSize: 500,
+                pageSize: 100,
                 severity: 'Fatal',
                 sortBy: 'DateDescending',
                 to: new Date('2017-12-31T12:00:00.000Z')

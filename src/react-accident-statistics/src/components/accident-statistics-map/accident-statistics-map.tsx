@@ -78,7 +78,7 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             to: props.toDate ? new Date(props.toDate) : new Date(`${MAXIMUM_YEAR}-12-31T12:00:00`),
             severityOption: props.severityOption || 'Fatal',
             orderByOption: props.orderByOption || 'DateDescending',
-            pageSize: props.pageSize || 500,
+            pageSize: props.pageSize || 100,
             pagedAccidentStatistic: undefined,
             markers: [],
             imageOption: props.imageOption || 'Macarbe',
@@ -117,27 +117,12 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
     }
 
     async loadAccidentData(): Promise<void> {
-        const { from, to, severityOption, orderByOption, pageSize } = this.state;
-        let currentPage = 1;
-        let pagedResponse = await this.service.get({
-            from: from,
-            to: to,
-            severity: severityOption,
-            sortBy: orderByOption,
-            page: currentPage, pageSize: pageSize
-        });
+        let pagedResponse = await this.getData();
         this.updateState(pagedResponse);
 
         if (pagedResponse && pagedResponse.data && pagedResponse.data.nextPage) {
             while (pagedResponse.data.nextPage) {
-                pagedResponse = await this.service.get({
-                    from: from,
-                    to: to,
-                    severity: severityOption,
-                    sortBy: orderByOption,
-                    page: pagedResponse.data.nextPage,
-                    pageSize: pageSize
-                });
+                pagedResponse = await this.getData(pagedResponse.data.nextPage);
                 this.updateState(pagedResponse);
             }
         }
@@ -178,6 +163,18 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
         });
     }
 
+    private getData(page:number = 1): Promise<AxiosResponse<PagedAccidentStatistic>> {
+        const { from, to, severityOption, orderByOption, pageSize } = this.state;
+        return this.service.get({
+            from: from,
+            to: to,
+            severity: severityOption,
+            sortBy: orderByOption,
+            page: page,
+            pageSize: pageSize
+        });
+    }
+    
     private getMarkers(data: AccidentStatistic[] | undefined): Array<MarkerData> {
         const result = new Array<MarkerData>();
         const icon: Icon = this.getIcon();
