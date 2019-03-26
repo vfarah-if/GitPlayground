@@ -55,7 +55,7 @@ describe('AccidentStatisticMapComponent', () => {
       expect(component).toBeTruthy();
       expect(component.from).toBe(DEFAULT_FROM_DATE);
       expect(component.to.toISOString()).toBe(`${MAXIMUM_YEAR}-12-31T12:00:00.000Z`);
-      expect(component.pageSize).toBe(500);
+      expect(component.pageSize).toBe(100);
       expect(component.severityOption).toBe('Fatal');
       expect(component.imageOption).toBe('Macarbe');
       expect(component.zoom).toBe(9);
@@ -73,35 +73,41 @@ describe('AccidentStatisticMapComponent', () => {
     }));
 
     it('should create exactly two fatal image markers on the map', async(() => {
-      const images = imageMarkerElements(compiled);
-      const expectedMacarbeImageUrl = 'https://static.thenounproject.com/png/14312-200.png';
+      fixture.whenStable().then(() => {
+        const images = imageMarkerElements(compiled);
+        const expectedMacarbeImageUrl = 'https://static.thenounproject.com/png/14312-200.png';
 
-      expect(images).toBeTruthy();
-      expect(images.length).toBe(2);
-      expect(images[0].src).toBe(expectedMacarbeImageUrl);
-      expect(images[1].src).toBe(expectedMacarbeImageUrl);
+        expect(images).toBeTruthy();
+        expect(images.length).toBe(2);
+        expect(images[0].src).toBe(expectedMacarbeImageUrl);
+        expect(images[1].src).toBe(expectedMacarbeImageUrl);
+      });
     }));
 
     it('should create a pop up on the first image describing the incident when clicked', async(() => {
-      const images = imageMarkerElements(compiled);
+      fixture.whenStable().then(() => {
+        const images = imageMarkerElements(compiled);
 
-      images[0].click();
+        images[0].click();
 
-      const popupElement = popupDivElement(compiled);
-      expect(popupElement).toBeTruthy();
-      // tslint:disable-next-line:max-line-length
-      expect(popupElement.innerText).toContain('Fatal Incident 632474, occured on Thu Jan 05 2017 09:11:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 2 vehicles in the borough of Kingston.');
+        const popupElement = popupDivElement(compiled);
+        expect(popupElement).toBeTruthy();
+        // tslint:disable-next-line:max-line-length
+        expect(popupElement.innerText).toContain('Fatal Incident 632474, occured on Thu Jan 05 2017 09:11:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 2 vehicles in the borough of Kingston.');
+      });
     }));
 
     it('should create a pop up on the second image describing the incident when clicked', async(() => {
-      const images = imageMarkerElements(compiled);
+      fixture.whenStable().then(() => {
+        const images = imageMarkerElements(compiled);
 
-      images[1].click();
+        images[1].click();
 
-      const popupElement = popupDivElement(compiled);
-      expect(popupElement).toBeTruthy();
-      // tslint:disable-next-line:max-line-length
-      expect(popupElement.innerText).toContain('Fatal Incident 615289, occured on Fri Dec 29 2017 10:58:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 1 vehicle in the borough of City of Westminster.');
+        const popupElement = popupDivElement(compiled);
+        expect(popupElement).toBeTruthy();
+        // tslint:disable-next-line:max-line-length
+        expect(popupElement.innerText).toContain('Fatal Incident 615289, occured on Fri Dec 29 2017 10:58:00 GMT+0000 (Greenwich Mean Time), involving 1 casualty and 1 vehicle in the borough of City of Westminster.');
+      });
     }));
   });
 
@@ -117,14 +123,15 @@ describe('AccidentStatisticMapComponent', () => {
     });
 
     it('should create exactly two friendly image markers on the map', async(() => {
-      const images = imageMarkerElements(compiled);
-      const expectedFriendlyImageUrl = 'https://image.flaticon.com/icons/svg/130/130163.svg';
+      fixture.whenStable().then(() => {
+        const images = imageMarkerElements(compiled);
+        const expectedFriendlyImageUrl = 'https://image.flaticon.com/icons/svg/130/130163.svg';
 
-
-      expect(images).toBeTruthy();
-      expect(images.length).toBe(2);
-      expect(images[0].src).toBe(expectedFriendlyImageUrl);
-      expect(images[1].src).toBe(expectedFriendlyImageUrl);
+        expect(images).toBeTruthy();
+        expect(images.length).toBe(2);
+        expect(images[0].src).toBe(expectedFriendlyImageUrl);
+        expect(images[1].src).toBe(expectedFriendlyImageUrl);
+      });
     }));
   });
 
@@ -140,13 +147,15 @@ describe('AccidentStatisticMapComponent', () => {
     });
 
     it('should create exactly two friendly image markers on the map', async(() => {
-      const images = imageMarkerElements(compiled);
-      const expectedHeatmapImageUrl = 'http://localhost:9876/marker-icon-2x.png';
+      fixture.whenStable().then(() => {
+        const images = imageMarkerElements(compiled);
+        const expectedHeatmapImageUrl = 'http://localhost:9876/marker-icon-2x.png';
 
-      expect(images).toBeTruthy();
-      expect(images.length).toBe(2);
-      expect(images[0].src).toBe(expectedHeatmapImageUrl);
-      expect(images[1].src).toBe(expectedHeatmapImageUrl);
+        expect(images).toBeTruthy();
+        expect(images.length).toBe(2);
+        expect(images[0].src).toBe(expectedHeatmapImageUrl);
+        expect(images[1].src).toBe(expectedHeatmapImageUrl);
+      });
     }));
   });
 
