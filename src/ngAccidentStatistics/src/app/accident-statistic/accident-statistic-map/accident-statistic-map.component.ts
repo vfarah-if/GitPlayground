@@ -45,13 +45,12 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     center: latLng(this.latitude, this.longitude)
   };
 
-  public layersControl = {
-  };
-
+  public layersControl = {};
   public accidentStatisticsFirstPage$: Observable<PagedAccidentStatistic>;
-  // Uncomment when using the reactive data load mechanism
-  // private accidentStatics$: Observable<Array<AccidentStatistic>>;
-  private accidentStatics$ = new BehaviorSubject(new Array<AccidentStatistic>());
+
+  private accidentStatics$: Observable<Array<AccidentStatistic>>;
+  // Uncomment when using the imperative mechanism for loading data
+  // private accidentStatics$ = new BehaviorSubject(new Array<AccidentStatistic>());
   private subscriptions = new Array<Subscription>();
   private mapIcon: Icon;
 
@@ -99,8 +98,8 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
       severity: this.severityOption
     });
 
-    this.loadDataImperatively();
-    // this.loadDataReactively();
+    // this.loadDataImperatively();
+    this.loadDataReactively();
   }
 
   setLeafletOptions() {
@@ -161,55 +160,52 @@ export class AccidentStatisticMapComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
-  // TODO: Figure out how to od this where it loads the data like the imperative solution
-  // ISSUE: Reduce only returns the stream at the end, scan concatenates each amount duplicating the previous
+  private loadDataReactively(): void {
+    const seed = [];
+    this.accidentStatics$ = this.accidentStatisticsFirstPage$
+      .pipe(
+        expand(({ nextPage }) => {
+          return nextPage
+            ? this.accidentStatisticService.get({
+              pageSize: this.pageSize,
+              from: this.from,
+              to: this.to,
+              page: nextPage,
+              severity: this.severityOption,
+            })
+            : empty();
+        }),
+        map(({ data }) => data),
+        scan((acc, data) => data, seed)
+      );
+  }
 
-  // private loadDataReactively(): void {
-  //   const seed = [];
-  //   this.accidentStatics$ = this.accidentStatisticsFirstPage$
-  //     .pipe(
-  //       expand(({ nextPage }) => {
-  //         return nextPage
-  //           ? this.accidentStatisticService.get({
-  //             pageSize: this.pageSize,
-  //             from: this.from,
-  //             to: this.to,
-  //             page: nextPage,
-  //             severity: this.severityOption,
-  //           })
-  //           : empty();
-  //       }),
-  //       map(({ data }) => data),
-  //       scan((acc, data) => acc.concat(data), seed)
-  //     );
+  //// REMARKS: This way utilised the async pattern as well as an emperitive paradigm over
+  //// reactive to load the data in segements. This is a good example showing the difference
+  //// between a reactive app and an imperitive app
+  // private loadDataImperatively(): void {
+  //   const subscription = this.accidentStatisticsFirstPage$.subscribe(async (pagedData: PagedAccidentStatistic) => {
+  //     this.accidentStatics$.next(pagedData.data);
+  //     let nextPage = pagedData.nextPage;
+  //     while (nextPage) {
+  //       const result = await this.getData(nextPage);
+  //       this.accidentStatics$.next(result.data);
+  //       nextPage = result.nextPage;
+  //     }
+  //   });
+  //   this.subscriptions.push(subscription);
   // }
 
-  // REMARKS: This way utilised the async pattern as well as an emperitive paradigm over
-  // reactive to load the data in segements. This is a good example showing the difference
-  // between a reactive app and an imperitive app
-  private loadDataImperatively(): void {
-    const subscription = this.accidentStatisticsFirstPage$.subscribe(async (pagedData: PagedAccidentStatistic) => {
-      this.accidentStatics$.next(pagedData.data);
-      let nextPage = pagedData.nextPage;
-      while (nextPage) {
-        const result = await this.getData(nextPage);
-        this.accidentStatics$.next(result.data);
-        nextPage = result.nextPage;
-      }
-    });
-    this.subscriptions.push(subscription);
-  }
-
-  // REMARKS: toPromise() is usually an anti-pattern, except when calling an async API
-  private getData(page: number = 1): Promise<PagedAccidentStatistic> {
-    return this.accidentStatisticService.get({
-      pageSize: this.pageSize,
-      from: this.from,
-      to: this.to,
-      severity: this.severityOption,
-      page: page
-    }).toPromise();
-  }
+  //// REMARKS: toPromise() is usually an anti-pattern, except when calling an async API
+  // private getData(page: number = 1): Promise<PagedAccidentStatistic> {
+  //   return this.accidentStatisticService.get({
+  //     pageSize: this.pageSize,
+  //     from: this.from,
+  //     to: this.to,
+  //     severity: this.severityOption,
+  //     page: page
+  //   }).toPromise();
+  // }
 
   private createPopupContent(accidentStatistic: AccidentStatistic): string {
     const dateOfAccident = new Date(accidentStatistic.date);
