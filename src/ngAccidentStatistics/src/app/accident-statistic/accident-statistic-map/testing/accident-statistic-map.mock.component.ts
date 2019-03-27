@@ -20,7 +20,7 @@ export class AccidentStatisticMapMockComponent {
   @Input() toDate: string;
   @Input() severityOption: SeverityOptions = 'Fatal';
   @Input() imageType: ImageOptions;
-  @Input() pageSize = 500;
+  @Input() pageSize = 100;
   @Input() zoom = 9;
   @Input() latitude = 51.5074;
   @Input() longitude = 0.1278;
@@ -29,15 +29,7 @@ export class AccidentStatisticMapMockComponent {
 
   public from: Date;
   public to: Date;
-  public leafletOptions: MapOptions = {
-    layers: [
-      tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: this.maxZoom })
-    ],
-    zoom: this.zoom,
-    center: latLng(this.latitude, this.longitude)
-  };
-
+  public leafletOptions: MapOptions = {};
   public layersControl = {};
-
   public accidentStatisticsFirstPage$: Observable<PagedAccidentStatistic>;
 }
