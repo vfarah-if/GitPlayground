@@ -1,0 +1,44 @@
+digraph architecture {
+  rankdir=LR;
+
+  // Storage - #303F9F (dark blue)
+  node[fillcolor="#303F9F" style="filled" fontcolor="white"];
+  database[label="Microsoft SQL"]; 
+  mongo_db[label="MongoDB"];
+  
+  // Client-side Apps - #FFEB3B (yellow)
+  node[fillcolor="#FFEB3B" style="filled" fontcolor="black"];
+  ng_front_end[label="Angular Accident Statistics"]; 
+  react_front_end[label="React Accident Statistics"];
+  
+  // Data Persistence - #C8E6C9 (light green)
+  node[fillcolor="#C8E6C9" style="filled" fontcolor="black"];
+  orm[label="Entity Framework ORM"]; 
+  no_sql_database[label="No SQL Database"]; 
+  version1_api[label="Legacy Version 1 API"];
+  
+  // Backend API's - #FFCCBC (light orange)
+  node[fillcolor="#FFCCBC" style="filled" fontcolor="black"];
+  node_api[label="Node Accident Statistics API"]; 
+  owin_api[label="Owin Accident Statistics API"];
+  
+  // 3rd-party APIs - #CFD8DC (light grey)
+  node[fillcolor="#CFD8DC" style="filled" fontcolor="black"];
+  tfl_api[label="TFL Accident Statics API"];
+
+  subgraph client_side_apps {
+      ng_front_end -> {node_api,owin_api};
+      react_front_end -> {node_api,owin_api};
+      {rank=same; ng_front_end, react_front_end, node_api};
+  }
+  
+  subgraph api_gateways {
+     owin_api -> {orm, no_sql_database, version1_api};
+  }
+  
+  subgraph microservices {
+      orm -> {database};
+      no_sql_database -> {mongo_db};
+      version1_api -> {tfl_api};
+  }
+}
