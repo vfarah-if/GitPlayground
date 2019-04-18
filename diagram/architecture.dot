@@ -13,9 +13,9 @@ digraph architecture {
   
   // Data Persistence - #C8E6C9 (light green)
   node[fillcolor="#C8E6C9" style="filled" fontcolor="black"];
-  orm[label="Entity Framework ORM"]; 
-  no_sql_database[label="No SQL Database"]; 
-  version1_api[label="Legacy Version 1 API"];
+  orm[label="Version 2 API [EF ORM]"]; 
+  no_sql_database[label="Version 2 API [No SQL]"]; 
+  version1_api[label="Version 1 API"];
   
   // Backend API's - #FFCCBC (light orange)
   node[fillcolor="#FFCCBC" style="filled" fontcolor="black"];
@@ -32,11 +32,15 @@ digraph architecture {
       {rank=same; ng_front_end, react_front_end, node_api};
   }
   
-  subgraph api_gateways {
-     owin_api -> {orm, no_sql_database, version1_api};
+  subgraph owin_api_structure {
+     owin_api -> {orm, version1_api};
+  }
+
+  subgraph node_api_structure {
+     node_api -> {no_sql_database, version1_api};
   }
   
-  subgraph microservices {
+  subgraph durability {
       orm -> {database};
       no_sql_database -> {mongo_db};
       version1_api -> {tfl_api};
