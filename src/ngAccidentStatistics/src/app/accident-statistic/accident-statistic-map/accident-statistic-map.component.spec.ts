@@ -75,12 +75,12 @@ describe('AccidentStatisticMapComponent', () => {
     it('should create exactly two fatal image markers on the map', async(() => {
       fixture.whenStable().then(() => {
         const images = imageMarkerElements(compiled);
-        const expectedMacarbeImageUrl = 'https://static.thenounproject.com/png/14312-200.png';
+        const expectedMacarbeImageUrl = 'assets/images/macarbe.png';
 
         expect(images).toBeTruthy();
         expect(images.length).toBe(2);
-        expect(images[0].src).toBe(expectedMacarbeImageUrl);
-        expect(images[1].src).toBe(expectedMacarbeImageUrl);
+        expect(images[0].src).toContain(expectedMacarbeImageUrl);
+        expect(images[1].src).toContain(expectedMacarbeImageUrl);
       });
     }));
 
@@ -125,12 +125,12 @@ describe('AccidentStatisticMapComponent', () => {
     it('should create exactly two friendly image markers on the map', async(() => {
       fixture.whenStable().then(() => {
         const images = imageMarkerElements(compiled);
-        const expectedFriendlyImageUrl = 'https://image.flaticon.com/icons/svg/130/130163.svg';
+        const expectedFriendlyImageUrl = 'assets/images/friendly.png';
 
         expect(images).toBeTruthy();
         expect(images.length).toBe(2);
-        expect(images[0].src).toBe(expectedFriendlyImageUrl);
-        expect(images[1].src).toBe(expectedFriendlyImageUrl);
+        expect(images[0].src).toContain(expectedFriendlyImageUrl);
+        expect(images[1].src).toContain(expectedFriendlyImageUrl);
       });
     }));
   });
