@@ -15,16 +15,21 @@ digraph architecture {
   node[fillcolor="#C8E6C9" style="filled" fontcolor="black"];
   orm[label="Version 2 API [EF ORM]"]; 
   no_sql_database[label="Version 2 API [No SQL]"]; 
-  version1_api[label="Version 1 API"];
+  live_api[label="Version 1 API"];
   
-  // Backend API's - #FFCCBC (light orange)
-  node[fillcolor="#FFCCBC" style="filled" fontcolor="black"];
+  // Backend API's - #FF0000 (red)
+  node[fillcolor="#FF0000" style="filled" fontcolor="white"];
   node_api[label="Node Accident Statistics API"]; 
   owin_api[label="Owin Accident Statistics API"];
   
   // 3rd-party APIs - #CFD8DC (light grey)
   node[fillcolor="#CFD8DC" style="filled" fontcolor="black"];
   tfl_api[label="TFL Accident Statics API"];
+  power_bi[label="Microsoft Power BI"]
+
+  // Docker Support - #0000FF (blue)
+  node[fillcolor="#0000FF" style="filled" fontcolor="white"];
+  docker_support[label="Docker Support"];
 
   subgraph client_side_apps {
       ng_front_end -> {node_api,owin_api};
@@ -33,16 +38,21 @@ digraph architecture {
   }
   
   subgraph owin_api_structure {
-     owin_api -> {orm, version1_api};
+     owin_api -> {orm, live_api};
   }
 
   subgraph node_api_structure {
-     node_api -> {no_sql_database, version1_api};
+     node_api -> {no_sql_database, live_api};
   }
   
   subgraph durability {
       orm -> {database};
       no_sql_database -> {mongo_db};
-      version1_api -> {tfl_api};
+      live_api -> {tfl_api};
+      power_bi -> {database};
+  }
+
+  subgraph docker_containers {
+     docker_support -> {ng_front_end, react_front_end, node_api};
   }
 }
