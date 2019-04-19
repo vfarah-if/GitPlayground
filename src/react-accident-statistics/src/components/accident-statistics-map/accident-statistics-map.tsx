@@ -199,18 +199,18 @@ export default class AccidentStatisticsMap extends React.Component<AccidentStati
             case 'Marker': return new Icon({
                 iconSize: [25, 41],
                 iconAnchor: [13, 40],
-                iconUrl: 'https://unpkg.com/leaflet@1.3.4/dist/images/marker-icon-2x.png',
-                shadowUrl: 'https://unpkg.com/leaflet@1.3.4/dist/images/marker-shadow.png'
+                iconUrl:  process.env.PUBLIC_URL + '/images/marker-icon-2x.png',
+                shadowUrl:  process.env.PUBLIC_URL + '/images/marker-shadow.png'
             });
             case 'Friendly': return new Icon({
                 iconSize: [40, 40],
                 iconAnchor: [13, 40],
-                iconUrl: 'https://image.flaticon.com/icons/svg/130/130163.svg',
+                iconUrl: process.env.PUBLIC_URL + '/images/friendly.png',
             });
             default: return new Icon({
                 iconSize: [35, 35],
                 iconAnchor: [13, 35],
-                iconUrl: 'https://static.thenounproject.com/png/14312-200.png',
+                iconUrl: process.env.PUBLIC_URL + '/images/macarbe.png',
             });
         }
     }

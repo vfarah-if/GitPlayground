@@ -11,7 +11,6 @@ import AccidentStatisticsMap from '../accident-statistics-map/accident-statistic
 import { PagedAccidentStatistic } from './../../models';
 
 describe('AccidentStatisticsMap', () => {
-
     describe('default settings', () => {
         let wrapper: any;
         let mockAdapter: MockAdapter;
