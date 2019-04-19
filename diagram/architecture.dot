@@ -52,7 +52,12 @@ digraph architecture {
       power_bi -> {database};
   }
 
-  subgraph docker_containers {
+  subgraph data_seeding {
+      live_api -> {database};
+      live_api -> {mongo_db};
+  }
+  
+   subgraph docker_containers {
      docker_support -> {ng_front_end, react_front_end, node_api};
   }
 }
