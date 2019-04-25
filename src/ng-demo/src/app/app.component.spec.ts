@@ -63,6 +63,6 @@ describe('AppComponent', () => {
   it('should render several hello world components', () => {
     const elements = helloWorldElements(compiled);
     expect(elements).toBeTruthy();
-    expect(elements.length).toBe(2);
+    expect(elements.length).toBe(5);
   });
 });

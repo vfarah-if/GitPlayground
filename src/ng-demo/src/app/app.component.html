@@ -22,6 +22,9 @@
   <li>
     <app-hello-world who="Vincent"></app-hello-world>
   </li>
+  <li *ngFor="let user of users">
+    <app-hello-world [who]="user"></app-hello-world>
+  </li>
 </ul>
 
 <router-outlet></router-outlet>

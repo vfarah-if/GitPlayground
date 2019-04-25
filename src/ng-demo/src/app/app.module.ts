@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelloWorldModule } from './hello-world';
+import { HelloWorldUsersModule } from './api/hello-world-users';
 
 @NgModule({
   declarations: [
@@ -12,9 +13,9 @@ import { HelloWorldModule } from './hello-world';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HelloWorldModule
+    HelloWorldModule,
+    HelloWorldUsersModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
