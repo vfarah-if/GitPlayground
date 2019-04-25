@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HelloWorldComponent } from './hello-world.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [HelloWorldComponent],
   imports: [
     CommonModule
   ],
-  exports:[]
+  export: [
+    HelloWorldComponent
+  ]
 })
 export class HelloWorldModule { }
