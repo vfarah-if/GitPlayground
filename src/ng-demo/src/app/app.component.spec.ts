@@ -7,11 +7,11 @@ function headerElement(compiled): HTMLHeadElement {
   return compiled.querySelector('h1');
 }
 
-function helloWorldElement(compiled): HTMLElement {
-  return compiled.querySelector('app-hello-world');
+function helloWorldElements(compiled): HTMLElement[] {
+  return compiled.querySelectorAll('app-hello-world');
 }
 
-function anchorElements(compiled): Array<HTMLAnchorElement>{
+function anchorElements(compiled): Array<HTMLAnchorElement> {
   return compiled.querySelectorAll('h2 > a');
 }
 
@@ -60,8 +60,9 @@ describe('AppComponent', () => {
     expect(elements[2].innerText).toBe('Angular blog');
   });
 
-  it('should render a hello world component', () => {
-    const element = helloWorldElement(compiled);
-    expect(element).toBeTruthy();
+  it('should render several hello world components', () => {
+    const elements = helloWorldElements(compiled);
+    expect(elements).toBeTruthy();
+    expect(elements.length).toBe(2);
   });
 });

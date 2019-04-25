@@ -35,4 +35,14 @@ describe('HelloWorldComponent', () => {
     expect(element).toBeTruthy();
     expect(element.innerText).toContain('Hello World');
   });
+
+  it('should output hello vincent', () => {
+    component.who = 'Vincent';
+    fixture.detectChanges();
+
+    const element = paragraphElement(compiled);
+
+    expect(element).toBeTruthy();
+    expect(element.innerText).toContain('Hello Vincent');
+  });
 });
