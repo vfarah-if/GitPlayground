@@ -11,7 +11,7 @@ interface State {
     currentEnthusiasm: number;
 }
 
-class Hello extends React.Component<Props, State> {
+export default class Hello extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
@@ -46,10 +46,8 @@ class Hello extends React.Component<Props, State> {
     };
 }
 
-export default Hello;
-
 // Helpers
 
-function getExclamationMarks(numChars: number) {
+function getExclamationMarks(numChars: number): string {
     return Array(numChars + 1).join('!');
 }

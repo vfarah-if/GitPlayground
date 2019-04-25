@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Hello from './components/hello';
 import logo from './logo.svg';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas, faKey } from '@fortawesome/free-solid-svg-icons';
+
+import Hello from './components/hello/hello';
 import AccidentStatisticsMap from './components/accident-statistics-map/accident-statistics-map';
 import AccidentStatisticsList from './components/accident-statistics-list/accident-statistics-list';
 library.add(fas, faKey);
