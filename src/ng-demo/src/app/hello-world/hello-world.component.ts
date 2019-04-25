@@ -10,10 +10,10 @@ export class HelloWorldComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
-    console.log("Oninit");
+    console.log('Oninit');
   }
 
   ngOnDestroy(): void {
-    console.log("OnDestroy");
+    console.log('OnDestroy');
   }
 }
