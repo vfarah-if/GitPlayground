@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HelloWorldModule } from './hello-world/hello-world.module';
+import { HelloWorldUsersService } from './api/hello-world-users';
 
 function headerElement(compiled): HTMLHeadElement {
   return compiled.querySelector('h1');
@@ -19,6 +20,7 @@ describe('AppComponent', () => {
   let fixture;
   let app;
   let compiled;
+  let apiService: HelloWorldUsersService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -35,6 +37,9 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.debugElement.componentInstance;
+    // Spy on the service but instead return one record
+    apiService = TestBed.get(HelloWorldUsersService);
+    spyOn(apiService, 'getAllUsers').and.returnValue(new Array<string>('Samuel'));
     fixture.detectChanges();
     compiled = fixture.debugElement.nativeElement;
   });
@@ -63,6 +68,7 @@ describe('AppComponent', () => {
   it('should render several hello world components', () => {
     const elements = helloWorldElements(compiled);
     expect(elements).toBeTruthy();
-    expect(elements.length).toBe(5);
+    expect(elements.length).toBe(3);
+    expect(elements[2].innerText).toContain('SAMUEL');
   });
 });
