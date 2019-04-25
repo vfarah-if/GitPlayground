@@ -69,6 +69,6 @@ describe('AppComponent', () => {
     const elements = helloWorldElements(compiled);
     expect(elements).toBeTruthy();
     expect(elements.length).toBe(3);
-    expect(elements[2].innerText).toContain('SAMUEL');
+    expect(apiService.getAllUsers).toHaveBeenCalled();
   });
 });
