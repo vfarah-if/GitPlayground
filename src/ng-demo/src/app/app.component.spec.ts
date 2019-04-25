@@ -7,6 +7,10 @@ function headerElement(compiled): HTMLHeadElement {
   return compiled.querySelector('h1');
 }
 
+function helloWorldElement(compiled): HTMLElement {
+  return compiled.querySelector('app-hello-world');
+}
+
 describe('AppComponent', () => {
   let fixture;
   let app;
@@ -42,5 +46,10 @@ describe('AppComponent', () => {
   it('should render title in a h1 tag', () => {
     const element = headerElement(compiled);
     expect(element.textContent).toContain('Welcome to ng-demo!');
+  });
+
+  it('should render a hello world component', () => {
+    const element = helloWorldElement(compiled);
+    expect(element).toBeTruthy();
   });
 });
