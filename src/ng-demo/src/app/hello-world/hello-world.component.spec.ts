@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HelloWorldComponent } from './hello-world.component';
+import { ShoutPipe } from './shout.pipe';
 
 function paragraphElement(compiled): HTMLParagraphElement {
   return compiled.querySelector('section > p');
@@ -13,7 +14,7 @@ describe('HelloWorldComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HelloWorldComponent]
+      declarations: [HelloWorldComponent, ShoutPipe]
     })
       .compileComponents();
   }));
@@ -30,19 +31,19 @@ describe('HelloWorldComponent', () => {
     expect(compiled).toBeTruthy();
   });
 
-  it('should output hello world', () => {
+  it('should output hello WORLD!', () => {
     const element = paragraphElement(compiled);
     expect(element).toBeTruthy();
-    expect(element.innerText).toContain('Hello World');
+    expect(element.innerText).toContain('Hello WORLD!');
   });
 
-  it('should output hello vincent', () => {
+  it('should output hello VINCENT!', () => {
     component.who = 'Vincent';
     fixture.detectChanges();
 
     const element = paragraphElement(compiled);
 
     expect(element).toBeTruthy();
-    expect(element.innerText).toContain('Hello Vincent');
+    expect(element.innerText).toContain('Hello VINCENT!');
   });
 });
