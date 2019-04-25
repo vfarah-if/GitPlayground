@@ -11,6 +11,10 @@ function helloWorldElement(compiled): HTMLElement {
   return compiled.querySelector('app-hello-world');
 }
 
+function anchorElements(compiled): Array<HTMLAnchorElement>{
+  return compiled.querySelectorAll('h2 > a');
+}
+
 describe('AppComponent', () => {
   let fixture;
   let app;
@@ -46,6 +50,14 @@ describe('AppComponent', () => {
   it('should render title in a h1 tag', () => {
     const element = headerElement(compiled);
     expect(element.textContent).toContain('Welcome to ng-demo!');
+  });
+
+  it('should contain three anchors', () => {
+    const elements = anchorElements(compiled);
+    expect(elements.length).toBe(3);
+    expect(elements[0].innerText).toBe('Tour of Heroes');
+    expect(elements[1].innerText).toBe('CLI Documentation');
+    expect(elements[2].innerText).toBe('Angular blog');
   });
 
   it('should render a hello world component', () => {
