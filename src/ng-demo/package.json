@@ -7,7 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "coverage": "ng test --no-watch --code-coverage",
+    "build-stats": "ng build --prod --stats-json",
+    "analyse-stats": "npx webpack-bundle-analyzer dist/ng-demo/stats.json"
   },
   "private": true,
   "dependencies": {
