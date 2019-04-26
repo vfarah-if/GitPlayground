@@ -7,15 +7,17 @@ function paragraphElement(compiled) {
 }
 
 describe('HelloWorld', () => {
+    let compiled;
+
+    beforeEach(() => {
+        compiled = shallow(<HelloWorld />);
+    });
 
     it('should create component', () => {
-        const compiled = shallow(<HelloWorld />);
         expect(compiled).toBeTruthy();
     });
 
     it('should contain Hello World', () => {
-        const compiled = shallow(<HelloWorld />);
-
         const element = paragraphElement(compiled);
         console.log(element);
         expect(element.text()).toContain('Hello World');
