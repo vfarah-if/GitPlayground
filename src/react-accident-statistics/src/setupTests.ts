@@ -1,5 +1,5 @@
 import './Polyfill';
-import * as React from 'react'
+import * as React from 'react';
 import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 import { library } from '@fortawesome/fontawesome-svg-core';

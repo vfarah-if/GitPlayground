@@ -27,5 +27,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1"
+  },
+  "globals": [
+    "flushPromises",
+    "createMockRouter",
+    "localStorage",
+    "contextTypes",
+    "shallow",
+    "mount"
+  ]
 }
