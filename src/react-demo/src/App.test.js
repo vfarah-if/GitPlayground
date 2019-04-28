@@ -1,18 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ReactDOM from 'react-dom';
+
 import App from './App';
-import HelloWorldUsersService from './api/HelloWorldUsersService';
+// import HelloWorldUsersService from './api/HelloWorldUsersService';
 
 function helloWorldElements(compiled) {
   return compiled.find('HelloWorld');
-};
+}
 
 describe('App', () => {
-  beforeAll(() => {
-    jest.mock('HelloWorldUsersService');
-    HelloWorldUsersService.getAllUsers.mockResolvedValue(['Gabriel']);
-  });
+  // beforeAll(() => {
+  //   // TODO: Figure out how I could have got this to work
+  //   jest.mock('HelloWorldUsersService');
+  //   HelloWorldUsersService.getAllUsers.mockResolvedValue(['Samuel']);
+  // });
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
@@ -21,10 +23,12 @@ describe('App', () => {
   });
 
   it('should contain several hello world components', () => {
-    const compiled = shallow(<App />)
+    const compiled = shallow(<App />);
+    // Set the users as if the service had resolved this   
+    const users = ['Samuel'];
+    compiled.setState({users})
     const elements = helloWorldElements(compiled);
-    console.log(elements);
-    expect(elements.length).toBe(2);
-  })
-})
-
+        
+    expect(elements.length).toBe(3);
+  }); 
+});
