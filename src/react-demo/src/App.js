@@ -43,10 +43,9 @@ export default class App extends Component {
 
   async loadAllUsers() {
     const signal = this.abortController.signal;
-    console.log(signal);    
     const users = await helloWorldUsersService.getAllUsers();
     if (!signal.aborted) {
-      this.setState({ users });
+      this.setState({ users }, () => console.log('Updated'));
     }
   }  
 }
