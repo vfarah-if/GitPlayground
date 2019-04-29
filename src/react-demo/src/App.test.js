@@ -35,12 +35,15 @@ describe('App', () => {
   it('should call the service', () => {
     const compiled = mount(<App />);
 
-    // TODO: Figure out how this works
+    //TODO: Figure out
     // compiled.update();
 
     expect(HelloWorldUsersService.getAllUsers).toHaveBeenCalled();
-    // const elements = helloWorldElements(compiled);
-    // console.log('Assert')
-    // expect(elements.length).toBe(3);
+
+    // setImmediate(() => {
+    //   const elements = helloWorldElements(compiled);
+    //   console.log('Assert')
+    //   expect(elements.length).toBe(3);
+    //  });
   }); 
 });

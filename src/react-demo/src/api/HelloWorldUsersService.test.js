@@ -5,5 +5,6 @@ describe('HelloWorldUsersService', () => {
     it('should create a service', async() => {        
         const actual = await helloWorldUsersService.getAllUsers();
         expect(actual.length).toBe(3);
+        expect(actual).toBeTruthy();
     })    
 })
