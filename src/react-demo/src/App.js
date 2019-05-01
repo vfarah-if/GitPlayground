@@ -38,7 +38,11 @@ export default class App extends Component {
   }
 
   componentWillUnmount() {
-    this.abortController.abort();
+    this.abort();
+  }
+
+  abort() {
+    return this.abortController.abort;
   }
 
   async loadAllUsers() {

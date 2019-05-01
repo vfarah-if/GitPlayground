@@ -11,12 +11,12 @@ function helloWorldElements(compiled) {
 }
 
 describe('App', () => {
-  beforeAll(() => {    
+  beforeAll(() => {
     HelloWorldUsersService.getAllUsers.mockResolvedValue(['Samuel']);
   });
 
- 
- it('renders without crashing', () => {
+
+  it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
     ReactDOM.unmountComponentAtNode(div);
@@ -26,24 +26,23 @@ describe('App', () => {
     const compiled = shallow(<App />);
     // Set the users as if the service had resolved this   
     const users = ['Samuel'];
-    compiled.setState({users})
+    compiled.setState({ users })
     const elements = helloWorldElements(compiled);
-        
+
     expect(elements.length).toBe(3);
-  }); 
+  });
 
-  it('should call the service', () => {
-    const compiled = mount(<App />);
-
-    //TODO: Figure out
-    // compiled.update();
-
+  it('should call the service and do the above test', async () => {
+    const compiled = shallow(<App />);
+    // facking time
+    await compiled.instance().componentDidMount();
     expect(HelloWorldUsersService.getAllUsers).toHaveBeenCalled();
 
-    // setImmediate(() => {
-    //   const elements = helloWorldElements(compiled);
-    //   console.log('Assert')
-    //   expect(elements.length).toBe(3);
-    //  });
-  }); 
+    // Refresh the react internals
+    compiled.update();
+
+    const elements = helloWorldElements(compiled);
+    console.log('Assert')
+    expect(elements.length).toBe(3);
+  });
 });
