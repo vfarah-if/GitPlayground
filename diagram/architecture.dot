@@ -1,6 +1,8 @@
 digraph architecture {
   rankdir=LR;
-
+  node[shape="rectangle"];
+  
+  
   // Storage - #303F9F (dark blue)
   node[fillcolor="#303F9F" style="filled" fontcolor="white"];
   database[label="Microsoft SQL"]; 
@@ -53,8 +55,8 @@ digraph architecture {
   }
 
   subgraph data_seeding {
-      live_api -> {database};
-      live_api -> {mongo_db};
+      live_api -> {database}[label="Seed data from" dir="back" ];
+      live_api -> {mongo_db}[label="Seed data from" dir="back" ];
   }
   
    subgraph docker_containers {
