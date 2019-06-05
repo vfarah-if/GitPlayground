@@ -27,7 +27,7 @@ describe('Given a user navigates to the home page', () => {
       .toEqual('Below are examples of 3 such components, the same components configured to show different data or perspectives on certain information.');
   });
 
-  it('should inform the user about the developer options and optimizations that are available like broswer cache', () => {
+  it('should inform the user about the developer options and optimizations that are available like browser cache.', () => {
     expect(page.getFirstListItemThirdParagraphText())
       // tslint:disable-next-line:max-line-length
       .toEqual('Make a point of utilising the developer tools to see the network activity and refresh the page to see the data optimisation the browser cache, or etag caching for 5 minutes at a time.');
